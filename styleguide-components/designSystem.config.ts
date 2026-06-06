@@ -148,6 +148,24 @@ export const navSections: NavSection[] = [
                 status: 'stable',
                 summary: 'The named grid and layout section family on a 12-column grid.',
             },
+            {
+                title: 'Coloured card',
+                slug: 'components/coloured-card',
+                status: 'stable',
+                summary: 'A colourable card grouping an icon, heading, body and CTA.',
+            },
+            {
+                title: 'Header',
+                slug: 'components/header',
+                status: 'stable',
+                summary: 'The global site header with responsive navigation and actions.',
+            },
+            {
+                title: 'Footer',
+                slug: 'components/footer',
+                status: 'stable',
+                summary: 'The global navy site footer with menus, legal and social links.',
+            },
         ],
     },
     {

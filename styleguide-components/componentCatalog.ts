@@ -58,7 +58,7 @@ export const componentLayers: ComponentLayer[] = [
             { name: 'CtaBlock', source: 'components/molecules/blocks/CtaBlock.tsx', description: 'A call-to-action button driven by CMS size, variant and alignment options.', status: 'stable', docSlug: 'components/cta' },
             { name: 'AccordionBlock', source: 'components/molecules/blocks/AccordionBlock', description: 'A list of expandable/collapsible question-and-answer panels.', status: 'stable', docSlug: 'components/accordion' },
             { name: 'CardBlock', source: 'components/molecules/blocks/CardBlock.tsx', description: 'A content card with image, heading, body and optional CTA.', status: 'in-review' },
-            { name: 'ColouredCardBlock', source: 'components/molecules/blocks/ColouredCardBlock.tsx', description: 'A card variant with a coloured background surface.', status: 'in-review' },
+            { name: 'ColouredCardBlock', source: 'components/molecules/blocks/ColouredCardBlock.tsx', description: 'A card variant with a coloured background surface.', status: 'stable', docSlug: 'components/coloured-card' },
             { name: 'ContactCardBlock', source: 'components/molecules/blocks/ContactCardBlock.tsx', description: 'A card presenting contact details and actions.', status: 'in-review' },
             { name: 'ImageCardBlock', source: 'components/molecules/blocks/ImageCardBlock.tsx', description: 'An image-led card.', status: 'in-review' },
             { name: 'PromotionCardBlock', source: 'components/molecules/blocks/PromotionCardBlock.tsx', description: 'A promotional card for campaigns and offers.', status: 'in-review' },
@@ -110,8 +110,8 @@ export const componentLayers: ComponentLayer[] = [
         description:
             'Large, self-contained regions that combine many molecules into a complete piece of interface.',
         components: [
-            { name: 'Header', source: 'components/organisms/Header', description: 'The global site header with primary navigation and search.', status: 'in-review' },
-            { name: 'Footer', source: 'components/organisms/Footer', description: 'The global site footer with navigation, legal and social links.', status: 'in-review' },
+            { name: 'Header', source: 'components/organisms/Header', description: 'The global site header with primary navigation and search.', status: 'stable', docSlug: 'components/header' },
+            { name: 'Footer', source: 'components/organisms/Footer', description: 'The global site footer with navigation, legal and social links.', status: 'stable', docSlug: 'components/footer' },
             { name: 'PreviewEnabledNotification', source: 'components/organisms/PreviewEnabledNotification.tsx', description: 'A banner shown when CMS preview mode is active.', status: 'in-review' },
             { name: 'LinkHandler', source: 'components/organisms/LinkHandler.tsx', description: 'Centralised handling of internal and external link behaviour.', status: 'in-review' },
         ],
