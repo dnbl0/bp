@@ -10,6 +10,7 @@ const generateRobotsTxt = (pages: CmsPage[]) => {
     return `User-agent: *
 Allow: /
 
+Disallow: /design-system
 ${pages
     .map(({ slug }) => {
         return `Disallow: ${slug}`
