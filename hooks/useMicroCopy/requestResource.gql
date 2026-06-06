@@ -1,0 +1,7 @@
+query ($key: String) {
+    resourceCollection(limit: 1, where: { key: $key }) {
+        items {
+            value
+        }
+    }
+}

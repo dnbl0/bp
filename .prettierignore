@@ -1,0 +1,21 @@
+# The prettier ignore file uses .gitignore syntax.
+# https://prettier.io/docs/en/ignore.html
+
+# Block all files & folders at the project root.
+/*
+
+# Add files we want to format
+!/components
+!/hooks
+!/lib
+!/pages
+!/schema
+!/styles
+!/types
+!/utils
+
+!/next.config.js
+!/postcss.config.js
+!/tailwind.config.js
+!/vite.config.ts
+

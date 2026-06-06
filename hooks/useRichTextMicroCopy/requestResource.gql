@@ -1,0 +1,9 @@
+query ($key: String) {
+  resourceRichTextCollection (limit: 1 where: { key: $key }) {
+    items {
+      valueRichText {
+        json
+      }
+    }
+  }
+}

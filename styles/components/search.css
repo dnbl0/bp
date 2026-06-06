@@ -1,0 +1,41 @@
+/* Based on code from: https://codepen.io/maplessmann/pen/mwJBEd  */
+
+.ais-Hits-item {
+    padding: theme(spacing.6);
+    border-top: 1px solid;
+    border-color: theme(colors.cool-paper-200);
+
+    &:last-child {
+        border-bottom: 1px solid;
+        border-color: theme(colors.cool-paper-200);
+    }
+}
+
+.ais-Highlight-highlighted {
+    color: theme(colors.cyan.DEFAULT);
+    font-style: normal;
+}
+
+.ais-Pagination {
+    &-list {
+        display: flex;
+        justify-content: center;
+    }
+
+    &-item {
+        color: theme(colors.navy);
+        font-weight: theme(fontWeight.semibold);
+        padding: 5px 12px;
+        &:hover,
+        &--selected {
+            background-color: theme(colors.cyan.50);
+            border-radius: theme(borderRadius.DEFAULT);
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+        &--disabled {
+            display: none;
+        }
+    }
+}

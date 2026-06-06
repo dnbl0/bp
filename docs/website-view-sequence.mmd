@@ -1,0 +1,49 @@
+sequenceDiagram
+
+autonumber
+
+actor User
+participant Netlify
+participant Contentful
+participant Agolia
+participant maps as Google Maps
+participant SnapForms
+participant bvac as Bupa Form Endpoint
+
+Note over User,Netlify: User visits website via Imperva WAF
+
+User->>Netlify: Open www.bupaagedcare.com.au
+Netlify->>Contentful: Request content (GraphQL)
+Contentful-->>Netlify: Return content (GraphQL)
+Netlify-->>User: Return page
+
+opt Search website content
+  Note over User,Netlify: User initiates search
+  User->>Netlify: Search
+  Netlify->>Agolia: Request search results
+  Agolia->>Contentful: Search content index
+  Contentful-->>Agolia:
+  Agolia-->>Netlify: Return search results
+  Netlify-->>User: Render search results
+end
+
+opt Search aged care home location
+    Note over User,Netlify: User searches for home locations
+    User->>Netlify: Search
+    Netlify->>Contentful: Request locations
+    Contentful->>maps: Provide locations
+    maps-->>Netlify: Return map iframe
+    Netlify-->>User: Render map iframe
+    Contentful-->>Netlify: Return home locations
+    Netlify-->>User: Render search results
+end
+
+opt View and submit form
+    Note over User,Netlify: User views form
+    User->>Netlify: View
+    Netlify->>SnapForms: Send Form ID
+    SnapForms-->>Netlify: Return form iframe
+    Netlify-->>User: Render form iframe
+    User->>SnapForms: Submit form
+    SnapForms->>bvac: Send form data
+end

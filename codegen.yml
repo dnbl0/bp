@@ -1,0 +1,22 @@
+# Generate typescript definitions from the Contenteful GraphQL Content API schema.
+#
+# Codegen.yml file format documentation:
+# https://www.graphql-code-generator.com/docs/config-reference/codegen-config
+#
+# Graphql Code Generator project repository
+# https://github.com/dotansimha/graphql-code-generator#readme
+
+schema:
+  - 'https://graphql.contentful.com/content/v1/spaces/${NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/environments/${NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT}':
+      headers:
+        Authorization: 'Bearer ${NEXT_PUBLIC_CONTENT_DELIVERY_ACCESS_TOKEN}'
+generates:
+  ./types/contentful-cms-types.d.ts:
+    schema:
+      - 'schema/extend.graphql'
+    plugins:
+      - typescript
+    config:
+      nonOptionalTypename: true
+      typesPrefix: Cms
+

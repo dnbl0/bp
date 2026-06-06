@@ -1,0 +1,42 @@
+@layer base {
+    /* Set the root elements to full height to ensure
+     the footer stays at the bottom of screen on
+     pages with any amount of content. */
+    html,
+    body,
+    #__next {
+        @apply h-full;
+    }
+
+    body {
+        color: theme(colors.grey);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: theme(colors.navy);
+    }
+
+    h1 {
+        @apply text-2xl;
+    }
+    h2 {
+        @apply text-xl;
+    }
+    h3 {
+        @apply text-lg;
+    }
+
+    /*
+        Anchor tags sometimes contain child elements for styling reasons.
+        The child elements are generally not something we want the user
+        to be able to interact with, so we ignore point-events.
+    */
+    a > * {
+        pointer-events: none;
+    }
+}

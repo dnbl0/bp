@@ -1,0 +1,38 @@
+/* Based on code from: https://codepen.io/maplessmann/pen/mwJBEd  */
+
+.accordion-state-icon {
+    --width: 1.2rem;
+    --height: 3px;
+    width: var(--width);
+    height: var(--width);
+    position: relative;
+    cursor: pointer;
+
+    &::after,
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: theme(colors.current);
+        width: var(--width);
+        height: var(--height);
+        transition: 0.4s ease;
+    }
+
+    &::after {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    &::before {
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+
+    &--open::after {
+        transform: translate(-50%, -50%);
+    }
+
+    &--open::before {
+        transform: translate(-50%, -50%);
+    }
+}

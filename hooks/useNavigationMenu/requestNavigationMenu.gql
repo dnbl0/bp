@@ -1,0 +1,26 @@
+query ($name: String) {
+    navigationMenuCollection(limit: 1, where: { name: $name }) {
+        items {
+            itemsCollection(limit: 8) {
+                items {
+                    sys {
+                        id
+                    }
+                    caption
+                    href
+                    openInNewTab
+                    itemsCollection(limit: 15) {
+                        items {
+                            sys {
+                                id
+                            }
+                            caption
+                            href
+                            openInNewTab
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

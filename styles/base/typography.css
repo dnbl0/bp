@@ -1,0 +1,69 @@
+/*
+    This file contains typography scale variables.
+    The typography scale changes per the screen size.
+
+    Figma document with Typography scale
+    https://www.figma.com/file/iYWhlWxkIXlSYfdZUm8Zra/BVAC-UI-Kit?node-id=117%3A10811&t=Xc3Jx5wHBcBoYv7t-0
+*/
+
+:root {
+    --font-size-5xl: 48px;
+    --font-size-4xl: 32px;
+    --font-size-3xl: 28px;
+    --font-size-2xl: 24px;
+    --font-size-xl: 20px;
+    --font-size-lg: 18px;
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-xs: 12px;
+
+    --line-height-5xl: 60px;
+    --line-height-4xl: 40px;
+    --line-height-3xl: 36px;
+    --line-height-2xl: 32px;
+    --line-height-xl: 24px;
+    --line-height-lg: 24px;
+    --line-height-base: 20px;
+    --line-height-sm: 18px;
+    --line-height-xs: 16px;
+
+    @screen md {
+        --font-size-4xl: 40px;
+        --font-size-3xl: 36px;
+        --font-size-2xl: 28px;
+        --font-size-xl: 24px;
+        --font-size-lg: 20px;
+        --font-size-base: 16px;
+        --font-size-sm: 14px;
+        --font-size-xs: 12px;
+
+        --line-height-4xl: 48px;
+        --line-height-3xl: 44px;
+        --line-height-2xl: 36px;
+        --line-height-xl: 32px;
+        --line-height-lg: 24px;
+        --line-height-base: 20px;
+        --line-height-sm: 18px;
+        --line-height-xs: 16px;
+    }
+
+    @screen lg {
+        --font-size-4xl: 56px;
+        --font-size-3xl: 48px;
+        --font-size-2xl: 32px;
+        --font-size-xl: 24px;
+        --font-size-lg: 20px;
+        --font-size-base: 16px;
+        --font-size-sm: 14px;
+        --font-size-xs: 12px;
+
+        --line-height-4xl: 68px;
+        --line-height-3xl: 60px;
+        --line-height-2xl: 40px;
+        --line-height-xl: 32px;
+        --line-height-lg: 24px;
+        --line-height-base: 20px;
+        --line-height-sm: 18px;
+        --line-height-xs: 16px;
+    }
+}

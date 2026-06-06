@@ -1,0 +1,43 @@
+.pricing-component {
+    a {
+        @apply text-cyan-400 underline;
+    }
+}
+
+input[type='range'].slider::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 4px;
+}
+
+input[type='range'].slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #0079c8;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -4px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Firefox fallback */
+input[type='range'].slider::-moz-range-track {
+    height: 8px;
+    background: #bfccd6;
+    border-radius: 4px;
+}
+
+input[type='range'].slider::-moz-range-progress {
+    height: 8px;
+    background: #0079c8;
+    border-radius: 4px;
+}
+
+input[type='range'].slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #0079c8;
+    border-radius: 50%;
+    cursor: pointer;
+}

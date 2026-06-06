@@ -1,0 +1,8 @@
+/* The `.prose` ruleset extends on Tailwind's Typography styles. */
+.prose {
+    color: theme(colors.grey);
+
+    b {
+        font-weight: theme(fontWeight.semibold);
+    }
+}

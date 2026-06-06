@@ -1,0 +1,74 @@
+@layer utilities {
+    .debug1 {
+        @apply border;
+        border-color: red;
+    }
+
+    .debug2 {
+        @apply border;
+        border-color: blue;
+    }
+
+    .debug3 {
+        @apply border;
+        border-color: silver;
+    }
+
+    .debug4 {
+        @apply border;
+        border-color: chartreuse;
+    }
+
+    /*
+    Set max page content width according to the design guide.
+    https://www.figma.com/file/iYWhlWxkIXlSYfdZUm8Zra/BVAC-UI-Kit?node-id=34%3A9382
+  */
+
+    /* Set width to match the primary page content */
+    .w-content {
+        --content: 1200px; /* Max width of page content  */
+        --gap: 16px; /* Gap between content and edge of the screen */
+        width: min(var(--content) + var(--gap) * 2, 100% - var(--gap) * 2);
+    }
+
+    .w-image-content {
+        --content: 928px; /* Max width of page content  */
+        --gap: 16px; /* Gap between content and edge of the screen */
+        width: min(var(--content) + var(--gap) * 2, 100% - var(--gap) * 2);
+    }
+
+    /* Set to width of screen minus a gap to avoid hitting the edge */
+    .w-wide-content {
+        --gap: 16px; /* Gap between content and edge of the screen */
+        width: calc(100% - var(--gap) * 2);
+    }
+
+    @media (min-width: 1024px) {
+        .w-content,
+        .w-wide-content {
+            --gap: 32px; /* Gap between content and edge of the screen */
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .w-content,
+        .w-wide-content {
+            --gap: 40px; /* Gap between content and edge of the screen */
+        }
+    }
+
+    /*
+    The whitespace under the image when using Next.js' `Image` element can be removed by
+    adding this class to the parent.
+    https://stackoverflow.com/q/69268680/395461
+   */
+    .fix-nextjs-image {
+        letter-spacing: 0;
+        word-spacing: 0;
+        font-size: 0;
+    }
+
+    .shadow-inner-blue {
+        box-shadow: inset 0 0 0 4px #a3dafd;
+    }
+}

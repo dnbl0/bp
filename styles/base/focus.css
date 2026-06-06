@@ -1,0 +1,21 @@
+@layer base {
+    button, a, input {
+        &:focus {
+            /* Focus style for all browsers. */
+            outline-width: 4px;
+            outline-style: solid;
+            outline-color: theme(colors.focus-blue);
+            outline-offset: 0;
+        }
+
+        &:focus:not(:focus-visible) {
+            /* Remove focus styles for browsers that support focus-visible. This allows the annoying outline to
+            be removed for mouse users but be preserved for keyboard users. */
+            outline: none;
+        }
+
+        &:focus-visible {
+            /* Optional: Additional focus styles just for browsers that support focus-visible. */
+        }
+    }
+}

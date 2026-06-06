@@ -1,0 +1,3 @@
+# The `contentful-cms-types.d.ts` file is automatically generated.
+# Run `yarn codegen` to generate it.
+contentful-cms-types.d.ts

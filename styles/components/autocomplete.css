@@ -1,0 +1,100 @@
+/* Based on code from: https://codepen.io/maplessmann/pen/mwJBEd  */
+
+:root {
+    --search-button-text: 'Search';
+}
+
+.aa-Panel {
+    z-index: theme(zIndex.popover);
+}
+
+.aa-Form {
+    border-radius: theme(borderRadius.DEFAULT);
+    border-color: theme(colors.cool-paper-200);
+    border-width: theme(borderWidth.2);
+    border-radius: theme(borderRadius.lg);
+    overflow: hidden;
+    &:focus-within {
+        border-color: theme(colors.cyan.DEFAULT);
+    }
+}
+
+.aa-InputWrapperPrefix {
+    order: 3;
+}
+.aa-InputWrapper {
+    order: 1;
+}
+.aa-InputWrapperSuffix {
+    order: 2;
+}
+
+.aa-Input {
+    padding: theme(spacing.2);
+    padding-right: theme(spacing.9);
+}
+
+.aa-SubmitButton {
+    padding: theme(spacing.2);
+}
+
+.aa-SubmitIcon {
+    fill: #333;
+    width: 25 !important;
+    height: 24 !important;
+    & path {
+        d: path(
+            'M16 14h-.79l-.28-.27A6.471 6.471 0 0 0 16.5 9.5 6.5 6.5 0 1 0 10 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.99 19 16 14Zm-6 0c-2.49 0-4.5-2.01-4.5-4.5S7.51 5 10 5s4.5 2.01 4.5 4.5S12.49 14 10 14Z'
+        ) !important;
+    }
+}
+
+.large-search {
+    & .aa-Form {
+        border: none;
+        border-radius: none;
+    }
+
+    & .aa-InputWrapper {
+        border-top-left-radius: theme(borderRadius.lg);
+        border-bottom-left-radius: theme(borderRadius.lg);
+        border-color: theme(colors.cool-paper-200);
+        border-width: theme(borderWidth.2);
+        border-right: none;
+        /* border-radius: theme(borderRadius.lg); */
+    }
+    & .aa-InputWrapperPrefix {
+        height: 48px;
+        border-top-right-radius: theme(borderRadius.lg);
+        border-bottom-right-radius: theme(borderRadius.lg);
+    }
+    & .aa-InputWrapperSuffix {
+        position: absolute;
+        right: 40px;
+        @screen md {
+            right: 100px;
+        }
+    }
+    & .aa-SubmitButton {
+        background-color: theme(backgroundColor.cyan.DEFAULT);
+        color: theme(colors.white);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: theme(spacing.2);
+        padding-right: theme(spacing.3);
+        font-weight: 500;
+
+        @screen md {
+            width: auto;
+            &:before {
+                content: var(--search-button-text);
+            }
+        }
+    }
+
+    & .aa-SubmitIcon {
+        fill: theme(colors.white);
+        margin-left: theme(spacing.1);
+    }
+}
