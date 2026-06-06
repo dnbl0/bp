@@ -26,7 +26,7 @@ export default function Document({ isContentfulAppRoute }: Props) {
     return (
         <Html lang="en">
             <Head>
-                <link rel="icon" href={`${baseUrl}/favicon.ico?v=2`} type="image/x-icon" />
+                <link rel="icon" href={`${baseUrl}/favicon.ico?v=3`} type="image/x-icon" />
             </Head>
             <body>
                     <Script 

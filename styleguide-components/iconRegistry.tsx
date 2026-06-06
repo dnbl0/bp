@@ -3,7 +3,7 @@
     Iconography and Logo foundation pages. Each entry records the component, the
     exported name and the import path so the docs can show a copyable import.
 */
-import { ComponentType, SVGProps } from 'react'
+import { ComponentType } from 'react'
 
 import { ArrowLeft } from '../components/atoms/icons/ArrowLeft'
 import { ArrowRight } from '../components/atoms/icons/ArrowRight'
@@ -39,7 +39,7 @@ export interface IconEntry {
     name: string
     /** File the icon is exported from, relative to `components/atoms/icons`. */
     file: string
-    Component: ComponentType<SVGProps<SVGSVGElement>>
+    Component: ComponentType<{ className?: string }>
     category: 'icon' | 'logo'
     /** Whether the icon is a default export (affects the import snippet). */
     defaultExport?: boolean
