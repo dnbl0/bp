@@ -20,6 +20,21 @@
 @import './utilities/animations.css';
 @import './utilities/utilities.css';
 
+/*
+ * Design system docs: honour the user's reduced-motion preference. Scoped to
+ * `.bds-root` (the documentation shell) so it never alters the production site.
+ */
+@media (prefers-reduced-motion: reduce) {
+    .bds-root *,
+    .bds-root *::before,
+    .bds-root *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 /* font-style: Normal */
 
 @font-face {

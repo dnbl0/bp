@@ -57,8 +57,13 @@ export const CodeBlock = ({ code, language = 'tsx' }: CodeBlockProps) => {
                     <pre
                         className={cx(
                             className,
-                            'm-0 p-4 overflow-x-auto text-sm leading-relaxed'
+                            'm-0 p-4 overflow-x-auto text-sm leading-relaxed focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-blue'
                         )}
+                        // The panel scrolls horizontally, so it must be reachable
+                        // and operable by keyboard, with an accessible name.
+                        tabIndex={0}
+                        role="region"
+                        aria-label={`${language} code sample`}
                         // Keep the docs' charcoal canvas rather than the theme's default.
                         style={{ ...style, background: '#23282d' }}
                     >

@@ -91,12 +91,19 @@ const Sidebar = ({
     onNavigate: () => void
 }) => (
     <nav className="px-4 py-6 space-y-8" aria-label="Design system">
-        {navSections.map(section => (
+        {navSections.map(section => {
+            const headingId = `bds-nav-${section.title
+                .toLowerCase()
+                .replace(/\s+/g, '-')}`
+            return (
             <div key={section.title}>
-                <p className="px-3 mb-2 text-caption font-bold uppercase tracking-wide text-disabled-text">
+                <p
+                    id={headingId}
+                    className="px-3 mb-2 text-caption font-bold uppercase tracking-wide text-disabled-text"
+                >
                     {section.title}
                 </p>
-                <ul className="space-y-0.5">
+                <ul className="space-y-0.5" aria-labelledby={headingId}>
                     {section.items.map(item => {
                         const href = hrefFor(item.slug)
                         const active = currentPath === href
@@ -124,7 +131,8 @@ const Sidebar = ({
                     })}
                 </ul>
             </div>
-        ))}
+            )
+        })}
     </nav>
 )
 
@@ -152,7 +160,7 @@ export const DesignSystemLayout = ({
         .replace(/^\//, '')
 
     return (
-        <div className={cx(dark && 'dark')}>
+        <div className={cx('bds-root', dark && 'dark')}>
             <Head>
                 <title>{`${title} · ${SITE_TITLE}`}</title>
                 <meta name="robots" content="noindex" />
@@ -187,7 +195,10 @@ export const DesignSystemLayout = ({
                     <button
                         type="button"
                         onClick={toggleTheme}
-                        aria-label="Toggle light and dark theme"
+                        aria-pressed={dark}
+                        aria-label={
+                            dark ? 'Switch to light theme' : 'Switch to dark theme'
+                        }
                         className="flex-none w-10 h-10 rounded-lg flex items-center justify-center hover:bg-cool-paper-100 dark:hover:bg-charcoal text-xl"
                     >
                         <span aria-hidden="true">{dark ? '☀' : '☾'}</span>
