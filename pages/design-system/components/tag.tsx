@@ -27,15 +27,15 @@ const Tags: NextPageWithLayout = () => (
                 caption="Tags with different colours"
                 code={`<Tag
   title="Wellbeing"
-  href="/blog"
+  href="#"
   openInNewTab={false}
   bgColor="c-#e1fcfd"
   textColor="c-#008385"
 />`}
             >
-                <Tag title="Wellbeing" href="/blog" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
-                <Tag title="Nutrition" href="/blog" openInNewTab={false} bgColor="c-#f0f9ff" textColor="c-#0079c8" />
-                <Tag title="Community" href="/blog" openInNewTab={false} bgColor="c-#f8f7f4" textColor="c-#942151" />
+                <Tag title="Wellbeing" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
+                <Tag title="Nutrition" href="#" openInNewTab={false} bgColor="c-#f0f9ff" textColor="c-#0079c8" />
+                <Tag title="Community" href="#" openInNewTab={false} bgColor="c-#f8f7f4" textColor="c-#942151" />
             </Example>
         </Section>
 
