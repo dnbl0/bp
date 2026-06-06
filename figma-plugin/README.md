@@ -50,15 +50,17 @@ Mirrors [`styleguide-components/componentCatalog.ts`](../styleguide-components/c
 It builds onto the current page, zooms to fit, and closes.
 
 ### Layout & structure
-- **Each component is its own named, top-level frame** (a label + a centred
-  preview), laid out in a wrapping grid grouped under a heading per atomic
-  layer — not crammed into one master frame.
+- **Every catalogued component is a real, instanceable Figma component** (or
+  variant set) — usable straight from the **Assets** panel, not a static frame.
+- **Components are named `Layer/Name`** (e.g. `Atoms/Button`, `Molecules/Tabs`),
+  so the **Assets panel folders mirror the code's atomic-design layers** — parity
+  with `componentCatalog.ts`. On the canvas they sit in a wrapping grid under a
+  heading per layer.
+- **Each component carries its catalogue description** as its Figma description
+  (shown in the Assets panel).
 - Foundations (Colour, Typography) and the title are their own artboards.
-- **Everything inside a frame uses auto layout** — no child is absolutely
-  positioned. Only top-level frames carry canvas coordinates, which is inherent
-  to the page.
-- **Every frame is named** after its component or role (`Header`, `Preview`,
-  `Label`, `Nav`, `Columns`, `Chip`, …) so the layer tree reads cleanly.
+- **Everything uses auto layout** — only top-level nodes carry canvas
+  coordinates, which is inherent to the page.
 
 ### Notes
 - **Re-running is safe.** Every frame it creates is tagged with plugin data;

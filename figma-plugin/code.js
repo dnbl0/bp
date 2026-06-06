@@ -992,6 +992,11 @@ const CATALOG = [
             { name: 'ErrorMessageWrapper', desc: 'Standardised wrapper for inline form errors.' },
             { name: 'BelowHeader', desc: 'Spacing helper offsetting content beneath the header.', badge: 'Helper' },
             { name: 'HeaderStyle', desc: 'Applies contextual header styling per page.', badge: 'Helper' },
+            { name: 'Badge', desc: 'A small, non-interactive status, category or recognition label.' },
+            { name: 'Tooltip', desc: 'An accessible hint revealed on hover and keyboard focus.' },
+            { name: 'SkipLinks', desc: 'Focus-revealed shortcuts that bypass the header to main landmarks.' },
+            { name: 'ToggleSwitch', desc: 'A binary on/off switch built on a real checkbox input.' },
+            { name: 'Pagination', desc: 'Numbered page navigation for long listings, with truncation.' },
         ],
     },
     {
@@ -1031,6 +1036,10 @@ const CATALOG = [
             { name: 'AgedCareHomeMapBlock', desc: 'A map of aged-care home locations.', badge: 'Integration' },
             { name: 'AgedCareNavigator', desc: 'A guided, multi-step needs navigator.', badge: 'Data tool' },
             { name: 'SearchPageBlock', desc: 'The full search results experience.', badge: 'Integration' },
+            { name: 'Tabs', desc: 'An accessible tabbed panel following the WAI-ARIA tabs pattern.' },
+            { name: 'ComparisonTable', desc: 'A responsive feature-comparison matrix for products.' },
+            { name: 'Disclaimer', desc: 'A legal footnote block, optionally collapsible.' },
+            { name: 'Stepper', desc: 'A horizontal progress indicator for multi-step flows.' },
         ],
     },
     {
@@ -1081,6 +1090,174 @@ const CATALOG = [
     },
 ]
 
+// ---------------------------------------------------------------------------
+// Added components: Tabs, Badge, Stepper, Toggle, Tooltip, Pagination,
+// Skip links, Disclaimer, Comparison table.
+// ---------------------------------------------------------------------------
+
+function buildBadgeRow() {
+    const f = autolayout(figma.createFrame(), { name: 'Badges', dir: 'HORIZONTAL', gap: 8, align: 'CENTER' })
+    f.fills = []
+    f.appendChild(badge('New', '#E3F6E9', C.green))
+    f.appendChild(badge('Popular', '#E7F3FB', C.cyan))
+    f.appendChild(badge('Award 2024', '#FBF3D7', C.grey))
+    return f
+}
+
+function buildTooltip() {
+    const f = autolayout(figma.createFrame(), { name: 'Tooltip', dir: 'VERTICAL', gap: 6, align: 'CENTER', counter: 'FIXED' })
+    f.resize(200, f.height)
+    f.fills = []
+    const bubble = autolayout(figma.createFrame(), { name: 'Bubble', dir: 'HORIZONTAL', padX: 10, padY: 6, fill: C.navy })
+    bubble.cornerRadius = 6
+    bubble.appendChild(makeText('A helpful hint', { size: 12, line: 16, color: C.white }))
+    f.appendChild(bubble)
+    const trigger = autolayout(figma.createFrame(), { name: 'Trigger', dir: 'HORIZONTAL', justify: 'CENTER', align: 'CENTER', primary: 'FIXED', counter: 'FIXED', fill: C.coolPaper100 })
+    trigger.resize(28, 28)
+    trigger.cornerRadius = 100
+    trigger.strokes = solid(C.border)
+    trigger.strokeWeight = 1
+    trigger.appendChild(makeText('?', { weight: 'semibold', size: 13, line: 16, color: C.grey }))
+    f.appendChild(trigger)
+    return f
+}
+
+function buildSkipLinks() {
+    const chip = autolayout(figma.createFrame(), { name: 'Skip link', dir: 'HORIZONTAL', padX: 14, padY: 8, fill: C.navy })
+    chip.cornerRadius = 6
+    chip.strokes = solid('#A3DAFD')
+    chip.strokeWeight = 4
+    chip.appendChild(makeText('Skip to main content', { weight: 'semibold', size: 13, line: 16, color: C.white }))
+    return chip
+}
+
+function toggleTrack(on) {
+    const track = autolayout(figma.createFrame(), { name: on ? 'On' : 'Off', dir: 'HORIZONTAL', justify: on ? 'MAX' : 'MIN', align: 'CENTER', primary: 'FIXED', counter: 'FIXED', padX: 2, padY: 2, fill: on ? C.cyan : C.lightGrey })
+    track.resize(44, 24)
+    track.cornerRadius = 100
+    track.appendChild(rectNode(20, 20, C.white, 100))
+    return track
+}
+
+function buildToggle() {
+    const f = autolayout(figma.createFrame(), { name: 'Toggle', dir: 'HORIZONTAL', gap: 16, align: 'CENTER' })
+    f.fills = []
+    f.appendChild(toggleTrack(true))
+    f.appendChild(toggleTrack(false))
+    return f
+}
+
+function pageBox(label, active) {
+    const b = autolayout(figma.createFrame(), { name: 'Page', dir: 'HORIZONTAL', justify: 'CENTER', align: 'CENTER', primary: 'FIXED', counter: 'FIXED', fill: active ? C.cyan : null })
+    b.resize(28, 28)
+    b.cornerRadius = 6
+    if (!active) {
+        b.strokes = solid(C.border)
+        b.strokeWeight = 1
+    }
+    b.appendChild(makeText(label, { weight: 'medium', size: 12, line: 16, color: active ? C.white : C.grey }))
+    return b
+}
+
+function buildPagination() {
+    const f = autolayout(figma.createFrame(), { name: 'Pagination', dir: 'HORIZONTAL', gap: 6, align: 'CENTER' })
+    f.fills = []
+    const items = ['‹', '1', '2', '3', '…', '9', '›']
+    for (const p of items) {
+        if (p === '…') f.appendChild(makeText('…', { size: 12, line: 16, color: C.disabledText }))
+        else f.appendChild(pageBox(p, p === '1'))
+    }
+    return f
+}
+
+function buildTabs() {
+    const f = autolayout(figma.createFrame(), { name: 'Tabs', dir: 'VERTICAL', gap: 0, counter: 'FIXED' })
+    f.resize(300, f.height)
+    f.fills = []
+    const list = autolayout(figma.createFrame(), { name: 'Tablist', dir: 'HORIZONTAL', gap: 20, padY: 8, primary: 'FIXED' })
+    list.resize(300, list.height)
+    list.fills = []
+    const tabs = [['Overview', true], ['Rooms', false], ['Fees', false]]
+    for (const t of tabs) {
+        list.appendChild(makeText(t[0], { weight: t[1] ? 'semibold' : 'regular', size: 14, line: 18, color: t[1] ? C.cyan : C.grey }))
+    }
+    f.appendChild(list)
+    f.appendChild(rectNode(300, 2, C.border))
+    const panel = autolayout(figma.createFrame(), { name: 'Panel', dir: 'VERTICAL', gap: 8, padY: 12, counter: 'FIXED' })
+    panel.resize(300, panel.height)
+    panel.fills = []
+    panel.appendChild(rectNode(280, 8, C.coolPaper100, 4))
+    panel.appendChild(rectNode(200, 8, C.coolPaper100, 4))
+    f.appendChild(panel)
+    return f
+}
+
+function tableCell(text, opts) {
+    opts = opts || {}
+    const c = autolayout(figma.createFrame(), { name: 'Cell', dir: 'HORIZONTAL', justify: opts.center ? 'CENTER' : 'MIN', align: 'CENTER', primary: 'FIXED', counter: 'FIXED', padX: 10, padY: 8, fill: opts.head ? C.coolPaper100 : null })
+    c.resize(opts.w || 100, 34)
+    c.appendChild(makeText(text, { weight: opts.head ? 'semibold' : 'regular', size: 12, line: 16, color: opts.color || C.grey }))
+    return c
+}
+
+function tableRow(cells) {
+    const r = autolayout(figma.createFrame(), { name: 'Row', dir: 'HORIZONTAL', gap: 0, primary: 'FIXED' })
+    r.fills = []
+    for (const c of cells) r.appendChild(c)
+    return r
+}
+
+function buildComparisonTable() {
+    const f = autolayout(figma.createFrame(), { name: 'Comparison', dir: 'VERTICAL', gap: 0, counter: 'FIXED' })
+    f.fills = []
+    f.cornerRadius = 8
+    f.clipsContent = true
+    f.strokes = solid(C.border)
+    f.strokeWeight = 1
+    f.appendChild(tableRow([
+        tableCell('Feature', { head: true, w: 130, color: C.navy }),
+        tableCell('Basic', { head: true, center: true, w: 80, color: C.navy }),
+        tableCell('Plus', { head: true, center: true, w: 80, color: C.navy }),
+    ]))
+    const rows = ['Respite care', 'Nursing']
+    for (const label of rows) {
+        f.appendChild(tableRow([
+            tableCell(label, { w: 130 }),
+            tableCell('✓', { center: true, w: 80, color: C.green }),
+            tableCell('✓', { center: true, w: 80, color: C.green }),
+        ]))
+    }
+    return f
+}
+
+function buildDisclaimer() {
+    const f = autolayout(figma.createFrame(), { name: 'Disclaimer', dir: 'VERTICAL', gap: 6, counter: 'FIXED' })
+    f.resize(300, f.height)
+    f.fills = []
+    f.appendChild(makeParagraph('¹ Fees are indicative and subject to assessment.', 300, { size: 12, line: 16, color: C.grey }))
+    f.appendChild(makeParagraph('² Conditions apply; see full terms and conditions.', 300, { size: 12, line: 16, color: C.grey }))
+    return f
+}
+
+function stepDot(n, filled) {
+    const d = autolayout(figma.createFrame(), { name: 'Step ' + n, dir: 'HORIZONTAL', justify: 'CENTER', align: 'CENTER', primary: 'FIXED', counter: 'FIXED', fill: filled ? C.cyan : C.lightGrey })
+    d.resize(28, 28)
+    d.cornerRadius = 100
+    d.appendChild(makeText(String(n), { weight: 'semibold', size: 12, line: 16, color: C.white }))
+    return d
+}
+
+function buildStepper() {
+    const f = autolayout(figma.createFrame(), { name: 'Stepper', dir: 'HORIZONTAL', gap: 0, align: 'CENTER' })
+    f.fills = []
+    f.appendChild(stepDot(1, true))
+    f.appendChild(rectNode(40, 2, C.cyan))
+    f.appendChild(stepDot(2, true))
+    f.appendChild(rectNode(40, 2, C.lightGrey))
+    f.appendChild(stepDot(3, false))
+    return f
+}
+
 // Named visual builders take precedence; everything else renders as a
 // labelled placeholder using its catalogue `badge`.
 const VISUAL = {
@@ -1107,6 +1284,15 @@ const VISUAL = {
     BreadCrumbsBlock: buildBreadcrumbs,
     TagsBlock: buildTagsBlock,
     ImageBlock: buildImageBlock,
+    Badge: buildBadgeRow,
+    Tooltip: buildTooltip,
+    SkipLinks: buildSkipLinks,
+    ToggleSwitch: buildToggle,
+    Pagination: buildPagination,
+    Tabs: buildTabs,
+    ComparisonTable: buildComparisonTable,
+    Disclaimer: buildDisclaimer,
+    Stepper: buildStepper,
     BasicHeroSection: () => centerBox('BasicHeroSection', 360, 90, C.cyan, 'Hero section', C.white, 8),
     ContactHeroSection: () => centerBox('ContactHeroSection', 360, 90, C.cyan, 'Contact hero', C.white, 8),
     SearchHomeHeroSection: () => centerBox('SearchHomeHeroSection', 360, 90, C.cyan, 'Search home hero', C.white, 8),
@@ -1130,34 +1316,50 @@ const VISUAL = {
     CareHomePage: buildCareHomePage,
 }
 
-// Each component gets its own named, self-contained auto-layout frame:
-// a label (name + description) above a centred preview of the component.
-function buildComponentBlock(entry) {
-    let node
+// A frame placeholder for components with no standalone visual.
+function framePlaceholder(entry) {
+    const f = autolayout(figma.createFrame(), { name: entry.name, dir: 'VERTICAL', gap: 10, padX: 20, padY: 16, counter: 'FIXED', fill: C.white })
+    f.resize(260, f.height)
+    f.cornerRadius = 8
+    f.strokes = solid(C.border)
+    f.strokeWeight = 1
+    f.appendChild(badge(entry.badge || 'Component', '#EEF2F6', C.silver))
+    f.appendChild(makeText(entry.name, { weight: 'semibold', size: 16, line: 20, color: C.navy }))
+    f.appendChild(makeParagraph(entry.desc, 220, { size: 12, line: 16, color: C.grey }))
+    return f
+}
+
+// Normalise a built visual into a real, instanceable component. Variant sets and
+// components are used directly; a plain visual is wrapped on a surface so it
+// reads as a tile. Either way it is named `Layer/Name` (so the Assets panel
+// folders mirror the code's atomic layers) with the description as metadata.
+function toComponent(node, fullName, desc) {
+    if (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET') {
+        node.name = fullName
+        try { node.description = desc } catch (e) {}
+        return node
+    }
+    const c = figma.createComponent()
+    c.name = fullName
+    autolayout(c, { dir: 'HORIZONTAL', justify: 'CENTER', align: 'CENTER', pad: 20, fill: C.surface })
+    c.cornerRadius = 8
+    try { c.description = desc } catch (e) {}
+    c.appendChild(node)
+    return c
+}
+
+// Each catalogued component becomes a real Figma component (or variant set),
+// placed at the top level so it is usable from the Assets panel.
+function buildComponentNode(entry, layerTitle) {
+    let node = null
     try {
         const builder = VISUAL[entry.name]
-        node = builder ? builder() : buildPlaceholder(entry.name, entry.desc, entry.badge)
+        if (builder) node = builder()
     } catch (err) {
-        node = buildPlaceholder(entry.name, entry.desc + '  (preview unavailable)', 'Component')
+        node = null
     }
-    node.name = entry.name
-
-    const frame = autolayout(figma.createFrame(), { name: entry.name, dir: 'VERTICAL', gap: 12, pad: 20, fill: C.white })
-    frame.cornerRadius = 12
-    frame.strokes = solid(C.border)
-    frame.strokeWeight = 1
-
-    const label = autolayout(figma.createFrame(), { name: 'Label', dir: 'VERTICAL', gap: 4 })
-    label.fills = []
-    label.appendChild(makeText(entry.name, { weight: 'semibold', size: 16, line: 20, color: C.navy }))
-    label.appendChild(makeParagraph(entry.desc, 300, { size: 12, line: 16, color: C.disabledText }))
-    frame.appendChild(label)
-
-    const preview = autolayout(figma.createFrame(), { name: 'Preview', dir: 'HORIZONTAL', justify: 'CENTER', align: 'CENTER', pad: 20, fill: C.surface })
-    preview.cornerRadius = 8
-    preview.appendChild(node)
-    frame.appendChild(preview)
-    return frame
+    if (!node) node = framePlaceholder(entry)
+    return toComponent(node, layerTitle + '/' + entry.name, entry.desc)
 }
 
 // Wrap a large foundation section in a named, white "artboard" frame.
@@ -1254,7 +1456,7 @@ async function main() {
     // One named frame per component, grouped under a heading per atomic layer.
     for (const layer of CATALOG) {
         placeTop(buildLayerHeading(layer), GAP)
-        const blocks = layer.components.map(buildComponentBlock)
+        const blocks = layer.components.map(entry => buildComponentNode(entry, layer.title))
         const bottom = placeGridTop(blocks, 0, y, MAXW, GAP)
         for (const b of blocks) tops.push(b)
         y = bottom + SECTION_GAP
