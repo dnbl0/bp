@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import { PageHeader, Section, StatusBadge } from '../../../styleguide-components/primitives'
+import { ComponentThumbnail } from '../../../styleguide-components/componentPreviews'
 import { hrefFor } from '../../../styleguide-components/designSystem.config'
 import {
     componentCount,
@@ -26,26 +27,29 @@ const Components: NextPageWithLayout = () => (
                 <p className="mb-5 max-w-2xl text-grey dark:text-light-grey">
                     {layer.description}
                 </p>
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                     {layer.components.map(component => {
                         const inner = (
                             <>
-                                <div className="flex items-center justify-between gap-2">
-                                    <span className="font-semibold text-navy dark:text-white">
-                                        {component.name}
-                                    </span>
-                                    <StatusBadge status={component.status} />
+                                <ComponentThumbnail name={component.name} />
+                                <div className="p-5">
+                                    <div className="flex items-center justify-between gap-2">
+                                        <span className="font-semibold text-navy dark:text-white">
+                                            {component.name}
+                                        </span>
+                                        <StatusBadge status={component.status} />
+                                    </div>
+                                    <p className="mt-1 text-body-small text-grey dark:text-light-grey">
+                                        {component.description}
+                                    </p>
+                                    <code className="mt-2 block font-mono text-caption text-disabled-text break-all">
+                                        {component.source}
+                                    </code>
                                 </div>
-                                <p className="mt-1 text-body-small text-grey dark:text-light-grey">
-                                    {component.description}
-                                </p>
-                                <code className="mt-2 block font-mono text-caption text-disabled-text break-all">
-                                    {component.source}
-                                </code>
                             </>
                         )
                         const baseClass =
-                            'block rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey'
+                            'block rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden bg-white dark:bg-cool-grey'
                         return component.docSlug ? (
                             <Link key={component.name} href={hrefFor(component.docSlug)}>
                                 <a className={`${baseClass} hover:border-cyan transition-colors`}>
