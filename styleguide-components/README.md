@@ -38,10 +38,20 @@ route is excluded from `robots.txt` and is not part of the CMS-driven sitemap.
 - [x] **Phase 2** – Documentation primitives (`primitives/`).
 - [x] **Phase 3** – Foundations: Typography, Spacing & Layout, Elevation,
       Iconography, Motion, Layering, Logo.
-- [x] **Phase 4** – Components: full catalogue (`componentCatalog.ts`) plus
-      dedicated live pages for Button, Tag, Alert and CTA. Additional component
-      pages are added incrementally using the same page template.
+- [x] **Phase 4** – Components: full catalogue (`componentCatalog.ts`) with
+      **complete coverage**. 20 components have dedicated live pages; the
+      remaining integration-heavy components are documented across six themed
+      group pages (`componentGroups.ts`). Every catalogue entry links to docs.
 - [x] **Phase 5** – Patterns, Resources, scroll-spy and responsive polish.
+
+## Coverage
+
+Every component in `componentCatalog.ts` links to documentation — either a
+dedicated page under `pages/design-system/components/` (live examples, anatomy,
+props, do/don't) or a themed **group** page for components that need live
+Algolia / Google Maps / Calendly / CMS data to render. New dedicated pages can
+graduate a component out of its group at any time by adding the page and
+pointing its `docSlug` at it.
 
 > Note: a full `next build` runs `yarn codegen`, which needs Contentful
 > credentials. The design-system pages themselves are static and do not depend
