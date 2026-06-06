@@ -47,6 +47,48 @@ export const navSections: NavSection[] = [
                 status: 'stable',
                 summary: 'Primary, secondary, UI and background palettes, read live from the theme.',
             },
+            {
+                title: 'Typography',
+                slug: 'foundations/typography',
+                status: 'stable',
+                summary: 'Montserrat and the responsive type scale defined in typography.css.',
+            },
+            {
+                title: 'Spacing & Layout',
+                slug: 'foundations/spacing',
+                status: 'stable',
+                summary: 'The 4px spacing scale, corner radii and container-query utilities.',
+            },
+            {
+                title: 'Elevation',
+                slug: 'foundations/elevation',
+                status: 'stable',
+                summary: 'Resting and hover shadows used to separate and lift surfaces.',
+            },
+            {
+                title: 'Iconography',
+                slug: 'foundations/iconography',
+                status: 'stable',
+                summary: 'The inline SVG icon library, searchable with copyable imports.',
+            },
+            {
+                title: 'Motion',
+                slug: 'foundations/motion',
+                status: 'stable',
+                summary: 'Fade, slide and spin animations plus staggered delay utilities.',
+            },
+            {
+                title: 'Layering',
+                slug: 'foundations/layering',
+                status: 'stable',
+                summary: 'The named z-index scale for predictable stacking.',
+            },
+            {
+                title: 'Logo',
+                slug: 'foundations/logo',
+                status: 'stable',
+                summary: 'The Bupa Aged Care logo marks and usage guidance.',
+            },
         ],
     },
 ]

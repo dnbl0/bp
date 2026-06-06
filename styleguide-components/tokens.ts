@@ -10,9 +10,12 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import tailwindConfig from '../tailwind.config.js'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 // The Tailwind config is plain JS, so it is typed loosely here.
 const theme = (tailwindConfig as any).theme as Record<string, any>
+const defaults = defaultTheme as Record<string, any>
 
 export interface ColorToken {
     /** Human readable name, matches Bupa's terminology. */
@@ -218,6 +221,35 @@ export const motion: MotionToken[] = Object.entries(
 export const animationDelays: MotionToken[] = Object.entries(
     (theme.animationDelay ?? {}) as Record<string, string>
 ).map(([token, value]) => ({ token: `animation-delay-${token}`, value: String(value) }))
+
+export interface ScaleToken {
+    token: string
+    value: string
+}
+
+/*
+    Spacing and radius are not overridden in tailwind.config.js, so the project
+    uses Tailwind's default scales. They are read live from the default theme so
+    the documentation tracks any future overrides automatically.
+*/
+const px = (rem: string): string => {
+    const match = rem.match(/^([\d.]+)rem$/)
+    return match ? ` (${parseFloat(match[1]) * 16}px)` : ''
+}
+
+export const spacingScale: ScaleToken[] = Object.entries(
+    (defaults.spacing ?? {}) as Record<string, string>
+)
+    .filter(([token]) => !['px'].includes(token))
+    .map(([token, value]) => ({ token, value: `${value}${px(String(value))}` }))
+    .sort((a, b) => parseFloat(a.token) - parseFloat(b.token))
+
+export const radiusScale: ScaleToken[] = Object.entries(
+    (defaults.borderRadius ?? {}) as Record<string, string>
+).map(([token, value]) => ({
+    token: token === 'DEFAULT' ? 'rounded' : `rounded-${token}`,
+    value: `${value}${px(String(value))}`,
+}))
 
 function titleCase(value: string): string {
     return value
