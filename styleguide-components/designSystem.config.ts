@@ -407,6 +407,74 @@ export const navSections: NavSection[] = [
         ],
     },
     {
+        title: 'Primitives',
+        items: [
+            {
+                title: 'Form controls',
+                slug: 'primitives/form-controls',
+                status: 'in-review',
+                summary: 'Text input, textarea, select, checkbox and radio with focus, error and disabled states.',
+                keywords: ['input', 'textarea', 'select', 'dropdown', 'checkbox', 'radio', 'field', 'label', 'validation', 'error', 'form'],
+            },
+            {
+                title: 'Selection controls',
+                slug: 'primitives/selection-controls',
+                status: 'in-review',
+                summary: 'Radio-card and segmented selectors, the range slider and the number stepper.',
+                keywords: ['radio card', 'segmented', 'toggle group', 'slider', 'range', 'stepper', 'number', 'quantity', 'quote'],
+            },
+            {
+                title: 'Date & file inputs',
+                slug: 'primitives/date-file-inputs',
+                status: 'in-review',
+                summary: 'A date picker and a drag-and-drop file upload control.',
+                keywords: ['date', 'calendar', 'datepicker', 'date of birth', 'file', 'upload', 'attachment', 'dropzone', 'claim'],
+            },
+            {
+                title: 'Dialog',
+                slug: 'primitives/dialog',
+                status: 'in-review',
+                summary: 'A centred modal dialog and a confirmation variant, with focus management.',
+                keywords: ['modal', 'dialog', 'popup', 'overlay', 'confirm', 'confirmation', 'alert dialog'],
+            },
+            {
+                title: 'Toast',
+                slug: 'primitives/toast',
+                status: 'in-review',
+                summary: 'Transient, self-dismissing notifications for action feedback.',
+                keywords: ['toast', 'notification', 'snackbar', 'flash', 'feedback', 'success', 'error', 'transient'],
+            },
+            {
+                title: 'Filtering',
+                slug: 'primitives/filtering',
+                status: 'in-review',
+                summary: 'Facet checkboxes, applied-filter chips and a sort dropdown for result lists.',
+                keywords: ['filter', 'facet', 'refine', 'chip', 'sort', 'results', 'find a provider', 'search'],
+            },
+            {
+                title: 'Loading',
+                slug: 'primitives/loading',
+                status: 'in-review',
+                summary: 'Skeleton placeholders, a spinner and a progress bar for pending states.',
+                keywords: ['loading', 'skeleton', 'spinner', 'progress', 'pending', 'placeholder', 'shimmer'],
+            },
+            {
+                title: 'Consent banner',
+                slug: 'primitives/consent-banner',
+                status: 'in-review',
+                summary: 'A cookie/consent banner with accept, reject and preference actions.',
+                keywords: ['cookie', 'consent', 'gdpr', 'privacy', 'banner', 'accept', 'reject', 'preferences'],
+            },
+            {
+                title: 'Rating',
+                slug: 'primitives/rating',
+                status: 'in-review',
+                summary: 'A star rating for displaying and capturing review scores.',
+                keywords: ['rating', 'stars', 'review', 'score', 'feedback', 'provider'],
+            },
+        ],
+    },
+    {
         title: 'Resources',
         items: [
             {
