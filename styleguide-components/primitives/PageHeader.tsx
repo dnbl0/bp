@@ -26,7 +26,7 @@ export const PageHeader = ({ eyebrow, title, status, intro }: PageHeaderProps) =
             {status && <StatusBadge status={status} />}
         </div>
         {intro && (
-            <p className="mt-4 max-w-3xl text-heading-s text-grey dark:text-light-grey">
+            <p className="mt-4 max-w-3xl text-heading text-grey dark:text-light-grey">
                 {intro}
             </p>
         )}

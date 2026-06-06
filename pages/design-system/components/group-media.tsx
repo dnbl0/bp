@@ -1,12 +1,15 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import { GroupOverview } from '../../../styleguide-components/primitives'
-import { componentGroups } from '../../../styleguide-components/componentGroups'
+import {
+    componentGroups,
+    tocForGroup,
+} from '../../../styleguide-components/componentGroups'
 
 const group = componentGroups[1]
 
 const Page: NextPageWithLayout = () => (
-    <DesignSystemLayout title="Media & imagery">
+    <DesignSystemLayout title="Media & imagery" toc={tocForGroup(group)}>
         <GroupOverview group={group} />
     </DesignSystemLayout>
 )

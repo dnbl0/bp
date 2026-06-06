@@ -25,7 +25,7 @@ export const TokenTable = ({
     <div className="my-6 overflow-x-auto rounded-lg border border-cool-paper-200 dark:border-charcoal">
         <table className="w-full text-left border-collapse text-body-small">
             <thead>
-                <tr className="bg-cool-paper-100 dark:bg-cool-grey text-navy dark:text-light-grey">
+                <tr className="bg-cool-paper-100 dark:bg-cool-grey text-disabled-text dark:text-light-grey text-caption uppercase tracking-wide">
                     {withPreview && <th className="px-4 py-3 font-semibold">Preview</th>}
                     <th className="px-4 py-3 font-semibold">Token</th>
                     <th className="px-4 py-3 font-semibold">Value</th>

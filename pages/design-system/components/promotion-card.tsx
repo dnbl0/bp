@@ -33,7 +33,7 @@ const PromotionCard: NextPageWithLayout = () => (
                         <h2 className="text-heading-s font-medium">
                             Not sure where to start?
                         </h2>
-                        <p className="text-base text-grey">
+                        <p className="text-body text-grey">
                             Request a call back and our team will help you understand your
                             options.
                         </p>

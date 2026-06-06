@@ -15,7 +15,7 @@ const Card = ({
     const isDo = variant === 'do'
     return (
         <div className="rounded-xl overflow-hidden border border-cool-paper-200 dark:border-charcoal">
-            <div className="flex items-center justify-center p-8 bg-white min-h-[140px]">
+            <div className="flex items-center justify-center p-8 bg-white dark:bg-cool-grey min-h-[140px]">
                 {children}
             </div>
             <div

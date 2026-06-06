@@ -57,7 +57,7 @@ const DesignSystemHome: NextPageWithLayout = () => (
                         key={principle.title}
                         className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey"
                     >
-                        <h3 className="text-heading-s font-semibold text-navy dark:text-white">
+                        <h3 className="text-heading-m font-semibold text-navy dark:text-white">
                             {principle.title}
                         </h3>
                         <p className="mt-2 text-body-small text-grey dark:text-light-grey">
@@ -87,7 +87,7 @@ const DesignSystemHome: NextPageWithLayout = () => (
                     .filter(section => section.title !== 'Overview')
                     .map(section => (
                         <div key={section.title}>
-                            <h3 className="text-heading-s font-semibold text-navy dark:text-white mb-3">
+                            <h3 className="text-heading-m font-semibold text-navy dark:text-white mb-3">
                                 {section.title}
                             </h3>
                             <div className="grid gap-3 sm:grid-cols-2">

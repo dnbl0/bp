@@ -12,8 +12,13 @@ import { logos, importSnippet } from '../../../styleguide-components/iconRegistr
 const PrimaryLogo = logos[0]?.Component
 const SquareLogo = logos[1]?.Component ?? logos[0]?.Component
 
+const toc = [
+    { id: 'marks', title: 'Marks' },
+    { id: 'usage', title: 'Usage' },
+]
+
 const Logo: NextPageWithLayout = () => (
-    <DesignSystemLayout title="Logo">
+    <DesignSystemLayout title="Logo" toc={toc}>
         <PageHeader
             eyebrow="Foundations"
             title="Logo"

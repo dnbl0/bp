@@ -1,4 +1,4 @@
-import { ComponentGroup } from '../componentGroups'
+import { ComponentGroup, entrySlug } from '../componentGroups'
 import { PageHeader } from './PageHeader'
 
 /** Renders a themed group page from its data: a header plus a card per component. */
@@ -9,10 +9,11 @@ export const GroupOverview = ({ group }: { group: ComponentGroup }) => (
             {group.entries.map(entry => (
                 <div
                     key={entry.name}
-                    className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey"
+                    id={entrySlug(entry.name)}
+                    className="scroll-mt-24 rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey"
                 >
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
-                        <h2 className="text-heading-s font-semibold text-navy dark:text-white">
+                        <h2 className="text-heading-m font-semibold text-navy dark:text-white">
                             {entry.name}
                         </h2>
                         <code className="font-mono text-caption text-disabled-text break-all">

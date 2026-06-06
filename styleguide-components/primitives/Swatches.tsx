@@ -12,6 +12,8 @@ const isLight = (hex: string): boolean => {
 }
 
 const Swatch = ({ color }: { color: ColorToken }) => (
+    // Swatch tiles intentionally use rounded-lg (they are colour tiles, not
+    // content cards which use rounded-xl).
     <div className="rounded-lg overflow-hidden border border-cool-paper-200 dark:border-charcoal">
         <div
             className="h-24 flex items-end p-3"
@@ -38,13 +40,14 @@ const Swatch = ({ color }: { color: ColorToken }) => (
     </div>
 )
 
-/** Render a labelled grid of colour swatches for a single palette group. */
+/**
+ * Render the description and swatch grid for a single palette group. The group
+ * heading is provided by the surrounding `Section` primitive so the heading
+ * level and spacing stay consistent with the rest of the docs.
+ */
 export const SwatchGrid = ({ group }: { group: ColorGroup }) => (
-    <section className="my-8">
-        <h3 className="text-heading-s font-semibold text-navy dark:text-white">
-            {group.name}
-        </h3>
-        <p className="mt-1 mb-4 max-w-2xl text-grey dark:text-light-grey">
+    <>
+        <p className="mb-4 max-w-2xl text-grey dark:text-light-grey">
             {group.description}
         </p>
         <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
@@ -52,5 +55,5 @@ export const SwatchGrid = ({ group }: { group: ColorGroup }) => (
                 <Swatch key={color.token} color={color} />
             ))}
         </div>
-    </section>
+    </>
 )

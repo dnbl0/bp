@@ -70,6 +70,11 @@ const Typography: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Prefer the semantic names below. Sizes are shown as base / md / lg.
                 Each example renders at the size for your current viewport width.
+                This documentation site uses the same scale: page titles are{' '}
+                <code className="font-mono text-cyan">heading-xl</code>, section
+                headings <code className="font-mono text-cyan">heading-l</code>,
+                subsections <code className="font-mono text-cyan">heading-m</code>, and
+                lead paragraphs <code className="font-mono text-cyan">heading</code>.
             </p>
             <div className="mt-4">
                 {typeScale.map(step => (
@@ -87,7 +92,7 @@ const Typography: NextPageWithLayout = () => (
             <div className="mt-4 overflow-x-auto rounded-lg border border-cool-paper-200 dark:border-charcoal">
                 <table className="w-full text-left text-body-small">
                     <thead>
-                        <tr className="bg-cool-paper-100 dark:bg-cool-grey text-navy dark:text-light-grey">
+                        <tr className="bg-cool-paper-100 dark:bg-cool-grey text-disabled-text dark:text-light-grey text-caption uppercase tracking-wide">
                             <th className="px-4 py-3 font-semibold">Token</th>
                             <th className="px-4 py-3 font-semibold">CSS variable</th>
                             <th className="px-4 py-3 font-semibold">base / md / lg</th>

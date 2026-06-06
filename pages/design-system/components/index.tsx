@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
-import { PageHeader, StatusBadge } from '../../../styleguide-components/primitives'
+import { PageHeader, Section, StatusBadge } from '../../../styleguide-components/primitives'
 import { hrefFor } from '../../../styleguide-components/designSystem.config'
 import {
     componentCount,
@@ -22,11 +22,8 @@ const Components: NextPageWithLayout = () => (
         />
 
         {componentLayers.map(layer => (
-            <section key={layer.title} id={layer.title.toLowerCase()} className="scroll-mt-24 mt-12">
-                <h2 className="text-heading-l font-bold text-navy dark:text-white">
-                    {layer.title}
-                </h2>
-                <p className="mt-2 mb-5 max-w-2xl text-grey dark:text-light-grey">
+            <Section key={layer.title} id={layer.title.toLowerCase()} title={layer.title}>
+                <p className="mb-5 max-w-2xl text-grey dark:text-light-grey">
                     {layer.description}
                 </p>
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -62,7 +59,7 @@ const Components: NextPageWithLayout = () => (
                         )
                     })}
                 </div>
-            </section>
+            </Section>
         ))}
     </DesignSystemLayout>
 )

@@ -81,7 +81,7 @@ const Header: NextPageWithLayout = () => (
                 {parts.map(part => (
                     <li
                         key={part.name}
-                        className="rounded-lg border border-cool-paper-200 dark:border-charcoal p-4 bg-white dark:bg-cool-grey"
+                        className="rounded-lg border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey"
                     >
                         <span className="font-semibold text-navy dark:text-white">
                             {part.name}
