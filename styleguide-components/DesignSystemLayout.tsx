@@ -218,7 +218,7 @@ export const DesignSystemLayout = ({
                     </button>
                     <Link href={BASE_PATH}>
                         <a className="flex items-center gap-3">
-                            <SquareBupaLogo className="w-8 h-8" />
+                            <SquareBupaLogo className="h-8 w-auto" />
                             <span className="hidden sm:block font-bold text-navy dark:text-white">
                                 {SITE_TITLE}
                             </span>

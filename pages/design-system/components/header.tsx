@@ -37,7 +37,7 @@ const Header: NextPageWithLayout = () => (
         <Section id="overview" title="Overview">
             <div className="rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden">
                 <div className="flex items-center gap-4 h-16 px-4 bg-white border-b border-cool-paper-200">
-                    <SquareBupaLogo className="w-8 h-8" />
+                    <SquareBupaLogo className="h-8 w-auto" />
                     <nav className="hidden md:flex gap-5 text-body-small text-navy font-medium flex-1">
                         <span>Find a home</span>
                         <span>Types of care</span>
@@ -68,7 +68,7 @@ const Header: NextPageWithLayout = () => (
                 ]}
             >
                 <div className="w-full max-w-xs flex items-center gap-2 bg-white border border-cool-paper-200 rounded p-3">
-                    <SquareBupaLogo className="w-6 h-6" />
+                    <SquareBupaLogo className="h-6 w-auto" />
                     <div className="flex-1 h-2 bg-cool-paper-200 rounded" />
                     <SearchIcon className="w-5 h-5 fill-navy" />
                     <BurgerIcon className="w-5 h-5 fill-navy" />
