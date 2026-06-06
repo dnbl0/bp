@@ -124,6 +124,30 @@ export const navSections: NavSection[] = [
                 status: 'stable',
                 summary: 'A CMS-driven call-to-action built on the Button API.',
             },
+            {
+                title: 'Accordion',
+                slug: 'components/accordion',
+                status: 'stable',
+                summary: 'Expandable panels for FAQs and long supporting content.',
+            },
+            {
+                title: 'Breadcrumbs',
+                slug: 'components/breadcrumbs',
+                status: 'stable',
+                summary: "A trail showing the page's position in the site hierarchy.",
+            },
+            {
+                title: 'Testimonial card',
+                slug: 'components/testimonial',
+                status: 'stable',
+                summary: 'A bordered card presenting a customer quote with attribution.',
+            },
+            {
+                title: 'Sections',
+                slug: 'components/sections',
+                status: 'stable',
+                summary: 'The named grid and layout section family on a 12-column grid.',
+            },
         ],
     },
     {
