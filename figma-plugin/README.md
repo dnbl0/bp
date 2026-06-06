@@ -10,12 +10,65 @@ Figma MCP connector can only _read_ designs (extract code/screenshots/variables
 from existing frames); it has no API to author components, which is why this runs
 as a plugin instead.
 
+## Code ↔ Figma parity
+
+The library mirrors the codebase so the two stay in sync:
+
+- **Names mirror code paths.** Every component is named after its source path,
+  so the Figma assets panel renders the same folder tree as `components/`:
+  `Atoms/Tag`, `Molecules/Blocks/CardBlock`, `Molecules/Sections/Section6x6`,
+  `Organisms/Header`, `Templates/PrimaryPageTemplate`. Each component's
+  description and on-canvas label show its real source file.
+- **Composition mirrors code.** Where the code composes a component, Figma nests
+  a **real instance** of it: `CtaBlock` is a Button instance, `TagsBlock` is a
+  wrap of Tag instances, and the card family / `ContactCardBlock` / `Header`
+  embed Button instances. Edit the Button master → every usage updates.
+- **Canvas sections are labelled with their code folder** (e.g. “Molecules ·
+  components/molecules/blocks”).
+
+## Components that actually do something
+
+- **Editable content via component properties** — Button & Tag expose a `Label`
+  text property; the card family, Hero, Alert, Testimonial and Heading expose
+  their headings/body/quote as **`TEXT` properties**, editable from the
+  properties panel without digging into layers.
+- **Responsive** — headings and body copy are set to **fill**, so they reflow
+  when an instance is resized.
+- **Button** has a full state matrix plus a `Trailing icon` boolean toggle.
+
+## Dev-ready / best practice
+
+This is a **token-backed** library, not a static mockup:
+
+- **Figma Variables** — a `Bupa Tokens` collection: primitive colours
+  (`Color/Primary/Cyan` …), **semantic** colours that alias them
+  (`Color/Action/Default`, `Color/Text/Muted`, `Color/Surface/Default`,
+  `Color/Border/…`, `Color/Focus`), plus **spacing** (`Space/4…64`) and
+  **radius** (`Radius/Sm|Default|Lg|Pill`) number variables. Dev Mode turns
+  these into code tokens.
+- **Everything is bound to tokens** — colour styles resolve to their primitive
+  variable; component fills, strokes, text colours, padding and corner radius
+  are bound to semantic variables (so Dev Mode shows `Action/Default`, not a raw
+  hex).
+- **Real component APIs** — the Button exposes a **`Label` text property** and a
+  **`Trailing icon` boolean**; the Tag exposes a **`Label`** property.
+- **Interactive states** — the Button is a full `Variant × Size × State` matrix
+  (Primary/Secondary/Ghost/Tertiary × Small/Standard/Giant × Default/Hover/
+  Active/Disabled = 48 variants), with state colours taken straight from
+  [`buttons.css`](../styles/components/buttons.css).
+- **Component descriptions** — every component carries a description (atomic
+  layer + summary) shown in the asset panel and Dev Mode.
+
+If the file/host has no Variables API, the plugin still runs and falls back to
+raw values (the build notification says which path it took).
+
 ## What it creates
 
 **Foundations**
+- **Variables** — the `Bupa Tokens` collection described above.
 - **Colour styles** — the full palette from [`tailwind.config.js`](../tailwind.config.js),
-  grouped as `Primary/…`, `Secondary/…`, `UI/…`, `Background/…`, plus a visible
-  swatch board (chip + name + hex) with each style linked.
+  grouped as `Primary/…`, `Secondary/…`, `UI/…`, `Background/…`, each **bound to
+  its variable**, plus a visible swatch board.
 - **Text styles** — the responsive type scale (desktop sizes) as
   `Heading/XL … Heading/S`, `Heading`, `Body`, `Body Small`, `Caption`, in
   Montserrat, with a specimen for each.
@@ -50,13 +103,17 @@ Mirrors [`styleguide-components/componentCatalog.ts`](../styleguide-components/c
 It builds onto the current page, zooms to fit, and closes.
 
 ### Layout & structure
-- **Each component is its own named, top-level frame** (a label + a centred
-  preview), laid out in a wrapping grid grouped under a heading per atomic
-  layer — not crammed into one master frame.
-- Foundations (Colour, Typography) and the title are their own artboards.
+- **A title banner**, then a **Foundations** group (Colour + Typography
+  artboards side by side), then one **Figma Section per atomic layer**
+  (Atoms, Molecules, Sections, Organisms, Templates, Pages) so the canvas reads
+  as an organised board.
+- **Each component is its own named frame** (label + centred preview), snapped
+  to a **3-column grid**: cards/bands take one column, wide components (hero,
+  header, footer) span two, and the Button state matrix spans all three — so
+  everything aligns into tidy rows instead of a ragged wrap.
 - **Everything inside a frame uses auto layout** — no child is absolutely
-  positioned. Only top-level frames carry canvas coordinates, which is inherent
-  to the page.
+  positioned. Component frames carry canvas coordinates (grouped by Section),
+  which is inherent to the page.
 - **Every frame is named** after its component or role (`Header`, `Preview`,
   `Label`, `Nav`, `Columns`, `Chip`, …) so the layer tree reads cleanly.
 

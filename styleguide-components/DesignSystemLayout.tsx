@@ -29,6 +29,12 @@ interface DesignSystemLayoutProps {
     title: string
     /** Anchors for the "On this page" rail. */
     toc?: TocEntry[]
+    /**
+     * Widens the content column for landing-style pages (e.g. the
+     * introduction) whose hero and card grids need more room than the
+     * standard prose measure.
+     */
+    wide?: boolean
 }
 
 const THEME_KEY = 'bds-theme'
@@ -85,13 +91,13 @@ const Sidebar = ({
     currentPath: string
     onNavigate: () => void
 }) => (
-    <nav className="px-4 py-6 space-y-8" aria-label="Design system">
+    <nav className="px-3 py-6 space-y-7" aria-label="Design system">
         {navSections.map(section => (
             <div key={section.title}>
-                <p className="px-3 mb-2 text-caption font-bold uppercase tracking-wide text-disabled-text">
+                <p className="px-2.5 mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-disabled-text">
                     {section.title}
                 </p>
-                <ul className="space-y-0.5">
+                <ul className="space-y-px">
                     {section.items.map(item => {
                         const href = hrefFor(item.slug)
                         const active = currentPath === href
@@ -102,10 +108,10 @@ const Sidebar = ({
                                         onClick={onNavigate}
                                         aria-current={active ? 'page' : undefined}
                                         className={cx(
-                                            'flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-body-small',
+                                            'flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-md text-sm leading-snug',
                                             active
                                                 ? 'bg-cyan-50 dark:bg-charcoal text-cyan font-semibold'
-                                                : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal'
+                                                : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal hover:text-navy dark:hover:text-white'
                                         )}
                                     >
                                         {item.title}
@@ -132,6 +138,7 @@ export const DesignSystemLayout = ({
     children,
     title,
     toc = [],
+    wide = false,
 }: DesignSystemLayoutProps) => {
     const router = useRouter()
     const [dark, toggleTheme] = useTheme()
@@ -192,7 +199,7 @@ export const DesignSystemLayout = ({
                     {/* Sidebar */}
                     <aside
                         className={cx(
-                            'fixed lg:sticky top-16 z-fixed lg:z-ground h-[calc(100vh-4rem)] w-72 flex-none overflow-y-auto bg-white dark:bg-grey border-r border-cool-paper-200 dark:border-charcoal transition-transform lg:translate-x-0',
+                            'fixed lg:sticky top-16 z-fixed lg:z-ground h-[calc(100vh-4rem)] w-60 flex-none overflow-y-auto bg-white dark:bg-grey border-r border-cool-paper-200 dark:border-charcoal transition-transform lg:translate-x-0',
                             mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
                         )}
                     >
@@ -209,7 +216,7 @@ export const DesignSystemLayout = ({
 
                     {/* Content */}
                     <main className="flex-1 min-w-0 px-6 lg:px-12 py-10">
-                        <div className="mx-auto max-w-3xl">
+                        <div className={cx('mx-auto', wide ? 'max-w-5xl' : 'max-w-3xl')}>
                             <Breadcrumbs slug={slug} />
                             {children}
                             <PrevNext slug={slug} />
