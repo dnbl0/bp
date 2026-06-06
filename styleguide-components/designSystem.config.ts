@@ -425,6 +425,27 @@ export const allDocs: NavItem[] = navSections.flatMap(section => section.items)
 export const hrefFor = (slug: string): string =>
     slug ? `${BASE_PATH}/${slug}` : BASE_PATH
 
+/**
+ * GitHub repo URL for editing the source file. Maps slug to the corresponding
+ * page file in pages/design-system/.
+ */
+export const githubEditUrl = (slug: string): string => {
+    const repo = 'https://github.com/dnbl0/bp/edit/main'
+    let filePath = slug
+    // Root pages and explicit index pages
+    if (slug === '') filePath = 'pages/design-system/index'
+    else if (slug === 'components') filePath = 'pages/design-system/components/index'
+    else filePath = `pages/design-system/${slug}`
+    return `${repo}/${filePath}.tsx`
+}
+
+/**
+ * Figma component link. Currently a placeholder to the main Figma file;
+ * when component node-IDs are mapped, this can deep-link to specific components.
+ */
+export const figmaDesignUrl = (): string =>
+    'https://www.figma.com/design/vvf035VybcSNoOWLVRwIVd/Bupa-Aged-Care-Design-System'
+
 /** Maps a page slug to the title of the nav section that contains it. */
 const slugToSection: Record<string, string> = navSections.reduce(
     (map, section) => {

@@ -5,6 +5,8 @@ import { ReactNode, useEffect, useState } from 'react'
 import { PulseLogo } from '../components/atoms/icons/PulseLogo'
 import { BurgerIcon } from '../components/atoms/icons/BurgerIcon'
 import { CloseIcon } from '../components/atoms/icons/CloseIcon'
+import { GitHubIcon } from '../components/atoms/icons/GitHubIcon'
+import { FigmaIcon } from '../components/atoms/icons/FigmaIcon'
 import { cx } from '../utils/cx'
 import {
     BASE_PATH,
@@ -12,6 +14,8 @@ import {
     SITE_TITLE,
     hrefFor,
     navSections,
+    githubEditUrl,
+    figmaDesignUrl,
 } from './designSystem.config'
 import { StatusBadge } from './primitives/StatusBadge'
 import { Breadcrumbs } from './primitives/Breadcrumbs'
@@ -230,6 +234,29 @@ export const DesignSystemLayout = ({
                             <Breadcrumbs slug={slug} />
                             {children}
                             <PrevNext slug={slug} />
+                            {/* Edit links footer */}
+                            <div className="mt-12 pt-6 border-t border-cool-paper-200 dark:border-charcoal flex flex-wrap gap-6">
+                                <a
+                                    href={githubEditUrl(slug)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 text-body-small text-grey dark:text-light-grey hover:text-navy dark:hover:text-white transition-colors"
+                                    aria-label="Edit this page on GitHub"
+                                >
+                                    <GitHubIcon className="w-4 h-4 fill-current" />
+                                    <span>Edit this page</span>
+                                </a>
+                                <a
+                                    href={figmaDesignUrl()}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 text-body-small text-grey dark:text-light-grey hover:text-navy dark:hover:text-white transition-colors"
+                                    aria-label="View the design system in Figma"
+                                >
+                                    <FigmaIcon className="w-4 h-4 fill-current" />
+                                    <span>View in Figma</span>
+                                </a>
+                            </div>
                         </div>
                     </main>
 
