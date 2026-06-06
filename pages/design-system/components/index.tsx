@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
-import { PageHeader, Section, StatusBadge } from '../../../styleguide-components/primitives'
+import { PageHeader, Section } from '../../../styleguide-components/primitives'
 import { ComponentThumbnail } from '../../../styleguide-components/componentPreviews'
 import { hrefFor } from '../../../styleguide-components/designSystem.config'
 import {
@@ -28,18 +28,12 @@ const Components: NextPageWithLayout = () => (
                             <>
                                 <ComponentThumbnail name={component.name} />
                                 <div className="p-5">
-                                    <div className="flex items-center justify-between gap-2">
-                                        <span className="font-semibold text-navy dark:text-white">
-                                            {component.name}
-                                        </span>
-                                        <StatusBadge status={component.status} />
-                                    </div>
+                                    <span className="block font-semibold text-navy dark:text-white">
+                                        {component.name}
+                                    </span>
                                     <p className="mt-1 text-body-small text-grey dark:text-light-grey">
                                         {component.description}
                                     </p>
-                                    <code className="mt-2 block font-mono text-caption text-disabled-text break-all">
-                                        {component.source}
-                                    </code>
                                 </div>
                             </>
                         )
