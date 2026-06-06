@@ -1134,7 +1134,7 @@ function buildImageCard() {
 
 function buildPromotionCard() {
     const c = cardShell('PromotionCardBlock', 280, { stroke: C.cyan, strokeW: 2, gap: 10 })
-    c.appendChild(badge('Offer', '#F0F9FF', C.cyan))
+    c.appendChild(badgeInstance('Offer', 'Info'))
     const heading = makeText('Move-in offer', { weight: 'semibold', size: 20, line: 24, color: C.navy, colorVar: 'Text/Default' })
     heading.name = 'Heading'
     const body = makeParagraph('A cyan-bordered card to highlight campaigns and offers.', 240, { size: 14, line: 18, color: C.grey, colorVar: 'Text/Body' })
@@ -1348,12 +1348,58 @@ function buildCareHomePage() {
 
 // --- added components -------------------------------------------------------
 
-function buildBadge() {
-    const c = comp('Badge', { dir: 'HORIZONTAL', gap: 8, align: 'CENTER' })
-    c.appendChild(badge('New', '#E3F6E9', C.green))
-    c.appendChild(badge('Popular', '#E7F3FB', C.cyan))
-    c.appendChild(badge('Award 2024', '#FBF3D7', C.grey))
-    return c
+// Badge as a variant set (Tone) with an editable Label property. Molecules
+// compose it via badgeInstance() so there's a single source of truth.
+function buildBadgeSet() {
+    const tones = [
+        ['Neutral', '#EEF2F6', C.silver],
+        ['Info', '#E7F3FB', C.cyan],
+        ['Success', '#E3F6E9', C.green],
+        ['Warning', '#FBF3D7', C.grey],
+    ]
+    const labels = []
+    const variants = tones.map(([name, bg, fg]) => {
+        const c = figma.createComponent()
+        c.name = 'Tone=' + name
+        autolayout(c, { dir: 'HORIZONTAL', padX: 8, padY: 3, align: 'CENTER', justify: 'CENTER' })
+        c.cornerRadius = 100
+        c.fills = solid(bg)
+        const t = makeText('Badge', { weight: 'semibold', size: 12, line: 16, color: fg })
+        t.name = 'Label'
+        labels.push(t)
+        c.appendChild(t)
+        return c
+    })
+    const set = figma.combineAsVariants(variants, figma.currentPage)
+    set.name = 'Badge'
+    try {
+        const p = set.addComponentProperty('Label', 'TEXT', 'Badge')
+        for (const l of labels) l.componentPropertyReferences = { characters: p }
+    } catch (e) { /* properties unsupported */ }
+    autolayout(set, { dir: 'HORIZONTAL', gap: 16, padX: 24, padY: 24, align: 'CENTER' })
+    fillBound(set, 'Surface/Default', C.white)
+    set.cornerRadius = 8
+    BUILT.badge = set
+    return set
+}
+
+// A real instance of the Badge component (falls back to a static pill).
+function badgeInstance(label, tone) {
+    try {
+        if (BUILT.badge) {
+            const vname = 'Tone=' + (tone || 'Info')
+            let master = null
+            for (const ch of BUILT.badge.children) if (ch.name === vname) master = ch
+            if (!master) master = BUILT.badge.defaultVariant
+            if (master) {
+                const inst = master.createInstance()
+                const t = inst.findOne(n => n.type === 'TEXT' && n.name === 'Label')
+                if (t) t.characters = label
+                return inst
+            }
+        }
+    } catch (e) { /* fall back */ }
+    return badge(label, '#E7F3FB', C.cyan)
 }
 
 function buildTooltip() {
@@ -1382,19 +1428,28 @@ function buildSkipLinks() {
     return c
 }
 
-function toggleTrack(on) {
-    const track = autolayout(figma.createFrame(), { name: on ? 'On' : 'Off', dir: 'HORIZONTAL', justify: on ? 'MAX' : 'MIN', align: 'CENTER', primary: 'FIXED', counter: 'FIXED', padX: 2, padY: 2, fill: on ? C.cyan : C.lightGrey })
-    track.resize(44, 24)
-    track.cornerRadius = 100
-    track.appendChild(rectNode(20, 20, C.white, 100))
-    return track
-}
-
-function buildToggle() {
-    const c = comp('ToggleSwitch', { dir: 'HORIZONTAL', gap: 16, align: 'CENTER' })
-    c.appendChild(toggleTrack(true))
-    c.appendChild(toggleTrack(false))
-    return c
+// ToggleSwitch as a variant set (State = On / Off) — the Figma-idiomatic way to
+// model a binary control.
+function buildToggleSet() {
+    const variants = [true, false].map(on => {
+        const c = figma.createComponent()
+        c.name = 'State=' + (on ? 'On' : 'Off')
+        autolayout(c, { dir: 'HORIZONTAL', justify: on ? 'MAX' : 'MIN', align: 'CENTER', primary: 'FIXED', counter: 'FIXED', padX: 2, padY: 2 })
+        c.resize(44, 24)
+        c.cornerRadius = 100
+        if (on) fillBound(c, 'Action/Default', C.cyan)
+        else c.fills = solid(C.lightGrey)
+        const knob = rectNode(20, 20, C.white, 100)
+        knob.name = 'Knob'
+        c.appendChild(knob)
+        return c
+    })
+    const set = figma.combineAsVariants(variants, figma.currentPage)
+    set.name = 'ToggleSwitch'
+    autolayout(set, { dir: 'HORIZONTAL', gap: 16, padX: 24, padY: 24, align: 'CENTER' })
+    fillBound(set, 'Surface/Default', C.white)
+    set.cornerRadius = 8
+    return set
 }
 
 function pageBox(label, active) {
@@ -1638,10 +1693,10 @@ const CATALOG = [
 const VISUAL = {
     Button: buildButtonSet,
     Tag: buildTagSet,
-    Badge: buildBadge,
+    Badge: buildBadgeSet,
     Tooltip: buildTooltip,
     SkipLinks: buildSkipLinks,
-    ToggleSwitch: buildToggle,
+    ToggleSwitch: buildToggleSet,
     Pagination: buildPagination,
     Section: buildSectionAtom,
     ResponsiveImage: buildResponsiveImage,
