@@ -546,6 +546,95 @@ export const componentPreviews: Record<string, ReactNode> = {
             <span className="text-caption text-disabled-text">Blank</span>
         </div>
     ),
+
+    // ---------- Added components ----------
+    Badge: (
+        <div className="flex flex-wrap gap-2 justify-center">
+            <span className="px-2 py-0.5 rounded-full text-caption font-semibold bg-success-green/15 text-dark-green">New</span>
+            <span className="px-2 py-0.5 rounded-full text-caption font-semibold bg-cyan-50 text-cyan">Popular</span>
+            <span className="px-2 py-0.5 rounded-full text-caption font-semibold bg-warning-yellow/25 text-grey">Award 2024</span>
+        </div>
+    ),
+    Tooltip: (
+        <div className="flex flex-col items-center gap-2">
+            <span className="px-2 py-1 rounded-md bg-navy text-white text-caption">A helpful hint</span>
+            <span className="w-2 h-2 -mt-3 rotate-45 bg-navy" />
+            <span className="w-7 h-7 rounded-full bg-cool-paper-100 border border-cool-paper-200 flex items-center justify-center text-caption font-semibold text-grey">?</span>
+        </div>
+    ),
+    SkipLinks: (
+        <div className="w-full max-w-[320px] flex justify-start">
+            <span className="px-3 py-1.5 rounded-md bg-navy text-white text-caption font-semibold ring-4 ring-focus-blue">
+                Skip to main content
+            </span>
+        </div>
+    ),
+    ToggleSwitch: (
+        <div className="flex items-center gap-4">
+            <span className="w-11 h-6 rounded-full bg-cyan relative">
+                <span className="absolute top-0.5 right-0.5 w-5 h-5 rounded-full bg-white shadow" />
+            </span>
+            <span className="w-11 h-6 rounded-full bg-cool-paper-200 relative">
+                <span className="absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow" />
+            </span>
+        </div>
+    ),
+    Pagination: (
+        <div className="flex items-center gap-1.5 text-caption font-medium text-grey">
+            <span className="w-7 h-7 rounded-md border border-cool-paper-200 flex items-center justify-center">‹</span>
+            <span className="w-7 h-7 rounded-md bg-cyan text-white flex items-center justify-center">1</span>
+            <span className="w-7 h-7 rounded-md border border-cool-paper-200 flex items-center justify-center">2</span>
+            <span className="w-7 h-7 rounded-md border border-cool-paper-200 flex items-center justify-center">3</span>
+            <span className="px-1">…</span>
+            <span className="w-7 h-7 rounded-md border border-cool-paper-200 flex items-center justify-center">9</span>
+            <span className="w-7 h-7 rounded-md border border-cool-paper-200 flex items-center justify-center">›</span>
+        </div>
+    ),
+    Tabs: (
+        <div className="w-full max-w-[320px] space-y-2">
+            <div className="flex gap-4 border-b border-cool-paper-200 text-body-small">
+                <span className="pb-2 -mb-px border-b-2 border-cyan text-cyan font-semibold">Overview</span>
+                <span className="pb-2 text-grey">Rooms</span>
+                <span className="pb-2 text-grey">Fees</span>
+            </div>
+            <Lines rows={2} />
+        </div>
+    ),
+    ComparisonTable: (
+        <div className="w-full max-w-[320px] rounded-lg border border-cool-paper-200 overflow-hidden text-caption">
+            <div className="grid grid-cols-3 bg-cool-paper-100 text-navy font-semibold">
+                <span className="p-2">Feature</span>
+                <span className="p-2 text-center">Basic</span>
+                <span className="p-2 text-center">Plus</span>
+            </div>
+            {['Respite', 'Nursing'].map(row => (
+                <div key={row} className="grid grid-cols-3 border-t border-cool-paper-200">
+                    <span className="p-2 text-grey">{row}</span>
+                    <span className="p-2 text-center text-success-green">✓</span>
+                    <span className="p-2 text-center text-success-green">✓</span>
+                </div>
+            ))}
+        </div>
+    ),
+    Disclaimer: (
+        <div className="w-full max-w-[320px] space-y-1.5 text-caption text-grey">
+            <p><sup className="text-cyan">1</sup> Fees are indicative and subject to assessment.</p>
+            <p><sup className="text-cyan">2</sup> Conditions apply; see full terms.</p>
+        </div>
+    ),
+    Stepper: (
+        <div className="w-full max-w-[320px] flex items-center">
+            {['Your details', 'Care needs', 'Quote'].map((label, i) => (
+                <div key={label} className="flex items-center flex-1 last:flex-none">
+                    <span className={cx(
+                        'w-6 h-6 rounded-full flex items-center justify-center text-caption font-semibold',
+                        i <= 1 ? 'bg-cyan text-white' : 'bg-cool-paper-200 text-grey'
+                    )}>{i + 1}</span>
+                    {i < 2 && <span className={cx('h-0.5 flex-1 mx-1', i < 1 ? 'bg-cyan' : 'bg-cool-paper-200')} />}
+                </div>
+            ))}
+        </div>
+    ),
 }
 
 /** Fallback when a component has no bespoke preview. */

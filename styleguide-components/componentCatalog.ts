@@ -42,6 +42,11 @@ export const componentLayers: ComponentLayer[] = [
             { name: 'ErrorMessageWrapper', source: 'components/atoms/ErrorMessageWrapper.tsx', description: 'Standardised wrapper for inline form error messaging.', status: 'stable', docSlug: 'components/group-forms' },
             { name: 'BelowHeader', source: 'components/atoms/BelowHeader.tsx', description: 'Spacing helper that offsets content beneath the fixed header.', status: 'stable', docSlug: 'components/group-content' },
             { name: 'HeaderStyle', source: 'components/atoms/HeaderStyle.tsx', description: 'Applies contextual header styling per page.', status: 'stable', docSlug: 'components/group-content' },
+            { name: 'Badge', source: 'components/atoms/Badge.tsx', description: 'A small, non-interactive status, category or recognition label.', status: 'stable', docSlug: 'components/badge' },
+            { name: 'Tooltip', source: 'components/atoms/Tooltip.tsx', description: 'An accessible hint revealed on hover and keyboard focus.', status: 'stable', docSlug: 'components/tooltip' },
+            { name: 'SkipLinks', source: 'components/atoms/SkipLinks.tsx', description: 'Focus-revealed shortcuts that bypass the header to the main landmarks.', status: 'stable', docSlug: 'components/skip-links' },
+            { name: 'ToggleSwitch', source: 'components/atoms/ToggleSwitch.tsx', description: 'A binary on/off switch built on a real checkbox input.', status: 'stable', docSlug: 'components/toggle' },
+            { name: 'Pagination', source: 'components/atoms/Pagination.tsx', description: 'Numbered page navigation for long listings, with truncation.', status: 'stable', docSlug: 'components/pagination' },
         ],
     },
     {
@@ -82,6 +87,10 @@ export const componentLayers: ComponentLayer[] = [
             { name: 'AgedCareHomeMapBlock', source: 'components/molecules/blocks/AgedCareHomeMapBlock', description: 'A map of aged-care home locations.', status: 'stable', docSlug: 'components/group-tools' },
             { name: 'AgedCareNavigator', source: 'components/molecules/blocks/AgedCareNavigator.tsx', description: 'A guided, multi-step aged-care needs navigator.', status: 'stable', docSlug: 'components/group-tools' },
             { name: 'SearchPageBlock', source: 'components/molecules/blocks/SearchPageBlock.tsx', description: 'The full search results experience.', status: 'stable', docSlug: 'components/group-search' },
+            { name: 'Tabs', source: 'components/molecules/Tabs.tsx', description: 'An accessible tabbed panel following the WAI-ARIA tabs pattern.', status: 'stable', docSlug: 'components/tabs' },
+            { name: 'ComparisonTable', source: 'components/molecules/ComparisonTable.tsx', description: 'A responsive feature-comparison matrix for placing products side by side.', status: 'stable', docSlug: 'components/comparison-table' },
+            { name: 'Disclaimer', source: 'components/molecules/Disclaimer.tsx', description: 'A legal disclaimer block of superscript-marked footnotes, optionally collapsible.', status: 'stable', docSlug: 'components/disclaimer' },
+            { name: 'Stepper', source: 'components/molecules/Stepper.tsx', description: 'A horizontal progress indicator for multi-step flows such as the quote funnel.', status: 'stable', docSlug: 'components/stepper' },
         ],
     },
     {
