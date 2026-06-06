@@ -1,0 +1,68 @@
+name: Deploy design-system docs
+
+# Builds the static design-system documentation and publishes it to GitHub
+# Pages (served at https://dnbl0.github.io/bp/design-system/). Only the
+# fully-static /design-system pages are exported; the main app's SSR and API
+# routes are pruned by scripts/export-docs.mjs so `next export` can run.
+
+on:
+    push:
+        branches: [main, design-system-docs-improvements]
+        # Skip runs that only touch things irrelevant to the docs build.
+        paths:
+            - 'components/**'
+            - 'pages/design-system/**'
+            - 'styleguide-components/**'
+            - 'styles/**'
+            - 'public/**'
+            - 'next.config.js'
+            - 'scripts/export-docs.mjs'
+            - '.github/workflows/deploy-docs.yml'
+    workflow_dispatch:
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+# Allow one concurrent deployment; never cancel an in-progress one.
+concurrency:
+    group: pages
+    cancel-in-progress: false
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        env:
+            # The docs pages never query Contentful, but _app constructs an
+            # Apollo client whose factory throws if these are undefined. Dummy
+            # values satisfy that guard; no real credentials are needed.
+            NEXT_PUBLIC_CONTENTFUL_SPACE_ID: docs-export
+            NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: master
+            NEXT_PUBLIC_CONTENT_DELIVERY_ACCESS_TOKEN: docs-export
+            NEXT_PUBLIC_CONTENT_PREVIEW_ACCESS_TOKEN: docs-export
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 18
+                  cache: yarn
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+            - name: Build static docs
+              run: node scripts/export-docs.mjs
+            - name: Upload Pages artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: ./out
+
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4

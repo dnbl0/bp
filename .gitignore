@@ -11,6 +11,7 @@
 # next.js
 /.next/
 /out/
+/.docs-export-stash/
 
 # production
 /build

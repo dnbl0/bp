@@ -95,13 +95,15 @@ export const componentGroups: ComponentGroup[] = [
         slug: 'components/group-infra',
         title: 'Infrastructure & templates',
         eyebrow: 'Components · Group',
-        intro: 'The plumbing that assembles the experience: the block dispatcher, link handling, preview affordances and the page templates.',
+        intro: 'The plumbing that assembles the experience: the block dispatcher, link handling, preview affordances and the page templates, plus the third-party global chrome (chat and consent) that the production site mounts on every page.',
         entries: [
             { name: 'CmsElement', source: 'components/molecules/CmsElement.tsx', summary: 'Maps a CMS block type to its component.', note: 'The central dispatcher: every content block is rendered through here based on its __typename.' },
             { name: 'LinkHandler', source: 'components/organisms/LinkHandler.tsx', summary: 'Centralised internal/external link behaviour.', note: 'A context provider (mounted in _app) that normalises link handling, including new-tab and tracking behaviour.' },
             { name: 'PreviewEnabledNotification', source: 'components/organisms/PreviewEnabledNotification.tsx', summary: 'Banner shown when CMS preview is active.', note: 'Signals that draft content is being viewed; offers a way to exit preview mode.' },
             { name: 'PrimaryPageTemplate', source: 'components/templates/PrimaryPageTemplate.tsx', summary: 'The standard content page layout.', note: 'Composes the header, CMS sections and footer; the default template for most pages.' },
             { name: 'BlankLayout', source: 'components/templates/BlankLayout.tsx', summary: 'A minimal layout with no global chrome.', note: 'Used for standalone routes (e.g. the Contentful app) that should not show the site header/footer.' },
+            { name: 'ChatWidget', source: 'Third-party (Spectrm)', summary: 'The site-wide “Chat with us” assistant.', note: 'A vendor-managed widget (mounted via the spr-chat script and exposed as the #chat skip-link target). Documented here as an integration point — it is not an in-repo component, so there is no live demo. Keep its trigger reachable and ensure SkipLinks offers a “Skip to chat” destination.' },
+            { name: 'CookieConsent', source: 'Third-party (OneTrust)', summary: 'The site-wide cookie / consent banner.', note: 'A vendor-managed consent manager loaded on every page before analytics fire. Documented as an integration point rather than an in-repo component. Ensure it traps focus while open and does not obscure the SkipLinks.' },
         ],
     },
 ]
