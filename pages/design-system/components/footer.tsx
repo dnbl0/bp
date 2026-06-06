@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -71,6 +72,8 @@ const Footer: NextPageWithLayout = () => (
             status="stable"
             intro="The global site footer on a navy surface. An upper region holds the about text and navigation menus; a lower region holds the copyright, tagline, fine-print links and social media links."
         />
+
+        <ComponentHero name="Footer" />
 
         <Section id="example" title="Example">
             <p className="text-grey dark:text-light-grey">

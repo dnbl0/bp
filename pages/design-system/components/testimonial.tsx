@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -23,6 +24,8 @@ const Testimonial: NextPageWithLayout = () => (
             status="stable"
             intro="A bordered card presenting a customer quote with attribution. The attribution can sit below the quote (default) or beside an avatar above it."
         />
+
+        <ComponentHero name="TestimonialCardBlock" />
 
         <Section id="examples" title="Examples">
             <Example surface="tinted" caption="Attribution below the quote (default)">

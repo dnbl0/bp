@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -21,6 +22,8 @@ const Cta: NextPageWithLayout = () => (
             status="stable"
             intro="A call-to-action button authored in the CMS. It maps content options — size, variant, icon and alignment — onto the Button class API, so its appearance always matches the Button foundation."
         />
+
+        <ComponentHero name="CtaBlock" />
 
         <Section id="examples" title="Examples">
             <p className="text-grey dark:text-light-grey">

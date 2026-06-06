@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -20,6 +21,8 @@ const Heading: NextPageWithLayout = () => (
             status="stable"
             intro="A standalone section heading authored in the CMS. It exposes three sizes and two weights, and registers a scroll-target anchor so in-page navigation can jump to it."
         />
+
+        <ComponentHero name="HeadingBlock" />
 
         <Section id="sizes" title="Sizes">
             <Example

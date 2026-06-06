@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -69,6 +70,8 @@ const Accordion: NextPageWithLayout = () => (
             status="stable"
             intro="A list of expandable panels that let people scan headings and reveal detail on demand. Used for FAQs and long supporting content. The plus icon rotates to a minus as a panel opens."
         />
+
+        <ComponentHero name="AccordionBlock" />
 
         <Section id="example" title="Example">
             <Example surface="paper" caption="Click a heading to expand it">

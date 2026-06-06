@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -22,6 +23,8 @@ const ContactCard: NextPageWithLayout = () => (
             status="stable"
             intro="A white, elevated card that brings together a care home's contact details — phone, hours and address — with primary, secondary and tertiary calls to action."
         />
+
+        <ComponentHero name="ContactCardBlock" />
 
         <Section id="example" title="Example">
             <Example surface="tinted">

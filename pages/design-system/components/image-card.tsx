@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -48,6 +49,8 @@ const ImageCard: NextPageWithLayout = () => (
             status="stable"
             intro="An image-led content card with a heading, optional body and a call to action. It lifts on hover via the elevation tokens, and the whole card is clickable when a link is set."
         />
+
+        <ComponentHero name="ImageCardBlock" />
 
         <Section id="types" title="Types">
             <p className="text-grey dark:text-light-grey">

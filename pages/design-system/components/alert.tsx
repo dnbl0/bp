@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -22,6 +23,8 @@ const Alert: NextPageWithLayout = () => (
             status="stable"
             intro="A dismissible, full-width notification banner for site-wide messages. It uses the alert background colour and collapses smoothly when closed."
         />
+
+        <ComponentHero name="AlertBlock" />
 
         <Section id="example" title="Example">
             <p className="text-grey dark:text-light-grey">

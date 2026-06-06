@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -29,6 +30,8 @@ const Breadcrumbs: NextPageWithLayout = () => (
             status="stable"
             intro="A trail showing the current page's position in the site hierarchy, with the final crumb shown as the bold current page. Hidden on small screens to conserve space."
         />
+
+        <ComponentHero name="BreadCrumbsBlock" />
 
         <Section id="example" title="Example">
             <Example surface="tinted">

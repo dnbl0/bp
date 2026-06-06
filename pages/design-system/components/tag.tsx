@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -21,6 +22,8 @@ const Tags: NextPageWithLayout = () => (
             status="stable"
             intro="A small, colourable label that links to a page or in-page anchor. Tags are used to categorise content such as blog stories and care-home features."
         />
+
+        <ComponentHero name="Tag" />
 
         <Section id="examples" title="Examples">
             <Example

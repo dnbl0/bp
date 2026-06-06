@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -21,6 +22,8 @@ const VideoCard: NextPageWithLayout = () => (
             status="stable"
             intro="A thin wrapper around the YouTube player that shows a placeholder image with a play affordance and loads the video on demand. It renders nothing unless both a video id and a name are provided."
         />
+
+        <ComponentHero name="VideoCardBlock" />
 
         <Section id="example" title="Example">
             <Example surface="paper">

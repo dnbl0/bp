@@ -563,3 +563,17 @@ export const ComponentThumbnail = ({ name }: { name: string }) => (
         </div>
     </div>
 )
+
+/**
+ * A larger framed version of a component's preview, shown as the hero visual at
+ * the top of its dedicated documentation page (mirrors the overview thumbnail).
+ */
+export const ComponentHero = ({ name }: { name: string }) => (
+    <div className="mt-6 rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden">
+        <div className="min-h-[200px] flex items-center justify-center p-10 bg-gradient-to-br from-cool-paper-50 to-cool-paper-100 pointer-events-none select-none">
+            <div className="scale-110">
+                {componentPreviews[name] ?? <GenericPreview name={name} />}
+            </div>
+        </div>
+    </div>
+)

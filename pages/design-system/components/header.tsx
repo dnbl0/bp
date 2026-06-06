@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -33,6 +34,8 @@ const Header: NextPageWithLayout = () => (
             status="stable"
             intro="The global site header. It adapts between a wide-screen layout with inline navigation and contact actions, and a compact layout that collapses navigation into a slide-in burger menu."
         />
+
+        <ComponentHero name="Header" />
 
         <Section id="overview" title="Overview">
             <div className="rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden">

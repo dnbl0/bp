@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -21,6 +22,8 @@ const Tags: NextPageWithLayout = () => (
             status="stable"
             intro="A wrapping group of Tag atoms, used to surface a set of categories or care-home features together."
         />
+
+        <ComponentHero name="TagsBlock" />
 
         <Section id="example" title="Example">
             <Example>

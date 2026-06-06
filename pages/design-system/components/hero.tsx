@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -51,6 +52,8 @@ const Hero: NextPageWithLayout = () => (
             status="stable"
             intro="A full-width banner that opens a page on a cyan field. On wide screens the image sits on the right half; on small screens it stacks above the text. A foreground slot can overlap the band for cards or search."
         />
+
+        <ComponentHero name="HeroBanner" />
 
         <Section id="example" title="Example">
             <Example surface="paper">

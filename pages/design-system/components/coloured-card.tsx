@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -57,6 +58,8 @@ const ColouredCard: NextPageWithLayout = () => (
             status="stable"
             intro="A card with a configurable background colour, used to group an icon, heading, body and a call to action. On coloured backgrounds the text and button switch to inverse styling; the white variant gains a border."
         />
+
+        <ComponentHero name="ColouredCardBlock" />
 
         <Section id="colours" title="Colours">
             <p className="text-grey dark:text-light-grey">

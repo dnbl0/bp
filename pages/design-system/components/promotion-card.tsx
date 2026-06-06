@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -22,6 +23,8 @@ const PromotionCard: NextPageWithLayout = () => (
             status="stable"
             intro="A light cyan, cyan-bordered card for campaigns and offers. It pairs an optional icon with a heading, markdown body and a tertiary action, laying out as a row on wider screens."
         />
+
+        <ComponentHero name="PromotionCardBlock" />
 
         <Section id="example" title="Example">
             <Example surface="tinted">

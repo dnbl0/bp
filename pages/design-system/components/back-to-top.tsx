@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -22,6 +23,8 @@ const BackToTopPage: NextPageWithLayout = () => (
             status="stable"
             intro="A floating circular control, fixed to the bottom-right of the viewport, that smooth-scrolls the page back to the top. It carries a screen-reader label and darkens on hover and press."
         />
+
+        <ComponentHero name="BackToTop" />
 
         <Section id="example" title="Example">
             <p className="text-grey dark:text-light-grey">

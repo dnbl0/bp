@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -46,6 +47,8 @@ const ShowMore: NextPageWithLayout = () => (
             status="stable"
             intro="A ghost button that toggles additional markdown content into view. The chevron rotates 180° to signal the expanded state. Use it to keep long supporting copy out of the way until requested."
         />
+
+        <ComponentHero name="ShowMoreButton" />
 
         <Section id="example" title="Example">
             <Example surface="paper">
