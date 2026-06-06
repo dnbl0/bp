@@ -32,6 +32,31 @@ interface DesignSystemLayoutProps {
 
 const THEME_KEY = 'bds-theme'
 
+/** Highlights the heading currently in view for the "on this page" rail. */
+const useScrollSpy = (ids: string[]): string => {
+    const [active, setActive] = useState('')
+
+    useEffect(() => {
+        if (ids.length === 0) return
+        const observer = new IntersectionObserver(
+            entries => {
+                const visible = entries
+                    .filter(entry => entry.isIntersecting)
+                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+                if (visible[0]) setActive(visible[0].target.id)
+            },
+            { rootMargin: '-80px 0px -70% 0px' }
+        )
+        ids.forEach(id => {
+            const element = document.getElementById(id)
+            if (element) observer.observe(element)
+        })
+        return () => observer.disconnect()
+    }, [ids])
+
+    return active
+}
+
 const useTheme = (): [boolean, () => void] => {
     const [dark, setDark] = useState(false)
 
@@ -167,6 +192,7 @@ export const DesignSystemLayout = ({
     const [dark, toggleTheme] = useTheme()
     const [mobileNavOpen, setMobileNavOpen] = useState(false)
     const closeMobileNav = () => setMobileNavOpen(false)
+    const activeId = useScrollSpy(toc.map(entry => entry.id))
 
     return (
         <div className={cx(dark && 'dark')}>
@@ -243,16 +269,25 @@ export const DesignSystemLayout = ({
                                     On this page
                                 </p>
                                 <ul className="space-y-2 border-l border-cool-paper-200 dark:border-charcoal">
-                                    {toc.map(entry => (
-                                        <li key={entry.id}>
-                                            <a
-                                                href={`#${entry.id}`}
-                                                className="block pl-4 -ml-px border-l border-transparent hover:border-cyan text-body-small text-grey dark:text-light-grey hover:text-cyan"
-                                            >
-                                                {entry.title}
-                                            </a>
-                                        </li>
-                                    ))}
+                                    {toc.map(entry => {
+                                        const active = activeId === entry.id
+                                        return (
+                                            <li key={entry.id}>
+                                                <a
+                                                    href={`#${entry.id}`}
+                                                    aria-current={active ? 'location' : undefined}
+                                                    className={cx(
+                                                        'block pl-4 -ml-px border-l text-body-small',
+                                                        active
+                                                            ? 'border-cyan text-cyan font-semibold'
+                                                            : 'border-transparent text-grey dark:text-light-grey hover:border-cyan hover:text-cyan'
+                                                    )}
+                                                >
+                                                    {entry.title}
+                                                </a>
+                                            </li>
+                                        )
+                                    })}
                                 </ul>
                             </div>
                         </aside>

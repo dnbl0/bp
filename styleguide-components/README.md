@@ -35,12 +35,13 @@ route is excluded from `robots.txt` and is not part of the CMS-driven sitemap.
 ## Roadmap
 
 - [x] **Phase 1** – Scaffold, layout, token introspection, Color foundation.
-- [ ] **Phase 2** – Documentation primitives expansion as needed.
-- [ ] **Phase 3** – Remaining Foundations (Typography, Spacing & Layout,
-      Elevation, Iconography, Motion, Layering, Logo).
-- [ ] **Phase 4** – Components (atoms → molecules/blocks → sections → organisms
-      → templates).
-- [ ] **Phase 5** – Patterns, Resources, polish.
+- [x] **Phase 2** – Documentation primitives (`primitives/`).
+- [x] **Phase 3** – Foundations: Typography, Spacing & Layout, Elevation,
+      Iconography, Motion, Layering, Logo.
+- [x] **Phase 4** – Components: full catalogue (`componentCatalog.ts`) plus
+      dedicated live pages for Button, Tag, Alert and CTA. Additional component
+      pages are added incrementally using the same page template.
+- [x] **Phase 5** – Patterns, Resources, scroll-spy and responsive polish.
 
 > Note: a full `next build` runs `yarn codegen`, which needs Contentful
 > credentials. The design-system pages themselves are static and do not depend

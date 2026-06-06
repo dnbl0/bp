@@ -126,6 +126,28 @@ export const navSections: NavSection[] = [
             },
         ],
     },
+    {
+        title: 'Patterns',
+        items: [
+            {
+                title: 'Patterns',
+                slug: 'patterns',
+                status: 'stable',
+                summary: 'Atomic design, the grid system, forms and search experiences.',
+            },
+        ],
+    },
+    {
+        title: 'Resources',
+        items: [
+            {
+                title: 'Resources',
+                slug: 'resources',
+                status: 'stable',
+                summary: 'Figma UI Kit, Contentful and contribution guidance.',
+            },
+        ],
+    },
 ]
 
 /** Flattened list of every documented page, used for search. */
