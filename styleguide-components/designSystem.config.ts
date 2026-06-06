@@ -91,6 +91,41 @@ export const navSections: NavSection[] = [
             },
         ],
     },
+    {
+        title: 'Components',
+        items: [
+            {
+                title: 'Overview',
+                slug: 'components',
+                status: 'stable',
+                summary: 'The full component catalogue grouped by atomic-design layer.',
+            },
+            {
+                title: 'Button',
+                slug: 'components/button',
+                status: 'stable',
+                summary: 'Primary, secondary, ghost and tertiary actions in three sizes.',
+            },
+            {
+                title: 'Tag',
+                slug: 'components/tag',
+                status: 'stable',
+                summary: 'A small, colourable label that links to a page or anchor.',
+            },
+            {
+                title: 'Alert',
+                slug: 'components/alert',
+                status: 'stable',
+                summary: 'A dismissible, full-width site notification banner.',
+            },
+            {
+                title: 'CTA',
+                slug: 'components/cta',
+                status: 'stable',
+                summary: 'A CMS-driven call-to-action built on the Button API.',
+            },
+        ],
+    },
 ]
 
 /** Flattened list of every documented page, used for search. */
