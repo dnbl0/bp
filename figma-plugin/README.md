@@ -47,12 +47,22 @@ Mirrors [`styleguide-components/componentCatalog.ts`](../styleguide-components/c
 3. Select [`figma-plugin/manifest.json`](manifest.json) from this repo.
 4. Menu → **Plugins → Development → Bupa Component Library Builder** to run it.
 
-It builds everything onto the current page inside a frame named
-**“Bupa Component Library”**, zooms to fit, and closes.
+It builds onto the current page, zooms to fit, and closes.
+
+### Layout & structure
+- **Each component is its own named, top-level frame** (a label + a centred
+  preview), laid out in a wrapping grid grouped under a heading per atomic
+  layer — not crammed into one master frame.
+- Foundations (Colour, Typography) and the title are their own artboards.
+- **Everything inside a frame uses auto layout** — no child is absolutely
+  positioned. Only top-level frames carry canvas coordinates, which is inherent
+  to the page.
+- **Every frame is named** after its component or role (`Header`, `Preview`,
+  `Label`, `Nav`, `Columns`, `Chip`, …) so the layer tree reads cleanly.
 
 ### Notes
-- **Re-running is safe.** It deletes the previously-built frame and upserts
-  styles by name, so you won't get duplicates.
+- **Re-running is safe.** Every frame it creates is tagged with plugin data;
+  on re-run it removes those and upserts styles by name, so no duplicates.
 - **Fonts:** it uses **Montserrat** (the Bupa brand font). If Montserrat isn't
   installed it falls back to Inter (then Roboto) and notifies you — install
   Montserrat for brand-accurate type.
