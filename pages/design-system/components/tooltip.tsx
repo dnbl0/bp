@@ -6,6 +6,9 @@ import {
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { Tooltip } from '../../../components/atoms/Tooltip'
 
@@ -13,6 +16,7 @@ const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'accessibility', title: 'Accessibility' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Page: NextPageWithLayout = () => (
@@ -92,6 +96,29 @@ const Page: NextPageWithLayout = () => (
                     information a user must have to complete a task.
                 </li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Use a tooltip for supplementary detail that clarifies but isn't required to act.">
+                    <p className="text-grey dark:text-light-grey">
+                        Choose your{' '}
+                        <Tooltip content="The amount you pay before we contribute.">
+                            excess
+                        </Tooltip>
+                        .
+                    </p>
+                </Do>
+                <Dont note="Don't hide essential information in a tooltip — touch users and some screen readers may never see it.">
+                    <p className="text-grey dark:text-light-grey">
+                        Cover starts{' '}
+                        <Tooltip content="Only after a 12-month waiting period.">
+                            soon
+                        </Tooltip>
+                        .
+                    </p>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

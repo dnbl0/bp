@@ -74,7 +74,24 @@ const Accordion: NextPageWithLayout = () => (
         <ComponentHero name="AccordionBlock" />
 
         <Section id="example" title="Example">
-            <Example surface="paper" caption="Click a heading to expand it">
+            <Example
+                surface="paper"
+                caption="Click a heading to expand it"
+                code={`<div className="w-full bg-white">
+  <DemoPanel first header="What is residential aged care?">
+    Residential aged care provides accommodation and support for
+    older people who can no longer live at home.
+  </DemoPanel>
+  <DemoPanel header="How much does it cost?">
+    Fees depend on your financial situation and the services you
+    choose. Use the cost-of-care calculator for an estimate.
+  </DemoPanel>
+  <DemoPanel header="How do I arrange a tour?">
+    Contact your preferred care home directly, or enquire online and
+    the team will be in touch.
+  </DemoPanel>
+</div>`}
+            >
                 <div className="w-full bg-white">
                     <DemoPanel first header="What is residential aged care?">
                         Residential aged care provides accommodation and support for

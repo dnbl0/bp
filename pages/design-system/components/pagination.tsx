@@ -7,6 +7,9 @@ import {
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { Pagination } from '../../../components/atoms/Pagination'
 
@@ -14,6 +17,7 @@ const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const PaginationDemo = () => {
@@ -102,6 +106,17 @@ const Page: NextPageWithLayout = () => (
                     and the nav is labelled for screen readers.
                 </li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Use pagination for long listings so users can jump to first, last and nearby pages.">
+                    <Pagination page={4} totalPages={12} onPageChange={() => {}} />
+                </Do>
+                <Dont note="Don't paginate a handful of results — show them all rather than spreading them over single-item pages.">
+                    <Pagination page={1} totalPages={2} onPageChange={() => {}} />
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

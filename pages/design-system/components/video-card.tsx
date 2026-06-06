@@ -6,13 +6,27 @@ import {
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { PlayArrow } from '../../../components/atoms/icons/PlayArrow'
 
 const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
+
+const PlaceholderCard = () => (
+    <div className="relative w-full max-w-[200px] aspect-video rounded-lg overflow-hidden bg-charcoal">
+        <div className="absolute inset-0 flex items-center justify-center">
+            <span className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
+                <PlayArrow className="w-5 h-5 fill-navy" />
+            </span>
+        </div>
+    </div>
+)
 
 const VideoCard: NextPageWithLayout = () => (
     <DesignSystemLayout title="Video card" toc={toc}>
@@ -26,7 +40,16 @@ const VideoCard: NextPageWithLayout = () => (
         <ComponentHero name="VideoCardBlock" />
 
         <Section id="example" title="Example">
-            <Example surface="paper">
+            <Example
+                surface="paper"
+                code={`<div className="relative w-full max-w-md aspect-video rounded-lg overflow-hidden bg-charcoal">
+  <div className="absolute inset-0 flex items-center justify-center">
+    <span className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center">
+      <PlayArrow className="w-7 h-7 fill-navy" />
+    </span>
+  </div>
+</div>`}
+            >
                 <div className="relative w-full max-w-md aspect-video rounded-lg overflow-hidden bg-charcoal">
                     <div className="absolute inset-0 flex items-center justify-center">
                         <span className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center">
@@ -46,6 +69,17 @@ const VideoCard: NextPageWithLayout = () => (
                     { name: 'placeholderImage', type: 'CmsImage', description: 'Poster image shown before playback.' },
                 ]}
             />
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Always show a clear play affordance over the poster so it reads as a video, not a static image.">
+                    <PlaceholderCard />
+                </Do>
+                <Dont note="Don't autoplay the embedded video — load it only after the user taps the play control.">
+                    <div className="relative w-full max-w-[200px] aspect-video rounded-lg overflow-hidden bg-charcoal" />
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

@@ -7,6 +7,9 @@ import {
     Example,
     Anatomy,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { FacebookIcon } from '../../../components/atoms/icons/FacebookIcon'
 import { InstagramIcon } from '../../../components/atoms/icons/InstagramIcon'
@@ -62,6 +65,7 @@ const toc = [
     { id: 'example', title: 'Example' },
     { id: 'anatomy', title: 'Anatomy' },
     { id: 'props', title: 'Props' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Footer: NextPageWithLayout = () => (
@@ -80,7 +84,45 @@ const Footer: NextPageWithLayout = () => (
                 A representative footer composed from the same structure as the
                 production component.
             </p>
-            <Example surface="paper">
+            <Example
+                surface="paper"
+                code={`<div className="w-full bg-navy text-white rounded-lg overflow-hidden">
+  <div className="p-6">
+    <div className="grid gap-8 md:grid-cols-[2fr_3fr]">
+      <p className="text-body-small text-light-grey">
+        Bupa Aged Care provides residential aged care and support services
+        across Australia.
+      </p>
+      <div className="grid grid-cols-3 gap-4">
+        {menus.map(menu => (
+          <div key={menu.title}>
+            <p className="font-semibold mb-2">{menu.title}</p>
+            <ul className="space-y-1 text-body-small text-light-grey">
+              {menu.links.map(link => (
+                <li key={link}>{link}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+    <hr className="my-6 border-t-white/40" />
+    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="text-caption text-light-grey">
+        <span className="block">© Bupa Aged Care Australia</span>
+        <span className="block">Caring for the moments that matter.</span>
+      </div>
+      <div className="flex gap-3">
+        {[FacebookIcon, InstagramIcon, LinkedInIcon, YouTubeIcon].map(
+          (Icon, index) => (
+            <Icon key={index} className="w-6 h-6 fill-white" />
+          )
+        )}
+      </div>
+    </div>
+  </div>
+</div>`}
+            >
                 <FooterDemo />
             </Example>
         </Section>
@@ -127,6 +169,29 @@ const Footer: NextPageWithLayout = () => (
                     { name: 'socialLinks', type: 'SocialLink[]', description: 'Social media destinations rendered as icons.' },
                 ]}
             />
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Keep footer link text light on the navy surface so it meets contrast against the dark background.">
+                    <div className="w-full bg-navy text-white rounded p-4">
+                        <p className="font-semibold mb-2">Aged care</p>
+                        <ul className="space-y-1 text-body-small text-light-grey">
+                            <li>Find a home</li>
+                            <li>Types of care</li>
+                        </ul>
+                    </div>
+                </Do>
+                <Dont note="Don't use dark text on the navy footer — it fails contrast and becomes unreadable.">
+                    <div className="w-full bg-navy text-white rounded p-4">
+                        <p className="font-semibold mb-2 text-navy">Aged care</p>
+                        <ul className="space-y-1 text-body-small text-navy">
+                            <li>Find a home</li>
+                            <li>Types of care</li>
+                        </ul>
+                    </div>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

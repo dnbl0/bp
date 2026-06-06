@@ -6,6 +6,9 @@ import {
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
 import { cx } from '../../../utils/cx'
@@ -48,6 +51,7 @@ const toc = [
     { id: 'colours', title: 'Colours' },
     { id: 'layouts', title: 'Body positions' },
     { id: 'props', title: 'Props' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const ColouredCard: NextPageWithLayout = () => (
@@ -67,7 +71,13 @@ const ColouredCard: NextPageWithLayout = () => (
                 colours). Inverse button styling is applied automatically on
                 non-white backgrounds.
             </p>
-            <Example surface="tinted" caption="Cyan, teal and white backgrounds">
+            <Example
+                surface="tinted"
+                caption="Cyan, teal and white backgrounds"
+                code={`<DemoCard bg="bg-cyan" />
+<DemoCard bg="bg-teal" />
+<DemoCard bg="bg-white" white />`}
+            >
                 <DemoCard bg="bg-cyan" />
                 <DemoCard bg="bg-teal" />
                 <DemoCard bg="bg-white" white />
@@ -80,7 +90,11 @@ const ColouredCard: NextPageWithLayout = () => (
                 left or right at the <code className="font-mono text-cyan">md</code>{' '}
                 breakpoint and up.
             </p>
-            <Example surface="tinted" caption="Default bottom layout">
+            <Example
+                surface="tinted"
+                caption="Default bottom layout"
+                code={`<DemoCard bg="bg-purple" />`}
+            >
                 <DemoCard bg="bg-purple" />
             </Example>
         </Section>
@@ -98,6 +112,17 @@ const ColouredCard: NextPageWithLayout = () => (
                     { name: 'backgroundColour', type: 'string', default: 'cyan', description: 'CMS colour name mapped to a theme background. "white" gains a border and dark text.' },
                 ]}
             />
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Pick a background with enough contrast and let the inverse button styling carry the call to action.">
+                    <DemoCard bg="bg-cyan" />
+                </Do>
+                <Dont note="Don't place more than one button or competing action inside a single card — keep one clear next step.">
+                    <DemoCard bg="bg-white" white />
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

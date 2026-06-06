@@ -5,6 +5,9 @@ import {
     PageHeader,
     Section,
     Anatomy,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { SquareBupaLogo } from '../../../components/atoms/icons/SquareBupaLogo'
 import { SearchIcon } from '../../../components/atoms/icons/SearchIcon'
@@ -24,6 +27,7 @@ const toc = [
     { id: 'anatomy', title: 'Anatomy' },
     { id: 'parts', title: 'Parts' },
     { id: 'behaviour', title: 'Behaviour' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Header: NextPageWithLayout = () => (
@@ -103,6 +107,31 @@ const Header: NextPageWithLayout = () => (
                 <li>The header is fixed to the top of the viewport at the <code className="font-mono text-cyan">z-header</code> layer.</li>
                 <li>Contact actions (call now, call back, book a tour) are configurable per the CMS navigation data.</li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Keep top-level navigation to a few clear destinations so it stays inline and scannable on wide screens.">
+                    <nav className="flex gap-5 text-body-small text-navy font-medium">
+                        <span>Find a home</span>
+                        <span>Types of care</span>
+                        <span>Costs</span>
+                        <span>About</span>
+                    </nav>
+                </Do>
+                <Dont note="Don't overload the header with links — it overflows the inline nav and forces everything into the burger menu.">
+                    <nav className="flex flex-wrap gap-3 text-body-small text-navy font-medium">
+                        <span>Find a home</span>
+                        <span>Types of care</span>
+                        <span>Costs</span>
+                        <span>About</span>
+                        <span>News</span>
+                        <span>Careers</span>
+                        <span>Contact</span>
+                        <span>FAQs</span>
+                    </nav>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

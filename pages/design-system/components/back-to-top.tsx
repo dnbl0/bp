@@ -6,6 +6,9 @@ import {
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { ArrowUp } from '../../../components/atoms/icons/ArrowUp'
 
@@ -13,6 +16,7 @@ const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const BackToTopPage: NextPageWithLayout = () => (
@@ -30,7 +34,15 @@ const BackToTopPage: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Shown here in place; in product it is fixed to the bottom-right corner.
             </p>
-            <Example align="center" surface="tinted">
+            <Example
+                align="center"
+                surface="tinted"
+                code={`<div className="group flex cursor-pointer">
+  <div className="rounded-full bg-cyan p-4 group-hover:drop-shadow group-hover:bg-[#000055] group-active:bg-[#000055]">
+    <ArrowUp className="fill-white" />
+  </div>
+</div>`}
+            >
                 <div className="group flex cursor-pointer">
                     <div className="rounded-full bg-cyan p-4 group-hover:drop-shadow group-hover:bg-[#000055] group-active:bg-[#000055]">
                         <ArrowUp className="fill-white" />
@@ -57,6 +69,25 @@ const BackToTopPage: NextPageWithLayout = () => (
                 <li>Fixed at the <code className="font-mono text-cyan">z-fixed</code> layer, offset further from the edge on larger screens.</li>
                 <li>The visible label is screen-reader only; the icon communicates the action visually.</li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Reserve this control for long, scrollable pages where returning to the top saves real effort.">
+                    <div className="group flex cursor-pointer">
+                        <div className="rounded-full bg-cyan p-4 group-hover:drop-shadow">
+                            <ArrowUp className="fill-white" />
+                        </div>
+                    </div>
+                </Do>
+                <Dont note="Don't add it to short pages that fit on one screen, where it only adds clutter.">
+                    <div className="flex opacity-40">
+                        <div className="rounded-full bg-cyan p-4">
+                            <ArrowUp className="fill-white" />
+                        </div>
+                    </div>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

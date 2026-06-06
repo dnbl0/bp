@@ -7,6 +7,9 @@ import {
     Example,
     Anatomy,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { PersonIcon } from '../../../components/atoms/icons/PersonIcon'
 
@@ -14,6 +17,7 @@ const toc = [
     { id: 'examples', title: 'Examples' },
     { id: 'anatomy', title: 'Anatomy' },
     { id: 'props', title: 'Props' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Testimonial: NextPageWithLayout = () => (
@@ -28,7 +32,24 @@ const Testimonial: NextPageWithLayout = () => (
         <ComponentHero name="TestimonialCardBlock" />
 
         <Section id="examples" title="Examples">
-            <Example surface="tinted" caption="Attribution below the quote (default)">
+            <Example
+                surface="tinted"
+                caption="Attribution below the quote (default)"
+                code={`<div className="p-6 rounded border-[1px] border-cool-paper-200 w-full max-w-md bg-white">
+  <div className="flex flex-col gap-6">
+    <p className="text-grey">
+      “The team made Mum feel at home from day one. We couldn't
+      have asked for more caring staff.”
+    </p>
+    <div className="flex flex-col gap-[6px]">
+      <div className="font-semibold">Sarah J.</div>
+      <div className="font-semibold text-sm text-grey">
+        Daughter of resident
+      </div>
+    </div>
+  </div>
+</div>`}
+            >
                 <div className="p-6 rounded border-[1px] border-cool-paper-200 w-full max-w-md bg-white">
                     <div className="flex flex-col gap-6">
                         <p className="text-grey">
@@ -44,7 +65,29 @@ const Testimonial: NextPageWithLayout = () => (
                     </div>
                 </div>
             </Example>
-            <Example surface="tinted" caption="Attribution beside an avatar, above the quote">
+            <Example
+                surface="tinted"
+                caption="Attribution beside an avatar, above the quote"
+                code={`<div className="p-6 rounded border-[1px] border-cool-paper-200 w-full max-w-md bg-white">
+  <div className="flex flex-col gap-6">
+    <div className="flex items-center flex-nowrap">
+      <div className="h-[72px] w-[72px] rounded-full overflow-hidden bg-cool-paper-100 flex items-center justify-center">
+        <PersonIcon className="w-9 h-9 fill-silver" />
+      </div>
+      <div className="ml-4 flex flex-col gap-2 items-start flex-1">
+        <div className="font-semibold">David M.</div>
+        <div className="font-semibold text-sm text-grey">
+          Resident
+        </div>
+      </div>
+    </div>
+    <p className="text-grey">
+      “I've made new friends and there's always something on. It
+      feels like a community.”
+    </p>
+  </div>
+</div>`}
+            >
                 <div className="p-6 rounded border-[1px] border-cool-paper-200 w-full max-w-md bg-white">
                     <div className="flex flex-col gap-6">
                         <div className="flex items-center flex-nowrap">
@@ -96,6 +139,23 @@ const Testimonial: NextPageWithLayout = () => (
                     { name: 'locationHref / locationText', type: 'string', description: 'Optional link to the related care home.' },
                 ]}
             />
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Quote a real person and credit them with a name and relationship to build trust.">
+                    <div className="p-4 rounded border-[1px] border-cool-paper-200 w-full max-w-xs bg-white">
+                        <p className="text-body-small text-grey">“Caring staff, every day.”</p>
+                        <div className="mt-4 font-semibold">Sarah J.</div>
+                        <div className="font-semibold text-sm text-grey">Daughter of resident</div>
+                    </div>
+                </Do>
+                <Dont note="Don't run an unattributed quote — without a name it reads as marketing copy, not a testimonial.">
+                    <div className="p-4 rounded border-[1px] border-cool-paper-200 w-full max-w-xs bg-white">
+                        <p className="text-body-small text-grey">“Caring staff, every day.”</p>
+                    </div>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

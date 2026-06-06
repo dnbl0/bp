@@ -6,6 +6,9 @@ import {
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { ComparisonTable } from '../../../components/molecules/ComparisonTable'
 
@@ -13,6 +16,7 @@ const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'guidance', title: 'Guidance' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const columns = [
@@ -116,6 +120,39 @@ const Page: NextPageWithLayout = () => (
                     column counts modest so it stays readable.
                 </li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Highlight just one column so the recommended option reads clearly at a glance.">
+                    <div className="w-full">
+                        <ComparisonTable
+                            caption="Highlight one column"
+                            columns={[
+                                { key: 'basic', label: 'Basic' },
+                                { key: 'mid', label: 'Mid', highlight: true },
+                            ]}
+                            rows={[
+                                { feature: 'Dental', values: { basic: false, mid: true } },
+                            ]}
+                        />
+                    </div>
+                </Do>
+                <Dont note="Don't highlight several columns at once — it removes the visual hierarchy that points to the recommended plan.">
+                    <div className="w-full">
+                        <ComparisonTable
+                            caption="Too many highlights"
+                            columns={[
+                                { key: 'basic', label: 'Basic', highlight: true },
+                                { key: 'mid', label: 'Mid', highlight: true },
+                            ]}
+                            rows={[
+                                { feature: 'Dental', values: { basic: true, mid: true } },
+                            ]}
+                        />
+                    </div>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

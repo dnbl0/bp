@@ -6,6 +6,9 @@ import {
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import AlertBlock from '../../../components/molecules/blocks/AlertBlock'
 
@@ -13,6 +16,7 @@ const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Alert: NextPageWithLayout = () => (
@@ -63,6 +67,24 @@ const Alert: NextPageWithLayout = () => (
                 <li>Dismissal is local to the component instance and is not persisted.</li>
                 <li>The close control carries an accessible “Close” label for screen readers.</li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Show a single alert for the most important site-wide message so it can't be missed.">
+                    <div className="w-full">
+                        <AlertBlock>
+                            Our contact centre hours have changed.
+                        </AlertBlock>
+                    </div>
+                </Do>
+                <Dont note="Don't stack multiple alerts at once — competing banners dilute urgency and push content down.">
+                    <div className="w-full space-y-2">
+                        <AlertBlock>Holiday hours apply this week.</AlertBlock>
+                        <AlertBlock>New online enquiry form is live.</AlertBlock>
+                    </div>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

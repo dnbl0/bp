@@ -6,12 +6,16 @@ import {
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { Tag } from '../../../components/atoms/Tag'
 
 const toc = [
     { id: 'examples', title: 'Examples' },
     { id: 'props', title: 'Props' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Tags: NextPageWithLayout = () => (
@@ -52,6 +56,17 @@ const Tags: NextPageWithLayout = () => (
                     { name: 'textColor', type: 'string', required: true, description: 'Text colour token, parsed the same way as bgColor.' },
                 ]}
             />
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Keep tag labels to one or two words so they stay scannable.">
+                    <Tag title="Wellbeing" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
+                </Do>
+                <Dont note="Don't write a sentence in a tag — long labels defeat the at-a-glance purpose.">
+                    <Tag title="Supports a range of wellbeing activities" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

@@ -7,6 +7,9 @@ import {
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { ToggleSwitch } from '../../../components/atoms/ToggleSwitch'
 
@@ -14,6 +17,7 @@ const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'guidance', title: 'Guidance' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const ToggleDemo = () => {
@@ -116,6 +120,17 @@ const Page: NextPageWithLayout = () => (
                     <span className="font-mono">checked</span>.
                 </li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Use a toggle for an instant on/off setting that takes effect immediately.">
+                    <ToggleSwitch checked onChange={() => undefined} label="Pay annually" />
+                </Do>
+                <Dont note="Don't use a toggle for a destructive action that needs confirmation — use a button instead.">
+                    <ToggleSwitch checked={false} onChange={() => undefined} label="Delete my account" />
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )
