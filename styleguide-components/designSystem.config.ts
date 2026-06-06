@@ -166,6 +166,24 @@ export const navSections: NavSection[] = [
                 status: 'stable',
                 summary: 'The global navy site footer with menus, legal and social links.',
             },
+            {
+                title: 'Hero banner',
+                slug: 'components/hero',
+                status: 'stable',
+                summary: 'A full-width page-opening banner on a cyan field.',
+            },
+            {
+                title: 'Back to top',
+                slug: 'components/back-to-top',
+                status: 'stable',
+                summary: 'A floating control that smooth-scrolls to the top of the page.',
+            },
+            {
+                title: 'Show more',
+                slug: 'components/show-more',
+                status: 'stable',
+                summary: 'A ghost button that expands additional content.',
+            },
         ],
     },
     {

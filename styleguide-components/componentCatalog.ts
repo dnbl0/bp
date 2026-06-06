@@ -36,8 +36,8 @@ export const componentLayers: ComponentLayer[] = [
             { name: 'RichTextContent', source: 'components/atoms/RichTextContent.tsx', description: 'Renders Contentful rich text into styled HTML.', status: 'in-review' },
             { name: 'FormSelector', source: 'components/atoms/FormSelector.tsx', description: 'Resolves and renders the correct form for a CMS form reference.', status: 'in-review' },
             { name: 'SmallSearchInput', source: 'components/atoms/SmallSearchInput.tsx', description: 'A compact search field used in the header and compact contexts.', status: 'in-review' },
-            { name: 'ShowMoreButton', source: 'components/atoms/ShowMoreButton.tsx', description: 'A ghost button that expands to reveal additional markdown content.', status: 'in-review' },
-            { name: 'BackToTop', source: 'components/atoms/BackToTop.tsx', description: 'A floating control that smooth-scrolls the page back to the top.', status: 'stable' },
+            { name: 'ShowMoreButton', source: 'components/atoms/ShowMoreButton.tsx', description: 'A ghost button that expands to reveal additional markdown content.', status: 'stable', docSlug: 'components/show-more' },
+            { name: 'BackToTop', source: 'components/atoms/BackToTop.tsx', description: 'A floating control that smooth-scrolls the page back to the top.', status: 'stable', docSlug: 'components/back-to-top' },
             { name: 'FullScreenModal', source: 'components/atoms/FullScreenModal.tsx', description: 'An accessible full-screen overlay container.', status: 'in-review' },
             { name: 'ErrorMessageWrapper', source: 'components/atoms/ErrorMessageWrapper.tsx', description: 'Standardised wrapper for inline form error messaging.', status: 'in-review' },
             { name: 'BelowHeader', source: 'components/atoms/BelowHeader.tsx', description: 'Spacing helper that offsets content beneath the fixed header.', status: 'in-review' },
@@ -49,7 +49,7 @@ export const componentLayers: ComponentLayer[] = [
         description:
             'Small groups of atoms working together, including the CMS-driven content blocks authored in Contentful.',
         components: [
-            { name: 'HeroBanner', source: 'components/molecules/HeroBanner.tsx', description: 'A full-width hero with heading, copy and imagery.', status: 'in-review' },
+            { name: 'HeroBanner', source: 'components/molecules/HeroBanner.tsx', description: 'A full-width hero with heading, copy and imagery.', status: 'stable', docSlug: 'components/hero' },
             { name: 'AlgoliaSearch', source: 'components/molecules/AlgoliaSearch.tsx', description: 'Instant search experience powered by Algolia.', status: 'in-review' },
             { name: 'Autocomplete', source: 'components/molecules/Autocomplete.tsx', description: 'Type-ahead suggestions for search queries.', status: 'in-review' },
             { name: 'YouTubeVideo', source: 'components/molecules/YouTubeVideo.tsx', description: 'A responsive, privacy-aware embedded YouTube player.', status: 'in-review' },
