@@ -59,6 +59,13 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
         return <Component {...pageProps} key={router.asPath} />
     }
 
+    // The design system documentation is self-contained and does not use the
+    // CMS, search or form contexts. Rendering it outside the providers means it
+    // can be previewed without Contentful (or any other) credentials.
+    if (router.pathname.startsWith('/design-system')) {
+        return <Component {...pageProps} key={router.asPath} />
+    }
+
     return withContextProviders(
         <>
             <div className="h-full flex flex-col">
