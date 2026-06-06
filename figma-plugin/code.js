@@ -1812,18 +1812,22 @@ async function main() {
     }
 
     // Remove anything this plugin built on a previous run — tagged nodes plus
-    // any legacy title/section names from earlier versions.
-    for (const node of figma.currentPage.children.slice()) {
+    // legacy title/section names — wherever they are on the page (including
+    // nested inside earlier sections, so repeat runs don't pile up).
+    const isStale = node => {
         const name = node.name || ''
-        if (
+        return (
             node.getPluginData('bupaLib') === '1' ||
             name === 'Bupa Component Library' ||
             name === 'Component Library' ||
-            name === 'Foundations' ||
-            /·\s+components\//.test(name)
-        ) {
-            try { node.remove() } catch (e) { /* already gone */ }
-        }
+            (name === 'Foundations' && node.type !== 'TEXT') ||
+            /·\s{2}components\//.test(name)
+        )
+    }
+    let stale = []
+    try { stale = figma.currentPage.findAll(isStale) } catch (e) { stale = figma.currentPage.children.filter(isStale) }
+    for (const node of stale) {
+        try { if (!node.removed) node.remove() } catch (e) { /* already gone */ }
     }
 
     // Variables first, then styles bind to them, then components bind to both.
@@ -1875,8 +1879,8 @@ async function main() {
 
     figma.viewport.scrollAndZoomIntoView(tops)
     const tokenNote = VARS_OK ? ' · tokens bound' : ' · no Variables API (raw values)'
-    figma.notify('Bupa library built — ' + tops.length + ' top-level nodes' + tokenNote + ' ✓')
-    figma.closePlugin('Bupa component library built ✓')
+    figma.notify('Bupa library v2 (clean grid) built — ' + tops.length + ' nodes' + tokenNote + ' ✓')
+    figma.closePlugin('Bupa component library v2 built ✓')
 }
 
 main().catch(err => {
