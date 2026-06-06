@@ -1749,69 +1749,56 @@ function buildLayerHeading(layer) {
     return f
 }
 
-// A per-layer container is a native Figma Section that actually wraps its
-// content. Components are placed in a column grid using absolute page
-// coordinates; afterwards the section is resized to bound them (the previous
-// version left every section at its default 496×496, overlapping at the origin,
-// so nothing was visually grouped). Falls back to a plain page placement if the
-// host lacks the Sections API.
+// How many grid columns a component occupies, given its width.
+function spanFor(width) {
+    let span = Math.round((width + GRID.GUT) / (GRID.COL + GRID.GUT))
+    if (span < 1) span = 1
+    if (span > GRID.COLUMNS) span = GRID.COLUMNS
+    return span
+}
+
+// Place a layer as a heading + a column-aligned grid of real components placed
+// DIRECTLY on the page (no container). Native Figma Sections proved unreliable
+// to size from a plugin (they stayed at their 496×496 default and overlapped),
+// and component sets can't be nested in frames — so everything is laid out with
+// explicit, non-overlapping coordinates on a shared column grid. Components are
+// named `Layer/Name`, which is what groups them into folders in the Assets
+// panel (the real "organised like the code" win). Returns the bottom y.
 function placeLayer(layer, startY, tops) {
     const PAD = GRID.PAD
-    const ROW_GAP = 40
-    const HEAD_GAP = 24
-
-    let section = null
-    try {
-        if (figma.createSection) {
-            section = figma.createSection()
-            section.name = layer.title + '  ·  ' + layerFolder(layer.title)
-            section.setPluginData('bupaLib', '1')
-        }
-    } catch (e) { section = null }
-    const parent = section || figma.currentPage
+    const ROW_GAP = 56
+    const HEAD_GAP = 28
 
     const heading = buildLayerHeading(layer)
-    parent.appendChild(heading)
+    figma.currentPage.appendChild(heading)
     heading.x = PAD
-    heading.y = startY + PAD
+    heading.y = startY
     heading.setPluginData('bupaLib', '1')
+    tops.push(heading)
 
-    let cx = PAD
-    let cy = startY + PAD + heading.height + HEAD_GAP
+    let col = 0
+    let cy = startY + heading.height + HEAD_GAP
     let rowMax = 0
-    const nodes = layer.components.map(entry => buildComponentNode(entry, layer.title))
-    for (const node of nodes) {
-        parent.appendChild(node)
-        if (cx > PAD && cx + node.width > PAD + gridWidth()) {
-            cx = PAD
+    for (const entry of layer.components) {
+        const node = buildComponentNode(entry, layer.title)
+        figma.currentPage.appendChild(node)
+        const span = spanFor(node.width)
+        if (col > 0 && col + span > GRID.COLUMNS) {
+            col = 0
             cy += rowMax + ROW_GAP
             rowMax = 0
         }
-        node.x = cx
+        const cellW = span * GRID.COL + (span - 1) * GRID.GUT
+        const cellX = PAD + col * (GRID.COL + GRID.GUT)
+        // Centre the component within its column cell so the grid reads cleanly.
+        node.x = cellX + Math.max(0, Math.round((cellW - node.width) / 2))
         node.y = cy
         node.setPluginData('bupaLib', '1')
-        cx += node.width + GRID.GUT
+        tops.push(node)
+        col += span
         if (node.height > rowMax) rowMax = node.height
     }
-    const bottom = cy + rowMax + PAD
-
-    if (section) {
-        // Bound the section around its content. Children carry absolute page
-        // coordinates, so set the section's frame to wrap them without moving
-        // them; resizeWithoutConstraints avoids min-size clamping.
-        section.x = 0
-        section.y = startY
-        try {
-            section.resizeWithoutConstraints(gridWidth() + PAD * 2, bottom - startY)
-        } catch (e) {
-            try { section.resize(gridWidth() + PAD * 2, bottom - startY) } catch (e2) { /* leave default */ }
-        }
-        tops.push(section)
-    } else {
-        tops.push(heading)
-        for (const n of nodes) tops.push(n)
-    }
-    return bottom
+    return cy + rowMax
 }
 
 // ---------------------------------------------------------------------------
@@ -1857,39 +1844,30 @@ async function main() {
     tops.push(title)
     y += title.height + 72
 
-    // Foundations: colour + typography artboards side by side.
+    // Foundations heading + colour + typography artboards, side by side.
+    const fHeading = makeText('Foundations', { weight: 'bold', size: 28, line: 36, color: C.navy, colorVar: 'Text/Default' })
+    figma.currentPage.appendChild(fHeading)
+    fHeading.x = GRID.PAD
+    fHeading.y = y
+    fHeading.setPluginData('bupaLib', '1')
+    tops.push(fHeading)
+    const fTop = y + fHeading.height + 28
+
     const color = artboardWrap(await buildColorSection(), 'Foundations — Colour')
     const typo = artboardWrap(await buildTypographySection(), 'Foundations — Typography')
-    let fSection = null
-    try {
-        if (figma.createSection) {
-            fSection = figma.createSection()
-            fSection.name = 'Foundations'
-            fSection.setPluginData('bupaLib', '1')
-        }
-    } catch (e) { fSection = null }
-    const fParent = fSection || figma.currentPage
-    fParent.appendChild(color)
-    fParent.appendChild(typo)
+    figma.currentPage.appendChild(color)
+    figma.currentPage.appendChild(typo)
     color.x = GRID.PAD
-    color.y = y + GRID.PAD
+    color.y = fTop
     typo.x = GRID.PAD + color.width + 48
-    typo.y = y + GRID.PAD
+    typo.y = fTop
     color.setPluginData('bupaLib', '1')
     typo.setPluginData('bupaLib', '1')
-    const fBottom = y + GRID.PAD + Math.max(color.height, typo.height) + GRID.PAD
-    if (fSection) {
-        fSection.x = 0
-        fSection.y = y
-        try { fSection.resizeWithoutConstraints(GRID.PAD * 2 + color.width + 48 + typo.width, fBottom - y) } catch (e) { /* leave default */ }
-        tops.push(fSection)
-    } else {
-        tops.push(color)
-        tops.push(typo)
-    }
-    y = fBottom + SECTION_GAP
+    tops.push(color)
+    tops.push(typo)
+    y = fTop + Math.max(color.height, typo.height) + SECTION_GAP
 
-    // One Section per atomic layer, each wrapping a grid of real components.
+    // One heading + aligned grid of real components per atomic layer.
     for (const layer of CATALOG) {
         const bottom = placeLayer(layer, y, tops)
         y = bottom + SECTION_GAP
