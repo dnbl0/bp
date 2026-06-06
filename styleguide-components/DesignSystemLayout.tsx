@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useMemo, useState } from 'react'
-import { SquareBupaLogo } from '../components/atoms/icons/SquareBupaLogo'
+import { PulseLogo } from '../components/atoms/icons/PulseLogo'
 import { SearchIcon } from '../components/atoms/icons/SearchIcon'
 import { BurgerIcon } from '../components/atoms/icons/BurgerIcon'
 import { CloseIcon } from '../components/atoms/icons/CloseIcon'
@@ -218,7 +218,7 @@ export const DesignSystemLayout = ({
                     </button>
                     <Link href={BASE_PATH}>
                         <a className="flex items-center gap-3">
-                            <SquareBupaLogo className="h-8 w-auto" />
+                            <PulseLogo className="h-8 w-auto rounded" />
                             <span className="hidden sm:block font-bold text-navy dark:text-white">
                                 {SITE_TITLE}
                             </span>

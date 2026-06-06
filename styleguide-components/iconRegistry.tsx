@@ -23,6 +23,7 @@ import { ImageGalleryIcon } from '../components/atoms/icons/ImageGalleryIcon'
 import { ImagePlaceholderIcon } from '../components/atoms/icons/ImagePlaceholderIcon'
 import { InstagramIcon } from '../components/atoms/icons/InstagramIcon'
 import { LinkedInIcon } from '../components/atoms/icons/LinkedInIcon'
+import { PulseLogo } from '../components/atoms/icons/PulseLogo'
 import { ListIcon } from '../components/atoms/icons/ListIcon'
 import { LoadingSpinnerIcon } from '../components/atoms/icons/LoadingSpinnerIcon'
 import { PencilIcon } from '../components/atoms/icons/PencilIcon'
@@ -74,6 +75,7 @@ export const icons: IconEntry[] = [
     { name: 'YouTubeIcon', file: 'YouTubeIcon', Component: YouTubeIcon, category: 'icon' },
     { name: 'BupaAgedCareLogo', file: 'BupaAgedCareLogo', Component: BupaAgedCareLogo, category: 'logo' },
     { name: 'SquareBupaLogo', file: 'SquareBupaLogo', Component: SquareBupaLogo, category: 'logo' },
+    { name: 'PulseLogo', file: 'PulseLogo', Component: PulseLogo, category: 'logo' },
 ]
 
 export const productIcons = icons.filter(icon => icon.category === 'icon')
