@@ -99,7 +99,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     Section: (
-        <div className="w-full max-w-[260px] rounded-lg bg-cool-paper-100 p-3 space-y-2">
+        <div className="w-full max-w-[320px] rounded-lg bg-cool-paper-100 p-3 space-y-2">
             <Bar w="w-1/3" tone="bg-cyan/50" />
             <div className="grid grid-cols-2 gap-2">
                 <div className="h-8 rounded bg-white border border-cool-paper-200" />
@@ -107,21 +107,21 @@ export const componentPreviews: Record<string, ReactNode> = {
             </div>
         </div>
     ),
-    ResponsiveImage: <Frame className="w-40 h-24" />,
+    ResponsiveImage: <Frame className="w-52 h-24" />,
     RichTextContent: (
-        <div className="w-full max-w-[240px] space-y-2">
+        <div className="w-full max-w-[320px] space-y-2">
             <Heading className="text-heading-s">Rich text</Heading>
             <Lines rows={3} />
         </div>
     ),
     FormSelector: (
-        <div className="w-full max-w-[220px] space-y-2">
+        <div className="w-full max-w-[320px] space-y-2">
             <Field placeholder="Your name" />
             <Btn>Submit</Btn>
         </div>
     ),
     SmallSearchInput: (
-        <div className="w-full max-w-[220px]">
+        <div className="w-full max-w-[320px]">
             <Field placeholder="Search…" icon={<SearchIcon className="w-4 h-4 fill-grey" />} />
         </div>
     ),
@@ -137,20 +137,20 @@ export const componentPreviews: Record<string, ReactNode> = {
         </span>
     ),
     FullScreenModal: (
-        <div className="relative w-44 h-24 rounded-lg bg-navy/70 flex items-center justify-center">
+        <div className="relative w-60 h-24 rounded-lg bg-navy/70 flex items-center justify-center">
             <div className="w-28 h-16 rounded-md bg-white shadow flex items-center justify-center">
                 <Lines rows={2} className="px-3" />
             </div>
         </div>
     ),
     ErrorMessageWrapper: (
-        <div className="w-full max-w-[220px] space-y-1.5">
+        <div className="w-full max-w-[320px] space-y-1.5">
             <div className="h-8 rounded-md bg-white border-2 border-error-red" />
             <span className="text-caption text-error-red">Please enter a valid value</span>
         </div>
     ),
     BelowHeader: (
-        <div className="w-full max-w-[240px]">
+        <div className="w-full max-w-[320px]">
             <div className="h-6 rounded-t-md bg-navy" />
             <div className="h-4" />
             <div className="rounded-md bg-cool-paper-100 p-2">
@@ -168,7 +168,7 @@ export const componentPreviews: Record<string, ReactNode> = {
 
     // ---------- Molecules ----------
     HeroBanner: (
-        <div className="w-full max-w-[260px] grid grid-cols-2 rounded-lg overflow-hidden bg-cyan">
+        <div className="w-full max-w-[320px] grid grid-cols-2 rounded-lg overflow-hidden bg-cyan">
             <div className="p-3 space-y-2">
                 <span className="block text-body-small font-bold text-white">Feels like home</span>
                 <Btn variant="button--inverse">Find a home</Btn>
@@ -179,7 +179,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     AlgoliaSearch: (
-        <div className="w-full max-w-[230px] space-y-2">
+        <div className="w-full max-w-[320px] space-y-2">
             <Field placeholder="Find a care home" icon={<SearchIcon className="w-4 h-4 fill-grey" />} />
             <div className="rounded-md bg-white border border-cool-paper-200 divide-y divide-cool-paper-200">
                 <div className="p-2"><Bar w="w-3/4" /></div>
@@ -188,7 +188,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     Autocomplete: (
-        <div className="w-full max-w-[220px] space-y-1">
+        <div className="w-full max-w-[320px] space-y-1">
             <Field placeholder="Sun…" icon={<SearchIcon className="w-4 h-4 fill-grey" />} />
             <div className="rounded-md bg-white border border-cool-paper-200 shadow p-2 space-y-1.5">
                 <Bar w="w-full" /><Bar w="w-5/6" /><Bar w="w-2/3" />
@@ -196,7 +196,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     YouTubeVideo: (
-        <div className="relative w-44 h-24 rounded-lg overflow-hidden bg-charcoal flex items-center justify-center">
+        <div className="relative w-60 h-24 rounded-lg overflow-hidden bg-charcoal flex items-center justify-center">
             <span className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
                 <PlayArrow className="w-5 h-5 fill-navy" />
             </span>
@@ -210,7 +210,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     AlertBlock: (
-        <div className="w-full max-w-[260px] rounded-md bg-alert text-white text-caption font-semibold p-2 flex items-center justify-between">
+        <div className="w-full max-w-[320px] rounded-md bg-alert text-white text-caption font-semibold p-2 flex items-center justify-between">
             <span>Contact hours have changed</span>
             <span className="ml-2">✕</span>
         </div>
@@ -222,7 +222,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </Btn>
     ),
     AccordionBlock: (
-        <div className="w-full max-w-[240px] rounded-md bg-white border border-cool-paper-200 divide-y divide-cool-paper-200">
+        <div className="w-full max-w-[320px] rounded-md bg-white border border-cool-paper-200 divide-y divide-cool-paper-200">
             {['What is residential care?', 'How much does it cost?'].map((q, i) => (
                 <div key={q} className="flex items-center justify-between p-2.5 text-body-small text-navy font-medium">
                     <span>{q}</span>
@@ -232,20 +232,20 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     CardBlock: (
-        <div className="w-full max-w-[220px] rounded-lg bg-white border border-cool-paper-200 p-3 space-y-2">
+        <div className="w-full max-w-[320px] rounded-lg bg-white border border-cool-paper-200 p-3 space-y-2">
             <Heading className="text-heading-s">Card heading</Heading>
             <Lines rows={2} />
         </div>
     ),
     ColouredCardBlock: (
-        <div className="w-full max-w-[220px] rounded-lg bg-cyan text-white p-3 space-y-2">
+        <div className="w-full max-w-[320px] rounded-lg bg-cyan text-white p-3 space-y-2">
             <span className="block font-semibold">Support at home</span>
             <Bar w="w-full" tone="bg-white/40" />
             <Btn variant="button--secondary button--inverse">Learn more</Btn>
         </div>
     ),
     ContactCardBlock: (
-        <div className="w-full max-w-[210px] rounded-lg bg-white shadow-depth-hover p-3 space-y-2">
+        <div className="w-full max-w-[320px] rounded-lg bg-white shadow-depth-hover p-3 space-y-2">
             <span className="flex items-center gap-2 text-navy font-semibold text-body-small">
                 <CallNowIcon className="w-4 h-4 fill-cyan" /> 1800 030 130
             </span>
@@ -253,7 +253,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     ImageCardBlock: (
-        <div className="w-full max-w-[200px] rounded-lg bg-white shadow-depth-default overflow-hidden">
+        <div className="w-full max-w-[320px] rounded-lg bg-white shadow-depth-default overflow-hidden">
             <Frame className="h-16 rounded-none" />
             <div className="p-2.5 space-y-1.5">
                 <Heading className="text-body-small">Respite care</Heading>
@@ -262,7 +262,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     PromotionCardBlock: (
-        <div className="w-full max-w-[240px] rounded-lg bg-cyan-50 border border-cyan p-3 flex gap-3 items-center text-navy">
+        <div className="w-full max-w-[320px] rounded-lg bg-cyan-50 border border-cyan p-3 flex gap-3 items-center text-navy">
             <CallBackIcon className="w-8 h-8 fill-cyan shrink-0" />
             <div className="space-y-1.5">
                 <span className="block font-medium text-body-small">Not sure where to start?</span>
@@ -271,7 +271,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     TestimonialCardBlock: (
-        <div className="w-full max-w-[230px] rounded-lg bg-white border border-cool-paper-200 p-3 space-y-3">
+        <div className="w-full max-w-[320px] rounded-lg bg-white border border-cool-paper-200 p-3 space-y-3">
             <p className="text-body-small text-grey">“The team made Mum feel at home from day one.”</p>
             <div>
                 <span className="block font-semibold text-body-small">Sarah J.</span>
@@ -280,14 +280,14 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     VideoCardBlock: (
-        <div className="relative w-44 h-24 rounded-lg overflow-hidden bg-charcoal flex items-center justify-center">
+        <div className="relative w-60 h-24 rounded-lg overflow-hidden bg-charcoal flex items-center justify-center">
             <span className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
                 <PlayArrow className="w-5 h-5 fill-navy" />
             </span>
         </div>
     ),
     NearbyCardBlock: (
-        <div className="w-full max-w-[210px] rounded-lg bg-white border border-cool-paper-200 p-3 flex items-center gap-3">
+        <div className="w-full max-w-[320px] rounded-lg bg-white border border-cool-paper-200 p-3 flex items-center gap-3">
             <span className="w-10 h-10 rounded-full bg-cyan-50 flex items-center justify-center">
                 <HomeIcon className="w-5 h-5 fill-cyan" />
             </span>
@@ -298,7 +298,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     HeadingBlock: <span className="text-heading-l font-bold text-navy">Aged care</span>,
-    ImageBlock: <Frame className="w-44 h-24" />,
+    ImageBlock: <Frame className="w-60 h-24" />,
     ImageGallery: (
         <div className="grid grid-cols-3 gap-1.5">
             {Array.from({ length: 6 }).map((_, i) => (
@@ -307,7 +307,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     CarouselBlock: (
-        <div className="w-full max-w-[230px] space-y-2">
+        <div className="w-full max-w-[320px] space-y-2">
             <Frame className="h-20" />
             <div className="flex justify-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-cyan" />
@@ -317,14 +317,14 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     MarkdownBlock: (
-        <div className="w-full max-w-[240px] space-y-2">
+        <div className="w-full max-w-[320px] space-y-2">
             <Heading className="text-heading-s">Markdown</Heading>
             <Lines rows={2} />
             <div className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-cool-paper-200" /><Bar w="w-2/3" /></div>
         </div>
     ),
     RichTextBlock: (
-        <div className="w-full max-w-[240px] space-y-2">
+        <div className="w-full max-w-[320px] space-y-2">
             <Heading className="text-heading-s">Rich text</Heading>
             <Lines rows={3} />
         </div>
@@ -339,7 +339,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     TagsBlock: (
-        <div className="flex flex-wrap gap-2 justify-center max-w-[240px]">
+        <div className="flex flex-wrap gap-2 justify-center max-w-[320px]">
             <Tagish bg="#e1fcfd" color="#008385">Respite</Tagish>
             <Tagish bg="#f0f9ff" color="#0079c8">Dementia</Tagish>
             <Tagish bg="#f8f7f4" color="#942151">Allied health</Tagish>
@@ -347,7 +347,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     StickyBar: (
-        <div className="w-44 h-24 rounded-lg bg-cool-paper-100 relative overflow-hidden">
+        <div className="w-60 h-24 rounded-lg bg-cool-paper-100 relative overflow-hidden">
             <div className="absolute bottom-0 inset-x-0 h-7 bg-navy flex items-center px-2 gap-2">
                 <Bar w="w-1/2" tone="bg-white/40" />
                 <span className="ml-auto"><Btn size="">Call</Btn></span>
@@ -355,7 +355,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     BlogBlock: (
-        <div className="grid grid-cols-2 gap-2 max-w-[240px]">
+        <div className="grid grid-cols-2 gap-2 max-w-[320px]">
             {[0, 1].map(i => (
                 <div key={i} className="rounded-lg bg-white border border-cool-paper-200 overflow-hidden">
                     <Frame className="h-12 rounded-none" />
@@ -365,7 +365,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     PricingBlock: (
-        <div className="w-full max-w-[220px] rounded-lg bg-white border border-cool-paper-200 p-3 space-y-2">
+        <div className="w-full max-w-[320px] rounded-lg bg-white border border-cool-paper-200 p-3 space-y-2">
             {['Daily fee', 'Means-tested', 'Accommodation'].map(label => (
                 <div key={label} className="flex justify-between text-caption">
                     <span className="text-grey">{label}</span>
@@ -375,7 +375,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     PricingCalculatorBlock: (
-        <div className="w-full max-w-[220px] space-y-2">
+        <div className="w-full max-w-[320px] space-y-2">
             <Field placeholder="$ Assets" />
             <div className="rounded-md bg-cyan-50 border border-cyan/40 p-2 text-center">
                 <span className="text-caption text-grey">Estimated cost</span>
@@ -384,7 +384,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     CalendlyBlock: (
-        <div className="w-40 rounded-lg bg-white border border-cool-paper-200 p-2">
+        <div className="w-52 rounded-lg bg-white border border-cool-paper-200 p-2">
             <div className="grid grid-cols-7 gap-1">
                 {Array.from({ length: 21 }).map((_, i) => (
                     <span key={i} className={cx('h-3.5 rounded-sm', i === 9 ? 'bg-cyan' : 'bg-cool-paper-100')} />
@@ -393,21 +393,21 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     FormBlock: (
-        <div className="w-full max-w-[220px] space-y-2">
+        <div className="w-full max-w-[320px] space-y-2">
             <Field placeholder="Name" />
             <Field placeholder="Email" />
             <Btn>Send enquiry</Btn>
         </div>
     ),
     AgedCareHomeMapBlock: (
-        <div className="w-44 h-24 rounded-lg bg-cyan-50 border border-cool-paper-200 relative overflow-hidden">
+        <div className="w-60 h-24 rounded-lg bg-cyan-50 border border-cool-paper-200 relative overflow-hidden">
             <span className="absolute left-6 top-6 w-3 h-3 rounded-full bg-cyan ring-2 ring-white" />
             <span className="absolute left-24 top-12 w-3 h-3 rounded-full bg-cyan ring-2 ring-white" />
             <span className="absolute left-16 top-4 w-3 h-3 rounded-full bg-fuchsia ring-2 ring-white" />
         </div>
     ),
     AgedCareNavigator: (
-        <div className="w-full max-w-[230px] space-y-2">
+        <div className="w-full max-w-[320px] space-y-2">
             <div className="flex items-center gap-1.5">
                 {[1, 2, 3].map(n => (
                     <span key={n} className={cx('flex-1 h-1.5 rounded-full', n === 1 ? 'bg-cyan' : 'bg-cool-paper-200')} />
@@ -420,7 +420,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     SearchPageBlock: (
-        <div className="w-full max-w-[230px] space-y-2">
+        <div className="w-full max-w-[320px] space-y-2">
             <Field placeholder="Search results" icon={<SearchIcon className="w-4 h-4 fill-grey" />} />
             <div className="space-y-1.5">
                 <div className="rounded-md bg-white border border-cool-paper-200 p-2"><Bar w="w-3/4" /></div>
@@ -431,25 +431,25 @@ export const componentPreviews: Record<string, ReactNode> = {
 
     // ---------- Sections ----------
     BasicHeroSection: (
-        <div className="w-full max-w-[260px] rounded-lg bg-cyan text-white p-4 space-y-2">
+        <div className="w-full max-w-[320px] rounded-lg bg-cyan text-white p-4 space-y-2">
             <span className="block font-bold">Aged care that feels like home</span>
             <Btn variant="button--inverse">Find a home</Btn>
         </div>
     ),
     ContactHeroSection: (
-        <div className="w-full max-w-[260px] rounded-lg bg-cyan text-white p-4 space-y-2">
+        <div className="w-full max-w-[320px] rounded-lg bg-cyan text-white p-4 space-y-2">
             <span className="block font-bold">Talk to our team</span>
             <div className="flex gap-2"><Btn variant="button--inverse">Call now</Btn><Btn variant="button--secondary button--inverse">Enquire</Btn></div>
         </div>
     ),
     SearchHomeHeroSection: (
-        <div className="w-full max-w-[260px] rounded-lg bg-cyan p-4 space-y-2">
+        <div className="w-full max-w-[320px] rounded-lg bg-cyan p-4 space-y-2">
             <span className="block font-bold text-white">Find a care home</span>
             <Field placeholder="Suburb or postcode" icon={<SearchIcon className="w-4 h-4 fill-grey" />} />
         </div>
     ),
     ThreeColumnSearchHeroSection: (
-        <div className="w-full max-w-[260px] rounded-lg bg-cyan p-3 space-y-2">
+        <div className="w-full max-w-[320px] rounded-lg bg-cyan p-3 space-y-2">
             <Field placeholder="Search" icon={<SearchIcon className="w-4 h-4 fill-grey" />} />
             <div className="grid grid-cols-3 gap-2">
                 {[0, 1, 2].map(i => <div key={i} className="h-7 rounded bg-white/30" />)}
@@ -457,7 +457,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     BannerSection: (
-        <div className="w-full max-w-[260px] rounded-lg bg-cyan-50 border border-cyan/40 p-3 flex items-center justify-between">
+        <div className="w-full max-w-[320px] rounded-lg bg-cyan-50 border border-cyan/40 p-3 flex items-center justify-between">
             <Bar w="w-1/2" tone="bg-cyan/40" />
             <Btn>Act now</Btn>
         </div>
@@ -470,7 +470,7 @@ export const componentPreviews: Record<string, ReactNode> = {
     Section4x4x4: <Grid12 splits={[4, 4, 4]} />,
     Section3x3x3x3: <Grid12 splits={[3, 3, 3, 3]} />,
     RegionListDetailSection: (
-        <div className="w-full max-w-[240px] grid grid-cols-[1fr_1.4fr] gap-2">
+        <div className="w-full max-w-[320px] grid grid-cols-[1fr_1.4fr] gap-2">
             <div className="rounded-md bg-white border border-cool-paper-200 p-2 space-y-1.5">
                 <Bar w="w-full" /><Bar w="w-3/4" /><Bar w="w-full" />
             </div>
@@ -487,7 +487,7 @@ export const componentPreviews: Record<string, ReactNode> = {
 
     // ---------- Organisms ----------
     Header: (
-        <div className="w-full max-w-[260px] rounded-lg bg-white border border-cool-paper-200 flex items-center gap-2 px-3 h-11">
+        <div className="w-full max-w-[320px] rounded-lg bg-white border border-cool-paper-200 flex items-center gap-2 px-3 h-11">
             <PulseLogo className="h-6 w-auto rounded" />
             <div className="hidden sm:flex gap-2 flex-1 text-caption text-navy font-medium">
                 <span>Home</span><span>Care</span><span>About</span>
@@ -496,7 +496,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     Footer: (
-        <div className="w-full max-w-[260px] rounded-lg bg-navy text-white p-3 space-y-2">
+        <div className="w-full max-w-[320px] rounded-lg bg-navy text-white p-3 space-y-2">
             <div className="grid grid-cols-3 gap-2">
                 {[0, 1, 2].map(i => (
                     <div key={i} className="space-y-1">
@@ -515,7 +515,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     PreviewEnabledNotification: (
-        <div className="w-full max-w-[240px] rounded-md bg-warning-yellow/30 border border-warning-yellow text-grey text-caption font-semibold p-2 text-center">
+        <div className="w-full max-w-[320px] rounded-md bg-warning-yellow/30 border border-warning-yellow text-grey text-caption font-semibold p-2 text-center">
             Preview mode is on
         </div>
     ),
@@ -529,7 +529,7 @@ export const componentPreviews: Record<string, ReactNode> = {
 
     // ---------- Templates ----------
     PrimaryPageTemplate: (
-        <div className="w-40 rounded-lg bg-white border border-cool-paper-200 overflow-hidden">
+        <div className="w-52 rounded-lg bg-white border border-cool-paper-200 overflow-hidden">
             <div className="h-4 bg-navy" />
             <div className="p-2 space-y-1.5">
                 <div className="h-8 rounded bg-cyan-50" />
@@ -542,7 +542,7 @@ export const componentPreviews: Record<string, ReactNode> = {
         </div>
     ),
     BlankLayout: (
-        <div className="w-40 h-24 rounded-lg bg-white border-2 border-dashed border-cool-paper-200 flex items-center justify-center">
+        <div className="w-52 h-24 rounded-lg bg-white border-2 border-dashed border-cool-paper-200 flex items-center justify-center">
             <span className="text-caption text-disabled-text">Blank</span>
         </div>
     ),
@@ -557,8 +557,8 @@ export const GenericPreview = ({ name }: { name: string }) => (
 
 /** The thumbnail canvas shown at the top of each overview card. */
 export const ComponentThumbnail = ({ name }: { name: string }) => (
-    <div className="h-36 overflow-hidden flex items-center justify-center px-5 bg-gradient-to-br from-cool-paper-50 to-cool-paper-100 border-b border-cool-paper-200 dark:border-charcoal pointer-events-none select-none">
-        <div className="flex items-center justify-center scale-95">
+    <div className="h-36 overflow-hidden flex items-center justify-center px-4 bg-gradient-to-br from-cool-paper-50 to-cool-paper-100 border-b border-cool-paper-200 dark:border-charcoal pointer-events-none select-none">
+        <div className="w-full flex items-center justify-center">
             {componentPreviews[name] ?? <GenericPreview name={name} />}
         </div>
     </div>
