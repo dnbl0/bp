@@ -223,6 +223,47 @@ export const navSections: NavSection[] = [
         ],
     },
     {
+        title: 'Component groups',
+        items: [
+            {
+                title: 'Search & navigation',
+                slug: 'components/group-search',
+                status: 'stable',
+                summary: 'Algolia search, autocomplete and in-page navigation.',
+            },
+            {
+                title: 'Media & imagery',
+                slug: 'components/group-media',
+                status: 'stable',
+                summary: 'Responsive images, galleries, carousels and video.',
+            },
+            {
+                title: 'Content & text',
+                slug: 'components/group-content',
+                status: 'stable',
+                summary: 'Rich text, markdown, headings and layout bands.',
+            },
+            {
+                title: 'Forms & booking',
+                slug: 'components/group-forms',
+                status: 'stable',
+                summary: 'SnapForms, modals, error messaging and Calendly.',
+            },
+            {
+                title: 'Data-driven tools',
+                slug: 'components/group-tools',
+                status: 'stable',
+                summary: 'Pricing, the care navigator, maps and feeds.',
+            },
+            {
+                title: 'Infrastructure & templates',
+                slug: 'components/group-infra',
+                status: 'stable',
+                summary: 'The block dispatcher, link handling and page templates.',
+            },
+        ],
+    },
+    {
         title: 'Patterns',
         items: [
             {

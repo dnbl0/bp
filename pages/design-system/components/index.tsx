@@ -18,7 +18,7 @@ const Components: NextPageWithLayout = () => (
         <PageHeader
             eyebrow="Components"
             title="Component library"
-            intro={`The ${componentCount} components that make up the Bupa Aged Care experience, organised by atomic-design layer. Components marked "Stable" have a dedicated page with live examples; the rest are catalogued here while their pages are written.`}
+            intro={`The ${componentCount} components that make up the Bupa Aged Care experience, organised by atomic-design layer. Each links to its documentation — a dedicated page with live examples, or a themed group page for the integration-heavy components.`}
         />
 
         {componentLayers.map(layer => (
