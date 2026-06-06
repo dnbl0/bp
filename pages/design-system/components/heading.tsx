@@ -1,0 +1,53 @@
+import { NextPageWithLayout } from '../../../types/nextLayout'
+import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import {
+    PageHeader,
+    Section,
+    Example,
+    PropsTable,
+} from '../../../styleguide-components/primitives'
+
+const toc = [
+    { id: 'sizes', title: 'Sizes' },
+    { id: 'props', title: 'Props' },
+]
+
+const Heading: NextPageWithLayout = () => (
+    <DesignSystemLayout title="Heading" toc={toc}>
+        <PageHeader
+            eyebrow="Components · Molecules"
+            title="Heading"
+            status="stable"
+            intro="A standalone section heading authored in the CMS. It exposes three sizes and two weights, and registers a scroll-target anchor so in-page navigation can jump to it."
+        />
+
+        <Section id="sizes" title="Sizes">
+            <Example
+                caption="Small, medium and large at semibold weight"
+                code={`<HeadingBlock component={{ text: 'Heading', fontSize: 'Large', fontWeight: 'Semi bold' }} />`}
+            >
+                <div className="space-y-3">
+                    <p className="text-heading-l font-semibold text-navy">Large heading</p>
+                    <p className="text-heading-m font-semibold text-navy">Medium heading</p>
+                    <p className="text-heading-s font-semibold text-navy">Small heading</p>
+                    <p className="text-heading-m font-medium text-navy">Medium, medium weight</p>
+                </div>
+            </Example>
+        </Section>
+
+        <Section id="props" title="Props">
+            <PropsTable
+                label="Field"
+                rows={[
+                    { name: 'text', type: 'string', required: true, description: 'The heading text.' },
+                    { name: 'fontSize', type: "'Small' | 'Medium' | 'Large'", default: 'Small', description: 'Maps to text-heading-s / -m / -l.' },
+                    { name: 'fontWeight', type: "'Medium' | 'Semi bold'", default: 'Semi bold', description: 'Maps to font-medium / font-semibold.' },
+                    { name: 'anchorId', type: 'string', description: 'Scroll-target id; falls back to a slug of the text.' },
+                    { name: 'addTopMargin', type: 'boolean', description: 'Adds mt-12 above the heading.' },
+                ]}
+            />
+        </Section>
+    </DesignSystemLayout>
+)
+
+export default Heading

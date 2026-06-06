@@ -184,6 +184,42 @@ export const navSections: NavSection[] = [
                 status: 'stable',
                 summary: 'A ghost button that expands additional content.',
             },
+            {
+                title: 'Heading',
+                slug: 'components/heading',
+                status: 'stable',
+                summary: 'A standalone section heading with size and weight options.',
+            },
+            {
+                title: 'Tags block',
+                slug: 'components/tags',
+                status: 'stable',
+                summary: 'A wrapping group of Tag atoms.',
+            },
+            {
+                title: 'Image card',
+                slug: 'components/image-card',
+                status: 'stable',
+                summary: 'An image-led content card that lifts on hover.',
+            },
+            {
+                title: 'Promotion card',
+                slug: 'components/promotion-card',
+                status: 'stable',
+                summary: 'A cyan-bordered card for campaigns and offers.',
+            },
+            {
+                title: 'Contact card',
+                slug: 'components/contact-card',
+                status: 'stable',
+                summary: "A care home's contact details with calls to action.",
+            },
+            {
+                title: 'Video card',
+                slug: 'components/video-card',
+                status: 'stable',
+                summary: 'A YouTube player with a placeholder and play affordance.',
+            },
         ],
     },
     {
