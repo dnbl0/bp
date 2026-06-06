@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Highlight, { defaultProps, Language } from 'prism-react-renderer'
+import vsDark from 'prism-react-renderer/themes/vsDark'
 import { CheckCircleIcon } from '../../components/atoms/icons/CheckCircle'
 import { ClipboardIcon } from '../../components/atoms/icons/Clipboard'
 import { cx } from '../../utils/cx'
@@ -11,8 +13,8 @@ interface CodeBlockProps {
 }
 
 /**
- * A read-only code panel with copy-to-clipboard, used throughout the docs to
- * show the markup behind a live example.
+ * A read-only, syntax-highlighted code panel with copy-to-clipboard, used
+ * throughout the docs to show the markup behind a live example.
  */
 export const CodeBlock = ({ code, language = 'tsx' }: CodeBlockProps) => {
     const [copied, setCopied] = useState(false)
@@ -45,9 +47,34 @@ export const CodeBlock = ({ code, language = 'tsx' }: CodeBlockProps) => {
                     {copied ? 'Copied' : 'Copy'}
                 </button>
             </div>
-            <pre className={cx('m-0 p-4 overflow-x-auto bg-charcoal text-white text-sm leading-relaxed')}>
-                <code>{code}</code>
-            </pre>
+            <Highlight
+                {...defaultProps}
+                code={code.trim()}
+                language={language as Language}
+                theme={vsDark}
+            >
+                {({ className, style, tokens, getLineProps, getTokenProps }) => (
+                    <pre
+                        className={cx(
+                            className,
+                            'm-0 p-4 overflow-x-auto text-sm leading-relaxed'
+                        )}
+                        // Keep the docs' charcoal canvas rather than the theme's default.
+                        style={{ ...style, background: '#23282d' }}
+                    >
+                        {tokens.map((line, lineIndex) => (
+                            <div key={lineIndex} {...getLineProps({ line })}>
+                                {line.map((token, tokenIndex) => (
+                                    <span
+                                        key={tokenIndex}
+                                        {...getTokenProps({ token })}
+                                    />
+                                ))}
+                            </div>
+                        ))}
+                    </pre>
+                )}
+            </Highlight>
         </div>
     )
 }

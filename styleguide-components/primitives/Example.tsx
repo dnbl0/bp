@@ -5,8 +5,10 @@ import { CodeBlock } from './CodeBlock'
 interface ExampleProps {
     /** The live, rendered component(s). */
     children: ReactNode
-    /** Optional source shown in a collapsible "Show code" panel. */
+    /** Optional source shown in the "Code" tab. */
     code?: string
+    /** Language label for the code panel, e.g. `tsx`, `bash`, `css`. */
+    language?: string
     /** Short caption describing what the example demonstrates. */
     caption?: string
     /** Alignment of the rendered example within the canvas. */
@@ -21,49 +23,88 @@ const surfaceClass: Record<NonNullable<ExampleProps['surface']>, string> = {
     dark: 'bg-navy',
 }
 
+const Tab = ({
+    active,
+    onClick,
+    children,
+}: {
+    active: boolean
+    onClick: () => void
+    children: ReactNode
+}) => (
+    <button
+        type="button"
+        onClick={onClick}
+        aria-selected={active}
+        role="tab"
+        className={cx(
+            'px-3 py-1 rounded-md text-body-small font-semibold',
+            active
+                ? 'bg-white dark:bg-charcoal text-navy dark:text-white shadow-sm'
+                : 'text-grey dark:text-light-grey hover:text-navy dark:hover:text-white'
+        )}
+    >
+        {children}
+    </button>
+)
+
 /**
  * The canonical "live example" container: a real component rendered on a
- * neutral canvas, with an optional toggle to reveal the copyable source.
- * Modelled on Adobe Spectrum's component example blocks.
+ * neutral canvas, with a Preview/Code tab pair revealing the copyable,
+ * syntax-highlighted source. Modelled on Adobe Spectrum's example blocks.
  */
 export const Example = ({
     children,
     code,
+    language = 'tsx',
     caption,
     align = 'left',
     surface = 'paper',
 }: ExampleProps) => {
-    const [showCode, setShowCode] = useState(false)
+    const [tab, setTab] = useState<'preview' | 'code'>('preview')
+    const showingCode = code != null && tab === 'code'
 
     return (
         <figure className="my-6 rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden">
-            <div
-                className={cx(
-                    'flex flex-wrap gap-6 p-8',
-                    align === 'center' ? 'justify-center items-center' : 'items-start',
-                    surfaceClass[surface]
-                )}
-            >
-                {children}
-            </div>
+            {!showingCode && (
+                <div
+                    className={cx(
+                        'flex flex-wrap gap-6 p-8',
+                        align === 'center'
+                            ? 'justify-center items-center'
+                            : 'items-start',
+                        surfaceClass[surface]
+                    )}
+                >
+                    {children}
+                </div>
+            )}
+            {showingCode && (
+                <div className="p-4 bg-cool-paper-50 dark:bg-cool-grey">
+                    <CodeBlock code={code} language={language} />
+                </div>
+            )}
             {(caption || code) && (
                 <figcaption className="flex items-center justify-between gap-4 px-4 py-2 border-t border-cool-paper-200 dark:border-charcoal bg-cool-paper-50 dark:bg-cool-grey text-body-small">
                     <span className="text-grey dark:text-light-grey">{caption}</span>
                     {code && (
-                        <button
-                            type="button"
-                            onClick={() => setShowCode(prev => !prev)}
-                            className="text-cyan font-semibold whitespace-nowrap hover:underline"
+                        <div
+                            role="tablist"
+                            aria-label="Example view"
+                            className="flex items-center gap-1 p-1 rounded-lg bg-cool-paper-100 dark:bg-grey"
                         >
-                            {showCode ? 'Hide code' : 'Show code'}
-                        </button>
+                            <Tab
+                                active={tab === 'preview'}
+                                onClick={() => setTab('preview')}
+                            >
+                                Preview
+                            </Tab>
+                            <Tab active={tab === 'code'} onClick={() => setTab('code')}>
+                                Code
+                            </Tab>
+                        </div>
                     )}
                 </figcaption>
-            )}
-            {code && showCode && (
-                <div className="p-4 bg-cool-paper-50 dark:bg-cool-grey border-t border-cool-paper-200 dark:border-charcoal">
-                    <CodeBlock code={code} />
-                </div>
             )}
         </figure>
     )
