@@ -1,9 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { ReactNode, useEffect, useMemo, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { PulseLogo } from '../components/atoms/icons/PulseLogo'
-import { SearchIcon } from '../components/atoms/icons/SearchIcon'
 import { BurgerIcon } from '../components/atoms/icons/BurgerIcon'
 import { CloseIcon } from '../components/atoms/icons/CloseIcon'
 import { cx } from '../utils/cx'
@@ -11,11 +10,13 @@ import {
     BASE_PATH,
     SITE_TAGLINE,
     SITE_TITLE,
-    allDocs,
     hrefFor,
     navSections,
 } from './designSystem.config'
 import { StatusBadge } from './primitives/StatusBadge'
+import { Breadcrumbs } from './primitives/Breadcrumbs'
+import { PrevNext } from './primitives/PrevNext'
+import { Search } from './Search'
 
 export interface TocEntry {
     id: string
@@ -75,62 +76,6 @@ const useTheme = (): [boolean, () => void] => {
     }
 
     return [dark, toggle]
-}
-
-const Search = ({ onNavigate }: { onNavigate: () => void }) => {
-    const [query, setQuery] = useState('')
-
-    const results = useMemo(() => {
-        const term = query.trim().toLowerCase()
-        if (!term) return []
-        return allDocs
-            .filter(doc =>
-                `${doc.title} ${doc.summary ?? ''}`.toLowerCase().includes(term)
-            )
-            .slice(0, 8)
-    }, [query])
-
-    return (
-        <div className="relative w-full max-w-md">
-            <div className="flex items-center gap-2 px-3 h-10 rounded-lg bg-cool-paper-100 dark:bg-cool-grey border border-cool-paper-200 dark:border-charcoal focus-within:border-cyan">
-                <SearchIcon className="w-5 h-5 fill-grey dark:fill-light-grey" />
-                <input
-                    type="search"
-                    value={query}
-                    onChange={event => setQuery(event.target.value)}
-                    placeholder="Search the design system"
-                    aria-label="Search the design system"
-                    className="w-full bg-transparent outline-none text-body-small text-grey dark:text-white placeholder:text-disabled-text"
-                />
-            </div>
-            {results.length > 0 && (
-                <ul className="absolute z-dropdown mt-2 w-full rounded-lg bg-white dark:bg-cool-grey border border-cool-paper-200 dark:border-charcoal shadow overflow-hidden">
-                    {results.map(doc => (
-                        <li key={doc.slug || 'overview'}>
-                            <Link href={hrefFor(doc.slug)}>
-                                <a
-                                    onClick={() => {
-                                        setQuery('')
-                                        onNavigate()
-                                    }}
-                                    className="block px-4 py-2 hover:bg-cool-paper-100 dark:hover:bg-charcoal"
-                                >
-                                    <span className="block font-semibold text-navy dark:text-white text-body-small">
-                                        {doc.title}
-                                    </span>
-                                    {doc.summary && (
-                                        <span className="block text-caption text-grey dark:text-light-grey truncate">
-                                            {doc.summary}
-                                        </span>
-                                    )}
-                                </a>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    )
 }
 
 const Sidebar = ({
@@ -193,6 +138,12 @@ export const DesignSystemLayout = ({
     const [mobileNavOpen, setMobileNavOpen] = useState(false)
     const closeMobileNav = () => setMobileNavOpen(false)
     const activeId = useScrollSpy(toc.map(entry => entry.id))
+    // Strip the base path, leading slash and any query/hash to recover the
+    // page slug used throughout the config (e.g. `components/button`).
+    const slug = router.asPath
+        .replace(BASE_PATH, '')
+        .split(/[?#]/)[0]
+        .replace(/^\//, '')
 
     return (
         <div className={cx(dark && 'dark')}>
@@ -258,7 +209,11 @@ export const DesignSystemLayout = ({
 
                     {/* Content */}
                     <main className="flex-1 min-w-0 px-6 lg:px-12 py-10">
-                        <div className="mx-auto max-w-3xl">{children}</div>
+                        <div className="mx-auto max-w-3xl">
+                            <Breadcrumbs slug={slug} />
+                            {children}
+                            <PrevNext slug={slug} />
+                        </div>
                     </main>
 
                     {/* On this page */}

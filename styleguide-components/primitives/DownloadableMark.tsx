@@ -1,30 +1,41 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { IconEntry, importSnippet } from '../iconRegistry'
 import { downloadMark, MarkFormat } from '../downloadMark'
 
-const formats: MarkFormat[] = ['svg', 'png', 'jpeg']
-
 /**
  * A logo card: a preview of the mark on a neutral canvas, its copyable import,
- * and buttons to download it as SVG, PNG or JPEG.
+ * and buttons to download it. Vector marks offer SVG/PNG/JPEG; raster (image)
+ * marks offer PNG/JPEG.
  */
 export const DownloadableMark = ({ logo }: { logo: IconEntry }) => {
     const previewRef = useRef<HTMLDivElement>(null)
     const [busy, setBusy] = useState<MarkFormat | null>(null)
+    const [isVector, setIsVector] = useState(true)
     const Mark = logo.Component
 
+    useEffect(() => {
+        const el = previewRef.current?.querySelector('svg, img')
+        setIsVector(el?.tagName.toLowerCase() === 'svg')
+    }, [])
+
     const handleDownload = async (format: MarkFormat) => {
-        const svg = previewRef.current?.querySelector('svg')
-        if (!svg) return
+        const el = previewRef.current?.querySelector('svg, img') as
+            | SVGSVGElement
+            | HTMLImageElement
+            | null
+        if (!el) return
         setBusy(format)
         try {
-            await downloadMark(svg as SVGSVGElement, logo.name, format)
+            await downloadMark(el, logo.name, format)
         } catch (error) {
             console.error('Mark export failed', error)
         } finally {
             setBusy(null)
         }
     }
+
+    // Raster (image) marks can't be exported as SVG.
+    const formats: MarkFormat[] = isVector ? ['svg', 'png', 'jpeg'] : ['png', 'jpeg']
 
     return (
         <div className="rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden">

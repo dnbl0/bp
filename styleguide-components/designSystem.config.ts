@@ -15,6 +15,12 @@ export interface NavItem {
     status?: DocStatus
     /** Short description used by search and overview cards. */
     summary?: string
+    /**
+     * Extra search terms for this page — typically the page's section
+     * headings. Lets search reach section-level content without crawling the
+     * DOM. Optional; search falls back to title + summary where absent.
+     */
+    keywords?: string[]
 }
 
 export interface NavSection {
@@ -36,11 +42,56 @@ export const navSections: NavSection[] = [
                 status: 'stable',
                 summary: 'What the design system is, how it is built, and how to use it.',
             },
+            {
+                title: 'Getting started',
+                slug: 'getting-started',
+                status: 'stable',
+                summary: 'Run the site, learn the structure, and compose pages from components and tokens.',
+                keywords: [
+                    'prerequisites',
+                    'run locally',
+                    'install',
+                    'project structure',
+                    'using a component',
+                    'using tokens',
+                    'theming',
+                    'dark mode',
+                    'contributing',
+                    'onboarding',
+                    'setup',
+                ],
+            },
+            {
+                title: 'Component status',
+                slug: 'status',
+                status: 'stable',
+                summary: 'Coverage at a glance: every documented page and its maturity.',
+                keywords: ['coverage', 'matrix', 'maturity', 'stable', 'in review', 'planned', 'roadmap'],
+            },
         ],
     },
     {
         title: 'Foundations',
         items: [
+            {
+                title: 'Design tokens',
+                slug: 'foundations/tokens',
+                status: 'stable',
+                summary: 'The complete token reference — colour, type, spacing, radius, elevation, layering and motion.',
+                keywords: [
+                    'color',
+                    'typography',
+                    'spacing',
+                    'radius',
+                    'elevation',
+                    'shadow',
+                    'layering',
+                    'z-index',
+                    'motion',
+                    'animation',
+                    'reference',
+                ],
+            },
             {
                 title: 'Color',
                 slug: 'foundations/color',
@@ -88,6 +139,24 @@ export const navSections: NavSection[] = [
                 slug: 'foundations/logo',
                 status: 'stable',
                 summary: 'The Bupa Aged Care logo marks and usage guidance.',
+            },
+            {
+                title: 'Accessibility',
+                slug: 'foundations/accessibility',
+                status: 'stable',
+                summary: 'Shared WCAG AA rules for contrast, keyboard, motion, forms and images.',
+                keywords: [
+                    'wcag',
+                    'a11y',
+                    'contrast',
+                    'keyboard',
+                    'focus',
+                    'screen reader',
+                    'aria',
+                    'alt text',
+                    'reduced motion',
+                    'forms',
+                ],
             },
         ],
     },
@@ -292,3 +361,33 @@ export const allDocs: NavItem[] = navSections.flatMap(section => section.items)
 
 export const hrefFor = (slug: string): string =>
     slug ? `${BASE_PATH}/${slug}` : BASE_PATH
+
+/** Maps a page slug to the title of the nav section that contains it. */
+const slugToSection: Record<string, string> = navSections.reduce(
+    (map, section) => {
+        section.items.forEach(item => {
+            map[item.slug] = section.title
+        })
+        return map
+    },
+    {} as Record<string, string>
+)
+
+/** The title of the nav section that contains the given slug, if any. */
+export const sectionTitleFor = (slug: string): string | undefined =>
+    slugToSection[slug]
+
+/**
+ * The documented pages immediately before and after `slug` in reading order,
+ * used to render the previous/next pager at the foot of every page.
+ */
+export const adjacentDocs = (
+    slug: string
+): { prev?: NavItem; next?: NavItem } => {
+    const index = allDocs.findIndex(doc => doc.slug === slug)
+    if (index === -1) return {}
+    return {
+        prev: index > 0 ? allDocs[index - 1] : undefined,
+        next: index < allDocs.length - 1 ? allDocs[index + 1] : undefined,
+    }
+}

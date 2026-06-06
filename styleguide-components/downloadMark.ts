@@ -103,13 +103,60 @@ const rasterize = async (
     )
 }
 
-/** Download a rendered SVG mark in the requested format. */
+const rasterizeImage = async (
+    img: HTMLImageElement,
+    target: number,
+    format: 'png' | 'jpeg'
+): Promise<Blob> => {
+    if (!img.complete) {
+        await new Promise<void>((resolve, reject) => {
+            img.onload = () => resolve()
+            img.onerror = () => reject(new Error('Could not load the image for export'))
+        })
+    }
+    const natW = img.naturalWidth || img.width || target
+    const natH = img.naturalHeight || img.height || target
+    const scale = target / Math.max(natW, natH)
+    const width = Math.round(natW * scale)
+    const height = Math.round(natH * scale)
+
+    const canvas = document.createElement('canvas')
+    canvas.width = width
+    canvas.height = height
+    const ctx = canvas.getContext('2d')
+    if (!ctx) throw new Error('Canvas is not supported')
+    if (format === 'jpeg') {
+        ctx.fillStyle = '#ffffff'
+        ctx.fillRect(0, 0, width, height)
+    }
+    ctx.drawImage(img, 0, 0, width, height)
+    return new Promise<Blob>((resolve, reject) =>
+        canvas.toBlob(
+            blob => (blob ? resolve(blob) : reject(new Error('Export failed'))),
+            format === 'jpeg' ? 'image/jpeg' : 'image/png',
+            0.95
+        )
+    )
+}
+
+/**
+ * Download a rendered mark in the requested format. Vector marks (<svg>) support
+ * SVG/PNG/JPEG; raster marks (<img>, e.g. PNG brand assets) support PNG/JPEG.
+ */
 export const downloadMark = async (
-    svg: SVGSVGElement,
+    el: SVGSVGElement | HTMLImageElement,
     name: string,
     format: MarkFormat,
     size = 512
 ): Promise<void> => {
+    if (el instanceof HTMLImageElement || el.tagName === 'IMG') {
+        if (format === 'svg') throw new Error('SVG export is only available for vector marks')
+        const blob = await rasterizeImage(el as HTMLImageElement, size, format)
+        triggerDownload(blob, `${name}.${format === 'jpeg' ? 'jpg' : 'png'}`)
+        return
+    }
+
+    const svg = el as SVGSVGElement
     const fontCss = svg.querySelector('text') ? await getFontCss() : ''
     const serialized = serialize(svg, fontCss)
 
