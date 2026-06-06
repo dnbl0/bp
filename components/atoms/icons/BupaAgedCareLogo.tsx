@@ -4,6 +4,7 @@ export const BupaAgedCareLogo = (props: SVGProps<SVGSVGElement>) => (
     <svg
         width={129}
         height={32}
+        viewBox="0 0 129 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
