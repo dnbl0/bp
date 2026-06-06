@@ -18,7 +18,7 @@ const Logo: NextPageWithLayout = () => (
             eyebrow="Foundations"
             title="Logo"
             status="stable"
-            intro="The Bupa Aged Care logo is supplied as scalable SVG components. Keep clear space around it, never distort it, and ensure sufficient contrast with the background."
+            intro="The Bupa logo is supplied as ready-to-use image assets. Keep clear space around it, never distort it, and ensure sufficient contrast with the background."
         />
 
         <Section id="marks" title="Marks">
