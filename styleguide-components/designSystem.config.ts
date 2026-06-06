@@ -1,0 +1,294 @@
+/*
+    Information architecture for the Bupa Aged Care design system documentation.
+
+    The sidebar navigation and the search index are both generated from this
+    single structure. As component documentation is added in later phases, new
+    entries are appended to the relevant section here.
+*/
+
+export type DocStatus = 'stable' | 'in-review' | 'planned'
+
+export interface NavItem {
+    title: string
+    /** Route under /design-system, e.g. `foundations/color`. */
+    slug: string
+    status?: DocStatus
+    /** Short description used by search and overview cards. */
+    summary?: string
+}
+
+export interface NavSection {
+    title: string
+    items: NavItem[]
+}
+
+export const SITE_TITLE = 'Bupa Design System'
+export const SITE_TAGLINE = 'The living design language behind Bupa Aged Care.'
+export const BASE_PATH = '/design-system'
+
+export const navSections: NavSection[] = [
+    {
+        title: 'Overview',
+        items: [
+            {
+                title: 'Introduction',
+                slug: '',
+                status: 'stable',
+                summary: 'What the design system is, how it is built, and how to use it.',
+            },
+        ],
+    },
+    {
+        title: 'Foundations',
+        items: [
+            {
+                title: 'Color',
+                slug: 'foundations/color',
+                status: 'stable',
+                summary: 'Primary, secondary, UI and background palettes, read live from the theme.',
+            },
+            {
+                title: 'Typography',
+                slug: 'foundations/typography',
+                status: 'stable',
+                summary: 'Montserrat and the responsive type scale defined in typography.css.',
+            },
+            {
+                title: 'Spacing & Layout',
+                slug: 'foundations/spacing',
+                status: 'stable',
+                summary: 'The 4px spacing scale, corner radii and container-query utilities.',
+            },
+            {
+                title: 'Elevation',
+                slug: 'foundations/elevation',
+                status: 'stable',
+                summary: 'Resting and hover shadows used to separate and lift surfaces.',
+            },
+            {
+                title: 'Iconography',
+                slug: 'foundations/iconography',
+                status: 'stable',
+                summary: 'The inline SVG icon library, searchable with copyable imports.',
+            },
+            {
+                title: 'Motion',
+                slug: 'foundations/motion',
+                status: 'stable',
+                summary: 'Fade, slide and spin animations plus staggered delay utilities.',
+            },
+            {
+                title: 'Layering',
+                slug: 'foundations/layering',
+                status: 'stable',
+                summary: 'The named z-index scale for predictable stacking.',
+            },
+            {
+                title: 'Logo',
+                slug: 'foundations/logo',
+                status: 'stable',
+                summary: 'The Bupa Aged Care logo marks and usage guidance.',
+            },
+        ],
+    },
+    {
+        title: 'Components',
+        items: [
+            {
+                title: 'Overview',
+                slug: 'components',
+                status: 'stable',
+                summary: 'The full component catalogue grouped by atomic-design layer.',
+            },
+            {
+                title: 'Button',
+                slug: 'components/button',
+                status: 'stable',
+                summary: 'Primary, secondary, ghost and tertiary actions in three sizes.',
+            },
+            {
+                title: 'Tag',
+                slug: 'components/tag',
+                status: 'stable',
+                summary: 'A small, colourable label that links to a page or anchor.',
+            },
+            {
+                title: 'Alert',
+                slug: 'components/alert',
+                status: 'stable',
+                summary: 'A dismissible, full-width site notification banner.',
+            },
+            {
+                title: 'CTA',
+                slug: 'components/cta',
+                status: 'stable',
+                summary: 'A CMS-driven call-to-action built on the Button API.',
+            },
+            {
+                title: 'Accordion',
+                slug: 'components/accordion',
+                status: 'stable',
+                summary: 'Expandable panels for FAQs and long supporting content.',
+            },
+            {
+                title: 'Breadcrumbs',
+                slug: 'components/breadcrumbs',
+                status: 'stable',
+                summary: "A trail showing the page's position in the site hierarchy.",
+            },
+            {
+                title: 'Testimonial card',
+                slug: 'components/testimonial',
+                status: 'stable',
+                summary: 'A bordered card presenting a customer quote with attribution.',
+            },
+            {
+                title: 'Sections',
+                slug: 'components/sections',
+                status: 'stable',
+                summary: 'The named grid and layout section family on a 12-column grid.',
+            },
+            {
+                title: 'Coloured card',
+                slug: 'components/coloured-card',
+                status: 'stable',
+                summary: 'A colourable card grouping an icon, heading, body and CTA.',
+            },
+            {
+                title: 'Header',
+                slug: 'components/header',
+                status: 'stable',
+                summary: 'The global site header with responsive navigation and actions.',
+            },
+            {
+                title: 'Footer',
+                slug: 'components/footer',
+                status: 'stable',
+                summary: 'The global navy site footer with menus, legal and social links.',
+            },
+            {
+                title: 'Hero banner',
+                slug: 'components/hero',
+                status: 'stable',
+                summary: 'A full-width page-opening banner on a cyan field.',
+            },
+            {
+                title: 'Back to top',
+                slug: 'components/back-to-top',
+                status: 'stable',
+                summary: 'A floating control that smooth-scrolls to the top of the page.',
+            },
+            {
+                title: 'Show more',
+                slug: 'components/show-more',
+                status: 'stable',
+                summary: 'A ghost button that expands additional content.',
+            },
+            {
+                title: 'Heading',
+                slug: 'components/heading',
+                status: 'stable',
+                summary: 'A standalone section heading with size and weight options.',
+            },
+            {
+                title: 'Tags block',
+                slug: 'components/tags',
+                status: 'stable',
+                summary: 'A wrapping group of Tag atoms.',
+            },
+            {
+                title: 'Image card',
+                slug: 'components/image-card',
+                status: 'stable',
+                summary: 'An image-led content card that lifts on hover.',
+            },
+            {
+                title: 'Promotion card',
+                slug: 'components/promotion-card',
+                status: 'stable',
+                summary: 'A cyan-bordered card for campaigns and offers.',
+            },
+            {
+                title: 'Contact card',
+                slug: 'components/contact-card',
+                status: 'stable',
+                summary: "A care home's contact details with calls to action.",
+            },
+            {
+                title: 'Video card',
+                slug: 'components/video-card',
+                status: 'stable',
+                summary: 'A YouTube player with a placeholder and play affordance.',
+            },
+        ],
+    },
+    {
+        title: 'Component groups',
+        items: [
+            {
+                title: 'Search & navigation',
+                slug: 'components/group-search',
+                status: 'stable',
+                summary: 'Algolia search, autocomplete and in-page navigation.',
+            },
+            {
+                title: 'Media & imagery',
+                slug: 'components/group-media',
+                status: 'stable',
+                summary: 'Responsive images, galleries, carousels and video.',
+            },
+            {
+                title: 'Content & text',
+                slug: 'components/group-content',
+                status: 'stable',
+                summary: 'Rich text, markdown, headings and layout bands.',
+            },
+            {
+                title: 'Forms & booking',
+                slug: 'components/group-forms',
+                status: 'stable',
+                summary: 'SnapForms, modals, error messaging and Calendly.',
+            },
+            {
+                title: 'Data-driven tools',
+                slug: 'components/group-tools',
+                status: 'stable',
+                summary: 'Pricing, the care navigator, maps and feeds.',
+            },
+            {
+                title: 'Infrastructure & templates',
+                slug: 'components/group-infra',
+                status: 'stable',
+                summary: 'The block dispatcher, link handling and page templates.',
+            },
+        ],
+    },
+    {
+        title: 'Patterns',
+        items: [
+            {
+                title: 'Patterns',
+                slug: 'patterns',
+                status: 'stable',
+                summary: 'Atomic design, the grid system, forms and search experiences.',
+            },
+        ],
+    },
+    {
+        title: 'Resources',
+        items: [
+            {
+                title: 'Resources',
+                slug: 'resources',
+                status: 'stable',
+                summary: 'Figma UI Kit, Contentful and contribution guidance.',
+            },
+        ],
+    },
+]
+
+/** Flattened list of every documented page, used for search. */
+export const allDocs: NavItem[] = navSections.flatMap(section => section.items)
+
+export const hrefFor = (slug: string): string =>
+    slug ? `${BASE_PATH}/${slug}` : BASE_PATH

@@ -3,6 +3,10 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    // Dark mode is scoped to the design system documentation (which toggles a
+    // `dark` class on its own root). The marketing site never sets this class,
+    // so enabling it here has no effect on production pages.
+    darkMode: 'class',
     content: [
         './page/**/*.{js,ts,jsx,tsx}',
         './pages/**/*.{js,ts,jsx,tsx}',
