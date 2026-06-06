@@ -9,13 +9,8 @@ import {
     componentLayers,
 } from '../../../styleguide-components/componentCatalog'
 
-const toc = componentLayers.map(layer => ({
-    id: layer.title.toLowerCase(),
-    title: layer.title,
-}))
-
 const Components: NextPageWithLayout = () => (
-    <DesignSystemLayout title="Components" toc={toc}>
+    <DesignSystemLayout title="Components" wide>
         <PageHeader
             eyebrow="Components"
             title="Component library"

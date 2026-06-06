@@ -29,6 +29,11 @@ interface DesignSystemLayoutProps {
     title: string
     /** Anchors for the "On this page" rail. */
     toc?: TocEntry[]
+    /**
+     * Widen the content column and hide the "On this page" rail — useful for
+     * gallery-style pages like the component overview.
+     */
+    wide?: boolean
 }
 
 const THEME_KEY = 'bds-theme'
@@ -132,6 +137,7 @@ export const DesignSystemLayout = ({
     children,
     title,
     toc = [],
+    wide = false,
 }: DesignSystemLayoutProps) => {
     const router = useRouter()
     const [dark, toggleTheme] = useTheme()
@@ -209,7 +215,7 @@ export const DesignSystemLayout = ({
 
                     {/* Content */}
                     <main className="flex-1 min-w-0 px-6 lg:px-12 py-10">
-                        <div className="mx-auto max-w-3xl">
+                        <div className={cx('mx-auto', wide ? 'max-w-6xl' : 'max-w-3xl')}>
                             <Breadcrumbs slug={slug} />
                             {children}
                             <PrevNext slug={slug} />
@@ -217,7 +223,7 @@ export const DesignSystemLayout = ({
                     </main>
 
                     {/* On this page */}
-                    {toc.length > 0 && (
+                    {toc.length > 0 && !wide && (
                         <aside className="hidden xl:block w-56 flex-none py-10 pr-6">
                             <div className="sticky top-24">
                                 <p className="mb-3 text-caption font-bold uppercase tracking-wide text-disabled-text">
