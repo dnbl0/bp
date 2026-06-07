@@ -57,7 +57,7 @@ export const CodeBlock = ({ code, language = 'tsx' }: CodeBlockProps) => {
                     <pre
                         className={cx(
                             className,
-                            'm-0 p-4 overflow-x-auto text-sm leading-relaxed focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-blue'
+                            'm-0 p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm leading-relaxed focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-blue'
                         )}
                         // The panel scrolls horizontally, so it must be reachable
                         // and operable by keyboard, with an accessible name.

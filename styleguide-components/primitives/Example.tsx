@@ -69,7 +69,7 @@ export const Example = ({
             {!showingCode && (
                 <div
                     className={cx(
-                        'flex flex-wrap gap-6 p-8',
+                        'flex flex-wrap gap-4 sm:gap-6 p-4 sm:p-8 overflow-x-auto',
                         align === 'center'
                             ? 'justify-center items-center'
                             : 'items-start',
@@ -80,18 +80,18 @@ export const Example = ({
                 </div>
             )}
             {showingCode && (
-                <div className="p-4 bg-cool-paper-50 dark:bg-cool-grey">
+                <div className="p-2 sm:p-4 bg-cool-paper-50 dark:bg-cool-grey">
                     <CodeBlock code={code} language={language} />
                 </div>
             )}
             {(caption || code) && (
-                <figcaption className="flex items-center justify-between gap-4 px-4 py-2 border-t border-cool-paper-200 dark:border-charcoal bg-cool-paper-50 dark:bg-cool-grey text-body-small">
-                    <span className="text-grey dark:text-light-grey">{caption}</span>
+                <figcaption className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-2 border-t border-cool-paper-200 dark:border-charcoal bg-cool-paper-50 dark:bg-cool-grey text-body-small">
+                    <span className="min-w-0 text-grey dark:text-light-grey">{caption}</span>
                     {code && (
                         <div
                             role="tablist"
                             aria-label="Example view"
-                            className="flex items-center gap-1 p-1 rounded-lg bg-cool-paper-100 dark:bg-grey"
+                            className="flex-none flex items-center gap-1 p-1 rounded-lg bg-cool-paper-100 dark:bg-grey"
                         >
                             <Tab
                                 active={tab === 'preview'}

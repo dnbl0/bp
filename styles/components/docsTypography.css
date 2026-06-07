@@ -87,3 +87,14 @@
 .bds-prose figure li {
     line-height: 1.5;
 }
+
+/*
+ * Long inline code and source paths (e.g. `tailwind.config.js`) must wrap
+ * rather than force horizontal overflow on a narrow screen. The syntax-
+ * highlighted code panel uses <pre> (not <code>), so this only affects inline
+ * code and leaves the scrollable code block untouched.
+ */
+.bds-prose code {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
