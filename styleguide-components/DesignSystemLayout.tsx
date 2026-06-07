@@ -230,7 +230,7 @@ export const DesignSystemLayout = ({
 
                     {/* Content */}
                     <main className="flex-1 min-w-0 px-6 lg:px-12 py-10">
-                        <div className={cx('mx-auto', wide ? 'max-w-6xl' : 'max-w-3xl')}>
+                        <div className={cx('bds-prose mx-auto', wide ? 'max-w-6xl' : 'max-w-3xl')}>
                             <Breadcrumbs slug={slug} />
                             {children}
                             <PrevNext slug={slug} />

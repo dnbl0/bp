@@ -1,0 +1,89 @@
+/*
+ * Documentation typography system.
+ *
+ * A reading-optimised type scale for the design-system documentation UI,
+ * scoped to `.bds-root` so it NEVER affects the production marketing site
+ * (which keeps its own scale in styles/base/typography.css).
+ *
+ * The production scale is tuned for marketing impact — a 56px page title sits
+ * right next to a 48px section heading, so the on-page hierarchy is flat. This
+ * scale restores clear contrast between levels (eyebrow → title → lead →
+ * section → subsection) and gives body copy a comfortable measure and rhythm
+ * for long-form reading.
+ *
+ *   Level        Mobile   Desktop   Weight   Leading
+ *   ----------   ------   -------   ------   -------
+ *   Page (h1)     32px      40px      700      1.15
+ *   Lead          18px      20px      400      1.6
+ *   Section (h2)  24px      28px      700      1.25
+ *   Subsection    18px      20px      600      1.4
+ *   Body          16px      16px      400      1.7
+ *   Eyebrow       13px      13px      600      1.2
+ */
+
+.bds-eyebrow {
+    font-size: 0.8125rem; /* 13px */
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.bds-h1 {
+    font-size: 2rem; /* 32px */
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+}
+
+.bds-lead {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+    text-wrap: pretty;
+}
+
+.bds-h2 {
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+}
+
+.bds-h3 {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+}
+
+@media (min-width: 1024px) {
+    .bds-h1 {
+        font-size: 2.5rem; /* 40px */
+    }
+    .bds-lead {
+        font-size: 1.25rem; /* 20px */
+    }
+    .bds-h2 {
+        font-size: 1.75rem; /* 28px */
+    }
+    .bds-h3 {
+        font-size: 1.25rem; /* 20px */
+    }
+}
+
+/*
+ * Long-form prose: a relaxed line-height for documentation copy. Reset inside
+ * an <Example> (a <figure>) so the live component demos keep their own intended
+ * spacing rather than inheriting the doc body's reading leading.
+ */
+.bds-prose p,
+.bds-prose li {
+    line-height: 1.7;
+}
+
+.bds-prose figure p,
+.bds-prose figure li {
+    line-height: 1.5;
+}
