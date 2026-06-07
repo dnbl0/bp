@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { SearchIcon } from '../components/atoms/icons/SearchIcon'
+import { CloseIcon } from '../components/atoms/icons/CloseIcon'
 import { cx } from '../utils/cx'
 import { allDocs, hrefFor, NavItem } from './designSystem.config'
 
@@ -35,13 +36,16 @@ const score = (doc: NavItem, term: string): number => {
 }
 
 /**
- * The design system's live search. Filters the page index by title, summary
- * and section keywords with lightweight fuzzy matching, and supports a ⌘K
- * shortcut plus full keyboard navigation of the results.
+ * The design system's live search. The header shows a trigger; activating it
+ * (click, focus or ⌘K) opens a responsive overlay — a full-screen sheet on
+ * mobile, a centred command-palette panel on desktop — with fuzzy matching and
+ * full keyboard navigation. Modelled on Adobe Spectrum / command-palette search.
  */
 export const Search = ({ onNavigate }: { onNavigate: () => void }) => {
     const router = useRouter()
     const inputRef = useRef<HTMLInputElement>(null)
+    const triggerRef = useRef<HTMLButtonElement>(null)
+    const [open, setOpen] = useState(false)
     const [query, setQuery] = useState('')
     const [active, setActive] = useState(0)
 
@@ -59,33 +63,48 @@ export const Search = ({ onNavigate }: { onNavigate: () => void }) => {
     // Reset the highlighted result whenever the result set changes.
     useEffect(() => setActive(0), [results.length, query])
 
-    // ⌘K / Ctrl-K focuses the search from anywhere on the page.
+    // ⌘K / Ctrl-K toggles the overlay from anywhere on the page.
     useEffect(() => {
         const onKeyDown = (event: KeyboardEvent) => {
             if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
                 event.preventDefault()
-                inputRef.current?.focus()
+                setOpen(prev => !prev)
             }
         }
         window.addEventListener('keydown', onKeyDown)
         return () => window.removeEventListener('keydown', onKeyDown)
     }, [])
 
+    // While the overlay is open, focus the field and lock background scroll.
+    useEffect(() => {
+        if (!open) return
+        inputRef.current?.focus()
+        const previousOverflow = document.body.style.overflow
+        document.body.style.overflow = 'hidden'
+        return () => {
+            document.body.style.overflow = previousOverflow
+        }
+    }, [open])
+
+    /** Close the overlay, clear the query and return focus to the trigger. */
     const close = () => {
+        setOpen(false)
         setQuery('')
-        onNavigate()
+        setActive(0)
+        triggerRef.current?.focus()
     }
 
-    const go = (doc: NavItem) => {
-        router.push(hrefFor(doc.slug))
-        inputRef.current?.blur()
-        close()
+    /** Dismiss after a navigation (focus moves to the destination page). */
+    const dismiss = () => {
+        setOpen(false)
+        setQuery('')
+        setActive(0)
+        onNavigate()
     }
 
     const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Escape') {
-            setQuery('')
-            inputRef.current?.blur()
+            close()
             return
         }
         if (!results.length) return
@@ -98,72 +117,143 @@ export const Search = ({ onNavigate }: { onNavigate: () => void }) => {
         } else if (event.key === 'Enter') {
             event.preventDefault()
             const doc = results[active]
-            if (doc) go(doc)
+            if (doc) {
+                router.push(hrefFor(doc.slug))
+                dismiss()
+            }
         }
     }
 
     return (
-        <div className="relative w-full max-w-md">
-            <div className="flex items-center gap-2 px-3 h-10 rounded-lg bg-cool-paper-100 dark:bg-cool-grey border border-cool-paper-200 dark:border-charcoal focus-within:border-cyan">
-                <SearchIcon className="w-5 h-5 fill-grey dark:fill-light-grey" />
-                <input
-                    ref={inputRef}
-                    type="search"
-                    value={query}
-                    onChange={event => setQuery(event.target.value)}
-                    onKeyDown={onInputKeyDown}
-                    placeholder="Search the design system"
-                    aria-label="Search the design system"
-                    role="combobox"
-                    aria-expanded={results.length > 0}
-                    aria-controls="bds-search-results"
-                    aria-activedescendant={
-                        results.length ? `bds-search-result-${active}` : undefined
-                    }
-                    className="w-full bg-transparent outline-none text-body-small text-grey dark:text-white placeholder:text-disabled-text"
-                />
+        <>
+            {/* Trigger — looks like a search field, opens the overlay. */}
+            <button
+                ref={triggerRef}
+                type="button"
+                onClick={() => setOpen(true)}
+                aria-haspopup="dialog"
+                aria-expanded={open}
+                aria-label="Search the design system"
+                className="w-full max-w-md flex items-center gap-2 px-3 h-10 rounded-lg bg-cool-paper-100 dark:bg-cool-grey border border-cool-paper-200 dark:border-charcoal hover:border-cyan text-left transition-colors"
+            >
+                <SearchIcon className="w-5 h-5 flex-none fill-grey dark:fill-light-grey" />
+                <span className="flex-1 truncate text-body-small text-disabled-text">
+                    Search the design system
+                </span>
                 <kbd className="hidden sm:flex items-center gap-0.5 px-1.5 h-6 rounded border border-cool-paper-200 dark:border-charcoal text-caption text-disabled-text font-sans">
                     ⌘K
                 </kbd>
-            </div>
-            {results.length > 0 && (
-                <ul
-                    id="bds-search-results"
-                    role="listbox"
-                    className="absolute z-dropdown mt-2 w-full max-h-96 overflow-y-auto rounded-lg bg-white dark:bg-cool-grey border border-cool-paper-200 dark:border-charcoal shadow"
+            </button>
+
+            {open && (
+                <div
+                    className="fixed inset-0 z-modal"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Search the design system"
                 >
-                    {results.map((doc, index) => (
-                        <li
-                            key={doc.slug || 'overview'}
-                            id={`bds-search-result-${index}`}
-                            role="option"
-                            aria-selected={index === active}
+                    {/* Scrim */}
+                    <div
+                        className="absolute inset-0 bg-black/40"
+                        onClick={close}
+                        aria-hidden="true"
+                    />
+
+                    {/* Panel: full-screen sheet on mobile, centred palette on desktop */}
+                    <div className="absolute inset-0 flex flex-col overflow-hidden bg-white dark:bg-grey border-cool-paper-200 dark:border-charcoal sm:inset-x-0 sm:bottom-auto sm:top-20 sm:mx-auto sm:max-w-xl sm:max-h-[70vh] sm:rounded-xl sm:border sm:shadow-lg">
+                        {/* Input row */}
+                        <div className="flex items-center gap-2 px-4 h-14 flex-none border-b border-cool-paper-200 dark:border-charcoal">
+                            <SearchIcon className="w-5 h-5 flex-none fill-grey dark:fill-light-grey" />
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                value={query}
+                                onChange={event => setQuery(event.target.value)}
+                                onKeyDown={onInputKeyDown}
+                                placeholder="Search the design system"
+                                aria-label="Search the design system"
+                                role="combobox"
+                                aria-expanded={results.length > 0}
+                                aria-controls="bds-search-results"
+                                aria-activedescendant={
+                                    results.length
+                                        ? `bds-search-result-${active}`
+                                        : undefined
+                                }
+                                className="flex-1 min-w-0 bg-transparent outline-none text-base text-grey dark:text-white placeholder:text-disabled-text"
+                            />
+                            <button
+                                type="button"
+                                onClick={close}
+                                aria-label="Close search"
+                                className="flex-none w-8 h-8 -mr-1 rounded-lg flex items-center justify-center hover:bg-cool-paper-100 dark:hover:bg-charcoal"
+                            >
+                                <CloseIcon className="w-5 h-5 fill-grey dark:fill-light-grey" />
+                            </button>
+                        </div>
+
+                        {/* Results */}
+                        <ul
+                            id="bds-search-results"
+                            role="listbox"
+                            aria-label="Search results"
+                            className="flex-1 overflow-y-auto overscroll-contain py-2"
                         >
-                            <Link href={hrefFor(doc.slug)}>
-                                <a
-                                    onMouseEnter={() => setActive(index)}
-                                    onClick={close}
-                                    className={cx(
-                                        'block px-4 py-2',
-                                        index === active
-                                            ? 'bg-cool-paper-100 dark:bg-charcoal'
-                                            : 'hover:bg-cool-paper-100 dark:hover:bg-charcoal'
-                                    )}
-                                >
-                                    <span className="block font-semibold text-navy dark:text-white text-body-small">
-                                        {doc.title}
+                            {query && results.length === 0 && (
+                                <li className="px-4 py-8 text-center text-body-small text-grey dark:text-light-grey">
+                                    No results for{' '}
+                                    <span className="font-semibold text-navy dark:text-white">
+                                        “{query}”
                                     </span>
-                                    {doc.summary && (
-                                        <span className="block text-caption text-grey dark:text-light-grey truncate">
-                                            {doc.summary}
-                                        </span>
-                                    )}
-                                </a>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                                </li>
+                            )}
+                            {!query && (
+                                <li className="px-4 py-8 text-center text-body-small text-disabled-text">
+                                    Start typing to search foundations, components
+                                    and patterns.
+                                </li>
+                            )}
+                            {results.map((doc, index) => (
+                                <li
+                                    key={doc.slug || 'overview'}
+                                    id={`bds-search-result-${index}`}
+                                    role="option"
+                                    aria-selected={index === active}
+                                >
+                                    <Link href={hrefFor(doc.slug)}>
+                                        <a
+                                            onMouseEnter={() => setActive(index)}
+                                            onClick={dismiss}
+                                            className={cx(
+                                                'block px-4 py-3',
+                                                index === active
+                                                    ? 'bg-cool-paper-100 dark:bg-charcoal'
+                                                    : 'hover:bg-cool-paper-100 dark:hover:bg-charcoal'
+                                            )}
+                                        >
+                                            <span className="block font-semibold text-navy dark:text-white text-body-small">
+                                                {doc.title}
+                                            </span>
+                                            {doc.summary && (
+                                                <span className="block text-caption text-grey dark:text-light-grey">
+                                                    {doc.summary}
+                                                </span>
+                                            )}
+                                        </a>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+
+                        {/* Keyboard hints (desktop) */}
+                        <div className="hidden sm:flex flex-none items-center gap-4 px-4 py-2 border-t border-cool-paper-200 dark:border-charcoal text-caption text-disabled-text">
+                            <span>↑↓ to navigate</span>
+                            <span>↵ to open</span>
+                            <span>esc to close</span>
+                        </div>
+                    </div>
+                </div>
             )}
-        </div>
+        </>
     )
 }
