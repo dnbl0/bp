@@ -57,15 +57,17 @@ export const CodeBlock = ({ code, language = 'tsx' }: CodeBlockProps) => {
                     <pre
                         className={cx(
                             className,
-                            'm-0 p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm leading-relaxed focus:outline-none focus-visible:ring-2 focus-visible:ring-focus-blue'
+                            'm-0 p-3 sm:p-4 text-xs sm:text-sm leading-relaxed'
                         )}
-                        // The panel scrolls horizontally, so it must be reachable
-                        // and operable by keyboard, with an accessible name.
-                        tabIndex={0}
-                        role="region"
-                        aria-label={`${language} code sample`}
+                        // Soft-wrap long lines so code never needs horizontal
+                        // scrolling; long unbroken tokens break rather than overflow.
                         // Keep the docs' charcoal canvas rather than the theme's default.
-                        style={{ ...style, background: '#23282d' }}
+                        style={{
+                            ...style,
+                            background: '#23282d',
+                            whiteSpace: 'pre-wrap',
+                            overflowWrap: 'anywhere',
+                        }}
                     >
                         {tokens.map((line, lineIndex) => (
                             <div key={lineIndex} {...getLineProps({ line })}>
