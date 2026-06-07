@@ -98,3 +98,17 @@
     overflow-wrap: break-word;
     word-break: break-word;
 }
+
+/*
+ * Stop iOS Safari from auto-zooming the page when a form control is focused.
+ * Safari triggers that zoom whenever the focused control's font-size is below
+ * 16px (our compact fields use 14px). Lift every control to 16px on small
+ * screens only — desktop keeps the denser sizing.
+ */
+@media (max-width: 767px) {
+    .bds-root input,
+    .bds-root select,
+    .bds-root textarea {
+        font-size: 16px;
+    }
+}
