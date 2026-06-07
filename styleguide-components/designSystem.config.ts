@@ -475,6 +475,67 @@ export const navSections: NavSection[] = [
         ],
     },
     {
+        title: 'Composite patterns',
+        items: [
+            {
+                title: 'Mega menu',
+                slug: 'patterns/mega-menu',
+                status: 'in-review',
+                summary: 'A multi-column flyout navigation panel for grouping a large product catalogue.',
+                keywords: ['mega menu', 'navigation', 'flyout', 'dropdown', 'header', 'nav panel', 'menu'],
+            },
+            {
+                title: 'Utility bar',
+                slug: 'patterns/utility-bar',
+                status: 'in-review',
+                summary: 'A top utility bar with an audience switcher (Personal, Business, Overseas, Providers).',
+                keywords: ['utility bar', 'top bar', 'audience switcher', 'segment', 'personal', 'business', 'overseas'],
+            },
+            {
+                title: 'Account menu',
+                slug: 'patterns/account-menu',
+                status: 'in-review',
+                summary: 'A member login control and the authenticated account dropdown menu.',
+                keywords: ['login', 'sign in', 'account', 'member', 'mybupa', 'avatar', 'profile', 'dropdown', 'auth'],
+            },
+            {
+                title: 'Plan cards',
+                slug: 'patterns/plan-cards',
+                status: 'in-review',
+                summary: 'Tiered price/plan cards with feature lists, a most-popular badge and a select action.',
+                keywords: ['plan', 'pricing', 'tier', 'bronze', 'silver', 'gold', 'price card', 'most popular', 'compare'],
+            },
+            {
+                title: 'Price summary bar',
+                slug: 'patterns/price-summary-bar',
+                status: 'in-review',
+                summary: 'A sticky summary bar showing the running price with a fortnightly/monthly toggle.',
+                keywords: ['price', 'summary', 'sticky bar', 'fortnightly', 'monthly', 'frequency', 'quote', 'total'],
+            },
+            {
+                title: 'Help widget',
+                slug: 'patterns/help-widget',
+                status: 'in-review',
+                summary: 'A floating live-chat / virtual-assistant launcher and chat panel.',
+                keywords: ['chat', 'live chat', 'virtual assistant', 'bot', 'help', 'support', 'messenger', 'widget'],
+            },
+            {
+                title: 'Offer ribbon',
+                slug: 'patterns/offer-ribbon',
+                status: 'in-review',
+                summary: 'A promotional banner with a live countdown to an offer deadline.',
+                keywords: ['offer', 'promotion', 'countdown', 'timer', 'deadline', 'campaign', 'ribbon', 'banner'],
+            },
+            {
+                title: 'Help hub',
+                slug: 'patterns/help-hub',
+                status: 'in-review',
+                summary: 'A categorised help-article browser with search and topic cards.',
+                keywords: ['help', 'hub', 'faq', 'support', 'knowledge base', 'articles', 'topics', 'search'],
+            },
+        ],
+    },
+    {
         title: 'Resources',
         items: [
             {
