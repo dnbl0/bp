@@ -53,7 +53,7 @@ const AudienceSwitcher = () => {
 
 const UtilityBarDemo = () => (
     <div className="w-full rounded-lg bg-cool-paper-50 dark:bg-cool-grey border border-cool-paper-200 dark:border-charcoal">
-        <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center sm:justify-between gap-2 sm:gap-3 px-3 sm:px-4 py-2">
             <nav
                 aria-label="Utility"
                 className="flex items-center gap-4 text-caption"

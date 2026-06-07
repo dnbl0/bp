@@ -33,7 +33,7 @@ export const PropsTable = ({ rows, label = 'Prop' }: PropsTableProps) => (
                         key={row.name}
                         className="border-t border-cool-paper-200 dark:border-charcoal align-top"
                     >
-                        <td className="px-4 py-3 font-mono whitespace-nowrap text-cyan">
+                        <td className="px-4 py-3 font-mono break-words text-cyan">
                             {row.name}
                             {row.required && (
                                 <span className="ml-1 text-error-red" title="Required">

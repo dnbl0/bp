@@ -32,7 +32,7 @@ const RadioCardsDemo = () => {
             <legend className="block text-body-small font-semibold text-navy dark:text-white mb-2">
                 Who is this cover for?
             </legend>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {options.map(opt => {
                     const selected = who === opt.id
                     return (

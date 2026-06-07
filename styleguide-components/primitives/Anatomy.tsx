@@ -18,7 +18,7 @@ interface AnatomyProps {
  * describing each of its structural parts.
  */
 export const Anatomy = ({ children, parts }: AnatomyProps) => (
-    <div className="my-6 grid gap-8 md:grid-cols-2 items-start rounded-xl border border-cool-paper-200 dark:border-charcoal p-8 bg-white dark:bg-cool-grey">
+    <div className="my-6 grid gap-4 sm:gap-8 md:grid-cols-2 items-start rounded-xl border border-cool-paper-200 dark:border-charcoal p-4 sm:p-8 bg-white dark:bg-cool-grey">
         <div className="flex items-center justify-center min-h-[160px]">{children}</div>
         <ol className="space-y-4">
             {parts.map(part => (

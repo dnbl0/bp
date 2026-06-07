@@ -144,11 +144,11 @@ const MegaMenuDemo = () => {
                             key={item.id}
                             role="region"
                             aria-label={item.label}
-                            className="absolute left-0 right-0 z-dropdown mt-1 rounded-xl border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey p-6 shadow"
+                            className="absolute left-0 right-0 z-dropdown mt-1 rounded-xl border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey p-3 sm:p-6 shadow"
                         >
-                            <div className="flex flex-wrap gap-8">
+                            <div className="flex flex-wrap gap-3 sm:gap-8">
                                 {item.groups.map(group => (
-                                    <div key={group.heading} className="min-w-[140px]">
+                                    <div key={group.heading} className="min-w-[120px] sm:min-w-[140px]">
                                         <h3 className="text-caption font-semibold uppercase tracking-wide text-disabled-text dark:text-light-grey">
                                             {group.heading}
                                         </h3>
@@ -220,7 +220,7 @@ const SimpleDropdownDemo = () => {
             </button>
             {open && (
                 <ul
-                    className="absolute left-0 z-dropdown mt-1 min-w-[180px] rounded-xl border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey p-2 shadow"
+                    className="absolute left-0 z-dropdown mt-1 min-w-[140px] sm:min-w-[180px] rounded-xl border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey p-2 shadow"
                 >
                     {['Who we are', 'Newsroom', 'Careers'].map(label => (
                         <li key={label}>

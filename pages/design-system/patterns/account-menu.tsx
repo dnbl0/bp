@@ -67,7 +67,7 @@ const AccountMenuDemo = () => {
                 <ul
                     role="menu"
                     aria-label="Account"
-                    className="absolute right-0 z-dropdown mt-1 min-w-[200px] rounded-xl border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey p-2 shadow"
+                    className="absolute right-0 z-dropdown mt-1 min-w-[180px] max-w-[calc(100vw-2.5rem)] rounded-xl border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey p-2 shadow"
                 >
                     <li role="none" className="px-3 py-2">
                         <p className="text-body-small font-semibold text-navy dark:text-white">

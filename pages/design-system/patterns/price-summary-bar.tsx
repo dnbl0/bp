@@ -35,7 +35,7 @@ const PriceSummaryBarDemo = () => {
     const options: Frequency[] = ['fortnightly', 'monthly']
     return (
         <div className="w-full rounded-xl border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey p-4 shadow">
-            <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center sm:justify-between gap-3 sm:gap-4">
                 <div>
                     <p className="text-caption text-grey dark:text-light-grey">
                         Your estimated cost

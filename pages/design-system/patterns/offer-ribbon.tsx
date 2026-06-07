@@ -65,7 +65,7 @@ const CountdownRibbonDemo = () => {
     }
 
     return (
-        <div className="flex w-full flex-wrap items-center justify-between gap-4 rounded-lg bg-cyan px-5 py-3 text-white shadow">
+        <div className="flex w-full flex-col sm:flex-row sm:flex-wrap items-start sm:items-center sm:justify-between gap-2 sm:gap-4 rounded-lg bg-cyan px-4 sm:px-5 py-3 text-white shadow">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                 <span className="text-body-small font-semibold">
                     6 weeks free on new hospital and extras cover.
@@ -106,7 +106,7 @@ const StaticRibbonDemo = () => {
         )
     }
     return (
-        <div className="flex w-full flex-wrap items-center justify-between gap-4 rounded-lg bg-cyan px-5 py-3 text-white shadow">
+        <div className="flex w-full flex-col sm:flex-row sm:flex-wrap items-start sm:items-center sm:justify-between gap-2 sm:gap-4 rounded-lg bg-cyan px-4 sm:px-5 py-3 text-white shadow">
             <span className="text-body-small font-semibold">
                 6 weeks free on new cover — offer ends 30 Jun.
             </span>

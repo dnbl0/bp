@@ -41,9 +41,9 @@ export const TokenTable = ({
                         className="border-t border-cool-paper-200 dark:border-charcoal align-middle"
                     >
                         {withPreview && (
-                            <td className="px-4 py-3 w-40">{row.preview}</td>
+                            <td className="px-4 py-3 w-24 sm:w-40">{row.preview}</td>
                         )}
-                        <td className="px-4 py-3 font-mono whitespace-nowrap text-cyan">
+                        <td className="px-4 py-3 font-mono break-words text-cyan">
                             {row.token}
                         </td>
                         <td className="px-4 py-3 font-mono text-grey dark:text-light-grey">
