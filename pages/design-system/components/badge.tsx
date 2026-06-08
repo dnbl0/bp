@@ -9,12 +9,20 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { Badge } from '../../../components/atoms/Badge'
+import {
+    badgeDefaultSpecs,
+    badgeSuccessSpecs,
+    badgeWarningSpecs,
+    badgeErrorSpecs,
+} from '../../../styleguide-components/specs/badge.specs'
 
 const toc = [
     { id: 'examples', title: 'Examples' },
     { id: 'props', title: 'Props' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'guidance', title: 'Guidance' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -88,6 +96,32 @@ const Page: NextPageWithLayout = () => (
                     },
                 ]}
             />
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Badge sizing and color specifications vary by tone. Click "Show specs" to see detailed measurements.
+            </p>
+
+            <h3 className="text-heading-sm font-semibold mt-8 mb-4">Neutral</h3>
+            <Specifications variant="Neutral" groups={badgeDefaultSpecs} withTable>
+                <Badge tone="neutral">Draft</Badge>
+            </Specifications>
+
+            <h3 className="text-heading-sm font-semibold mt-8 mb-4">Success</h3>
+            <Specifications variant="Success" groups={badgeSuccessSpecs} withTable>
+                <Badge tone="success" withDot>Active</Badge>
+            </Specifications>
+
+            <h3 className="text-heading-sm font-semibold mt-8 mb-4">Warning</h3>
+            <Specifications variant="Warning" groups={badgeWarningSpecs} withTable>
+                <Badge tone="warning" withDot>Pending</Badge>
+            </Specifications>
+
+            <h3 className="text-heading-sm font-semibold mt-8 mb-4">Error</h3>
+            <Specifications variant="Error" groups={badgeErrorSpecs} withTable>
+                <Badge tone="error" withDot>Expired</Badge>
+            </Specifications>
         </Section>
 
         <Section id="guidance" title="Guidance">
