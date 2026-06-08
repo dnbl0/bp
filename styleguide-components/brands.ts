@@ -287,6 +287,138 @@ export const corporate = makeSubBrand({
     },
 })
 
+/*
+    Brand guidelines is a self-contained brand: unlike the sub-brands, it does
+    not inherit the engineering Foundations. It is a faithful reproduction of
+    the Bupa Brand Guidelines 2023 (v1) — strategy, design principles, the full
+    design toolkit and tone of voice — surfaced through the same documentation
+    template and reachable from the brand switcher in the global header.
+*/
+export const brandGuidelines: Brand = makeBrand({
+    id: 'brand',
+    label: 'Brand guidelines',
+    title: 'Bupa Brand Guidelines',
+    tagline: 'The Bupa brand — strategy, design principles, toolkit and tone of voice (2023, v1).',
+    basePath: `${CORE_BASE_PATH}/brand`,
+    status: 'stable',
+    navSections: [
+        {
+            title: 'Overview',
+            items: [
+                {
+                    title: 'Introduction',
+                    slug: '',
+                    status: 'stable',
+                    summary:
+                        'The Bupa brand guidelines: our strategy, design principles, design toolkit and tone of voice.',
+                    keywords: ['brand', 'guidelines', 'bupa', 'brand book', '2023', 'introduction'],
+                },
+                {
+                    title: 'Our strategy',
+                    slug: 'strategy',
+                    status: 'stable',
+                    summary: 'Our purpose, ambition and values — the reason Bupa exists and what we want to be.',
+                    keywords: ['purpose', 'ambition', 'values', 'caring', 'brave', 'responsible', 'strategy', 'mission'],
+                },
+                {
+                    title: 'Design principles',
+                    slug: 'design-principles',
+                    status: 'stable',
+                    summary: 'Start with a square, Blue is the glue, Less is more, Keep it real — plus design in action.',
+                    keywords: ['principles', 'square', 'blue is the glue', 'less is more', 'keep it real', 'design in action'],
+                },
+            ],
+        },
+        {
+            title: 'Design toolkit',
+            items: [
+                {
+                    title: 'Logo',
+                    slug: 'logo',
+                    status: 'stable',
+                    summary: 'Logo formats, minimum clear space, minimum sizing, positioning and social profile logos.',
+                    keywords: ['logo', 'heartbeat', 'clear space', 'minimum size', 'square', 'horizontal', 'reverse', 'social'],
+                },
+                {
+                    title: 'Colour',
+                    slug: 'colour',
+                    status: 'stable',
+                    summary: 'Blue is the glue: the primary, secondary, neutral, alert and skin-tone palettes and the AA step system.',
+                    keywords: ['colour', 'color', 'palette', 'bupa blue', 'navy', 'warm grey', 'secondary', 'tints', 'shades', 'accessibility', 'step system'],
+                },
+                {
+                    title: 'Message boxes',
+                    slug: 'message-boxes',
+                    status: 'stable',
+                    summary: 'Square message boxes in Bupa Blue or Navy, placed in a corner to aid legibility over images.',
+                    keywords: ['message box', 'square', 'corner', 'overlay', 'legibility', 'blue', 'navy'],
+                },
+                {
+                    title: 'Typography',
+                    slug: 'typography',
+                    status: 'stable',
+                    summary: 'Gotham, Montserrat and Arial; sentence case, hierarchy, type as illustration and expressive type.',
+                    keywords: ['typography', 'type', 'gotham', 'montserrat', 'arial', 'sentence case', 'headline', 'expressive type'],
+                },
+                {
+                    title: 'Headers & footers',
+                    slug: 'layout',
+                    status: 'stable',
+                    summary: 'Primary, secondary and neutral header styles, and desktop/mobile footer patterns.',
+                    keywords: ['header', 'footer', 'navigation', 'sticky', 'mobile', 'desktop', 'menu', 'layout'],
+                },
+                {
+                    title: 'Photography',
+                    slug: 'photography',
+                    status: 'stable',
+                    summary: 'Our four photography types, the touch of blue, choosing wisely and image focal areas.',
+                    keywords: ['photography', 'photos', 'imagery', 'touch of blue', 'authentic', 'portraits', 'still life', 'focal area'],
+                },
+                {
+                    title: 'Illustration',
+                    slug: 'illustration',
+                    status: 'stable',
+                    summary: 'The blue square, palettes and skin tones, keylines, people/objects/scenes/explanatory and animation.',
+                    keywords: ['illustration', 'blue square', 'keyline', 'people', 'objects', 'scenes', 'explanatory', 'skin tone', 'animation'],
+                },
+                {
+                    title: 'Icons',
+                    slug: 'iconography',
+                    status: 'stable',
+                    summary: 'Illustrated icons versus navigation icons — roles, colour, keylines, sizing and the 24px grid.',
+                    keywords: ['icons', 'iconography', 'illustrated icons', 'navigation icons', 'keyline', 'solid', '24px grid'],
+                },
+                {
+                    title: 'Buttons',
+                    slug: 'buttons',
+                    status: 'stable',
+                    summary: 'Primary, secondary and tertiary buttons, their specifications, hierarchy and placement.',
+                    keywords: ['buttons', 'cta', 'primary', 'secondary', 'tertiary', 'conversion', 'hierarchy', 'placement', '52px'],
+                },
+                {
+                    title: 'Promotional flashes',
+                    slug: 'promotional-flashes',
+                    status: 'stable',
+                    summary: 'Roundel, starburst and heart flashes for highlighting an offer or call to action.',
+                    keywords: ['promotional flash', 'roundel', 'starburst', 'heart', 'offer', 'price', 'flash'],
+                },
+            ],
+        },
+        {
+            title: 'Tone of voice',
+            items: [
+                {
+                    title: 'Tone of voice',
+                    slug: 'tone-of-voice',
+                    status: 'stable',
+                    summary: 'Know our stuff, make things easy, show we care and be light-hearted — with tone in action.',
+                    keywords: ['tone of voice', 'writing', 'copy', 'plain language', 'word swaps', 'before after', 'content', 'voice'],
+                },
+            ],
+        },
+    ],
+})
+
 /** The core hub first, then the sub-brands in switcher order. */
 export const brands: Brand[] = [
     core,
@@ -295,6 +427,7 @@ export const brands: Brand[] = [
     dental,
     agedCare,
     corporate,
+    brandGuidelines,
 ]
 
 /**
