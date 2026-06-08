@@ -7,6 +7,7 @@ import {
     Specifications,
     SpecGroup,
 } from '../../../styleguide-components/primitives'
+import { photography, BrandFigure } from '../../../styleguide-components/brandAssets'
 
 const toc = [
     { id: 'types', title: 'Button types' },
@@ -115,6 +116,12 @@ const Buttons: NextPageWithLayout = () => (
                     <span>Don’t use elements that look like buttons but have no link or interaction.</span>
                 </li>
             </ul>
+            <div className="mt-6 sm:max-w-xl">
+                <BrandFigure
+                    image={photography.buttons}
+                    caption="Buttons in context — a single, clear primary action placed high on the page."
+                />
+            </div>
         </Section>
     </DesignSystemLayout>
 )

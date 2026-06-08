@@ -9,6 +9,7 @@ import {
     Dont,
     DoDontGrid,
 } from '../../../styleguide-components/primitives'
+import { photography, BrandGallery } from '../../../styleguide-components/brandAssets'
 
 const toc = [
     { id: 'typefaces', title: 'Our typefaces' },
@@ -150,6 +151,12 @@ const Typography: NextPageWithLayout = () => (
                     messages short and direct — think “less is more”. Type can move off
                     the page, climb or shrink within the layout.
                 </p>
+            </Subsection>
+            <Subsection title="In context">
+                <BrandGallery
+                    images={photography.typography}
+                    columns="grid-cols-1 sm:grid-cols-2"
+                />
             </Subsection>
         </Section>
 

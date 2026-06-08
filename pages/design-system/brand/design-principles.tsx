@@ -2,6 +2,7 @@ import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import { PageHeader, Section } from '../../../styleguide-components/primitives'
 import { BlueSquare } from '../../../styleguide-components/brandPalette'
+import { photography, BrandGallery } from '../../../styleguide-components/brandAssets'
 
 const toc = [
     { id: 'principles', title: 'Our design principles' },
@@ -116,6 +117,12 @@ const DesignPrinciples: NextPageWithLayout = () => (
                 holds everything together, the square frames and structures, and a
                 single clear message does the heavy lifting.
             </p>
+            <div className="mt-6">
+                <BrandGallery
+                    images={photography.designInAction}
+                    columns="grid-cols-1 sm:grid-cols-2"
+                />
+            </div>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                 {inAction.map(note => (
                     <li
