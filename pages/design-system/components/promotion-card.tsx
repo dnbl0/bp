@@ -84,7 +84,7 @@ const PromotionCard: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[promotionCardDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={promotionCardDefaultSpecs} withTable>
                 <div className="text-navy p-6 rounded flex flex-wrap gap-6 bg-cyan-50 border border-cyan md:items-end flex-col md:flex-row max-w-lg">
                     <div className="shrink-0">
                         <CallBackIcon className="w-12 h-12 fill-cyan" />

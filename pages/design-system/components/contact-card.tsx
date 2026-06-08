@@ -90,7 +90,7 @@ const ContactCard: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[contactCardDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={contactCardDefaultSpecs} withTable>
                 <div className="bg-white rounded shadow-depth-hover flex flex-col max-w-sm">
                     <div className="p-6 flex flex-col gap-3">
                         <h2 className="text-heading-s font-medium text-navy">

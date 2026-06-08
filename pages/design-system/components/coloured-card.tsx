@@ -106,7 +106,7 @@ const ColouredCard: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[colouredCardDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={colouredCardDefaultSpecs} withTable>
                 <DemoCard bg="bg-cyan" />
             </Specifications>
         </Section>

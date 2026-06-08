@@ -90,7 +90,7 @@ const Header: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[headerDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={headerDefaultSpecs} withTable>
                 <div className="rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden">
                     <div className="flex items-center gap-4 h-16 px-4 bg-white border-b border-cool-paper-200">
                         <SquareBupaLogo className="h-8 w-auto" />

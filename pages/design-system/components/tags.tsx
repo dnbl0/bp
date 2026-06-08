@@ -54,7 +54,7 @@ const Tags: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[tagsContainerSpecs]} withTable>
+            <Specifications variant="Default" groups={tagsContainerSpecs} withTable>
                 <div className="flex flex-row flex-wrap">
                     <Tag title="Respite care" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
                     <Tag title="Dementia support" href="#" openInNewTab={false} bgColor="c-#f0f9ff" textColor="c-#0079c8" />

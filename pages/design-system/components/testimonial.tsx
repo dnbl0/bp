@@ -134,7 +134,7 @@ const Testimonial: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[testimonialDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={testimonialDefaultSpecs} withTable>
                 <div className="p-6 rounded border-[1px] border-cool-paper-200 w-full max-w-md bg-white">
                     <div className="flex flex-col gap-6">
                         <p className="text-grey">

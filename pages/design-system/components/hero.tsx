@@ -116,7 +116,7 @@ const Hero: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[heroDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={heroDefaultSpecs} withTable>
                 <HeroDemo />
             </Specifications>
         </Section>

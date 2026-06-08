@@ -84,7 +84,7 @@ const Page: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[comparisonTableDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={comparisonTableDefaultSpecs} withTable>
                 <div className="w-full">
                     <ComparisonTable
                         caption="Compare extras cover"

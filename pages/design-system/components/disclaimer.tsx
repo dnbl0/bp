@@ -80,7 +80,7 @@ const Page: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[disclaimerDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={disclaimerDefaultSpecs} withTable>
                 <Disclaimer footnotes={footnotes} defaultOpen />
             </Specifications>
         </Section>

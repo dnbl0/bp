@@ -90,7 +90,7 @@ const ShowMore: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[showMoreDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={showMoreDefaultSpecs} withTable>
                 <div className="w-full">
                     <Demo />
                 </div>

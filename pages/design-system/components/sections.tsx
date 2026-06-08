@@ -91,7 +91,7 @@ const Sections: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[sectionsDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={sectionsDefaultSpecs} withTable>
                 <div className="grid grid-cols-12 gap-2">
                     <div className="h-12 rounded bg-cyan-50 dark:bg-charcoal border border-cyan/40 flex items-center justify-center text-caption font-mono text-cyan" style={{ gridColumn: 'span 6' }}>
                         6

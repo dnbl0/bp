@@ -84,7 +84,7 @@ const Cta: NextPageWithLayout = () => (
             <p className="text-grey dark:text-light-grey">
                 Component visual specifications for sizing, spacing and colors.
             </p>
-            <Specifications variant="Default" groups={[ctaDefaultSpecs]} withTable>
+            <Specifications variant="Default" groups={ctaDefaultSpecs} withTable>
                 <a className="button button--giant" href="#">
                     <span>Find a care home</span>
                     <span>
