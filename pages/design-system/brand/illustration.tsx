@@ -7,6 +7,7 @@ import {
     Subsection,
 } from '../../../styleguide-components/primitives'
 import { skinTones, BrandSwatchGrid, BlueSquare } from '../../../styleguide-components/brandPalette'
+import { illustration, BrandGallery } from '../../../styleguide-components/brandAssets'
 
 const toc = [
     { id: 'types', title: 'Types of illustration' },
@@ -80,6 +81,29 @@ const Illustration: NextPageWithLayout = () => (
                     </div>
                 ))}
             </div>
+
+            <Subsection title="People">
+                <BrandGallery images={illustration.people} fit="contain" aspect="aspect-square" />
+            </Subsection>
+            <Subsection title="Objects">
+                <BrandGallery images={illustration.objects} fit="contain" aspect="aspect-square" />
+            </Subsection>
+            <Subsection title="Scenes">
+                <BrandGallery
+                    images={illustration.scenes}
+                    fit="contain"
+                    aspect="aspect-[3/2]"
+                    columns="grid-cols-1 sm:grid-cols-2"
+                />
+            </Subsection>
+            <Subsection title="Explanatory">
+                <BrandGallery
+                    images={illustration.explanatory}
+                    fit="contain"
+                    aspect="aspect-[3/2]"
+                    columns="grid-cols-1 sm:grid-cols-2"
+                />
+            </Subsection>
         </Section>
 
         <Section id="blue-square" title="The blue square">
@@ -193,6 +217,30 @@ const Illustration: NextPageWithLayout = () => (
                     <span>Add a keyline to skin or clothing when there is poor contrast against the background.</span>
                 </li>
             </ul>
+            <Subsection title="Heads">
+                <BrandGallery
+                    images={illustration.heads}
+                    fit="contain"
+                    aspect="aspect-square"
+                    columns="grid-cols-3 sm:grid-cols-5 lg:grid-cols-7"
+                />
+            </Subsection>
+            <Subsection title="Bodies">
+                <BrandGallery
+                    images={illustration.bodies}
+                    fit="contain"
+                    aspect="aspect-square"
+                    columns="grid-cols-3 sm:grid-cols-5 lg:grid-cols-7"
+                />
+            </Subsection>
+            <Subsection title="Legs & footwear">
+                <BrandGallery
+                    images={illustration.legs}
+                    fit="contain"
+                    aspect="aspect-square"
+                    columns="grid-cols-3 sm:grid-cols-5 lg:grid-cols-7"
+                />
+            </Subsection>
         </Section>
 
         <Section id="animation" title="Animation">

@@ -7,6 +7,7 @@ import {
     Dont,
     DoDontGrid,
 } from '../../../styleguide-components/primitives'
+import { photography, BrandFigure } from '../../../styleguide-components/brandAssets'
 
 const toc = [
     { id: 'anatomy', title: 'Shape, colour & placement' },
@@ -83,16 +84,10 @@ const MessageBoxes: NextPageWithLayout = () => (
                         Bupa Blue box, slightly inset in the corner.
                     </figcaption>
                 </figure>
-                <figure>
-                    <ImageMock align="top-left" box="bg-navy">
-                        <p className="font-bold leading-snug">Quality care, close to home</p>
-                        <p className="mt-2 text-caption opacity-90">bupa.com</p>
-                    </ImageMock>
-                    <figcaption className="mt-2 text-caption text-grey dark:text-light-grey">
-                        Bupa Navy box flush against a corner. On a full-bleed image,
-                        boxes can bleed off up to three sides.
-                    </figcaption>
-                </figure>
+                <BrandFigure
+                    image={photography.messageBox}
+                    caption="A square message box placed in a corner over a real photograph. On a full-bleed image, boxes can bleed off up to three sides."
+                />
             </div>
         </Section>
 

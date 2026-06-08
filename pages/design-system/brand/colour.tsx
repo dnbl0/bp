@@ -17,6 +17,7 @@ import {
     BrandSwatchGrid,
     SecondaryPaletteGrid,
 } from '../../../styleguide-components/brandPalette'
+import { photography, BrandFigure } from '../../../styleguide-components/brandAssets'
 
 const toc = [
     { id: 'primary', title: 'Primary palette' },
@@ -192,6 +193,16 @@ const Colour: NextPageWithLayout = () => (
                     </button>
                 </Dont>
             </DoDontGrid>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <BrandFigure
+                    image={photography.colourExample}
+                    caption="Primary colours make information easier to find; secondary colours create hierarchy."
+                />
+                <BrandFigure
+                    image={photography.usingColour}
+                    caption="Secondary palette colours used in small areas to emphasise, inform and navigate."
+                />
+            </div>
         </Section>
     </DesignSystemLayout>
 )

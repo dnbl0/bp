@@ -6,6 +6,7 @@ import {
     Section,
     Subsection,
 } from '../../../styleguide-components/primitives'
+import { icons, BrandGallery } from '../../../styleguide-components/brandAssets'
 
 const toc = [
     { id: 'illustrated', title: 'Illustrated icons' },
@@ -62,6 +63,14 @@ const Iconography: NextPageWithLayout = () => (
                     </li>
                 </ul>
             </Subsection>
+            <Subsection title="The illustrated icon set">
+                <BrandGallery
+                    images={icons.illustrated}
+                    fit="contain"
+                    aspect="aspect-square"
+                    columns="grid-cols-3 sm:grid-cols-4 lg:grid-cols-4"
+                />
+            </Subsection>
         </Section>
 
         <Section id="navigation" title="Navigation icons">
@@ -94,6 +103,14 @@ const Iconography: NextPageWithLayout = () => (
                         <span>Corners and line caps should reflect real life — square corners on a screen, rounded on a light bulb, or mixed where appropriate.</span>
                     </li>
                 </ul>
+            </Subsection>
+            <Subsection title="The navigation icon collection">
+                <BrandGallery
+                    images={icons.navigation}
+                    fit="contain"
+                    aspect="aspect-square"
+                    columns="grid-cols-4 sm:grid-cols-6 lg:grid-cols-8"
+                />
             </Subsection>
             <p className="mt-4 text-body-small text-grey dark:text-light-grey">
                 The design-system inline icon library and its searchable gallery live on{' '}
