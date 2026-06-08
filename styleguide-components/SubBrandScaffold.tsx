@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
 import { ArrowRight } from '../components/atoms/icons/ArrowRight'
-import { core, hrefForItem, hrefForSlug } from './brands'
+import { NavItem } from './designSystem.config'
+import { Brand, core, hrefForItem, hrefForSlug } from './brands'
 import { useBrand } from './BrandContext'
 import {
     Do,
@@ -36,15 +37,46 @@ const FoundationsCard = () => (
     </Link>
 )
 
+/** A card linking to one of the brand's own documentation pages. */
+const PageCard = ({ brand, item }: { brand: Brand; item: NavItem }) => (
+    <Link href={hrefForItem(brand, item)}>
+        <a className="group flex flex-col rounded-xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
+            <span className="flex items-center justify-between gap-2">
+                <span className="text-heading-s font-semibold text-navy dark:text-white group-hover:text-cyan">
+                    {item.title}
+                </span>
+                {item.status && <StatusBadge status={item.status} />}
+            </span>
+            <span className="mt-2 flex-1 text-body-small text-grey dark:text-light-grey">
+                {item.summary}
+            </span>
+            <span className="mt-4 inline-flex items-center gap-1.5 text-body-small font-semibold text-cyan">
+                Read more
+                <ArrowRight className="w-4 h-4 fill-current transition-transform group-hover:translate-x-1" />
+            </span>
+        </a>
+    </Link>
+)
+
 /**
  * The landing page shared by every sub-brand. Reads the active brand from
- * context (resolved from the URL by DesignSystemLayout) and surfaces the
- * brand's own representative page alongside the shared foundations.
+ * context (resolved from the URL by DesignSystemLayout) and surfaces all of the
+ * brand's own pages — grouped by their nav section — alongside the shared
+ * foundations. Scales from a single scaffolded page up to a fully built-out
+ * brand like Aged Care.
  */
 export const SubBrandLanding = () => {
     const brand = useBrand()
-    // The brand's own page that is not the landing itself.
-    const ownPage = brand.pagingDocs.find(doc => doc.slug !== '')
+    // The brand's own sections (excluding the inherited foundations) and, within
+    // them, every page except this landing.
+    const ownSections = brand.navSections
+        .map(section => ({
+            title: section.title,
+            items: section.items.filter(
+                item => !item.inherited && item.slug !== ''
+            ),
+        }))
+        .filter(section => section.items.length > 0)
 
     return (
         <>
@@ -66,29 +98,31 @@ export const SubBrandLanding = () => {
             </header>
 
             <Section id="explore" title="Explore">
-                <div className="grid gap-5 sm:grid-cols-2">
-                    {ownPage && (
-                        <Link href={hrefForItem(brand, ownPage)}>
-                            <a className="group flex flex-col rounded-xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
-                                <span className="flex items-center justify-between gap-2">
-                                    <span className="text-heading-s font-semibold text-navy dark:text-white group-hover:text-cyan">
-                                        {ownPage.title}
-                                    </span>
-                                    {ownPage.status && (
-                                        <StatusBadge status={ownPage.status} />
-                                    )}
-                                </span>
-                                <span className="mt-2 flex-1 text-body-small text-grey dark:text-light-grey">
-                                    {ownPage.summary}
-                                </span>
-                                <span className="mt-4 inline-flex items-center gap-1.5 text-body-small font-semibold text-cyan">
-                                    Read more
-                                    <ArrowRight className="w-4 h-4 fill-current transition-transform group-hover:translate-x-1" />
-                                </span>
-                            </a>
-                        </Link>
-                    )}
-                    <FoundationsCard />
+                <div className="space-y-8">
+                    {ownSections.map(section => (
+                        <div key={section.title}>
+                            <h3 className="mb-3 text-body-small font-bold uppercase tracking-wide text-disabled-text">
+                                {section.title}
+                            </h3>
+                            <div className="grid gap-5 sm:grid-cols-2">
+                                {section.items.map(item => (
+                                    <PageCard
+                                        key={item.slug}
+                                        brand={brand}
+                                        item={item}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                    <div>
+                        <h3 className="mb-3 text-body-small font-bold uppercase tracking-wide text-disabled-text">
+                            Foundations
+                        </h3>
+                        <div className="grid gap-5 sm:grid-cols-2">
+                            <FoundationsCard />
+                        </div>
+                    </div>
                 </div>
             </Section>
 

@@ -176,18 +176,101 @@ export const dental = makeSubBrand({
     },
 })
 
-export const agedCare = makeSubBrand({
+/*
+    Aged Care is the most built-out sub-brand: it is the line of business the
+    design system originally documented, so it carries real brand-specific
+    components (the care navigator, home-finder map, pricing calculator and
+    nearby-homes widget) and page patterns (the care-home detail page and the
+    find-a-home journey) on top of the shared foundations.
+*/
+export const agedCare: Brand = makeBrand({
     id: 'aged-care',
     label: 'Aged Care',
     title: 'Bupa Aged Care',
     tagline: 'Residential aged care and care homes built on the Bupa foundations.',
-    overview: {
-        title: 'Care homes',
-        slug: 'care-homes',
-        status: 'in-review',
-        summary: 'Care-home pages, the care navigator, pricing and nearby search.',
-        keywords: ['aged care', 'care home', 'residential', 'navigator', 'pricing', 'nearby'],
-    },
+    basePath: `${CORE_BASE_PATH}/aged-care`,
+    status: 'stable',
+    navSections: [
+        {
+            title: 'Overview',
+            items: [
+                {
+                    title: 'Introduction',
+                    slug: '',
+                    status: 'stable',
+                    summary:
+                        'Residential aged care and care homes built on the Bupa foundations.',
+                },
+                {
+                    title: 'Care homes',
+                    slug: 'care-homes',
+                    status: 'stable',
+                    summary:
+                        'The care-home experience end to end: discovery, the home detail page, and conversion.',
+                    keywords: ['aged care', 'care home', 'residential', 'overview', 'journey'],
+                },
+            ],
+        },
+        {
+            title: 'Care home components',
+            items: [
+                {
+                    title: 'Care navigator',
+                    slug: 'navigator',
+                    status: 'stable',
+                    summary:
+                        'A guided, multi-step needs assessment that recommends an aged-care pathway.',
+                    keywords: ['navigator', 'needs', 'assessment', 'wizard', 'pathway', 'steps'],
+                },
+                {
+                    title: 'Home finder map',
+                    slug: 'home-map',
+                    status: 'stable',
+                    summary:
+                        'An interactive map and list of care-home locations with state and region filtering.',
+                    keywords: ['map', 'locations', 'find', 'region', 'state', 'google maps', 'cluster'],
+                },
+                {
+                    title: 'Pricing calculator',
+                    slug: 'pricing',
+                    status: 'stable',
+                    summary:
+                        'The accommodation and care cost estimator with RAD/DAP breakdowns.',
+                    keywords: ['pricing', 'cost', 'calculator', 'rad', 'dap', 'fees', 'accommodation'],
+                },
+                {
+                    title: 'Nearby homes',
+                    slug: 'nearby-homes',
+                    status: 'stable',
+                    summary:
+                        'A sidebar widget surfacing the closest care homes by distance.',
+                    keywords: ['nearby', 'distance', 'closest', 'related', 'sidebar'],
+                },
+            ],
+        },
+        {
+            title: 'Patterns',
+            items: [
+                {
+                    title: 'Care home page',
+                    slug: 'home-page',
+                    status: 'stable',
+                    summary:
+                        'The anatomy of a care-home detail page: gallery, contact, pricing, testimonials and nearby homes.',
+                    keywords: ['template', 'detail', 'home page', 'layout', 'sidebar', 'anatomy'],
+                },
+                {
+                    title: 'Find a care home',
+                    slug: 'find-a-home',
+                    status: 'in-review',
+                    summary:
+                        'The discovery journey from a region search to a shortlisted care home.',
+                    keywords: ['search', 'find', 'discovery', 'journey', 'region', 'shortlist'],
+                },
+            ],
+        },
+        sharedFoundations(),
+    ],
 })
 
 export const corporate = makeSubBrand({
