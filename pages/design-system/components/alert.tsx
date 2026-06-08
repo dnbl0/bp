@@ -9,14 +9,11 @@ import {
     Do,
     Dont,
     DoDontGrid,
-    Specifications,
 } from '../../../styleguide-components/primitives'
 import AlertBlock from '../../../components/molecules/blocks/AlertBlock'
-import { alertDefaultSpecs } from '../../../styleguide-components/specs/alert.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
-    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -50,20 +47,6 @@ const Alert: NextPageWithLayout = () => (
                     </AlertBlock>
                 </div>
             </Example>
-        </Section>
-
-        <Section id="specifications" title="Visual Specifications">
-            <p className="text-grey dark:text-light-grey">
-                Component visual specifications for sizing, spacing and colors.
-            </p>
-            <Specifications variant="Default" groups={[alertDefaultSpecs]} withTable>
-                <div className="w-full">
-                    <AlertBlock>
-                        Our contact centre hours have changed over the holiday
-                        period.
-                    </AlertBlock>
-                </div>
-            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

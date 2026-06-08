@@ -10,9 +10,11 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { ChevronDownIcon } from '../../../components/atoms/icons/ChevronDownIcon'
 import { cx } from '../../../utils/cx'
+import { showMoreDefaultSpecs } from '../../../styleguide-components/specs/show-more.specs'
 
 const Demo = () => {
     const [open, setOpen] = useState(false)
@@ -39,6 +41,7 @@ const Demo = () => {
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -81,6 +84,17 @@ const ShowMore: NextPageWithLayout = () => (
                     <Demo />
                 </div>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[showMoreDefaultSpecs]} withTable>
+                <div className="w-full">
+                    <Demo />
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

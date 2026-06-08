@@ -9,11 +9,14 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { ComparisonTable } from '../../../components/molecules/ComparisonTable'
+import { comparisonTableDefaultSpecs } from '../../../styleguide-components/specs/comparison-table.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidance', title: 'Guidance' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -75,6 +78,21 @@ const Page: NextPageWithLayout = () => (
                     />
                 </div>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[comparisonTableDefaultSpecs]} withTable>
+                <div className="w-full">
+                    <ComparisonTable
+                        caption="Compare extras cover"
+                        columns={columns}
+                        rows={rows}
+                    />
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

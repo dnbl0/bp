@@ -9,11 +9,14 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { PlayArrow } from '../../../components/atoms/icons/PlayArrow'
+import { videoCardDefaultSpecs } from '../../../styleguide-components/specs/video-card.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -58,6 +61,15 @@ const VideoCard: NextPageWithLayout = () => (
                     </div>
                 </div>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[videoCardDefaultSpecs]} withTable>
+                <PlaceholderCard />
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

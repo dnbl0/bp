@@ -10,14 +10,11 @@ import {
     Do,
     Dont,
     DoDontGrid,
-    Specifications,
 } from '../../../styleguide-components/primitives'
 import { ToggleSwitch } from '../../../components/atoms/ToggleSwitch'
-import { toggleDefaultSpecs } from '../../../styleguide-components/specs/toggle.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
-    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidance', title: 'Guidance' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -63,15 +60,6 @@ const Page: NextPageWithLayout = () => (
             >
                 <ToggleDemo />
             </Example>
-        </Section>
-
-        <Section id="specifications" title="Visual Specifications">
-            <p className="text-grey dark:text-light-grey">
-                Component visual specifications for sizing, spacing and colors.
-            </p>
-            <Specifications variant="Default" groups={[toggleDefaultSpecs]} withTable>
-                <ToggleDemo />
-            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

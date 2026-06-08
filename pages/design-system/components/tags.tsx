@@ -9,11 +9,14 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { Tag } from '../../../components/atoms/Tag'
+import { tagsContainerSpecs } from '../../../styleguide-components/specs/tags.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -45,6 +48,18 @@ const Tags: NextPageWithLayout = () => (
                     <Tag title="Social activities" href="#" openInNewTab={false} bgColor="c-#f2f5f7" textColor="c-#00335b" />
                 </div>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[tagsContainerSpecs]} withTable>
+                <div className="flex flex-row flex-wrap">
+                    <Tag title="Respite care" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
+                    <Tag title="Dementia support" href="#" openInNewTab={false} bgColor="c-#f0f9ff" textColor="c-#0079c8" />
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

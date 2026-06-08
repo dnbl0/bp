@@ -9,9 +9,11 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
 import { cx } from '../../../utils/cx'
+import { colouredCardDefaultSpecs } from '../../../styleguide-components/specs/coloured-card.specs'
 
 const DemoCard = ({
     bg = 'bg-cyan',
@@ -50,6 +52,7 @@ const DemoCard = ({
 const toc = [
     { id: 'colours', title: 'Colours' },
     { id: 'layouts', title: 'Body positions' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -97,6 +100,15 @@ const ColouredCard: NextPageWithLayout = () => (
             >
                 <DemoCard bg="bg-purple" />
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[colouredCardDefaultSpecs]} withTable>
+                <DemoCard bg="bg-cyan" />
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

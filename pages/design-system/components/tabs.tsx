@@ -9,14 +9,11 @@ import {
     Do,
     Dont,
     DoDontGrid,
-    Specifications,
 } from '../../../styleguide-components/primitives'
 import { Tabs } from '../../../components/molecules/Tabs'
-import { tabsDefaultSpecs } from '../../../styleguide-components/specs/tabs.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
-    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'accessibility', title: 'Accessibility' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -70,17 +67,6 @@ const Page: NextPageWithLayout = () => (
                     <Tabs label="Cover types" items={demoItems} />
                 </div>
             </Example>
-        </Section>
-
-        <Section id="specifications" title="Visual Specifications">
-            <p className="text-grey dark:text-light-grey">
-                Component visual specifications for sizing, spacing and colors.
-            </p>
-            <Specifications variant="Default" groups={[tabsDefaultSpecs]} withTable>
-                <div className="w-full">
-                    <Tabs label="Cover types" items={demoItems} />
-                </div>
-            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

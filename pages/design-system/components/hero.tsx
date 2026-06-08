@@ -10,9 +10,11 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { ImagePlaceholderIcon } from '../../../components/atoms/icons/ImagePlaceholderIcon'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
+import { heroDefaultSpecs } from '../../../styleguide-components/specs/hero.specs'
 
 const HeroDemo = () => (
     <div className="w-full">
@@ -44,6 +46,7 @@ const HeroDemo = () => (
 const toc = [
     { id: 'example', title: 'Example' },
     { id: 'anatomy', title: 'Anatomy' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -107,6 +110,15 @@ const Hero: NextPageWithLayout = () => (
                     <div className="bg-cyan-400 min-h-[64px]" />
                 </div>
             </Anatomy>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[heroDefaultSpecs]} withTable>
+                <HeroDemo />
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

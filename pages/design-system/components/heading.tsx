@@ -9,13 +9,10 @@ import {
     Do,
     Dont,
     DoDontGrid,
-    Specifications,
 } from '../../../styleguide-components/primitives'
-import { headingH1Specs } from '../../../styleguide-components/specs/heading.specs'
 
 const toc = [
     { id: 'sizes', title: 'Sizes' },
-    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -43,19 +40,6 @@ const Heading: NextPageWithLayout = () => (
                     <p className="text-heading-m font-medium text-navy">Medium, medium weight</p>
                 </div>
             </Example>
-        </Section>
-
-        <Section id="specifications" title="Visual Specifications">
-            <p className="text-grey dark:text-light-grey">
-                Component visual specifications for sizing, spacing and colors.
-            </p>
-            <Specifications variant="Default" groups={[headingH1Specs]} withTable>
-                <div className="space-y-3">
-                    <p className="text-heading-l font-semibold text-navy">Large heading</p>
-                    <p className="text-heading-m font-semibold text-navy">Medium heading</p>
-                    <p className="text-heading-s font-semibold text-navy">Small heading</p>
-                </div>
-            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

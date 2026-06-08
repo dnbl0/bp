@@ -1,7 +1,8 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import { ComponentHero } from '../../../styleguide-components/componentPreviews'
-import { PageHeader, Section } from '../../../styleguide-components/primitives'
+import { PageHeader, Section, Specifications } from '../../../styleguide-components/primitives'
+import { sectionsDefaultSpecs } from '../../../styleguide-components/specs/sections.specs'
 
 const gridSections = [
     { name: 'Section12', split: [12], detail: 'Full-width, single column.' },
@@ -25,6 +26,7 @@ const layoutSections = [
 const toc = [
     { id: 'grid', title: 'Grid sections' },
     { id: 'layout', title: 'Layout sections' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'usage', title: 'Usage' },
 ]
 
@@ -83,6 +85,22 @@ const Sections: NextPageWithLayout = () => (
                     </div>
                 ))}
             </div>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[sectionsDefaultSpecs]} withTable>
+                <div className="grid grid-cols-12 gap-2">
+                    <div className="h-12 rounded bg-cyan-50 dark:bg-charcoal border border-cyan/40 flex items-center justify-center text-caption font-mono text-cyan" style={{ gridColumn: 'span 6' }}>
+                        6
+                    </div>
+                    <div className="h-12 rounded bg-cyan-50 dark:bg-charcoal border border-cyan/40 flex items-center justify-center text-caption font-mono text-cyan" style={{ gridColumn: 'span 6' }}>
+                        6
+                    </div>
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="usage" title="Usage">

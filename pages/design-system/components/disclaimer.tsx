@@ -6,14 +6,17 @@ import {
     Section,
     Example,
     PropsTable,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import {
     Disclaimer,
     FootnoteRef,
 } from '../../../components/molecules/Disclaimer'
+import { disclaimerDefaultSpecs } from '../../../styleguide-components/specs/disclaimer.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'usage', title: 'Usage' },
 ]
@@ -71,6 +74,15 @@ const Page: NextPageWithLayout = () => (
                     <Disclaimer footnotes={footnotes} defaultOpen />
                 </div>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[disclaimerDefaultSpecs]} withTable>
+                <Disclaimer footnotes={footnotes} defaultOpen />
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">
