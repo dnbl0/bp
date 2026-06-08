@@ -6,11 +6,14 @@ import {
     Section,
     Example,
     PropsTable,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { SkipLinks } from '../../../components/atoms/SkipLinks'
+import { skipLinksDefaultSpecs } from '../../../styleguide-components/specs/skip-links.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'usage', title: 'Usage' },
 ]
@@ -46,6 +49,17 @@ const Page: NextPageWithLayout = () => (
                     <SkipLinks />
                 </div>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[skipLinksDefaultSpecs]} withTable>
+                <div className="w-full">
+                    <SkipLinks />
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

@@ -10,11 +10,14 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { Pagination } from '../../../components/atoms/Pagination'
+import { paginationDefaultSpecs } from '../../../styleguide-components/specs/pagination.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -52,6 +55,15 @@ const Page: NextPageWithLayout = () => (
             >
                 <PaginationDemo />
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[paginationDefaultSpecs]} withTable>
+                <Pagination page={4} totalPages={12} onPageChange={() => {}} />
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

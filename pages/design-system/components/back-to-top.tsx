@@ -9,11 +9,14 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { ArrowUp } from '../../../components/atoms/icons/ArrowUp'
+import { backToTopDefaultSpecs } from '../../../styleguide-components/specs/back-to-top.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -49,6 +52,19 @@ const BackToTopPage: NextPageWithLayout = () => (
                     </div>
                 </div>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[backToTopDefaultSpecs]} withTable>
+                <div className="group flex cursor-pointer">
+                    <div className="rounded-full bg-cyan p-4 group-hover:drop-shadow group-hover:bg-[#000055] group-active:bg-[#000055]">
+                        <ArrowUp className="fill-white" />
+                    </div>
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

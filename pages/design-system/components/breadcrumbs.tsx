@@ -10,8 +10,10 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
+import { breadcrumbsDefaultSpecs } from '../../../styleguide-components/specs/breadcrumbs.specs'
 
 const trail = [
     { title: 'Home', link: '#' },
@@ -21,6 +23,7 @@ const trail = [
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -64,6 +67,25 @@ const Breadcrumbs: NextPageWithLayout = () => (
                     <span className="font-semibold">Sunshine Aged Care</span>
                 </div>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[breadcrumbsDefaultSpecs]} withTable>
+                <div className="flex text-sm text-navy items-center flex-wrap">
+                    {trail.map((crumb, index) => (
+                        <Fragment key={index}>
+                            <a className="underline hover:text-cyan" href={crumb.link}>
+                                {crumb.title}
+                            </a>
+                            <ChevronRightIcon className="fill-navy mx-4 my-auto" />
+                        </Fragment>
+                    ))}
+                    <span className="font-semibold">Sunshine Aged Care</span>
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

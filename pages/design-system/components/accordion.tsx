@@ -11,8 +11,10 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { cx } from '../../../utils/cx'
+import { accordionDefaultSpecs } from '../../../styleguide-components/specs/accordion.specs'
 
 /*
     A self-contained reproduction of the production AccordionPanel markup
@@ -58,6 +60,7 @@ const DemoPanel = ({
 const toc = [
     { id: 'example', title: 'Example' },
     { id: 'anatomy', title: 'Anatomy' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -125,6 +128,20 @@ const Accordion: NextPageWithLayout = () => (
                     <div className="px-4 pb-4 text-body-small text-grey">Body content</div>
                 </div>
             </Anatomy>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[accordionDefaultSpecs]} withTable>
+                <div className="w-full bg-white">
+                    <DemoPanel first header="What is residential aged care?">
+                        Residential aged care provides accommodation and support for
+                        older people who can no longer live at home.
+                    </DemoPanel>
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

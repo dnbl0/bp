@@ -9,11 +9,14 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { Tag } from '../../../components/atoms/Tag'
+import { tagDefaultSpecs } from '../../../styleguide-components/specs/tag.specs'
 
 const toc = [
     { id: 'examples', title: 'Examples' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -44,6 +47,15 @@ const Tags: NextPageWithLayout = () => (
                 <Tag title="Nutrition" href="#" openInNewTab={false} bgColor="c-#f0f9ff" textColor="c-#0079c8" />
                 <Tag title="Community" href="#" openInNewTab={false} bgColor="c-#f8f7f4" textColor="c-#942151" />
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[tagDefaultSpecs]} withTable>
+                <Tag title="Wellbeing" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

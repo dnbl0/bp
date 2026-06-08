@@ -10,11 +10,14 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { Stepper } from '../../../components/molecules/Stepper'
+import { stepperDefaultSpecs } from '../../../styleguide-components/specs/stepper.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'accessibility', title: 'Accessibility' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -85,6 +88,15 @@ const Page: NextPageWithLayout = () => (
             >
                 <StepperDemo />
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={[stepperDefaultSpecs]} withTable>
+                <Stepper steps={steps} current={2} label="Get a quote" />
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">
