@@ -10,13 +10,18 @@ import {
     SITE_TITLE,
     hrefFor,
 } from '../../styleguide-components/designSystem.config'
+import { brands } from '../../styleguide-components/brands'
 
 const toc = [
     { id: 'explore', title: 'Explore' },
+    { id: 'brands', title: 'Brands' },
     { id: 'principles', title: 'Principles' },
     { id: 'how-it-works', title: 'How it works' },
     { id: 'help', title: 'Need help?' },
 ]
+
+/** The sub-brands surfaced on the home page, sourced from the brand registry. */
+const subBrands = brands.filter(brand => !brand.isCore)
 
 /**
  * The top-level destinations surfaced on the landing page, modelled on the
@@ -107,7 +112,8 @@ const Hero = () => (
             </div>
             <p className="mt-4 max-w-2xl text-heading-s text-grey dark:text-light-grey">
                 {SITE_TAGLINE} A set of guidelines, principles and patterns for
-                designing and building the Bupa Aged Care experience.
+                designing and building every Bupa brand experience on one shared
+                set of foundations.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
                 <Link href={hrefFor('getting-started')}>
@@ -169,6 +175,36 @@ const DesignSystemHome: NextPageWithLayout = () => (
                             </span>
                             <span className="mt-4 inline-flex items-center gap-1.5 text-body-small font-semibold text-cyan">
                                 Learn more
+                                <ArrowRight className="w-4 h-4 fill-current transition-transform group-hover:translate-x-1" />
+                            </span>
+                        </a>
+                    </Link>
+                ))}
+            </div>
+        </Section>
+
+        <Section id="brands" title="Brands">
+            <p className="-mt-2 mb-6 max-w-2xl text-grey dark:text-light-grey">
+                Each line of business has its own space for brand-specific
+                components, patterns and guidance — all built on the shared
+                foundations above. Switch between them any time from the brand
+                menu in the header.
+            </p>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {subBrands.map(brand => (
+                    <Link key={brand.id} href={brand.basePath}>
+                        <a className="group flex flex-col rounded-xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
+                            <span className="flex items-center justify-between gap-2">
+                                <span className="text-heading-s font-semibold text-navy dark:text-white group-hover:text-cyan">
+                                    {brand.label}
+                                </span>
+                                <StatusBadge status={brand.status} />
+                            </span>
+                            <span className="mt-2 flex-1 text-body-small text-grey dark:text-light-grey">
+                                {brand.tagline}
+                            </span>
+                            <span className="mt-4 inline-flex items-center gap-1.5 text-body-small font-semibold text-cyan">
+                                Open {brand.label}
                                 <ArrowRight className="w-4 h-4 fill-current transition-transform group-hover:translate-x-1" />
                             </span>
                         </a>

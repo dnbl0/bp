@@ -6,13 +6,10 @@ import { SquareBupaLogo } from '../components/atoms/icons/SquareBupaLogo'
 import { BurgerIcon } from '../components/atoms/icons/BurgerIcon'
 import { CloseIcon } from '../components/atoms/icons/CloseIcon'
 import { cx } from '../utils/cx'
-import {
-    BASE_PATH,
-    SITE_TAGLINE,
-    SITE_TITLE,
-    hrefFor,
-    navSections,
-} from './designSystem.config'
+import { BASE_PATH, SITE_TITLE } from './designSystem.config'
+import { Brand, brandForPath, hrefForItem } from './brands'
+import { BrandProvider } from './BrandContext'
+import { BrandSwitcher } from './BrandSwitcher'
 import { StatusBadge } from './primitives/StatusBadge'
 import { Breadcrumbs } from './primitives/Breadcrumbs'
 import { PrevNext } from './primitives/PrevNext'
@@ -85,21 +82,23 @@ const useTheme = (): [boolean, () => void] => {
 }
 
 const Sidebar = ({
+    brand,
     currentPath,
     onNavigate,
 }: {
+    brand: Brand
     currentPath: string
     onNavigate: () => void
 }) => (
     <nav className="px-3 py-6 space-y-7" aria-label="Design system">
-        {navSections.map(section => (
+        {brand.navSections.map(section => (
             <div key={section.title}>
                 <p className="px-2.5 mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-disabled-text">
                     {section.title}
                 </p>
                 <ul className="space-y-px">
                     {section.items.map(item => {
-                        const href = hrefFor(item.slug)
+                        const href = hrefForItem(brand, item)
                         const active = currentPath === href
                         return (
                             <li key={href}>
@@ -114,7 +113,18 @@ const Sidebar = ({
                                                 : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal hover:text-navy dark:hover:text-white'
                                         )}
                                     >
-                                        {item.title}
+                                        <span className="flex items-center gap-1.5">
+                                            {item.title}
+                                            {item.inherited && (
+                                                <span
+                                                    aria-hidden="true"
+                                                    title="Shared from the Bupa core"
+                                                    className="text-disabled-text"
+                                                >
+                                                    ↗
+                                                </span>
+                                            )}
+                                        </span>
                                         {item.status && item.status !== 'stable' && (
                                             <StatusBadge status={item.status} />
                                         )}
@@ -141,23 +151,25 @@ export const DesignSystemLayout = ({
     wide = false,
 }: DesignSystemLayoutProps) => {
     const router = useRouter()
+    const brand = brandForPath(router.asPath)
     const [dark, toggleTheme] = useTheme()
     const [mobileNavOpen, setMobileNavOpen] = useState(false)
     const closeMobileNav = () => setMobileNavOpen(false)
     const activeId = useScrollSpy(toc.map(entry => entry.id))
-    // Strip the base path, leading slash and any query/hash to recover the
-    // page slug used throughout the config (e.g. `components/button`).
+    // Strip the active brand's base path, leading slash and any query/hash to
+    // recover the brand-relative page slug (e.g. `components/button`).
     const slug = router.asPath
-        .replace(BASE_PATH, '')
+        .replace(brand.basePath, '')
         .split(/[?#]/)[0]
         .replace(/^\//, '')
 
     return (
+        <BrandProvider value={brand}>
         <div className={cx(dark && 'dark')}>
             <Head>
-                <title>{`${title} · ${SITE_TITLE}`}</title>
+                <title>{`${title} · ${brand.title}`}</title>
                 <meta name="robots" content="noindex" />
-                <meta name="description" content={SITE_TAGLINE} />
+                <meta name="description" content={brand.tagline} />
             </Head>
             <div className="min-h-screen bg-white dark:bg-grey text-grey dark:text-light-grey">
                 {/* Top bar */}
@@ -182,6 +194,7 @@ export const DesignSystemLayout = ({
                             </span>
                         </a>
                     </Link>
+                    <BrandSwitcher />
                     <div className="flex-1 flex justify-center">
                         <Search onNavigate={closeMobileNav} />
                     </div>
@@ -203,7 +216,11 @@ export const DesignSystemLayout = ({
                             mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
                         )}
                     >
-                        <Sidebar currentPath={router.asPath} onNavigate={closeMobileNav} />
+                        <Sidebar
+                            brand={brand}
+                            currentPath={router.asPath}
+                            onNavigate={closeMobileNav}
+                        />
                     </aside>
 
                     {mobileNavOpen && (
@@ -257,5 +274,6 @@ export const DesignSystemLayout = ({
                 </div>
             </div>
         </div>
+        </BrandProvider>
     )
 }

@@ -2,7 +2,9 @@ import Link from 'next/link'
 import { ArrowLeft } from '../../components/atoms/icons/ArrowLeft'
 import { ArrowRight } from '../../components/atoms/icons/ArrowRight'
 import { cx } from '../../utils/cx'
-import { adjacentDocs, hrefFor, NavItem } from '../designSystem.config'
+import { NavItem } from '../designSystem.config'
+import { useBrand } from '../BrandContext'
+import { adjacentDocs, hrefForItem } from '../brands'
 
 const PagerCard = ({
     doc,
@@ -11,9 +13,10 @@ const PagerCard = ({
     doc: NavItem
     direction: 'prev' | 'next'
 }) => {
+    const brand = useBrand()
     const isPrev = direction === 'prev'
     return (
-        <Link href={hrefFor(doc.slug)}>
+        <Link href={hrefForItem(brand, doc)}>
             <a
                 className={cx(
                     'group flex flex-1 flex-col gap-1 rounded-xl border border-cool-paper-200 dark:border-charcoal p-4 hover:border-cyan transition-colors',
@@ -46,7 +49,8 @@ const PagerCard = ({
  * derived from the reading order in `allDocs`.
  */
 export const PrevNext = ({ slug }: { slug: string }) => {
-    const { prev, next } = adjacentDocs(slug)
+    const brand = useBrand()
+    const { prev, next } = adjacentDocs(brand, slug)
     if (!prev && !next) return null
 
     return (

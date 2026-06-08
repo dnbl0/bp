@@ -3,7 +3,9 @@ import { useRouter } from 'next/router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { SearchIcon } from '../components/atoms/icons/SearchIcon'
 import { cx } from '../utils/cx'
-import { allDocs, hrefFor, NavItem } from './designSystem.config'
+import { NavItem } from './designSystem.config'
+import { useBrand } from './BrandContext'
+import { hrefForItem } from './brands'
 
 const MAX_RESULTS = 12
 
@@ -41,6 +43,7 @@ const score = (doc: NavItem, term: string): number => {
  */
 export const Search = ({ onNavigate }: { onNavigate: () => void }) => {
     const router = useRouter()
+    const brand = useBrand()
     const inputRef = useRef<HTMLInputElement>(null)
     const [query, setQuery] = useState('')
     const [active, setActive] = useState(0)
@@ -48,13 +51,13 @@ export const Search = ({ onNavigate }: { onNavigate: () => void }) => {
     const results = useMemo(() => {
         const term = query.trim().toLowerCase()
         if (!term) return []
-        return allDocs
+        return brand.allDocs
             .map(doc => ({ doc, rank: score(doc, term) }))
             .filter(entry => entry.rank > 0)
             .sort((a, b) => b.rank - a.rank || a.doc.title.localeCompare(b.doc.title))
             .slice(0, MAX_RESULTS)
             .map(entry => entry.doc)
-    }, [query])
+    }, [query, brand])
 
     // Reset the highlighted result whenever the result set changes.
     useEffect(() => setActive(0), [results.length, query])
@@ -77,7 +80,7 @@ export const Search = ({ onNavigate }: { onNavigate: () => void }) => {
     }
 
     const go = (doc: NavItem) => {
-        router.push(hrefFor(doc.slug))
+        router.push(hrefForItem(brand, doc))
         inputRef.current?.blur()
         close()
     }
@@ -112,8 +115,8 @@ export const Search = ({ onNavigate }: { onNavigate: () => void }) => {
                     value={query}
                     onChange={event => setQuery(event.target.value)}
                     onKeyDown={onInputKeyDown}
-                    placeholder="Search the design system"
-                    aria-label="Search the design system"
+                    placeholder={`Search ${brand.label}`}
+                    aria-label={`Search ${brand.label}`}
                     role="combobox"
                     aria-expanded={results.length > 0}
                     aria-controls="bds-search-results"
@@ -139,7 +142,7 @@ export const Search = ({ onNavigate }: { onNavigate: () => void }) => {
                             role="option"
                             aria-selected={index === active}
                         >
-                            <Link href={hrefFor(doc.slug)}>
+                            <Link href={hrefForItem(brand, doc)}>
                                 <a
                                     onMouseEnter={() => setActive(index)}
                                     onClick={close}
