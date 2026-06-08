@@ -57,10 +57,17 @@ export const CodeBlock = ({ code, language = 'tsx' }: CodeBlockProps) => {
                     <pre
                         className={cx(
                             className,
-                            'm-0 p-4 overflow-x-auto text-sm leading-relaxed'
+                            'm-0 p-3 sm:p-4 text-xs sm:text-sm leading-relaxed'
                         )}
+                        // Soft-wrap long lines so code never needs horizontal
+                        // scrolling; long unbroken tokens break rather than overflow.
                         // Keep the docs' charcoal canvas rather than the theme's default.
-                        style={{ ...style, background: '#23282d' }}
+                        style={{
+                            ...style,
+                            background: '#23282d',
+                            whiteSpace: 'pre-wrap',
+                            overflowWrap: 'anywhere',
+                        }}
                     >
                         {tokens.map((line, lineIndex) => (
                             <div key={lineIndex} {...getLineProps({ line })}>

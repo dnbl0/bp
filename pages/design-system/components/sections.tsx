@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import { PageHeader, Section } from '../../../styleguide-components/primitives'
 
 const gridSections = [
@@ -35,6 +36,8 @@ const Sections: NextPageWithLayout = () => (
             status="stable"
             intro="Sections are full-width bands that arrange content blocks on a 12-column grid. Authors choose a named layout rather than composing column spans by hand, keeping pages consistent and responsive."
         />
+
+        <ComponentHero name="Section6x6" />
 
         <Section id="grid" title="Grid sections">
             <div className="space-y-6">

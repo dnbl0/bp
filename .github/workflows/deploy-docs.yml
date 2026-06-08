@@ -1,22 +1,24 @@
-name: Deploy design-system docs
+name: Deploy design system docs
 
-# Builds the static design-system documentation and publishes it to GitHub
-# Pages (served at https://dnbl0.github.io/bp/design-system/). Only the
-# fully-static /design-system pages are exported; the main app's SSR and API
-# routes are pruned by scripts/export-docs.mjs so `next export` can run.
+# Publishes the static /design-system documentation to GitHub Pages
+# (https://dnbl0.github.io/bp/design-system/) on every push to main.
+#
+# One-time setup: repo Settings -> Pages -> Build and deployment ->
+# Source: "GitHub Actions".
 
 on:
     push:
-        branches: [main, design-system-docs-improvements]
-        # Skip runs that only touch things irrelevant to the docs build.
+        branches: [main]
         paths:
-            - 'components/**'
             - 'pages/design-system/**'
             - 'styleguide-components/**'
+            - 'components/**'
             - 'styles/**'
             - 'public/**'
+            - 'utils/**'
+            - 'tailwind.config.js'
             - 'next.config.js'
-            - 'scripts/export-docs.mjs'
+            - 'scripts/build-docs.sh'
             - '.github/workflows/deploy-docs.yml'
     workflow_dispatch:
 
@@ -25,7 +27,7 @@ permissions:
     pages: write
     id-token: write
 
-# Allow one concurrent deployment; never cancel an in-progress one.
+# Allow one concurrent deployment; let in-progress runs finish.
 concurrency:
     group: pages
     cancel-in-progress: false
@@ -34,27 +36,31 @@ jobs:
     build:
         runs-on: ubuntu-latest
         env:
-            # The docs pages never query Contentful, but _app constructs an
-            # Apollo client whose factory throws if these are undefined. Dummy
-            # values satisfy that guard; no real credentials are needed.
-            NEXT_PUBLIC_CONTENTFUL_SPACE_ID: docs-export
+            DOCS_EXPORT: '1'
+            DOCS_BASE_PATH: /bp
+            # Dummy values so the Apollo client can construct at build time.
+            # The docs never query Contentful.
+            NEXT_PUBLIC_CONTENTFUL_SPACE_ID: dummy
             NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: master
-            NEXT_PUBLIC_CONTENT_DELIVERY_ACCESS_TOKEN: docs-export
-            NEXT_PUBLIC_CONTENT_PREVIEW_ACCESS_TOKEN: docs-export
+            NEXT_PUBLIC_CONTENT_DELIVERY_ACCESS_TOKEN: dummy
+            NEXT_PUBLIC_CONTENT_PREVIEW_ACCESS_TOKEN: dummy
         steps:
             - uses: actions/checkout@v4
             - uses: actions/setup-node@v4
               with:
-                  node-version: 18
+                  node-version: 20
                   cache: yarn
-            - name: Install dependencies
-              run: yarn install --frozen-lockfile
+            - run: yarn install --frozen-lockfile
             - name: Build static docs
-              run: node scripts/export-docs.mjs
-            - name: Upload Pages artifact
-              uses: actions/upload-pages-artifact@v3
+              run: bash scripts/build-docs.sh
+            - uses: actions/configure-pages@v5
               with:
-                  path: ./out
+                  # Enable GitHub Pages (Actions source) automatically so no
+                  # manual repo-settings step is required.
+                  enablement: true
+            - uses: actions/upload-pages-artifact@v3
+              with:
+                  path: out
 
     deploy:
         needs: build
@@ -63,6 +69,5 @@ jobs:
             name: github-pages
             url: ${{ steps.deployment.outputs.page_url }}
         steps:
-            - name: Deploy to GitHub Pages
-              id: deployment
+            - id: deployment
               uses: actions/deploy-pages@v4

@@ -1,10 +1,14 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { Tabs } from '../../../components/molecules/Tabs'
 
@@ -12,6 +16,7 @@ const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'accessibility', title: 'Accessibility' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const demoItems = [
@@ -43,6 +48,8 @@ const Page: NextPageWithLayout = () => (
             status="stable"
             intro="An accessible tabbed panel for organising dense product information — cover details, eligibility, FAQs — without lengthening the page. Follows the WAI-ARIA tabs pattern with full arrow-key navigation."
         />
+
+        <ComponentHero name="Tabs" />
 
         <Section id="example" title="Example">
             <Example
@@ -106,6 +113,33 @@ const Page: NextPageWithLayout = () => (
                     is removed from the accessibility tree and tab order.
                 </li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Keep tab labels to one or two words so the whole set stays on one row.">
+                    <div className="w-full">
+                        <Tabs
+                            label="Cover types"
+                            items={[
+                                { id: 'hospital', label: 'Hospital', content: 'Hospital cover.' },
+                                { id: 'extras', label: 'Extras', content: 'Extras cover.' },
+                            ]}
+                        />
+                    </div>
+                </Do>
+                <Dont note="Don't bury content a user must always see inside a non-default tab.">
+                    <div className="w-full">
+                        <Tabs
+                            label="Cover types"
+                            items={[
+                                { id: 'a', label: 'Overview', content: 'Overview.' },
+                                { id: 'b', label: 'Important pricing you must read', content: 'Hidden price.' },
+                            ]}
+                        />
+                    </div>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

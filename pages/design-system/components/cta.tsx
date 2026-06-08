@@ -1,16 +1,21 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
 
 const toc = [
     { id: 'examples', title: 'Examples' },
     { id: 'props', title: 'Props' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Cta: NextPageWithLayout = () => (
@@ -21,6 +26,8 @@ const Cta: NextPageWithLayout = () => (
             status="stable"
             intro="A call-to-action button authored in the CMS. It maps content options — size, variant, icon and alignment — onto the Button class API, so its appearance always matches the Button foundation."
         />
+
+        <ComponentHero name="CtaBlock" />
 
         <Section id="examples" title="Examples">
             <p className="text-grey dark:text-light-grey">
@@ -87,6 +94,27 @@ const Cta: NextPageWithLayout = () => (
                     { name: 'alignment', type: "'Left' | 'Center' | 'Right'", default: 'Left', description: 'Horizontal alignment of the button within its container.' },
                 ]}
             />
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Use a trailing chevron for actions that move the user forward, so the icon direction reinforces the journey.">
+                    <a className="button" href="#">
+                        <span>Find a care home</span>
+                        <span>
+                            <ChevronRightIcon />
+                        </span>
+                    </a>
+                </Do>
+                <Dont note="Don't put a forward-pointing chevron on a back action — use a leading, rotated chevron instead.">
+                    <a className="button button--secondary" href="#">
+                        <span>Back to results</span>
+                        <span>
+                            <ChevronRightIcon />
+                        </span>
+                    </a>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

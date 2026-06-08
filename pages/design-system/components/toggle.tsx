@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { ToggleSwitch } from '../../../components/atoms/ToggleSwitch'
 
@@ -13,6 +17,7 @@ const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'guidance', title: 'Guidance' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const ToggleDemo = () => {
@@ -39,6 +44,8 @@ const Page: NextPageWithLayout = () => (
             status="stable"
             intro="A binary on/off control built on a real checkbox input for full keyboard and screen-reader support. Used for choices like monthly/annual payment or including an extra, where a switch reads more clearly than a checkbox."
         />
+
+        <ComponentHero name="ToggleSwitch" />
 
         <Section id="example" title="Example">
             <Example
@@ -113,6 +120,17 @@ const Page: NextPageWithLayout = () => (
                     <span className="font-mono">checked</span>.
                 </li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Use a toggle for an instant on/off setting that takes effect immediately.">
+                    <ToggleSwitch checked onChange={() => undefined} label="Pay annually" />
+                </Do>
+                <Dont note="Don't use a toggle for a destructive action that needs confirmation — use a button instead.">
+                    <ToggleSwitch checked={false} onChange={() => undefined} label="Delete my account" />
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

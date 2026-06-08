@@ -1,15 +1,20 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 
 const toc = [
     { id: 'sizes', title: 'Sizes' },
     { id: 'props', title: 'Props' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Heading: NextPageWithLayout = () => (
@@ -20,6 +25,8 @@ const Heading: NextPageWithLayout = () => (
             status="stable"
             intro="A standalone section heading authored in the CMS. It exposes three sizes and two weights, and registers a scroll-target anchor so in-page navigation can jump to it."
         />
+
+        <ComponentHero name="HeadingBlock" />
 
         <Section id="sizes" title="Sizes">
             <Example
@@ -46,6 +53,23 @@ const Heading: NextPageWithLayout = () => (
                     { name: 'addTopMargin', type: 'boolean', description: 'Adds mt-12 above the heading.' },
                 ]}
             />
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Step heading sizes down with the content hierarchy so larger sizes signal more important sections.">
+                    <div className="space-y-2">
+                        <p className="text-heading-l font-semibold text-navy">Our homes</p>
+                        <p className="text-heading-s font-semibold text-navy">Find a home near you</p>
+                    </div>
+                </Do>
+                <Dont note="Don't size a subsection heading larger than the section it sits under — it breaks the reading order.">
+                    <div className="space-y-2">
+                        <p className="text-heading-s font-semibold text-navy">Our homes</p>
+                        <p className="text-heading-l font-semibold text-navy">Find a home near you</p>
+                    </div>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

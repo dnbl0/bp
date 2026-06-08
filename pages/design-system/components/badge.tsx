@@ -1,10 +1,14 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { Badge } from '../../../components/atoms/Badge'
 
@@ -12,6 +16,7 @@ const toc = [
     { id: 'examples', title: 'Examples' },
     { id: 'props', title: 'Props' },
     { id: 'guidance', title: 'Guidance' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Page: NextPageWithLayout = () => (
@@ -22,6 +27,8 @@ const Page: NextPageWithLayout = () => (
             status="stable"
             intro="A small, non-interactive label that communicates status, category or recognition — for example a “New” flag, an availability state, or a Canstar award mark. Unlike a Tag, a Badge never links anywhere."
         />
+
+        <ComponentHero name="Badge" />
 
         <Section id="examples" title="Examples">
             <Example
@@ -104,6 +111,21 @@ const Page: NextPageWithLayout = () => (
                     award.
                 </li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Keep labels to one or two words and match the tone to its meaning so status reads at a glance.">
+                    <Badge tone="success" withDot>
+                        Active
+                    </Badge>
+                </Do>
+                <Dont note="Don't pack a sentence into a badge — use body text for anything longer than a couple of words.">
+                    <Badge tone="warning" withDot>
+                        Your application is currently pending review
+                    </Badge>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

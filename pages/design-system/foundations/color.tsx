@@ -10,11 +10,11 @@ import {
 } from '../../../styleguide-components/primitives'
 import { colorGroups } from '../../../styleguide-components/tokens'
 
+const slugify = (value: string): string =>
+    value.toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, '')
+
 const toc = [
-    ...colorGroups.map(group => ({
-        id: group.name.toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, ''),
-        title: group.name,
-    })),
+    ...colorGroups.map(group => ({ id: slugify(group.name), title: group.name })),
     { id: 'usage', title: 'Usage' },
 ]
 
@@ -36,17 +36,11 @@ const Color: NextPageWithLayout = () => (
             hex values in components.
         </p>
 
-        {colorGroups.map(group => {
-            const id = group.name
-                .toLowerCase()
-                .replace(/[^a-z]+/g, '-')
-                .replace(/^-|-$/g, '')
-            return (
-                <section key={group.name} id={id} className="scroll-mt-24">
-                    <SwatchGrid group={group} />
-                </section>
-            )
-        })}
+        {colorGroups.map(group => (
+            <Section key={group.name} id={slugify(group.name)} title={group.name}>
+                <SwatchGrid group={group} />
+            </Section>
+        ))}
 
         <Section id="usage" title="Usage">
             <p className="text-grey dark:text-light-grey">

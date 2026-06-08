@@ -2,11 +2,18 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useState } from 'react'
-import { SquareBupaLogo } from '../components/atoms/icons/SquareBupaLogo'
+import { PulseLogo } from '../components/atoms/icons/PulseLogo'
 import { BurgerIcon } from '../components/atoms/icons/BurgerIcon'
 import { CloseIcon } from '../components/atoms/icons/CloseIcon'
+import { GitHubIcon } from '../components/atoms/icons/GitHubIcon'
+import { FigmaIcon } from '../components/atoms/icons/FigmaIcon'
 import { cx } from '../utils/cx'
-import { BASE_PATH, SITE_TITLE } from './designSystem.config'
+import {
+    BASE_PATH,
+    SITE_TITLE,
+    githubEditUrl,
+    figmaDesignUrl,
+} from './designSystem.config'
 import { Brand, brandForPath, hrefForItem } from './brands'
 import { BrandProvider } from './BrandContext'
 import { BrandSwitcher } from './BrandSwitcher'
@@ -27,9 +34,8 @@ interface DesignSystemLayoutProps {
     /** Anchors for the "On this page" rail. */
     toc?: TocEntry[]
     /**
-     * Widens the content column for landing-style pages (e.g. the
-     * introduction) whose hero and card grids need more room than the
-     * standard prose measure.
+     * Widen the content column and hide the "On this page" rail — useful for
+     * gallery-style pages like the component overview.
      */
     wide?: boolean
 }
@@ -90,13 +96,20 @@ const Sidebar = ({
     currentPath: string
     onNavigate: () => void
 }) => (
-    <nav className="px-3 py-6 space-y-7" aria-label="Design system">
-        {brand.navSections.map(section => (
+    <nav className="px-4 py-6 space-y-8" aria-label="Design system">
+        {brand.navSections.map(section => {
+            const headingId = `bds-nav-${section.title
+                .toLowerCase()
+                .replace(/\s+/g, '-')}`
+            return (
             <div key={section.title}>
-                <p className="px-2.5 mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-disabled-text">
+                <p
+                    id={headingId}
+                    className="px-3 mb-2 text-caption font-bold uppercase tracking-wide text-disabled-text"
+                >
                     {section.title}
                 </p>
-                <ul className="space-y-px">
+                <ul className="space-y-0.5" aria-labelledby={headingId}>
                     {section.items.map(item => {
                         const href = hrefForItem(brand, item)
                         const active = currentPath === href
@@ -107,10 +120,10 @@ const Sidebar = ({
                                         onClick={onNavigate}
                                         aria-current={active ? 'page' : undefined}
                                         className={cx(
-                                            'flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-md text-sm leading-snug',
+                                            'flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-body-small',
                                             active
                                                 ? 'bg-cyan-50 dark:bg-charcoal text-cyan font-semibold'
-                                                : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal hover:text-navy dark:hover:text-white'
+                                                : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal'
                                         )}
                                     >
                                         <span className="flex items-center gap-1.5">
@@ -135,7 +148,8 @@ const Sidebar = ({
                     })}
                 </ul>
             </div>
-        ))}
+            )
+        })}
     </nav>
 )
 
@@ -157,15 +171,23 @@ export const DesignSystemLayout = ({
     const closeMobileNav = () => setMobileNavOpen(false)
     const activeId = useScrollSpy(toc.map(entry => entry.id))
     // Strip the active brand's base path, leading slash and any query/hash to
-    // recover the brand-relative page slug (e.g. `components/button`).
+    // recover the brand-relative page slug (e.g. `components/button`), used by
+    // breadcrumbs and the prev/next pager.
     const slug = router.asPath
         .replace(brand.basePath, '')
         .split(/[?#]/)[0]
         .replace(/^\//, '')
+    // The path of the page file under pages/design-system, used for the GitHub
+    // edit link. For a sub-brand this includes the brand segment.
+    const editPath = brand.isCore
+        ? slug
+        : slug
+          ? `${brand.id}/${slug}`
+          : `${brand.id}/index`
 
     return (
         <BrandProvider value={brand}>
-        <div className={cx(dark && 'dark')}>
+        <div className={cx('bds-root', dark && 'dark')}>
             <Head>
                 <title>{`${title} · ${brand.title}`}</title>
                 <meta name="robots" content="noindex" />
@@ -188,7 +210,7 @@ export const DesignSystemLayout = ({
                     </button>
                     <Link href={BASE_PATH}>
                         <a className="flex items-center gap-3">
-                            <SquareBupaLogo className="w-8 h-8" />
+                            <PulseLogo className="h-8 w-auto rounded" />
                             <span className="hidden sm:block font-bold text-navy dark:text-white">
                                 {SITE_TITLE}
                             </span>
@@ -201,7 +223,10 @@ export const DesignSystemLayout = ({
                     <button
                         type="button"
                         onClick={toggleTheme}
-                        aria-label="Toggle light and dark theme"
+                        aria-pressed={dark}
+                        aria-label={
+                            dark ? 'Switch to light theme' : 'Switch to dark theme'
+                        }
                         className="flex-none w-10 h-10 rounded-lg flex items-center justify-center hover:bg-cool-paper-100 dark:hover:bg-charcoal text-xl"
                     >
                         <span aria-hidden="true">{dark ? '☀' : '☾'}</span>
@@ -212,7 +237,7 @@ export const DesignSystemLayout = ({
                     {/* Sidebar */}
                     <aside
                         className={cx(
-                            'fixed lg:sticky top-16 z-fixed lg:z-ground h-[calc(100vh-4rem)] w-60 flex-none overflow-y-auto bg-white dark:bg-grey border-r border-cool-paper-200 dark:border-charcoal transition-transform lg:translate-x-0',
+                            'fixed lg:sticky top-16 z-fixed lg:z-ground h-[calc(100vh-4rem)] w-72 flex-none overflow-y-auto bg-white dark:bg-grey border-r border-cool-paper-200 dark:border-charcoal transition-transform lg:translate-x-0',
                             mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
                         )}
                     >
@@ -233,15 +258,38 @@ export const DesignSystemLayout = ({
 
                     {/* Content */}
                     <main className="flex-1 min-w-0 px-6 lg:px-12 py-10">
-                        <div className={cx('mx-auto', wide ? 'max-w-5xl' : 'max-w-3xl')}>
+                        <div className={cx('bds-prose mx-auto', wide ? 'max-w-6xl' : 'max-w-3xl')}>
                             <Breadcrumbs slug={slug} />
                             {children}
                             <PrevNext slug={slug} />
+                            {/* Edit links footer */}
+                            <div className="mt-12 pt-6 border-t border-cool-paper-200 dark:border-charcoal flex flex-wrap gap-6">
+                                <a
+                                    href={githubEditUrl(editPath)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 text-body-small text-grey dark:text-light-grey hover:text-navy dark:hover:text-white transition-colors"
+                                    aria-label="Edit this page on GitHub"
+                                >
+                                    <GitHubIcon className="w-4 h-4 fill-current" />
+                                    <span>Edit this page</span>
+                                </a>
+                                <a
+                                    href={figmaDesignUrl()}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 text-body-small text-grey dark:text-light-grey hover:text-navy dark:hover:text-white transition-colors"
+                                    aria-label="View the design system in Figma"
+                                >
+                                    <FigmaIcon className="w-4 h-4 fill-current" />
+                                    <span>View in Figma</span>
+                                </a>
+                            </div>
                         </div>
                     </main>
 
                     {/* On this page */}
-                    {toc.length > 0 && (
+                    {toc.length > 0 && !wide && (
                         <aside className="hidden xl:block w-56 flex-none py-10 pr-6">
                             <div className="sticky top-24">
                                 <p className="mb-3 text-caption font-bold uppercase tracking-wide text-disabled-text">

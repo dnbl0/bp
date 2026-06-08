@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { Stepper } from '../../../components/molecules/Stepper'
 
@@ -13,6 +17,7 @@ const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'accessibility', title: 'Accessibility' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const steps = [
@@ -59,6 +64,8 @@ const Page: NextPageWithLayout = () => (
             status="stable"
             intro="A horizontal progress indicator for multi-step flows such as the get-a-quote funnel. Completed steps show a tick, the current step is highlighted, and upcoming steps are muted."
         />
+
+        <ComponentHero name="Stepper" />
 
         <Section id="example" title="Example">
             <Example
@@ -128,6 +135,36 @@ const Page: NextPageWithLayout = () => (
                     <span className="font-mono">aria-hidden</span> decoration.
                 </li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Advance linearly through a short, ordered sequence so completed, current and upcoming steps stay accurate.">
+                    <Stepper
+                        steps={[
+                            { label: 'Your details' },
+                            { label: 'Choose cover' },
+                            { label: 'Review & pay' },
+                        ]}
+                        current={2}
+                        label="Get a quote"
+                    />
+                </Do>
+                <Dont note="Don't let users skip ahead or split a flow into so many steps that progress feels endless.">
+                    <Stepper
+                        steps={[
+                            { label: 'Step 1' },
+                            { label: 'Step 2' },
+                            { label: 'Step 3' },
+                            { label: 'Step 4' },
+                            { label: 'Step 5' },
+                            { label: 'Step 6' },
+                        ]}
+                        current={5}
+                        label="Long flow"
+                    />
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

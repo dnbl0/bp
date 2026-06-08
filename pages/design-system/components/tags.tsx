@@ -1,16 +1,21 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { Tag } from '../../../components/atoms/Tag'
 
 const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Tags: NextPageWithLayout = () => (
@@ -22,8 +27,17 @@ const Tags: NextPageWithLayout = () => (
             intro="A wrapping group of Tag atoms, used to surface a set of categories or care-home features together."
         />
 
+        <ComponentHero name="TagsBlock" />
+
         <Section id="example" title="Example">
-            <Example>
+            <Example
+                code={`<div className="flex flex-row flex-wrap">
+  <Tag title="Respite care" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
+  <Tag title="Dementia support" href="#" openInNewTab={false} bgColor="c-#f0f9ff" textColor="c-#0079c8" />
+  <Tag title="Allied health" href="#" openInNewTab={false} bgColor="c-#f8f7f4" textColor="c-#942151" />
+  <Tag title="Social activities" href="#" openInNewTab={false} bgColor="c-#f2f5f7" textColor="c-#00335b" />
+</div>`}
+            >
                 <div className="flex flex-row flex-wrap">
                     <Tag title="Respite care" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
                     <Tag title="Dementia support" href="#" openInNewTab={false} bgColor="c-#f0f9ff" textColor="c-#0079c8" />
@@ -48,6 +62,25 @@ const Tags: NextPageWithLayout = () => (
                     { name: 'items', type: 'CmsTagBlock[]', description: 'The tags to render; nullish items are filtered out.' },
                 ]}
             />
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Show a focused handful of tags so the most relevant categories stand out.">
+                    <div className="flex flex-row flex-wrap">
+                        <Tag title="Respite care" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
+                        <Tag title="Dementia support" href="#" openInNewTab={false} bgColor="c-#f0f9ff" textColor="c-#0079c8" />
+                    </div>
+                </Do>
+                <Dont note="Don't flood a card with tags — too many turn the block into visual noise.">
+                    <div className="flex flex-row flex-wrap">
+                        <Tag title="Respite care" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
+                        <Tag title="Dementia support" href="#" openInNewTab={false} bgColor="c-#f0f9ff" textColor="c-#0079c8" />
+                        <Tag title="Allied health" href="#" openInNewTab={false} bgColor="c-#f8f7f4" textColor="c-#942151" />
+                        <Tag title="Social activities" href="#" openInNewTab={false} bgColor="c-#f2f5f7" textColor="c-#00335b" />
+                    </div>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

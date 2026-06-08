@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -27,6 +28,8 @@ const Button: NextPageWithLayout = () => (
             status="stable"
             intro="Buttons trigger actions. They are styled entirely with the .button class and its modifiers, so any <button> or <a> can become one. Use exactly one primary button per view to keep the call to action clear."
         />
+
+        <ComponentHero name="Button" />
 
         <Section id="variants" title="Variants">
             <p className="text-grey dark:text-light-grey">

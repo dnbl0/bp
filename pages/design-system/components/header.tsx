@@ -1,9 +1,13 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
     Anatomy,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { SquareBupaLogo } from '../../../components/atoms/icons/SquareBupaLogo'
 import { SearchIcon } from '../../../components/atoms/icons/SearchIcon'
@@ -23,6 +27,7 @@ const toc = [
     { id: 'anatomy', title: 'Anatomy' },
     { id: 'parts', title: 'Parts' },
     { id: 'behaviour', title: 'Behaviour' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const Header: NextPageWithLayout = () => (
@@ -34,10 +39,12 @@ const Header: NextPageWithLayout = () => (
             intro="The global site header. It adapts between a wide-screen layout with inline navigation and contact actions, and a compact layout that collapses navigation into a slide-in burger menu."
         />
 
+        <ComponentHero name="Header" />
+
         <Section id="overview" title="Overview">
             <div className="rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden">
                 <div className="flex items-center gap-4 h-16 px-4 bg-white border-b border-cool-paper-200">
-                    <SquareBupaLogo className="w-8 h-8" />
+                    <SquareBupaLogo className="h-8 w-auto" />
                     <nav className="hidden md:flex gap-5 text-body-small text-navy font-medium flex-1">
                         <span>Find a home</span>
                         <span>Types of care</span>
@@ -68,7 +75,7 @@ const Header: NextPageWithLayout = () => (
                 ]}
             >
                 <div className="w-full max-w-xs flex items-center gap-2 bg-white border border-cool-paper-200 rounded p-3">
-                    <SquareBupaLogo className="w-6 h-6" />
+                    <SquareBupaLogo className="h-6 w-auto" />
                     <div className="flex-1 h-2 bg-cool-paper-200 rounded" />
                     <SearchIcon className="w-5 h-5 fill-navy" />
                     <BurgerIcon className="w-5 h-5 fill-navy" />
@@ -81,7 +88,7 @@ const Header: NextPageWithLayout = () => (
                 {parts.map(part => (
                     <li
                         key={part.name}
-                        className="rounded-lg border border-cool-paper-200 dark:border-charcoal p-4 bg-white dark:bg-cool-grey"
+                        className="rounded-lg border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey"
                     >
                         <span className="font-semibold text-navy dark:text-white">
                             {part.name}
@@ -100,6 +107,31 @@ const Header: NextPageWithLayout = () => (
                 <li>The header is fixed to the top of the viewport at the <code className="font-mono text-cyan">z-header</code> layer.</li>
                 <li>Contact actions (call now, call back, book a tour) are configurable per the CMS navigation data.</li>
             </ul>
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Keep top-level navigation to a few clear destinations so it stays inline and scannable on wide screens.">
+                    <nav className="flex gap-5 text-body-small text-navy font-medium">
+                        <span>Find a home</span>
+                        <span>Types of care</span>
+                        <span>Costs</span>
+                        <span>About</span>
+                    </nav>
+                </Do>
+                <Dont note="Don't overload the header with links — it overflows the inline nav and forces everything into the burger menu.">
+                    <nav className="flex flex-wrap gap-3 text-body-small text-navy font-medium">
+                        <span>Find a home</span>
+                        <span>Types of care</span>
+                        <span>Costs</span>
+                        <span>About</span>
+                        <span>News</span>
+                        <span>Careers</span>
+                        <span>Contact</span>
+                        <span>FAQs</span>
+                    </nav>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

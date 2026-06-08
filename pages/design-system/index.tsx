@@ -1,71 +1,91 @@
 import Link from 'next/link'
+import { ReactNode } from 'react'
 import { NextPageWithLayout } from '../../types/nextLayout'
 import { DesignSystemLayout } from '../../styleguide-components/DesignSystemLayout'
-import { Section } from '../../styleguide-components/primitives'
-import { StatusBadge } from '../../styleguide-components/primitives/StatusBadge'
-import { ArrowRight } from '../../components/atoms/icons/ArrowRight'
-import { SquareBupaLogo } from '../../components/atoms/icons/SquareBupaLogo'
 import {
     SITE_TAGLINE,
-    SITE_TITLE,
     hrefFor,
+    navSections,
 } from '../../styleguide-components/designSystem.config'
 import { brands } from '../../styleguide-components/brands'
+import { StatusBadge } from '../../styleguide-components/primitives/StatusBadge'
 
-const toc = [
-    { id: 'explore', title: 'Explore' },
-    { id: 'brands', title: 'Brands' },
-    { id: 'principles', title: 'Principles' },
-    { id: 'how-it-works', title: 'How it works' },
-    { id: 'help', title: 'Need help?' },
-]
+/* ---- Inline pillar icons (self-contained, inherit currentColor) ---------- */
+
+const iconProps = {
+    width: 24,
+    height: 24,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.75,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+}
+
+const PlayIcon = () => (
+    <svg {...iconProps}>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M10 9l5 3-5 3V9z" />
+    </svg>
+)
+const LayersIcon = () => (
+    <svg {...iconProps}>
+        <path d="M12 3l9 5-9 5-9-5 9-5z" />
+        <path d="M3 13l9 5 9-5" />
+    </svg>
+)
+const GridIcon = () => (
+    <svg {...iconProps}>
+        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+    </svg>
+)
+const PatternsIcon = () => (
+    <svg {...iconProps}>
+        <circle cx="8" cy="8" r="5" />
+        <rect x="12" y="12" width="9" height="9" rx="1.5" />
+    </svg>
+)
+const SlidersIcon = () => (
+    <svg {...iconProps}>
+        <path d="M4 7h10M18 7h2M4 17h2M10 17h10" />
+        <circle cx="16" cy="7" r="2" />
+        <circle cx="8" cy="17" r="2" />
+    </svg>
+)
+const BookIcon = () => (
+    <svg {...iconProps}>
+        <path d="M4 5a2 2 0 012-2h12v16H6a2 2 0 00-2 2V5z" />
+        <path d="M4 19a2 2 0 012-2h12" />
+    </svg>
+)
+
+const ArrowIcon = () => (
+    <svg
+        width={18}
+        height={18}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+    >
+        <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+)
+
+/* -------------------------------------------------------------------------- */
+
+const sectionItems = (title: string) =>
+    navSections.find(section => section.title === title)?.items ?? []
 
 /** The sub-brands surfaced on the home page, sourced from the brand registry. */
 const subBrands = brands.filter(brand => !brand.isCore)
-
-/**
- * The top-level destinations surfaced on the landing page, modelled on the
- * card grid of the Primer documentation home. The sidebar carries the full
- * navigation; these are the entry points most people start from.
- */
-const destinations = [
-    {
-        title: 'Getting started',
-        slug: 'getting-started',
-        accent: 'bg-cyan',
-        body: 'Run the site, learn the project structure, and start composing pages from components and tokens.',
-    },
-    {
-        title: 'Foundations',
-        slug: 'foundations/tokens',
-        accent: 'bg-teal',
-        body: 'The design tokens behind everything — colour, typography, spacing, elevation and motion.',
-    },
-    {
-        title: 'Components',
-        slug: 'components',
-        accent: 'bg-purple',
-        body: 'Design and development guidance for every component in the library, with live examples.',
-    },
-    {
-        title: 'Patterns',
-        slug: 'patterns',
-        accent: 'bg-fuchsia',
-        body: 'Atomic design, the 12-column grid system, and forms and search experiences.',
-    },
-    {
-        title: 'Iconography',
-        slug: 'foundations/iconography',
-        accent: 'bg-orange',
-        body: 'The inline SVG icon set, searchable with copyable imports for every glyph.',
-    },
-    {
-        title: 'Resources',
-        slug: 'resources',
-        accent: 'bg-green',
-        body: 'The Figma UI Kit, Contentful mappings and guidance for contributing back.',
-    },
-]
 
 const principles = [
     {
@@ -86,135 +106,153 @@ const principles = [
     },
 ]
 
-/** The brand swatches shown in the hero, hinting at the system behind the docs. */
-const heroSwatches = [
-    'bg-cyan',
-    'bg-navy',
-    'bg-teal',
-    'bg-purple',
-    'bg-fuchsia',
-    'bg-orange',
-    'bg-green',
-    'bg-cyan-400',
+interface Pillar {
+    title: string
+    href: string
+    description: string
+    icon: ReactNode
+    meta?: string
+}
+
+const pillars: Pillar[] = [
+    {
+        title: 'Getting started',
+        href: hrefFor('getting-started'),
+        description:
+            'Install, run the docs locally, and learn how to compose pages from tokens and components.',
+        icon: <PlayIcon />,
+    },
+    {
+        title: 'Foundations',
+        href: hrefFor('foundations/tokens'),
+        description:
+            'Colour, typography, spacing, elevation, motion and the full design-token reference.',
+        icon: <LayersIcon />,
+        meta: `${sectionItems('Foundations').length} pages`,
+    },
+    {
+        title: 'Components',
+        href: hrefFor('components'),
+        description:
+            'The production component library, documented and grouped by atomic-design layer.',
+        icon: <GridIcon />,
+        meta: `${sectionItems('Components').filter(item => item.slug !== 'components').length} components`,
+    },
+    {
+        title: 'Patterns',
+        href: hrefFor('patterns'),
+        description:
+            'Composition patterns plus the larger composite patterns seen across bupa.com.au.',
+        icon: <PatternsIcon />,
+        meta: `${sectionItems('Patterns').length + sectionItems('Composite patterns').length} patterns`,
+    },
+    {
+        title: 'Primitives',
+        href: hrefFor('primitives/form-controls'),
+        description:
+            'Proposed form controls and UI primitives identified from the wider Bupa site.',
+        icon: <SlidersIcon />,
+        meta: `${sectionItems('Primitives').length} primitives`,
+    },
+    {
+        title: 'Resources',
+        href: hrefFor('resources'),
+        description:
+            'Figma UI kit, Contentful authoring and how to contribute to the system.',
+        icon: <BookIcon />,
+    },
 ]
 
-const Hero = () => (
-    <header className="mb-16 grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
-            <p className="text-body-small font-semibold uppercase tracking-wide text-cyan">
-                Overview
+const DesignSystemHome: NextPageWithLayout = () => (
+    <DesignSystemLayout title="Introduction" wide>
+        {/* Hero */}
+        <section className="py-2 sm:py-6">
+            <p className="bds-eyebrow text-cyan">Design system</p>
+            <h1 className="mt-3 max-w-3xl text-[2.25rem] sm:text-[3rem] leading-[1.08] tracking-[-0.02em] font-bold text-navy dark:text-white">
+                Bupa Design System
+            </h1>
+            <p className="mt-5 max-w-2xl bds-lead text-grey dark:text-light-grey">
+                {SITE_TAGLINE} Living documentation for the foundations, components
+                and patterns shared across every Bupa brand — generated from the
+                same code that ships to production.
             </p>
-            <div className="mt-2 flex flex-wrap items-center gap-3">
-                <h1 className="text-heading-xl font-bold text-navy dark:text-white">
-                    {SITE_TITLE}
-                </h1>
-                <StatusBadge status="stable" />
-            </div>
-            <p className="mt-4 max-w-2xl text-heading-s text-grey dark:text-light-grey">
-                {SITE_TAGLINE} A set of guidelines, principles and patterns for
-                designing and building every Bupa brand experience on one shared
-                set of foundations.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
                 <Link href={hrefFor('getting-started')}>
-                    <a className="inline-flex items-center gap-2 rounded-lg bg-cyan px-5 py-2.5 font-semibold text-white hover:bg-cyan-400 transition-colors">
-                        Get started
-                        <ArrowRight className="w-4 h-4 fill-current" />
-                    </a>
+                    <a className="button">Get started</a>
                 </Link>
                 <Link href={hrefFor('components')}>
-                    <a className="inline-flex items-center gap-2 rounded-lg border border-cool-paper-200 dark:border-charcoal px-5 py-2.5 font-semibold text-navy dark:text-white hover:border-cyan hover:text-cyan transition-colors">
-                        Browse components
-                    </a>
+                    <a className="button button--secondary">Browse components</a>
                 </Link>
             </div>
-        </div>
+        </section>
 
-        {/* A small "design system" still life: the mark over a field of brand swatches. */}
-        <div
-            className="relative hidden lg:block rounded-2xl border border-cool-paper-200 dark:border-charcoal bg-cool-paper-50 dark:bg-cool-grey p-8"
-            aria-hidden="true"
-        >
-            <div className="flex items-center justify-center mb-6">
-                <SquareBupaLogo className="w-16 h-16" />
-            </div>
-            <div className="grid grid-cols-4 gap-3">
-                {heroSwatches.map((swatch, index) => (
-                    <div
-                        key={index}
-                        className={`${swatch} aspect-square rounded-lg shadow-DEFAULT`}
-                    />
-                ))}
-            </div>
-        </div>
-    </header>
-)
-
-const DesignSystemHome: NextPageWithLayout = () => (
-    <DesignSystemLayout title="Introduction" toc={toc} wide>
-        <Hero />
-
-        <Section id="explore" title="Explore">
-            <p className="-mt-2 mb-6 max-w-2xl text-grey dark:text-light-grey">
-                Everything here is generated from the same code that powers the
-                production site. Start with one of the areas below.
-            </p>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {destinations.map(destination => (
-                    <Link key={destination.slug} href={hrefFor(destination.slug)}>
-                        <a className="group flex flex-col rounded-xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
-                            <span
-                                className={`${destination.accent} mb-4 h-9 w-9 rounded-lg`}
-                                aria-hidden="true"
-                            />
-                            <span className="text-heading-s font-semibold text-navy dark:text-white group-hover:text-cyan">
-                                {destination.title}
+        {/* Pillars */}
+        <section className="mt-12">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {pillars.map(pillar => (
+                    <Link key={pillar.title} href={pillar.href}>
+                        <a className="group flex flex-col rounded-2xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
+                            <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-cyan-50 dark:bg-charcoal text-cyan">
+                                {pillar.icon}
+                            </span>
+                            <span className="mt-5 flex items-center gap-2 text-heading-s font-semibold text-navy dark:text-white group-hover:text-cyan">
+                                {pillar.title}
+                                <span className="text-cyan opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">
+                                    <ArrowIcon />
+                                </span>
                             </span>
                             <span className="mt-2 flex-1 text-body-small text-grey dark:text-light-grey">
-                                {destination.body}
+                                {pillar.description}
                             </span>
-                            <span className="mt-4 inline-flex items-center gap-1.5 text-body-small font-semibold text-cyan">
-                                Learn more
-                                <ArrowRight className="w-4 h-4 fill-current transition-transform group-hover:translate-x-1" />
-                            </span>
+                            {pillar.meta && (
+                                <span className="mt-5 text-caption font-semibold uppercase tracking-wide text-disabled-text">
+                                    {pillar.meta}
+                                </span>
+                            )}
                         </a>
                     </Link>
                 ))}
             </div>
-        </Section>
+        </section>
 
-        <Section id="brands" title="Brands">
-            <p className="-mt-2 mb-6 max-w-2xl text-grey dark:text-light-grey">
+        {/* Brands */}
+        <section className="mt-16">
+            <h2 className="bds-h2 text-navy dark:text-white">Brands</h2>
+            <p className="mt-2 max-w-2xl text-body-small text-grey dark:text-light-grey">
                 Each line of business has its own space for brand-specific
                 components, patterns and guidance — all built on the shared
                 foundations above. Switch between them any time from the brand
                 menu in the header.
             </p>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {subBrands.map(brand => (
                     <Link key={brand.id} href={brand.basePath}>
-                        <a className="group flex flex-col rounded-xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
+                        <a className="group flex flex-col rounded-2xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
                             <span className="flex items-center justify-between gap-2">
-                                <span className="text-heading-s font-semibold text-navy dark:text-white group-hover:text-cyan">
+                                <span className="flex items-center gap-2 text-heading-s font-semibold text-navy dark:text-white group-hover:text-cyan">
                                     {brand.label}
+                                    <span className="text-cyan opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">
+                                        <ArrowIcon />
+                                    </span>
                                 </span>
                                 <StatusBadge status={brand.status} />
                             </span>
                             <span className="mt-2 flex-1 text-body-small text-grey dark:text-light-grey">
                                 {brand.tagline}
                             </span>
-                            <span className="mt-4 inline-flex items-center gap-1.5 text-body-small font-semibold text-cyan">
-                                Open {brand.label}
-                                <ArrowRight className="w-4 h-4 fill-current transition-transform group-hover:translate-x-1" />
-                            </span>
                         </a>
                     </Link>
                 ))}
             </div>
-        </Section>
+        </section>
 
-        <Section id="principles" title="Principles">
-            <div className="grid gap-4 sm:grid-cols-2">
+        {/* Principles */}
+        <section className="mt-16">
+            <h2 className="bds-h2 text-navy dark:text-white">Principles</h2>
+            <p className="mt-2 max-w-2xl text-body-small text-grey dark:text-light-grey">
+                Four ideas keep the system honest, accessible and easy to build with.
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {principles.map(principle => (
                     <div
                         key={principle.title}
@@ -229,36 +267,22 @@ const DesignSystemHome: NextPageWithLayout = () => (
                     </div>
                 ))}
             </div>
-        </Section>
+        </section>
 
-        <Section id="how-it-works" title="How it works">
-            <p className="text-grey dark:text-light-grey">
+        {/* Built from code */}
+        <section className="mt-16 mb-4 rounded-2xl border border-cool-paper-200 dark:border-charcoal bg-cool-paper-50 dark:bg-cool-grey p-6 sm:p-8">
+            <h2 className="bds-h2 text-navy dark:text-white">Built from code</h2>
+            <p className="mt-3 max-w-3xl text-grey dark:text-light-grey">
                 Design tokens are sourced directly from{' '}
                 <code className="font-mono text-cyan">tailwind.config.js</code> and the
                 CSS custom properties in{' '}
                 <code className="font-mono text-cyan">styles/base/typography.css</code>.
                 Components are imported from the same{' '}
-                <code className="font-mono text-cyan">components/</code> directory used by
-                the site. Editing those sources updates this documentation
+                <code className="font-mono text-cyan">components/</code> directory used
+                by the site, so editing those sources updates this documentation
                 automatically — there is nothing to keep in sync by hand.
             </p>
-        </Section>
-
-        <Section id="help" title="Need help?">
-            <div className="rounded-2xl border border-cool-paper-200 dark:border-charcoal bg-cool-paper-50 dark:bg-cool-grey p-8">
-                <p className="max-w-2xl text-grey dark:text-light-grey">
-                    Found a bug in the documentation, or want to propose a new
-                    component? Head to the resources page for contribution
-                    guidance and the Figma UI Kit.
-                </p>
-                <Link href={hrefFor('resources')}>
-                    <a className="mt-4 inline-flex items-center gap-1.5 font-semibold text-cyan hover:underline">
-                        Go to resources
-                        <ArrowRight className="w-4 h-4 fill-current" />
-                    </a>
-                </Link>
-            </div>
-        </Section>
+        </section>
     </DesignSystemLayout>
 )
 

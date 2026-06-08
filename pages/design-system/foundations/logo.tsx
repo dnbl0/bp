@@ -6,41 +6,36 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    DownloadableMark,
 } from '../../../styleguide-components/primitives'
-import { logos, importSnippet } from '../../../styleguide-components/iconRegistry'
+import { logos } from '../../../styleguide-components/iconRegistry'
 
 const PrimaryLogo = logos[0]?.Component
 const SquareLogo = logos[1]?.Component ?? logos[0]?.Component
 
+const toc = [
+    { id: 'marks', title: 'Marks' },
+    { id: 'usage', title: 'Usage' },
+]
+
 const Logo: NextPageWithLayout = () => (
-    <DesignSystemLayout title="Logo">
+    <DesignSystemLayout title="Logo" toc={toc}>
         <PageHeader
             eyebrow="Foundations"
             title="Logo"
             status="stable"
-            intro="The Bupa logo is supplied as ready-to-use image assets. Keep clear space around it, never distort it, and ensure sufficient contrast with the background."
+            intro="The Bupa brand marks: the Bupa logo, the Bupa Aged Care lockup and the heartbeat pulse. Keep clear space around them, never distort them, and ensure sufficient contrast with the background."
         />
 
         <Section id="marks" title="Marks">
+            <p className="mb-5 text-grey dark:text-light-grey">
+                Import each mark as a React component, or download it as an SVG, PNG
+                or JPEG using the buttons below.
+            </p>
             <div className="grid gap-6 sm:grid-cols-2">
-                {logos.map(logo => {
-                    const Mark = logo.Component
-                    return (
-                        <div
-                            key={logo.name}
-                            className="rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden"
-                        >
-                            <div className="flex items-center justify-center p-10 bg-white">
-                                <Mark className="h-16 w-auto" />
-                            </div>
-                            <div className="p-4 bg-cool-paper-50 dark:bg-cool-grey">
-                                <code className="font-mono text-caption text-cyan break-all">
-                                    {importSnippet(logo)}
-                                </code>
-                            </div>
-                        </div>
-                    )
-                })}
+                {logos.map(logo => (
+                    <DownloadableMark key={logo.name} logo={logo} />
+                ))}
             </div>
         </Section>
 

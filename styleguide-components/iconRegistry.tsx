@@ -8,6 +8,7 @@ import { ComponentType } from 'react'
 import { ArrowLeft } from '../components/atoms/icons/ArrowLeft'
 import { ArrowRight } from '../components/atoms/icons/ArrowRight'
 import { ArrowUp } from '../components/atoms/icons/ArrowUp'
+import { BupaLogo } from '../components/atoms/icons/BupaLogo'
 import { BupaAgedCareLogo } from '../components/atoms/icons/BupaAgedCareLogo'
 import { BurgerIcon } from '../components/atoms/icons/BurgerIcon'
 import { CallBackIcon } from '../components/atoms/icons/CallBackIcon'
@@ -23,6 +24,7 @@ import { ImageGalleryIcon } from '../components/atoms/icons/ImageGalleryIcon'
 import { ImagePlaceholderIcon } from '../components/atoms/icons/ImagePlaceholderIcon'
 import { InstagramIcon } from '../components/atoms/icons/InstagramIcon'
 import { LinkedInIcon } from '../components/atoms/icons/LinkedInIcon'
+import { PulseLogo } from '../components/atoms/icons/PulseLogo'
 import { ListIcon } from '../components/atoms/icons/ListIcon'
 import { LoadingSpinnerIcon } from '../components/atoms/icons/LoadingSpinnerIcon'
 import { PencilIcon } from '../components/atoms/icons/PencilIcon'
@@ -30,7 +32,6 @@ import { PersonIcon } from '../components/atoms/icons/PersonIcon'
 import { PlayArrow } from '../components/atoms/icons/PlayArrow'
 import { SearchEmpty } from '../components/atoms/icons/SearchEmpty'
 import { SearchIcon } from '../components/atoms/icons/SearchIcon'
-import { SquareBupaLogo } from '../components/atoms/icons/SquareBupaLogo'
 import { TwitterIcon } from '../components/atoms/icons/TwitterIcon'
 import { YouTubeIcon } from '../components/atoms/icons/YouTubeIcon'
 
@@ -72,8 +73,9 @@ export const icons: IconEntry[] = [
     { name: 'SearchIcon', file: 'SearchIcon', Component: SearchIcon, category: 'icon' },
     { name: 'TwitterIcon', file: 'TwitterIcon', Component: TwitterIcon, category: 'icon' },
     { name: 'YouTubeIcon', file: 'YouTubeIcon', Component: YouTubeIcon, category: 'icon' },
+    { name: 'BupaLogo', file: 'BupaLogo', Component: BupaLogo, category: 'logo' },
     { name: 'BupaAgedCareLogo', file: 'BupaAgedCareLogo', Component: BupaAgedCareLogo, category: 'logo' },
-    { name: 'SquareBupaLogo', file: 'SquareBupaLogo', Component: SquareBupaLogo, category: 'logo' },
+    { name: 'PulseLogo', file: 'PulseLogo', Component: PulseLogo, category: 'logo' },
 ]
 
 export const productIcons = icons.filter(icon => icon.category === 'icon')

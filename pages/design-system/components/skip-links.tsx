@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -22,6 +23,8 @@ const Page: NextPageWithLayout = () => (
             status="stable"
             intro="Visually-hidden navigation shortcuts that become visible on focus, letting keyboard and screen-reader users bypass the header and jump straight to the main landmarks. They are the first focusable element on every page."
         />
+
+        <ComponentHero name="SkipLinks" />
 
         <Section id="example" title="Example">
             <p className="text-grey dark:text-light-grey">

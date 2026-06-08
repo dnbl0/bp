@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
     Example,
     PropsTable,
+    Do,
+    Dont,
+    DoDontGrid,
 } from '../../../styleguide-components/primitives'
 import { ChevronDownIcon } from '../../../components/atoms/icons/ChevronDownIcon'
 import { cx } from '../../../utils/cx'
@@ -36,6 +40,7 @@ const Demo = () => {
 const toc = [
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
+    { id: 'guidelines', title: 'Guidelines' },
 ]
 
 const ShowMore: NextPageWithLayout = () => (
@@ -47,8 +52,31 @@ const ShowMore: NextPageWithLayout = () => (
             intro="A ghost button that toggles additional markdown content into view. The chevron rotates 180° to signal the expanded state. Use it to keep long supporting copy out of the way until requested."
         />
 
+        <ComponentHero name="ShowMoreButton" />
+
         <Section id="example" title="Example">
-            <Example surface="paper">
+            <Example
+                surface="paper"
+                code={`const [open, setOpen] = useState(false)
+
+<div className="flex flex-col items-center w-full">
+    {open && (
+        <div className="p-6 w-full text-grey">
+            Additional detail revealed by the control. In product this region
+            renders markdown content supplied by the CMS.
+        </div>
+    )}
+    <button
+        className="button button--ghost text-center"
+        onClick={() => setOpen(o => !o)}
+    >
+        <span>{open ? 'Show less' : 'Show more'}</span>
+        <span>
+            <ChevronDownIcon className={cx(open && 'rotate-180', 'fill-current')} />
+        </span>
+    </button>
+</div>`}
+            >
                 <div className="w-full">
                     <Demo />
                 </div>
@@ -64,6 +92,27 @@ const ShowMore: NextPageWithLayout = () => (
                     { name: 'onShow', type: '() => void', description: 'Optional callback fired when the content is expanded.' },
                 ]}
             />
+        </Section>
+
+        <Section id="guidelines" title="Guidelines">
+            <DoDontGrid>
+                <Do note="Swap the label to match the state, e.g. 'Show more' when collapsed and 'Show less' when expanded.">
+                    <button className="button button--ghost text-center">
+                        <span>Show more</span>
+                        <span>
+                            <ChevronDownIcon className="fill-current" />
+                        </span>
+                    </button>
+                </Do>
+                <Dont note="Don't hide essential content behind it — reserve it for optional supporting detail.">
+                    <button className="button button--ghost text-center">
+                        <span>Show price</span>
+                        <span>
+                            <ChevronDownIcon className="fill-current" />
+                        </span>
+                    </button>
+                </Dont>
+            </DoDontGrid>
         </Section>
     </DesignSystemLayout>
 )

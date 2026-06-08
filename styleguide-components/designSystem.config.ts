@@ -325,11 +325,11 @@ export const navSections: NavSection[] = [
                 keywords: ['accessibility', 'a11y', 'skip to content', 'keyboard', 'bypass'],
             },
             {
-                title: 'Toggle switch',
+                title: 'Toggle',
                 slug: 'components/toggle',
                 status: 'stable',
                 summary: 'A binary on/off switch built on a real checkbox input.',
-                keywords: ['switch', 'toggle', 'on off', 'checkbox', 'monthly annual'],
+                keywords: ['switch', 'toggle', 'checkbox', 'on', 'off'],
             },
             {
                 title: 'Pagination',
@@ -421,6 +421,135 @@ export const navSections: NavSection[] = [
         ],
     },
     {
+        title: 'Primitives',
+        items: [
+            {
+                title: 'Form controls',
+                slug: 'primitives/form-controls',
+                status: 'in-review',
+                summary: 'Text input, textarea, select, checkbox and radio with focus, error and disabled states.',
+                keywords: ['input', 'textarea', 'select', 'dropdown', 'checkbox', 'radio', 'field', 'label', 'validation', 'error', 'form'],
+            },
+            {
+                title: 'Selection controls',
+                slug: 'primitives/selection-controls',
+                status: 'in-review',
+                summary: 'Radio-card and segmented selectors, the range slider and the number stepper.',
+                keywords: ['radio card', 'segmented', 'toggle group', 'slider', 'range', 'stepper', 'number', 'quantity', 'quote'],
+            },
+            {
+                title: 'Date & file inputs',
+                slug: 'primitives/date-file-inputs',
+                status: 'in-review',
+                summary: 'A date picker and a drag-and-drop file upload control.',
+                keywords: ['date', 'calendar', 'datepicker', 'date of birth', 'file', 'upload', 'attachment', 'dropzone', 'claim'],
+            },
+            {
+                title: 'Dialog',
+                slug: 'primitives/dialog',
+                status: 'in-review',
+                summary: 'A centred modal dialog and a confirmation variant, with focus management.',
+                keywords: ['modal', 'dialog', 'popup', 'overlay', 'confirm', 'confirmation', 'alert dialog'],
+            },
+            {
+                title: 'Toast',
+                slug: 'primitives/toast',
+                status: 'in-review',
+                summary: 'Transient, self-dismissing notifications for action feedback.',
+                keywords: ['toast', 'notification', 'snackbar', 'flash', 'feedback', 'success', 'error', 'transient'],
+            },
+            {
+                title: 'Filtering',
+                slug: 'primitives/filtering',
+                status: 'in-review',
+                summary: 'Facet checkboxes, applied-filter chips and a sort dropdown for result lists.',
+                keywords: ['filter', 'facet', 'refine', 'chip', 'sort', 'results', 'find a provider', 'search'],
+            },
+            {
+                title: 'Loading',
+                slug: 'primitives/loading',
+                status: 'in-review',
+                summary: 'Skeleton placeholders, a spinner and a progress bar for pending states.',
+                keywords: ['loading', 'skeleton', 'spinner', 'progress', 'pending', 'placeholder', 'shimmer'],
+            },
+            {
+                title: 'Consent banner',
+                slug: 'primitives/consent-banner',
+                status: 'in-review',
+                summary: 'A cookie/consent banner with accept, reject and preference actions.',
+                keywords: ['cookie', 'consent', 'gdpr', 'privacy', 'banner', 'accept', 'reject', 'preferences'],
+            },
+            {
+                title: 'Rating',
+                slug: 'primitives/rating',
+                status: 'in-review',
+                summary: 'A star rating for displaying and capturing review scores.',
+                keywords: ['rating', 'stars', 'review', 'score', 'feedback', 'provider'],
+            },
+        ],
+    },
+    {
+        title: 'Composite patterns',
+        items: [
+            {
+                title: 'Mega menu',
+                slug: 'patterns/mega-menu',
+                status: 'in-review',
+                summary: 'A multi-column flyout navigation panel for grouping a large product catalogue.',
+                keywords: ['mega menu', 'navigation', 'flyout', 'dropdown', 'header', 'nav panel', 'menu'],
+            },
+            {
+                title: 'Utility bar',
+                slug: 'patterns/utility-bar',
+                status: 'in-review',
+                summary: 'A top utility bar with an audience switcher (Personal, Business, Overseas, Providers).',
+                keywords: ['utility bar', 'top bar', 'audience switcher', 'segment', 'personal', 'business', 'overseas'],
+            },
+            {
+                title: 'Account menu',
+                slug: 'patterns/account-menu',
+                status: 'in-review',
+                summary: 'A member login control and the authenticated account dropdown menu.',
+                keywords: ['login', 'sign in', 'account', 'member', 'mybupa', 'avatar', 'profile', 'dropdown', 'auth'],
+            },
+            {
+                title: 'Plan cards',
+                slug: 'patterns/plan-cards',
+                status: 'in-review',
+                summary: 'Tiered price/plan cards with feature lists, a most-popular badge and a select action.',
+                keywords: ['plan', 'pricing', 'tier', 'bronze', 'silver', 'gold', 'price card', 'most popular', 'compare'],
+            },
+            {
+                title: 'Price summary bar',
+                slug: 'patterns/price-summary-bar',
+                status: 'in-review',
+                summary: 'A sticky summary bar showing the running price with a fortnightly/monthly toggle.',
+                keywords: ['price', 'summary', 'sticky bar', 'fortnightly', 'monthly', 'frequency', 'quote', 'total'],
+            },
+            {
+                title: 'Help widget',
+                slug: 'patterns/help-widget',
+                status: 'in-review',
+                summary: 'A floating live-chat / virtual-assistant launcher and chat panel.',
+                keywords: ['chat', 'live chat', 'virtual assistant', 'bot', 'help', 'support', 'messenger', 'widget'],
+            },
+            {
+                title: 'Offer ribbon',
+                slug: 'patterns/offer-ribbon',
+                status: 'in-review',
+                summary: 'A promotional banner with a live countdown to an offer deadline.',
+                keywords: ['offer', 'promotion', 'countdown', 'timer', 'deadline', 'campaign', 'ribbon', 'banner'],
+            },
+            {
+                title: 'Help hub',
+                slug: 'patterns/help-hub',
+                status: 'in-review',
+                summary: 'A categorised help-article browser with search and topic cards.',
+                keywords: ['help', 'hub', 'faq', 'support', 'knowledge base', 'articles', 'topics', 'search'],
+            },
+        ],
+    },
+    {
         title: 'Resources',
         items: [
             {
@@ -438,6 +567,27 @@ export const allDocs: NavItem[] = navSections.flatMap(section => section.items)
 
 export const hrefFor = (slug: string): string =>
     slug ? `${BASE_PATH}/${slug}` : BASE_PATH
+
+/**
+ * GitHub repo URL for editing the source file. Maps slug to the corresponding
+ * page file in pages/design-system/.
+ */
+export const githubEditUrl = (slug: string): string => {
+    const repo = 'https://github.com/dnbl0/bp/edit/main'
+    let filePath = slug
+    // Root pages and explicit index pages
+    if (slug === '') filePath = 'pages/design-system/index'
+    else if (slug === 'components') filePath = 'pages/design-system/components/index'
+    else filePath = `pages/design-system/${slug}`
+    return `${repo}/${filePath}.tsx`
+}
+
+/**
+ * Figma component link. Currently a placeholder to the main Figma file;
+ * when component node-IDs are mapped, this can deep-link to specific components.
+ */
+export const figmaDesignUrl = (): string =>
+    'https://www.figma.com/design/vvf035VybcSNoOWLVRwIVd/Bupa-Aged-Care-Design-System'
 
 /** Maps a page slug to the title of the nav section that contains it. */
 const slugToSection: Record<string, string> = navSections.reduce(

@@ -25,7 +25,7 @@ export const componentGroups: ComponentGroup[] = [
     {
         slug: 'components/group-search',
         title: 'Search & navigation',
-        eyebrow: 'Components · Group',
+        eyebrow: 'Component groups',
         intro: 'The find-a-home search experience and in-page navigation. These are powered by Algolia and live CMS data, so they are documented here rather than as isolated demos.',
         entries: [
             { name: 'SmallSearchInput', source: 'components/atoms/SmallSearchInput.tsx', summary: 'A compact search field for the header and tight spaces.', note: 'Presentational input; submits the query to the search route. Reuses the SearchIcon atom.' },
@@ -38,7 +38,7 @@ export const componentGroups: ComponentGroup[] = [
     {
         slug: 'components/group-media',
         title: 'Media & imagery',
-        eyebrow: 'Components · Group',
+        eyebrow: 'Component groups',
         intro: 'Components that present images and video. Most resolve responsive sources from Contentful, so they need live CMS assets to render.',
         entries: [
             { name: 'ResponsiveImage', source: 'components/atoms/ResponsiveImage.tsx', summary: 'A CMS-aware image with responsive sources.', note: 'Wraps next/image. Supports layout="fill" | "responsive" | "intrinsic" | "fixed"; serves sized sources from images.ctfassets.net.' },
@@ -51,7 +51,7 @@ export const componentGroups: ComponentGroup[] = [
     {
         slug: 'components/group-content',
         title: 'Content & text',
-        eyebrow: 'Components · Group',
+        eyebrow: 'Component groups',
         intro: 'The building blocks that render long-form copy and structure content bands. They turn CMS rich text and markdown into styled prose.',
         entries: [
             { name: 'RichTextContent', source: 'components/atoms/RichTextContent.tsx', summary: 'Renders Contentful rich text to React.', note: 'Uses @contentful/rich-text-react-renderer. Accepts an isColouredCard flag to invert text on coloured surfaces.' },
@@ -66,7 +66,7 @@ export const componentGroups: ComponentGroup[] = [
     {
         slug: 'components/group-forms',
         title: 'Forms & booking',
-        eyebrow: 'Components · Group',
+        eyebrow: 'Component groups',
         intro: 'Lead-capture forms and booking flows. Forms render through the SnapForms integration and can appear inline or in a modal.',
         entries: [
             { name: 'FormSelector', source: 'components/atoms/FormSelector.tsx', summary: 'Resolves the correct form for a CMS reference.', note: 'Maps a form id to its SnapForm; the SnapForm context and modal are provided in _app.' },
@@ -79,7 +79,7 @@ export const componentGroups: ComponentGroup[] = [
     {
         slug: 'components/group-tools',
         title: 'Data-driven tools',
-        eyebrow: 'Components · Group',
+        eyebrow: 'Component groups',
         intro: 'Interactive tools and listing components backed by live data — pricing, the care navigator, maps and feeds. They need their data sources to render meaningfully.',
         entries: [
             { name: 'PricingBlock', source: 'components/molecules/blocks/PricingBlock.tsx', summary: 'Displays aged-care pricing information.', note: 'Styled via styles/components/pricingComponent.css. Present fees clearly with their conditions.' },
@@ -94,16 +94,25 @@ export const componentGroups: ComponentGroup[] = [
     {
         slug: 'components/group-infra',
         title: 'Infrastructure & templates',
-        eyebrow: 'Components · Group',
-        intro: 'The plumbing that assembles the experience: the block dispatcher, link handling, preview affordances and the page templates, plus the third-party global chrome (chat and consent) that the production site mounts on every page.',
+        eyebrow: 'Component groups',
+        intro: 'The plumbing that assembles the experience: the block dispatcher, link handling, preview affordances and the page templates.',
         entries: [
             { name: 'CmsElement', source: 'components/molecules/CmsElement.tsx', summary: 'Maps a CMS block type to its component.', note: 'The central dispatcher: every content block is rendered through here based on its __typename.' },
             { name: 'LinkHandler', source: 'components/organisms/LinkHandler.tsx', summary: 'Centralised internal/external link behaviour.', note: 'A context provider (mounted in _app) that normalises link handling, including new-tab and tracking behaviour.' },
             { name: 'PreviewEnabledNotification', source: 'components/organisms/PreviewEnabledNotification.tsx', summary: 'Banner shown when CMS preview is active.', note: 'Signals that draft content is being viewed; offers a way to exit preview mode.' },
             { name: 'PrimaryPageTemplate', source: 'components/templates/PrimaryPageTemplate.tsx', summary: 'The standard content page layout.', note: 'Composes the header, CMS sections and footer; the default template for most pages.' },
             { name: 'BlankLayout', source: 'components/templates/BlankLayout.tsx', summary: 'A minimal layout with no global chrome.', note: 'Used for standalone routes (e.g. the Contentful app) that should not show the site header/footer.' },
-            { name: 'ChatWidget', source: 'Third-party (Spectrm)', summary: 'The site-wide “Chat with us” assistant.', note: 'A vendor-managed widget (mounted via the spr-chat script and exposed as the #chat skip-link target). Documented here as an integration point — it is not an in-repo component, so there is no live demo. Keep its trigger reachable and ensure SkipLinks offers a “Skip to chat” destination.' },
-            { name: 'CookieConsent', source: 'Third-party (OneTrust)', summary: 'The site-wide cookie / consent banner.', note: 'A vendor-managed consent manager loaded on every page before analytics fire. Documented as an integration point rather than an in-repo component. Ensure it traps focus while open and does not obscure the SkipLinks.' },
         ],
     },
 ]
+
+/** Slugify a component name for use as an in-page anchor id. */
+export const entrySlug = (name: string): string =>
+    name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '')
+
+/** Build the "on this page" entries for a group from its components. */
+export const tocForGroup = (group: ComponentGroup) =>
+    group.entries.map(entry => ({ id: entrySlug(entry.name), title: entry.name }))

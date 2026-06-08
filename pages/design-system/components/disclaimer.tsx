@@ -1,5 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
+import { ComponentHero } from '../../../styleguide-components/componentPreviews'
 import {
     PageHeader,
     Section,
@@ -40,6 +41,8 @@ const Page: NextPageWithLayout = () => (
             status="stable"
             intro="The site-wide legal disclaimer block: a list of superscript-marked footnotes that terms and pricing throughout a page reference. Pair each footnote with a matching FootnoteRef marker in the body copy. Long blocks can collapse behind a toggle."
         />
+
+        <ComponentHero name="Disclaimer" />
 
         <Section id="example" title="Example">
             <Example

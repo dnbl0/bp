@@ -7,8 +7,7 @@
   },
   "scripts": {
     "dev": "yarn codegen && next dev",
-    "docs:dev": "next dev",
-    "docs:export": "node scripts/export-docs.mjs",
+    "dev:docs": "next dev",
     "build": "yarn codegen && next build",
     "start": "yarn codegen && next start",
     "lint": "yarn codegen && next lint",
