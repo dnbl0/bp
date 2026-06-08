@@ -58,9 +58,19 @@ const ALL_TYPES: SpecDimension['type'][] = [
 ]
 
 // Gutters around the preview that give the dimension arrows room to draw.
-const GUTTER_LEFT = 48
-const GUTTER_BOTTOM = 40
-const GUTTER_TOP = 28
+const GUTTER_LEFT = 60
+const GUTTER_BOTTOM = 56
+const GUTTER_TOP = 44
+const GUTTER_RIGHT = 72
+
+// Redline palette — calm, distinct roles (slate dimensions, teal spacing,
+// violet radius) so the diagram reads like a Figma/Material spec sheet.
+const REDLINE = {
+    box: '#0079c8',
+    dim: '#475569',
+    pad: '#0d9488',
+    radius: '#7c3aed',
+}
 
 const parsePx = (value: string): number | null => {
     const match = value.match(/(-?\d+(?:\.\d+)?)px/)
@@ -144,10 +154,29 @@ export const Specifications = ({
     // so they are drawn from the first (base) group only — otherwise per-state
     // padding/radius would stack on top of each other.
     const geometrySource = groups[0]?.dimensions ?? []
-    const paddingBands = geometrySource.filter(
-        d => d.type === 'padding' && d.direction && isActive(d)
+    const spacingOn = activeTypes.has('padding')
+    const radiusOn = activeTypes.has('border-radius')
+
+    const padDims = geometrySource.filter(d => d.type === 'padding')
+    const horizPad = padDims.find(
+        d => d.direction === 'left' || d.direction === 'right' || /\(h\)/i.test(d.label)
     )
-    const radiusDim = geometrySource.find(d => d.type === 'border-radius' && isActive(d))
+    const vertPad = padDims.find(
+        d => d.direction === 'top' || d.direction === 'bottom' || /\(v\)/i.test(d.label)
+    )
+    const allPad = padDims.find(d => d.direction === 'all')
+    const pxOf = (d?: SpecDimension) => (d ? parsePx(displayValue(d).value) : null)
+    const padX = spacingOn ? pxOf(horizPad) ?? pxOf(allPad) : null
+    const padY = spacingOn ? pxOf(vertPad) ?? pxOf(allPad) : null
+    const radiusDim = geometrySource.find(d => d.type === 'border-radius')
+    const radiusPx = radiusOn ? pxOf(radiusDim) : null
+
+    // Which legend keys to show beneath the diagram.
+    const legend = [
+        (padX || padY) && { color: REDLINE.pad, label: 'Padding' },
+        { color: REDLINE.dim, label: 'Dimensions' },
+        radiusPx != null && { color: REDLINE.radius, label: 'Corner radius' },
+    ].filter(Boolean) as { color: string; label: string }[]
 
     // When a component documents more than one group (its states), the table
     // becomes a state × property matrix so each value stays tied to its state.
@@ -196,107 +225,142 @@ export const Specifications = ({
                 Hidden on small screens (too cramped); the table carries the data. */}
             {showSpecs && (
                 <div className="hidden sm:block overflow-x-auto mb-6">
-                    <div
-                        className="relative inline-block rounded-xl border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey"
-                        style={{
-                            paddingLeft: GUTTER_LEFT,
-                            paddingBottom: GUTTER_BOTTOM,
-                            paddingTop: GUTTER_TOP,
-                            paddingRight: 24,
-                        }}
-                    >
-                        <div ref={previewRef} data-spec-preview className="relative inline-block">
-                            {children}
+                    <div className="inline-block">
+                        <div
+                            className="relative inline-block rounded-xl border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey"
+                            style={{
+                                paddingLeft: GUTTER_LEFT,
+                                paddingBottom: GUTTER_BOTTOM,
+                                paddingTop: GUTTER_TOP,
+                                paddingRight: GUTTER_RIGHT,
+                            }}
+                        >
+                            <div ref={previewRef} data-spec-preview className="relative inline-block">
+                                {children}
+                            </div>
+
+                            {size && size.w > 0 && (() => {
+                                const W = size.w
+                                const H = size.h
+                                const r = radiusPx != null ? Math.min(radiusPx, W / 2, H / 2) : 0
+                                const px = padX ? Math.min(padX, W / 2 - 2) : 0
+                                const py = padY ? Math.min(padY, H / 2 - 2) : 0
+                                const DIM = 26 // offset of dimension lines into the gutter
+                                return (
+                                    <svg
+                                        aria-hidden="true"
+                                        className="absolute pointer-events-none overflow-visible"
+                                        style={{ left: GUTTER_LEFT, top: GUTTER_TOP }}
+                                        width={W}
+                                        height={H}
+                                    >
+                                        <defs>
+                                            <marker id="spec-arrow" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto">
+                                                <path d="M1.5,1.5 L5,4.5 L1.5,7.5" fill="none" stroke={REDLINE.dim} strokeWidth="1.2" />
+                                            </marker>
+                                            <marker id="spec-arrow-start" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto">
+                                                <path d="M8.5,1.5 L5,4.5 L8.5,7.5" fill="none" stroke={REDLINE.dim} strokeWidth="1.2" />
+                                            </marker>
+                                            <marker id="pad-arrow" markerWidth="8" markerHeight="8" refX="4.5" refY="4" orient="auto">
+                                                <path d="M1.5,1.5 L4.5,4 L1.5,6.5" fill="none" stroke={REDLINE.pad} strokeWidth="1.1" />
+                                            </marker>
+                                            <marker id="pad-arrow-start" markerWidth="8" markerHeight="8" refX="4.5" refY="4" orient="auto">
+                                                <path d="M7.5,1.5 L4.5,4 L7.5,6.5" fill="none" stroke={REDLINE.pad} strokeWidth="1.1" />
+                                            </marker>
+                                        </defs>
+
+                                        {/* Padding frame: tinted bands between the component edge and
+                                            the content box, drawn to scale */}
+                                        {(px > 0 || py > 0) && (
+                                            <g>
+                                                {px > 0 && <rect x={0} y={0} width={px} height={H} fill={REDLINE.pad} opacity="0.16" />}
+                                                {px > 0 && <rect x={W - px} y={0} width={px} height={H} fill={REDLINE.pad} opacity="0.16" />}
+                                                {py > 0 && <rect x={px} y={0} width={W - 2 * px} height={py} fill={REDLINE.pad} opacity="0.16" />}
+                                                {py > 0 && <rect x={px} y={H - py} width={W - 2 * px} height={py} fill={REDLINE.pad} opacity="0.16" />}
+                                                {/* Content box */}
+                                                <rect
+                                                    x={px} y={py} width={W - 2 * px} height={H - 2 * py}
+                                                    fill="none" stroke={REDLINE.pad} strokeWidth="1" strokeDasharray="3,2" opacity="0.7"
+                                                />
+                                                {/* Horizontal padding measure (in the left band) */}
+                                                {px >= 14 && (
+                                                    <>
+                                                        <line x1={0} y1={H / 2} x2={px} y2={H / 2} stroke={REDLINE.pad} strokeWidth="1"
+                                                            markerStart="url(#pad-arrow-start)" markerEnd="url(#pad-arrow)" />
+                                                        <text x={px / 2} y={H / 2 - 5} fontSize="10" fontWeight="600" fill={REDLINE.pad} textAnchor="middle">
+                                                            {Math.round(padX as number)}
+                                                        </text>
+                                                    </>
+                                                )}
+                                                {/* Vertical padding measure (in the top band) */}
+                                                {py >= 14 && (
+                                                    <>
+                                                        <line x1={W / 2} y1={0} x2={W / 2} y2={py} stroke={REDLINE.pad} strokeWidth="1"
+                                                            markerStart="url(#pad-arrow-start)" markerEnd="url(#pad-arrow)" />
+                                                        <text x={W / 2 + 7} y={py / 2 + 3} fontSize="10" fontWeight="600" fill={REDLINE.pad} textAnchor="start">
+                                                            {Math.round(padY as number)}
+                                                        </text>
+                                                    </>
+                                                )}
+                                            </g>
+                                        )}
+
+                                        {/* Component bounding box — hugs the real rounded corners */}
+                                        <rect
+                                            x={0} y={0} width={W} height={H} rx={r} ry={r}
+                                            fill="none" stroke={REDLINE.box} strokeWidth="1.5" strokeDasharray="5,3" opacity="0.8"
+                                        />
+
+                                        {/* Height dimension (left gutter) with extension lines */}
+                                        <line x1={0} y1={0} x2={-DIM} y2={0} stroke={REDLINE.dim} strokeWidth="0.75" opacity="0.5" />
+                                        <line x1={0} y1={H} x2={-DIM} y2={H} stroke={REDLINE.dim} strokeWidth="0.75" opacity="0.5" />
+                                        <line x1={-DIM} y1={0} x2={-DIM} y2={H} stroke={REDLINE.dim} strokeWidth="1"
+                                            markerStart="url(#spec-arrow-start)" markerEnd="url(#spec-arrow)" />
+                                        <text x={-DIM - 8} y={H / 2} fontSize="11" fontWeight="700" fill={REDLINE.dim}
+                                            textAnchor="middle" transform={`rotate(-90, ${-DIM - 8}, ${H / 2})`}>
+                                            {Math.round(H)}px
+                                        </text>
+
+                                        {/* Width dimension (bottom gutter) with extension lines */}
+                                        <line x1={0} y1={H} x2={0} y2={H + DIM} stroke={REDLINE.dim} strokeWidth="0.75" opacity="0.5" />
+                                        <line x1={W} y1={H} x2={W} y2={H + DIM} stroke={REDLINE.dim} strokeWidth="0.75" opacity="0.5" />
+                                        <line x1={0} y1={H + DIM} x2={W} y2={H + DIM} stroke={REDLINE.dim} strokeWidth="1"
+                                            markerStart="url(#spec-arrow-start)" markerEnd="url(#spec-arrow)" />
+                                        <text x={W / 2} y={H + DIM + 15} fontSize="11" fontWeight="700" fill={REDLINE.dim} textAnchor="middle">
+                                            {Math.round(W)}px
+                                        </text>
+
+                                        {/* Corner radius callout (top-right) */}
+                                        {radiusPx != null && (
+                                            <g>
+                                                <path
+                                                    d={`M ${W - r} 0 A ${r} ${r} 0 0 1 ${W} ${r}`}
+                                                    fill="none" stroke={REDLINE.radius} strokeWidth="2.5"
+                                                />
+                                                <line
+                                                    x1={W - r * 0.3} y1={r * 0.3} x2={W + 16} y2={-14}
+                                                    stroke={REDLINE.radius} strokeWidth="0.75" opacity="0.6"
+                                                />
+                                                <text x={W + 19} y={-11} fontSize="11" fontWeight="700" fill={REDLINE.radius} textAnchor="start">
+                                                    R {Math.round(radiusPx)}px
+                                                </text>
+                                            </g>
+                                        )}
+                                    </svg>
+                                )
+                            })()}
                         </div>
 
-                        {size && size.w > 0 && (
-                            <svg
-                                aria-hidden="true"
-                                className="absolute pointer-events-none overflow-visible"
-                                style={{ left: GUTTER_LEFT, top: GUTTER_TOP }}
-                                width={size.w}
-                                height={size.h}
-                            >
-                                <defs>
-                                    <marker id="spec-arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-                                        <path d="M1,1 L4,4 L1,7" fill="none" stroke="#475569" strokeWidth="1" />
-                                    </marker>
-                                    <marker id="spec-arrow-start" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-                                        <path d="M7,1 L4,4 L7,7" fill="none" stroke="#475569" strokeWidth="1" />
-                                    </marker>
-                                </defs>
-
-                                {/* Component bounding box */}
-                                <rect
-                                    x={0} y={0} width={size.w} height={size.h}
-                                    fill="none" stroke="#0079c8" strokeWidth="1" strokeDasharray="4,3" opacity="0.7"
-                                />
-
-                                {/* Padding bands, drawn to scale inside the measured box */}
-                                {paddingBands.map((dim, i) => {
-                                    const pad = parsePx(displayValue(dim).value)
-                                    if (!pad) return null
-                                    const p = Math.min(pad, Math.min(size.w, size.h) / 2)
-                                    const fill = specTypeColor.padding
-                                    const dirs = dim.direction === 'all'
-                                        ? ['top', 'right', 'bottom', 'left']
-                                        : [dim.direction as string]
-                                    return (
-                                        <g key={`pad-${i}`}>
-                                            {dirs.map(d => {
-                                                const r =
-                                                    d === 'left' ? { x: 0, y: 0, w: p, h: size.h }
-                                                    : d === 'right' ? { x: size.w - p, y: 0, w: p, h: size.h }
-                                                    : d === 'top' ? { x: 0, y: 0, w: size.w, h: p }
-                                                    : { x: 0, y: size.h - p, w: size.w, h: p }
-                                                return (
-                                                    <rect key={d} x={r.x} y={r.y} width={r.w} height={r.h}
-                                                        fill={fill} opacity="0.14" />
-                                                )
-                                            })}
-                                        </g>
-                                    )
-                                })}
-
-                                {/* Height dimension arrow (left gutter) */}
-                                <line
-                                    x1={-20} y1={0} x2={-20} y2={size.h}
-                                    stroke="#475569" strokeWidth="1"
-                                    markerStart="url(#spec-arrow-start)" markerEnd="url(#spec-arrow)"
-                                />
-                                <text x={-26} y={size.h / 2} fontSize="11" fontWeight="600" fill="#475569"
-                                    textAnchor="middle" transform={`rotate(-90, -26, ${size.h / 2})`}>
-                                    {Math.round(size.h)}px
-                                </text>
-
-                                {/* Width dimension arrow (bottom gutter) */}
-                                <line
-                                    x1={0} y1={size.h + 20} x2={size.w} y2={size.h + 20}
-                                    stroke="#475569" strokeWidth="1"
-                                    markerStart="url(#spec-arrow-start)" markerEnd="url(#spec-arrow)"
-                                />
-                                <text x={size.w / 2} y={size.h + 34} fontSize="11" fontWeight="600" fill="#475569" textAnchor="middle">
-                                    {Math.round(size.w)}px
-                                </text>
-
-                                {/* Corner radius indicator (top-right) */}
-                                {radiusDim && (() => {
-                                    const rad = parsePx(displayValue(radiusDim).value)
-                                    if (rad == null) return null
-                                    const r = Math.min(rad, size.w / 2, size.h / 2)
-                                    return (
-                                        <g>
-                                            <path
-                                                d={`M ${size.w - r} 0 A ${r} ${r} 0 0 1 ${size.w} ${r}`}
-                                                fill="none" stroke={specTypeColor['border-radius']} strokeWidth="2"
-                                            />
-                                            <text x={size.w + 6} y={r + 12} fontSize="11" fontWeight="600" fill={specTypeColor['border-radius']}>
-                                                {displayValue(radiusDim).value}
-                                            </text>
-                                        </g>
-                                    )
-                                })()}
-                            </svg>
+                        {/* Legend */}
+                        {legend.length > 0 && (
+                            <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 mt-3 px-1 text-caption text-grey dark:text-light-grey">
+                                {legend.map(item => (
+                                    <span key={item.label} className="inline-flex items-center gap-1.5">
+                                        <span className="inline-block w-3 h-3 rounded-sm" style={{ backgroundColor: item.color, opacity: item.label === 'Padding' ? 0.4 : 1 }} aria-hidden="true" />
+                                        {item.label}
+                                    </span>
+                                ))}
+                            </div>
                         )}
                     </div>
                 </div>
