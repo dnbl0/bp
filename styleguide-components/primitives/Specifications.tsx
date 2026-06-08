@@ -140,11 +140,18 @@ export const Specifications = ({
 
     const isActive = (dim: SpecDimension) => activeTypes.has(dim.type)
 
-    // Spatial dimensions we can draw as redlines.
-    const paddingBands = allDimensions.filter(
+    // Redlines describe the component's geometry, which is shared across states,
+    // so they are drawn from the first (base) group only — otherwise per-state
+    // padding/radius would stack on top of each other.
+    const geometrySource = groups[0]?.dimensions ?? []
+    const paddingBands = geometrySource.filter(
         d => d.type === 'padding' && d.direction && isActive(d)
     )
-    const radiusDim = allDimensions.find(d => d.type === 'border-radius' && isActive(d))
+    const radiusDim = geometrySource.find(d => d.type === 'border-radius' && isActive(d))
+
+    // When a component documents more than one group (its states), the table
+    // becomes a state × property matrix so each value stays tied to its state.
+    const multiState = groups.length > 1
 
     return (
         <div className="my-8">
@@ -304,6 +311,9 @@ export const Specifications = ({
                         <caption className="sr-only">{variant} specifications</caption>
                         <thead>
                             <tr className="border-b border-cool-paper-200 dark:border-charcoal bg-cool-paper-50 dark:bg-charcoal/40">
+                                {multiState && (
+                                    <th scope="col" className="text-left p-3 font-semibold text-grey dark:text-light-grey">State</th>
+                                )}
                                 <th scope="col" className="text-left p-3 font-semibold text-grey dark:text-light-grey">Category</th>
                                 <th scope="col" className="text-left p-3 font-semibold text-grey dark:text-light-grey">Property</th>
                                 <th scope="col" className="text-left p-3 font-semibold text-grey dark:text-light-grey">Token</th>
@@ -311,18 +321,36 @@ export const Specifications = ({
                             </tr>
                         </thead>
                         <tbody>
-                            {CATEGORY_ORDER.flatMap(cat => {
-                                const rows = allDimensions.filter(
-                                    d => specTypeLabel[d.type] === cat && isActive(d)
+                            {groups.map((group, gi) => {
+                                // Active dimensions for this state, in category order.
+                                const rows = CATEGORY_ORDER.flatMap(cat =>
+                                    group.dimensions.filter(
+                                        d => specTypeLabel[d.type] === cat && isActive(d)
+                                    )
                                 )
                                 return rows.map((dim, idx) => {
+                                    const cat = specTypeLabel[dim.type]
                                     const { value, live } = displayValue(dim)
                                     const hex = dim.type === 'color' || dim.type === 'shadow' ? swatchHex(dim) : null
                                     return (
                                         <tr
-                                            key={`${cat}-${idx}-${dim.label}`}
-                                            className="border-b border-cool-paper-100 dark:border-charcoal/60 last:border-0 hover:bg-cool-paper-50 dark:hover:bg-charcoal/30"
+                                            key={`${gi}-${idx}-${dim.label}`}
+                                            className={cx(
+                                                'hover:bg-cool-paper-50 dark:hover:bg-charcoal/30',
+                                                multiState && idx === 0 && gi > 0
+                                                    ? 'border-t-2 border-cool-paper-200 dark:border-charcoal'
+                                                    : 'border-b border-cool-paper-100 dark:border-charcoal/60 last:border-0'
+                                            )}
                                         >
+                                            {multiState && idx === 0 && (
+                                                <th
+                                                    scope="rowgroup"
+                                                    rowSpan={rows.length}
+                                                    className="text-left align-top p-3 font-semibold text-navy dark:text-white whitespace-nowrap border-t-2 border-cool-paper-200 dark:border-charcoal"
+                                                >
+                                                    {group.title}
+                                                </th>
+                                            )}
                                             <td className="p-3 whitespace-nowrap">
                                                 <span className="inline-flex items-center gap-1.5 text-grey dark:text-light-grey">
                                                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: specTypeColor[dim.type] }} aria-hidden="true" />
