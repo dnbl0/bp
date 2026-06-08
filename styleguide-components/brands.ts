@@ -209,6 +209,14 @@ export const agedCare: Brand = makeBrand({
                         'The care-home experience end to end: discovery, the home detail page, and conversion.',
                     keywords: ['aged care', 'care home', 'residential', 'overview', 'journey'],
                 },
+                {
+                    title: 'Component library',
+                    slug: 'components',
+                    status: 'stable',
+                    summary:
+                        'Every component in the Aged Care experience, by atomic layer — shared ones link to core.',
+                    keywords: ['components', 'library', 'catalog', 'catalogue', 'atomic', 'mirror', 'coverage'],
+                },
             ],
         },
         {
@@ -245,6 +253,43 @@ export const agedCare: Brand = makeBrand({
                     summary:
                         'A sidebar widget surfacing the closest care homes by distance.',
                     keywords: ['nearby', 'distance', 'closest', 'related', 'sidebar'],
+                },
+            ],
+        },
+        {
+            title: 'Discovery & contact',
+            items: [
+                {
+                    title: 'Home search hero',
+                    slug: 'home-search',
+                    status: 'stable',
+                    summary:
+                        'The hero with integrated search that opens the find-a-home journey.',
+                    keywords: ['search', 'hero', 'autocomplete', 'places', 'suburb', 'postcode', 'find'],
+                },
+                {
+                    title: 'Region browse',
+                    slug: 'region-browse',
+                    status: 'stable',
+                    summary:
+                        'The browse-by-region grid of care-home result cards with a three-column search hero.',
+                    keywords: ['region', 'state', 'browse', 'result card', 'load more', 'grid'],
+                },
+                {
+                    title: 'Contact card',
+                    slug: 'contact-card',
+                    status: 'stable',
+                    summary:
+                        'The conversion card: phone, hours, address and the book-a-tour / call / Calendly actions.',
+                    keywords: ['contact', 'book a tour', 'call', 'callback', 'calendly', 'phone', 'directions'],
+                },
+                {
+                    title: 'Header actions',
+                    slug: 'header-actions',
+                    status: 'stable',
+                    summary:
+                        'The aged-care CTA cluster in the global header: book a tour, call now, call me back.',
+                    keywords: ['header', 'cta', 'book a tour', 'call now', 'call me back', 'contact'],
                 },
             ],
         },
