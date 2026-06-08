@@ -10,11 +10,13 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { ComparisonTable } from '../../../components/molecules/ComparisonTable'
 import { comparisonTableDefaultSpecs } from '../../../styleguide-components/specs/comparison-table.specs'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
@@ -53,6 +55,25 @@ const Page: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="ComparisonTable" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Header row', description: 'The top row naming each option being compared.' },
+                    { number: 2, name: 'Row label', description: 'The leading column listing each feature or attribute.' },
+                    { number: 3, name: 'Data cell', description: 'A cell holding the value for a feature in one option.' },
+                    { number: 4, name: 'Highlight', description: 'An optional emphasised column drawing attention to a recommended option.' },
+                ]}
+            >
+                <div className="w-full">
+                    <ComparisonTable
+                        caption="Compare extras cover"
+                        columns={columns}
+                        rows={rows}
+                    />
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

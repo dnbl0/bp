@@ -11,6 +11,7 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { ChevronDownIcon } from '../../../components/atoms/icons/ChevronDownIcon'
 import { cx } from '../../../utils/cx'
@@ -40,6 +41,7 @@ const Demo = () => {
 }
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
@@ -56,6 +58,20 @@ const ShowMore: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="ShowMoreButton" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Content region', description: 'The collapsible area that is clamped when collapsed.' },
+                    { number: 2, name: 'Fade', description: 'An optional gradient hinting there is more content below.' },
+                    { number: 3, name: 'Toggle', description: 'The show more / show less control that expands the region.' },
+                ]}
+            >
+                <div className="w-full">
+                    <Demo />
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

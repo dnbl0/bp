@@ -6,10 +6,12 @@ import {
     Section,
     Example,
     PropsTable,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { SkipLinks } from '../../../components/atoms/SkipLinks'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'usage', title: 'Usage' },
@@ -25,6 +27,19 @@ const Page: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="SkipLinks" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Skip link', description: 'A visually hidden link revealed on focus as the first tab stop.' },
+                    { number: 2, name: 'Destination', description: 'The landmark or main-content anchor the link jumps to.' },
+                ]}
+            >
+                <div className="w-full">
+                    <SkipLinks />
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <p className="text-grey dark:text-light-grey">

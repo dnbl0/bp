@@ -9,10 +9,12 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { Tag } from '../../../components/atoms/Tag'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'examples', title: 'Examples' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -28,6 +30,18 @@ const Tags: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="Tag" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The rounded pill holding the tag.' },
+                    { number: 2, name: 'Label', description: 'The category or filter text.' },
+                    { number: 3, name: 'Remove', description: 'An optional trailing icon that removes the tag.' },
+                ]}
+            >
+                <Tag title="Wellbeing" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
+            </Anatomy>
+        </Section>
 
         <Section id="examples" title="Examples">
             <Example

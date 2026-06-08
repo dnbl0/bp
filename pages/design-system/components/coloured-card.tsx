@@ -10,6 +10,7 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
 import { cx } from '../../../utils/cx'
@@ -50,6 +51,7 @@ const DemoCard = ({
 )
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'colours', title: 'Colours' },
     { id: 'layouts', title: 'Body positions' },
     { id: 'specifications', title: 'Visual Specifications' },
@@ -67,6 +69,19 @@ const ColouredCard: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="ColouredCardBlock" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The padded card surface in a tinted background colour.' },
+                    { number: 2, name: 'Accent', description: 'A coloured leading bar or border that categorises the card.' },
+                    { number: 3, name: 'Heading', description: 'The card title summarising its content.' },
+                    { number: 4, name: 'Body', description: 'Supporting copy and any calls to action.' },
+                ]}
+            >
+                <DemoCard bg="bg-cyan" />
+            </Anatomy>
+        </Section>
 
         <Section id="colours" title="Colours">
             <p className="text-grey dark:text-light-grey">

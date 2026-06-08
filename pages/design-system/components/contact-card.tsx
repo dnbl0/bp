@@ -10,12 +10,14 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { CallNowIcon } from '../../../components/atoms/icons/CallNowIcon'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
 import { contactCardDefaultSpecs } from '../../../styleguide-components/specs/contact-card.specs'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
@@ -32,6 +34,33 @@ const ContactCard: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="ContactCardBlock" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The bordered card surface grouping the contact details.' },
+                    { number: 2, name: 'Icon', description: 'A leading icon or avatar identifying the contact method.' },
+                    { number: 3, name: 'Heading', description: 'The contact name or channel title.' },
+                    { number: 4, name: 'Details', description: 'Phone, email or address lines, often rendered as links.' },
+                ]}
+            >
+                <div className="bg-white rounded shadow-depth-hover flex flex-col max-w-sm">
+                    <div className="p-6 flex flex-col gap-3">
+                        <h2 className="text-heading-s font-medium text-navy">
+                            Sunshine Aged Care
+                        </h2>
+                        <a className="flex items-center gap-2 text-navy font-semibold" href="#">
+                            <CallNowIcon className="w-5 h-5 fill-cyan" />
+                            1800 030 130
+                        </a>
+                        <p className="text-body-small text-grey">Open 8am – 6pm, Mon–Fri</p>
+                        <p className="text-body-small text-grey">
+                            12 Banksia Street, Sunshine VIC 3020
+                        </p>
+                    </div>
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

@@ -10,12 +10,14 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { ChevronDownIcon } from '../../../components/atoms/icons/ChevronDownIcon'
 import { CallBackIcon } from '../../../components/atoms/icons/CallBackIcon'
 import { promotionCardDefaultSpecs } from '../../../styleguide-components/specs/promotion-card.specs'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
@@ -32,6 +34,38 @@ const PromotionCard: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="PromotionCardBlock" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The padded, tinted card surface.' },
+                    { number: 2, name: 'Heading', description: 'The promotional headline.' },
+                    { number: 3, name: 'Body', description: 'Supporting copy explaining the offer.' },
+                    { number: 4, name: 'Action', description: 'A button or link driving the primary conversion.' },
+                ]}
+            >
+                <div className="text-navy p-6 rounded flex flex-wrap gap-6 bg-cyan-50 border border-cyan md:items-end flex-col md:flex-row max-w-lg">
+                    <div className="shrink-0">
+                        <CallBackIcon className="w-12 h-12 fill-cyan" />
+                    </div>
+                    <div className="flex flex-col gap-y-3 flex-1 min-w-[11rem]">
+                        <h2 className="text-heading-s font-medium">
+                            Not sure where to start?
+                        </h2>
+                        <p className="text-body text-grey">
+                            Request a call back and our team will help you understand your
+                            options.
+                        </p>
+                        <a className="button button--tertiary px-0" href="#">
+                            <span>Request a call back</span>
+                            <span className="-rotate-90">
+                                <ChevronDownIcon className="fill-current" />
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

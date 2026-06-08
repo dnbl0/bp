@@ -9,9 +9,11 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'sizes', title: 'Sizes' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -27,6 +29,18 @@ const Heading: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="HeadingBlock" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Eyebrow', description: 'An optional overline label categorising the section.' },
+                    { number: 2, name: 'Heading', description: 'The main heading text, sized by its semantic level.' },
+                    { number: 3, name: 'Supporting text', description: 'Optional subheading or intro copy beneath the heading.' },
+                ]}
+            >
+                <p className="text-heading-l font-semibold text-navy">Large heading</p>
+            </Anatomy>
+        </Section>
 
         <Section id="sizes" title="Sizes">
             <Example

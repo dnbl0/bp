@@ -10,10 +10,12 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { ToggleSwitch } from '../../../components/atoms/ToggleSwitch'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'guidance', title: 'Guidance' },
@@ -46,6 +48,18 @@ const Page: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="ToggleSwitch" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Track', description: 'The pill-shaped background that changes colour with state.' },
+                    { number: 2, name: 'Thumb', description: 'The circular knob that slides between off and on.' },
+                    { number: 3, name: 'Label', description: 'An optional text label describing what the toggle controls.' },
+                ]}
+            >
+                <ToggleSwitch checked onChange={() => undefined} label="Pay annually" />
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

@@ -10,6 +10,7 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import {
     buttonPrimaryStandardSpecs,
@@ -19,6 +20,7 @@ import {
 } from '../../../styleguide-components/specs/button.specs'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'variants', title: 'Variants' },
     { id: 'sizes', title: 'Sizes' },
     { id: 'specifications', title: 'Visual Specifications' },
@@ -38,6 +40,20 @@ const Button: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="Button" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The clickable surface styled by the .button class and its modifiers.' },
+                    { number: 2, name: 'Label', description: 'The action text; use a clear verb so the outcome is obvious.' },
+                    { number: 3, name: 'Icon', description: 'An optional leading or trailing icon that reinforces the action.' },
+                ]}
+            >
+                <button className="button">
+                    <span>Label</span>
+                </button>
+            </Anatomy>
+        </Section>
 
         <Section id="variants" title="Variants">
             <p className="text-grey dark:text-light-grey">

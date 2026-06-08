@@ -7,6 +7,7 @@ import {
     Example,
     PropsTable,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import {
     Disclaimer,
@@ -15,6 +16,7 @@ import {
 import { disclaimerDefaultSpecs } from '../../../styleguide-components/specs/disclaimer.specs'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
@@ -46,6 +48,18 @@ const Page: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="Disclaimer" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The tinted surface that sets the fine print apart from body copy.' },
+                    { number: 2, name: 'Accent', description: 'A coloured leading border marking the block as advisory.' },
+                    { number: 3, name: 'Text', description: 'The legal or advisory fine print, in a smaller type size.' },
+                ]}
+            >
+                <Disclaimer footnotes={footnotes} defaultOpen />
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

@@ -10,10 +10,12 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { Stepper } from '../../../components/molecules/Stepper'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'accessibility', title: 'Accessibility' },
@@ -66,6 +68,19 @@ const Page: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="Stepper" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Step indicator', description: 'The numbered or ticked marker for each step.' },
+                    { number: 2, name: 'Step label', description: 'The name of the step shown beside or below the indicator.' },
+                    { number: 3, name: 'Connector', description: 'The line linking consecutive steps to show progression.' },
+                    { number: 4, name: 'Active step', description: 'The current step, emphasised to show where the user is.' },
+                ]}
+            >
+                <Stepper steps={steps} current={2} label="Get a quote" />
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

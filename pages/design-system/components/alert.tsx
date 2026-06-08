@@ -9,10 +9,12 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import AlertBlock from '../../../components/molecules/blocks/AlertBlock'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
@@ -29,6 +31,24 @@ const Alert: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="AlertBlock" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The full-width banner surface, tinted with the alert background colour.' },
+                    { number: 2, name: 'Icon', description: 'A leading status icon that signals the message type.' },
+                    { number: 3, name: 'Message', description: 'The notification copy, kept to a single concise line where possible.' },
+                    { number: 4, name: 'Dismiss', description: 'A trailing close button that collapses the banner.' },
+                ]}
+            >
+                <div className="w-full">
+                    <AlertBlock>
+                        Our contact centre hours have changed over the holiday
+                        period.
+                    </AlertBlock>
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <p className="text-grey dark:text-light-grey">

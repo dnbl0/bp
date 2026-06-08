@@ -10,6 +10,7 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
 import { ImagePlaceholderIcon } from '../../../components/atoms/icons/ImagePlaceholderIcon'
@@ -42,6 +43,7 @@ const DemoCard = ({ skeleton = false }: { skeleton?: boolean }) => (
 )
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'types', title: 'Types' },
     { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
@@ -58,6 +60,19 @@ const ImageCard: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="ImageCardBlock" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The rounded card surface with the image and content stacked.' },
+                    { number: 2, name: 'Image', description: 'A cover image capped to the card width.' },
+                    { number: 3, name: 'Content', description: 'The padded area holding the heading and body.' },
+                    { number: 4, name: 'Heading', description: 'The card title summarising the linked content.' },
+                ]}
+            >
+                <DemoCard />
+            </Anatomy>
+        </Section>
 
         <Section id="types" title="Types">
             <p className="text-grey dark:text-light-grey">

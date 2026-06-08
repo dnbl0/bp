@@ -10,6 +10,7 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
 
@@ -20,6 +21,7 @@ const trail = [
 ]
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
@@ -36,6 +38,28 @@ const Breadcrumbs: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="BreadCrumbsBlock" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Crumb link', description: 'A link to an ancestor page in the hierarchy.' },
+                    { number: 2, name: 'Separator', description: 'A non-interactive divider between crumbs.' },
+                    { number: 3, name: 'Current page', description: 'The final, non-linked crumb marking the current location.' },
+                ]}
+            >
+                <div className="flex text-sm text-navy items-center flex-wrap">
+                    {trail.map((crumb, index) => (
+                        <Fragment key={index}>
+                            <a className="underline hover:text-cyan" href={crumb.link}>
+                                {crumb.title}
+                            </a>
+                            <ChevronRightIcon className="fill-navy mx-4 my-auto" />
+                        </Fragment>
+                    ))}
+                    <span className="font-semibold">Sunshine Aged Care</span>
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

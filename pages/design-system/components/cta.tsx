@@ -10,11 +10,13 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
 import { ctaDefaultSpecs } from '../../../styleguide-components/specs/cta.specs'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'examples', title: 'Examples' },
     { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
@@ -31,6 +33,23 @@ const Cta: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="CtaBlock" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The anchor styled with the .button classes.' },
+                    { number: 2, name: 'Label', description: 'The action text describing the destination.' },
+                    { number: 3, name: 'Icon', description: 'An optional leading or trailing chevron reinforcing direction.' },
+                ]}
+            >
+                <a className="button button--giant" href="#">
+                    <span>Find a care home</span>
+                    <span>
+                        <ChevronRightIcon />
+                    </span>
+                </a>
+            </Anatomy>
+        </Section>
 
         <Section id="examples" title="Examples">
             <p className="text-grey dark:text-light-grey">

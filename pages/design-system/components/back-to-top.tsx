@@ -9,10 +9,12 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { ArrowUp } from '../../../components/atoms/icons/ArrowUp'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
@@ -29,6 +31,22 @@ const BackToTopPage: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="BackToTop" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Button', description: 'A circular floating control fixed to the bottom of the viewport.' },
+                    { number: 2, name: 'Icon', description: 'An upward chevron indicating the scroll-to-top action.' },
+                    { number: 3, name: 'Label', description: 'An optional visible or assistive label naming the action.' },
+                ]}
+            >
+                <div className="group flex cursor-pointer">
+                    <div className="rounded-full bg-cyan p-4 group-hover:drop-shadow group-hover:bg-[#000055] group-active:bg-[#000055]">
+                        <ArrowUp className="fill-white" />
+                    </div>
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <p className="text-grey dark:text-light-grey">

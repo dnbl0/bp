@@ -9,10 +9,12 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { Tooltip } from '../../../components/atoms/Tooltip'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'accessibility', title: 'Accessibility' },
@@ -29,6 +31,24 @@ const Page: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="Tooltip" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Trigger', description: 'The focusable control that reveals the tooltip on hover and focus.' },
+                    { number: 2, name: 'Bubble', description: 'The floating container holding the hint copy.' },
+                    { number: 3, name: 'Arrow', description: 'A small pointer connecting the bubble to its trigger.' },
+                ]}
+            >
+                <p className="text-grey dark:text-light-grey">
+                    Choose your{' '}
+                    <Tooltip content="The amount you agree to pay towards hospital costs before we contribute.">
+                        excess
+                    </Tooltip>{' '}
+                    to adjust your premium.
+                </p>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

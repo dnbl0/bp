@@ -10,11 +10,13 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { Tag } from '../../../components/atoms/Tag'
 import { tagsContainerSpecs } from '../../../styleguide-components/specs/tags.specs'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
@@ -31,6 +33,20 @@ const Tags: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="TagsBlock" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Group', description: 'The wrapping container that lays tags out and wraps them across lines.' },
+                    { number: 2, name: 'Tag', description: 'An individual tag within the group.' },
+                ]}
+            >
+                <div className="flex flex-row flex-wrap">
+                    <Tag title="Respite care" href="#" openInNewTab={false} bgColor="c-#e1fcfd" textColor="c-#008385" />
+                    <Tag title="Dementia support" href="#" openInNewTab={false} bgColor="c-#f0f9ff" textColor="c-#0079c8" />
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

@@ -10,11 +10,13 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { PlayArrow } from '../../../components/atoms/icons/PlayArrow'
 import { videoCardDefaultSpecs } from '../../../styleguide-components/specs/video-card.specs'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
@@ -41,6 +43,19 @@ const VideoCard: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="VideoCardBlock" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The rounded media surface.' },
+                    { number: 2, name: 'Thumbnail', description: 'The poster image shown before playback.' },
+                    { number: 3, name: 'Play button', description: 'A central control that starts the video.' },
+                    { number: 4, name: 'Caption', description: 'An optional title or duration shown with the card.' },
+                ]}
+            >
+                <PlaceholderCard />
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

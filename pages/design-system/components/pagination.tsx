@@ -10,10 +10,12 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { Pagination } from '../../../components/atoms/Pagination'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'behaviour', title: 'Behaviour' },
@@ -42,6 +44,20 @@ const Page: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="Pagination" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Previous', description: 'A control that steps back one page; disabled on the first page.' },
+                    { number: 2, name: 'Page number', description: 'A numbered control linking directly to a page.' },
+                    { number: 3, name: 'Current page', description: 'The active page, visually emphasised and marked for assistive tech.' },
+                    { number: 4, name: 'Next', description: 'A control that steps forward one page; disabled on the last page.' },
+                    { number: 5, name: 'Ellipsis', description: 'A non-interactive gap standing in for omitted page numbers.' },
+                ]}
+            >
+                <Pagination page={4} totalPages={12} onPageChange={() => {}} />
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

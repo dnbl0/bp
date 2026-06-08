@@ -10,6 +10,7 @@ import {
     Dont,
     DoDontGrid,
     Specifications,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { Badge } from '../../../components/atoms/Badge'
 import {
@@ -20,6 +21,7 @@ import {
 } from '../../../styleguide-components/specs/badge.specs'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'examples', title: 'Examples' },
     { id: 'props', title: 'Props' },
     { id: 'specifications', title: 'Visual Specifications' },
@@ -37,6 +39,20 @@ const Page: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="Badge" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The compact pill that holds the badge content.' },
+                    { number: 2, name: 'Status dot', description: 'An optional leading dot reinforcing the semantic tone.' },
+                    { number: 3, name: 'Label', description: 'One or two words of status or category text.' },
+                ]}
+            >
+                <Badge tone="success" withDot>
+                    Active
+                </Badge>
+            </Anatomy>
+        </Section>
 
         <Section id="examples" title="Examples">
             <Example

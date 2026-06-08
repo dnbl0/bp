@@ -9,10 +9,12 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Anatomy,
 } from '../../../styleguide-components/primitives'
 import { Tabs } from '../../../components/molecules/Tabs'
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'example', title: 'Example' },
     { id: 'props', title: 'Props' },
     { id: 'accessibility', title: 'Accessibility' },
@@ -50,6 +52,21 @@ const Page: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="Tabs" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Tab list', description: 'The horizontal row containing the tab triggers.' },
+                    { number: 2, name: 'Tab', description: 'An inactive trigger that switches to its panel when selected.' },
+                    { number: 3, name: 'Active tab', description: 'The selected trigger, marked with an underline indicator.' },
+                    { number: 4, name: 'Panel', description: 'The content region revealed for the active tab.' },
+                ]}
+            >
+                <div className="w-full">
+                    <Tabs label="Cover types" items={demoItems} />
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="example" title="Example">
             <Example

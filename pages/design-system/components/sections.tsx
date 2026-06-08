@@ -1,7 +1,7 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import { ComponentHero } from '../../../styleguide-components/componentPreviews'
-import { PageHeader, Section, Specifications } from '../../../styleguide-components/primitives'
+import { PageHeader, Section, Specifications, Anatomy } from '../../../styleguide-components/primitives'
 import { sectionsDefaultSpecs } from '../../../styleguide-components/specs/sections.specs'
 
 const gridSections = [
@@ -24,6 +24,7 @@ const layoutSections = [
 ]
 
 const toc = [
+    { id: 'anatomy', title: 'Anatomy' },
     { id: 'grid', title: 'Grid sections' },
     { id: 'layout', title: 'Layout sections' },
     { id: 'specifications', title: 'Visual Specifications' },
@@ -40,6 +41,25 @@ const Sections: NextPageWithLayout = () => (
         />
 
         <ComponentHero name="Section6x6" />
+
+        <Section id="anatomy" title="Anatomy">
+            <Anatomy
+                parts={[
+                    { number: 1, name: 'Container', description: 'The full-width section wrapper with vertical rhythm.' },
+                    { number: 2, name: 'Heading', description: 'The section title introducing the content.' },
+                    { number: 3, name: 'Content', description: 'The body region holding the section’s components.' },
+                ]}
+            >
+                <div className="grid grid-cols-12 gap-2">
+                    <div className="h-12 rounded bg-cyan-50 dark:bg-charcoal border border-cyan/40 flex items-center justify-center text-caption font-mono text-cyan" style={{ gridColumn: 'span 6' }}>
+                        6
+                    </div>
+                    <div className="h-12 rounded bg-cyan-50 dark:bg-charcoal border border-cyan/40 flex items-center justify-center text-caption font-mono text-cyan" style={{ gridColumn: 'span 6' }}>
+                        6
+                    </div>
+                </div>
+            </Anatomy>
+        </Section>
 
         <Section id="grid" title="Grid sections">
             <div className="space-y-6">
