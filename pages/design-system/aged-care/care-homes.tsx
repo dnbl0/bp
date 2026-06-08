@@ -61,6 +61,26 @@ const components = [
         slug: 'nearby-homes',
         body: 'A sidebar widget surfacing the closest care homes by distance.',
     },
+    {
+        title: 'Home search hero',
+        slug: 'home-search',
+        body: 'The hero with integrated search that opens the find-a-home journey.',
+    },
+    {
+        title: 'Region browse',
+        slug: 'region-browse',
+        body: 'The browse-by-region grid of result cards with a three-column search hero.',
+    },
+    {
+        title: 'Contact card',
+        slug: 'contact-card',
+        body: 'The conversion card: phone, hours, address and booking actions.',
+    },
+    {
+        title: 'Header actions',
+        slug: 'header-actions',
+        body: 'The aged-care CTA cluster in the global header.',
+    },
 ]
 
 const patterns = [
