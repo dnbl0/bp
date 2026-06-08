@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { PulseLogo } from '../components/atoms/icons/PulseLogo'
 import { BurgerIcon } from '../components/atoms/icons/BurgerIcon'
 import { CloseIcon } from '../components/atoms/icons/CloseIcon'
@@ -41,6 +41,13 @@ interface DesignSystemLayoutProps {
 }
 
 const THEME_KEY = 'bds-theme'
+
+// The layout remounts on every client-side navigation, which would otherwise
+// snap the scrollable sidebar back to the top and force the user to scroll
+// down to their place again. Stashing the offset in a module-level variable
+// (the module isn't reloaded during SPA navigation) lets us restore it as the
+// fresh sidebar mounts, while the page content still resets to the top.
+let sidebarScrollTop = 0
 
 /** Highlights the heading currently in view for the "on this page" rail. */
 const useScrollSpy = (ids: string[]): string => {
@@ -170,6 +177,11 @@ export const DesignSystemLayout = ({
     const [mobileNavOpen, setMobileNavOpen] = useState(false)
     const closeMobileNav = () => setMobileNavOpen(false)
     const activeId = useScrollSpy(toc.map(entry => entry.id))
+    // Restore the saved sidebar scroll offset as the new aside mounts. A ref
+    // callback runs during commit, before paint, so there's no visible jump.
+    const restoreSidebarScroll = useCallback((node: HTMLElement | null) => {
+        if (node) node.scrollTop = sidebarScrollTop
+    }, [])
     // Strip the active brand's base path, leading slash and any query/hash to
     // recover the brand-relative page slug (e.g. `components/button`), used by
     // breadcrumbs and the prev/next pager.
@@ -236,6 +248,10 @@ export const DesignSystemLayout = ({
                 <div className="mx-auto max-w-[1600px] flex">
                     {/* Sidebar */}
                     <aside
+                        ref={restoreSidebarScroll}
+                        onScroll={event => {
+                            sidebarScrollTop = event.currentTarget.scrollTop
+                        }}
                         className={cx(
                             'fixed lg:sticky top-16 z-fixed lg:z-ground h-[calc(100vh-4rem)] w-72 flex-none overflow-y-auto bg-white dark:bg-grey border-r border-cool-paper-200 dark:border-charcoal transition-transform lg:translate-x-0',
                             mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
