@@ -9,11 +9,19 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
+import {
+    buttonPrimaryStandardSpecs,
+    buttonPrimaryGiantSpecs,
+    buttonPrimarySmallSpecs,
+    buttonSecondaryStandardSpecs,
+} from '../../../styleguide-components/specs/button.specs'
 
 const toc = [
     { id: 'variants', title: 'Variants' },
     { id: 'sizes', title: 'Sizes' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'states', title: 'States' },
     { id: 'inverse', title: 'Inverse' },
     { id: 'api', title: 'Class API' },
@@ -72,6 +80,31 @@ const Button: NextPageWithLayout = () => (
                 <button className="button">Standard</button>
                 <button className="button button--small">Small</button>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Each button variant and size has precise spacing, sizing, and color specifications. Click "Show specs" to see annotated measurements.
+            </p>
+            <h3 className="text-heading-sm font-semibold mt-8 mb-4">Primary Standard</h3>
+            <Specifications variant="Primary Standard" groups={buttonPrimaryStandardSpecs} withTable>
+                <button className="button">Primary Button</button>
+            </Specifications>
+
+            <h3 className="text-heading-sm font-semibold mt-8 mb-4">Primary Giant</h3>
+            <Specifications variant="Primary Giant" groups={buttonPrimaryGiantSpecs} withTable>
+                <button className="button button--giant">Giant Button</button>
+            </Specifications>
+
+            <h3 className="text-heading-sm font-semibold mt-8 mb-4">Primary Small</h3>
+            <Specifications variant="Primary Small" groups={buttonPrimarySmallSpecs} withTable>
+                <button className="button button--small">Small</button>
+            </Specifications>
+
+            <h3 className="text-heading-sm font-semibold mt-8 mb-4">Secondary Standard</h3>
+            <Specifications variant="Secondary Standard" groups={buttonSecondaryStandardSpecs} withTable>
+                <button className="button button--secondary">Secondary</button>
+            </Specifications>
         </Section>
 
         <Section id="states" title="States">
