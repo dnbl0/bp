@@ -8,11 +8,13 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { SquareBupaLogo } from '../../../components/atoms/icons/SquareBupaLogo'
 import { SearchIcon } from '../../../components/atoms/icons/SearchIcon'
 import { BurgerIcon } from '../../../components/atoms/icons/BurgerIcon'
 import { CallNowIcon } from '../../../components/atoms/icons/CallNowIcon'
+import { headerDefaultSpecs } from '../../../styleguide-components/specs/header.specs'
 
 const parts = [
     { name: 'Logo', detail: 'Links home; uses the square Bupa mark on small screens.' },
@@ -25,6 +27,7 @@ const parts = [
 const toc = [
     { id: 'overview', title: 'Overview' },
     { id: 'anatomy', title: 'Anatomy' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'parts', title: 'Parts' },
     { id: 'behaviour', title: 'Behaviour' },
     { id: 'guidelines', title: 'Guidelines' },
@@ -81,6 +84,31 @@ const Header: NextPageWithLayout = () => (
                     <BurgerIcon className="w-5 h-5 fill-navy" />
                 </div>
             </Anatomy>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={headerDefaultSpecs} withTable>
+                <div className="rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden">
+                    <div className="flex items-center gap-4 h-16 px-4 bg-white border-b border-cool-paper-200">
+                        <SquareBupaLogo className="h-8 w-auto" />
+                        <nav className="hidden md:flex gap-5 text-body-small text-navy font-medium flex-1">
+                            <span>Find a home</span>
+                            <span>Types of care</span>
+                            <span>Costs</span>
+                            <span>About</span>
+                        </nav>
+                        <button className="button button--small ml-auto md:ml-0">
+                            <CallNowIcon className="w-4 h-4 fill-white" />
+                            <span>Call now</span>
+                        </button>
+                        <SearchIcon className="w-6 h-6 fill-navy hidden md:block" />
+                        <BurgerIcon className="w-6 h-6 fill-navy md:hidden" />
+                    </div>
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="parts" title="Parts">

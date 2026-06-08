@@ -10,11 +10,13 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { FacebookIcon } from '../../../components/atoms/icons/FacebookIcon'
 import { InstagramIcon } from '../../../components/atoms/icons/InstagramIcon'
 import { LinkedInIcon } from '../../../components/atoms/icons/LinkedInIcon'
 import { YouTubeIcon } from '../../../components/atoms/icons/YouTubeIcon'
+import { footerDefaultSpecs } from '../../../styleguide-components/specs/footer.specs'
 
 const menus = [
     { title: 'Aged care', links: ['Find a home', 'Types of care', 'Costs & fees'] },
@@ -64,6 +66,7 @@ const FooterDemo = () => (
 const toc = [
     { id: 'example', title: 'Example' },
     { id: 'anatomy', title: 'Anatomy' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -150,6 +153,15 @@ const Footer: NextPageWithLayout = () => (
                     </div>
                 </div>
             </Anatomy>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={footerDefaultSpecs} withTable>
+                <FooterDemo />
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

@@ -9,11 +9,14 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
+import { ctaDefaultSpecs } from '../../../styleguide-components/specs/cta.specs'
 
 const toc = [
     { id: 'examples', title: 'Examples' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -75,6 +78,20 @@ const Cta: NextPageWithLayout = () => (
                     <span>Back to results</span>
                 </a>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={ctaDefaultSpecs} withTable>
+                <a className="button button--giant" href="#">
+                    <span>Find a care home</span>
+                    <span>
+                        <ChevronRightIcon />
+                    </span>
+                </a>
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

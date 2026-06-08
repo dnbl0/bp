@@ -9,9 +9,11 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
 import { ImagePlaceholderIcon } from '../../../components/atoms/icons/ImagePlaceholderIcon'
+import { imageCardDefaultSpecs } from '../../../styleguide-components/specs/image-card.specs'
 
 const DemoCard = ({ skeleton = false }: { skeleton?: boolean }) => (
     <div className="rounded px-6 overflow-hidden flex flex-col flex-1 max-w-xs pb-6 gap-6 shadow-depth-default hover:shadow-depth-hover bg-white cursor-pointer">
@@ -41,6 +43,7 @@ const DemoCard = ({ skeleton = false }: { skeleton?: boolean }) => (
 
 const toc = [
     { id: 'types', title: 'Types' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -88,6 +91,15 @@ const ImageCard: NextPageWithLayout = () => (
                 <DemoCard />
                 <DemoCard skeleton />
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={imageCardDefaultSpecs} withTable>
+                <DemoCard />
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

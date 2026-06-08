@@ -10,12 +10,15 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { PersonIcon } from '../../../components/atoms/icons/PersonIcon'
+import { testimonialDefaultSpecs } from '../../../styleguide-components/specs/testimonial.specs'
 
 const toc = [
     { id: 'examples', title: 'Examples' },
     { id: 'anatomy', title: 'Anatomy' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -125,6 +128,28 @@ const Testimonial: NextPageWithLayout = () => (
                     <div className="font-semibold text-sm text-grey">Relationship</div>
                 </div>
             </Anatomy>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={testimonialDefaultSpecs} withTable>
+                <div className="p-6 rounded border-[1px] border-cool-paper-200 w-full max-w-md bg-white">
+                    <div className="flex flex-col gap-6">
+                        <p className="text-grey">
+                            "The team made Mum feel at home from day one. We couldn't
+                            have asked for more caring staff."
+                        </p>
+                        <div className="flex flex-col gap-[6px]">
+                            <div className="font-semibold">Sarah J.</div>
+                            <div className="font-semibold text-sm text-grey">
+                                Daughter of resident
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">

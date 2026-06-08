@@ -9,12 +9,15 @@ import {
     Do,
     Dont,
     DoDontGrid,
+    Specifications,
 } from '../../../styleguide-components/primitives'
 import { CallNowIcon } from '../../../components/atoms/icons/CallNowIcon'
 import { ChevronRightIcon } from '../../../components/atoms/icons/ChevronRightIcon'
+import { contactCardDefaultSpecs } from '../../../styleguide-components/specs/contact-card.specs'
 
 const toc = [
     { id: 'example', title: 'Example' },
+    { id: 'specifications', title: 'Visual Specifications' },
     { id: 'props', title: 'Props' },
     { id: 'guidelines', title: 'Guidelines' },
 ]
@@ -81,6 +84,29 @@ const ContactCard: NextPageWithLayout = () => (
                     </div>
                 </div>
             </Example>
+        </Section>
+
+        <Section id="specifications" title="Visual Specifications">
+            <p className="text-grey dark:text-light-grey">
+                Component visual specifications for sizing, spacing and colors.
+            </p>
+            <Specifications variant="Default" groups={contactCardDefaultSpecs} withTable>
+                <div className="bg-white rounded shadow-depth-hover flex flex-col max-w-sm">
+                    <div className="p-6 flex flex-col gap-3">
+                        <h2 className="text-heading-s font-medium text-navy">
+                            Sunshine Aged Care
+                        </h2>
+                        <a className="flex items-center gap-2 text-navy font-semibold" href="#">
+                            <CallNowIcon className="w-5 h-5 fill-cyan" />
+                            1800 030 130
+                        </a>
+                        <p className="text-body-small text-grey">Open 8am – 6pm, Mon–Fri</p>
+                        <p className="text-body-small text-grey">
+                            12 Banksia Street, Sunshine VIC 3020
+                        </p>
+                    </div>
+                </div>
+            </Specifications>
         </Section>
 
         <Section id="props" title="Props">
