@@ -5,6 +5,17 @@ const docsExport = process.env.DOCS_EXPORT === '1'
 const docsBasePath = process.env.DOCS_BASE_PATH || '/bp'
 
 /** @type {import('next').NextConfig} */
+
+/*
+    When PAGES_EXPORT=true we are building the static design-system docs for
+    GitHub Pages (served under /bp). The main app cannot be statically exported
+    because most routes use getServerSideProps and API routes, so the export is
+    run against a pruned `pages/` tree (see scripts/export-docs.mjs) and only
+    the fully-static /design-system pages are emitted. These overrides apply
+    only to that build; normal `next dev` / `next build` are unaffected.
+*/
+const isPagesExport = process.env.PAGES_EXPORT === 'true'
+
 const nextConfig = {
     ...(docsExport
         ? {
@@ -34,7 +45,21 @@ const nextConfig = {
             'videos.ctfassets.net',
             'img.youtube.com',
         ],
+        // next/image optimisation is unavailable in a static export.
+        ...(isPagesExport ? { unoptimized: true } : {}),
     },
+    ...(isPagesExport
+        ? {
+              basePath: '/bp',
+              assetPrefix: '/bp/',
+              trailingSlash: true,
+              // The generated Contentful types and the SSR pages live outside
+              // the docs build; skip type/lint gates so the static export of
+              // the self-contained docs does not fail on unrelated code.
+              typescript: { ignoreBuildErrors: true },
+              eslint: { ignoreDuringBuilds: true },
+          }
+        : {}),
 }
 
 module.exports = nextConfig

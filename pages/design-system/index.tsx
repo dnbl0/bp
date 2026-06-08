@@ -7,6 +7,8 @@ import {
     hrefFor,
     navSections,
 } from '../../styleguide-components/designSystem.config'
+import { brands } from '../../styleguide-components/brands'
+import { StatusBadge } from '../../styleguide-components/primitives/StatusBadge'
 
 /* ---- Inline pillar icons (self-contained, inherit currentColor) ---------- */
 
@@ -81,6 +83,9 @@ const ArrowIcon = () => (
 
 const sectionItems = (title: string) =>
     navSections.find(section => section.title === title)?.items ?? []
+
+/** The sub-brands surfaced on the home page, sourced from the brand registry. */
+const subBrands = brands.filter(brand => !brand.isCore)
 
 const principles = [
     {
@@ -164,11 +169,11 @@ const DesignSystemHome: NextPageWithLayout = () => (
         <section className="py-2 sm:py-6">
             <p className="bds-eyebrow text-cyan">Design system</p>
             <h1 className="mt-3 max-w-3xl text-[2.25rem] sm:text-[3rem] leading-[1.08] tracking-[-0.02em] font-bold text-navy dark:text-white">
-                Bupa Aged Care Design System
+                Bupa Design System
             </h1>
             <p className="mt-5 max-w-2xl bds-lead text-grey dark:text-light-grey">
                 {SITE_TAGLINE} Living documentation for the foundations, components
-                and patterns behind the Bupa Aged Care website — generated from the
+                and patterns shared across every Bupa brand — generated from the
                 same code that ships to production.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
@@ -204,6 +209,37 @@ const DesignSystemHome: NextPageWithLayout = () => (
                                     {pillar.meta}
                                 </span>
                             )}
+                        </a>
+                    </Link>
+                ))}
+            </div>
+        </section>
+
+        {/* Brands */}
+        <section className="mt-16">
+            <h2 className="bds-h2 text-navy dark:text-white">Brands</h2>
+            <p className="mt-2 max-w-2xl text-body-small text-grey dark:text-light-grey">
+                Each line of business has its own space for brand-specific
+                components, patterns and guidance — all built on the shared
+                foundations above. Switch between them any time from the brand
+                menu in the header.
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {subBrands.map(brand => (
+                    <Link key={brand.id} href={brand.basePath}>
+                        <a className="group flex flex-col rounded-2xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
+                            <span className="flex items-center justify-between gap-2">
+                                <span className="flex items-center gap-2 text-heading-s font-semibold text-navy dark:text-white group-hover:text-cyan">
+                                    {brand.label}
+                                    <span className="text-cyan opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">
+                                        <ArrowIcon />
+                                    </span>
+                                </span>
+                                <StatusBadge status={brand.status} />
+                            </span>
+                            <span className="mt-2 flex-1 text-body-small text-grey dark:text-light-grey">
+                                {brand.tagline}
+                            </span>
                         </a>
                     </Link>
                 ))}

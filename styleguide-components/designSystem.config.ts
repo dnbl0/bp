@@ -21,6 +21,20 @@ export interface NavItem {
      * DOM. Optional; search falls back to title + summary where absent.
      */
     keywords?: string[]
+    /**
+     * When set, the item links to this already-resolved absolute path instead
+     * of being joined against its brand's base path. Used by sub-brands to
+     * surface shared core foundations (e.g. `/design-system/foundations/color`)
+     * in their own sidebar. See styleguide-components/brands.ts.
+     */
+    href?: string
+    /**
+     * Marks an item as inherited from the core brand (a shared foundation
+     * surfaced inside a sub-brand). Inherited items are shown in the sidebar
+     * with an external-link affordance but excluded from the sub-brand's own
+     * reading order (breadcrumbs, previous/next).
+     */
+    inherited?: boolean
 }
 
 export interface NavSection {
@@ -29,7 +43,7 @@ export interface NavSection {
 }
 
 export const SITE_TITLE = 'Bupa Design System'
-export const SITE_TAGLINE = 'The living design language behind Bupa Aged Care.'
+export const SITE_TAGLINE = 'The shared design language and foundations behind every Bupa brand.'
 export const BASE_PATH = '/design-system'
 
 export const navSections: NavSection[] = [

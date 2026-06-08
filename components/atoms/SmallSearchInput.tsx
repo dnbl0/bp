@@ -7,7 +7,6 @@ import { Autocomplete } from '../molecules/Autocomplete'
 import { SearchState } from 'react-instantsearch/connectors'
 import { createQuerySuggestionsPlugin } from '@algolia/autocomplete-plugin-query-suggestions'
 import { createLocalStorageRecentSearchesPlugin } from '@algolia/autocomplete-plugin-recent-searches'
-import { invariant } from '@apollo/client/utilities/globals'
 
 const apiKey = process.env.NEXT_PUBLIC_ALGOLIA_PUBLIC_KEY
 const searchAppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID
@@ -15,12 +14,14 @@ const searchIndex = process.env.NEXT_PUBLIC_ALGOLIA_INDEX
 const suggestionIndex = process.env.NEXT_PUBLIC_ALGOLIA_SUGGESTIONS
 const searchSuggestions = process.env.NEXT_PUBLIC_ALGOLIA_SUGGESTIONS
 
-invariant(apiKey, 'publicKey not defined')
-invariant(searchAppId, 'searchAppId not defined')
-invariant(searchIndex, 'searchIndex not defined')
-invariant(suggestionIndex, 'searchIndex not defined')
+// When Algolia keys aren't configured (e.g. local docs-only runs) we don't
+// throw at import time — that would crash every page whose bundle pulls in the
+// Header. Instead the component renders a disabled placeholder input.
+const hasAlgolia = Boolean(apiKey && searchAppId && suggestionIndex)
 
-const searchClient = algoliasearch(searchAppId, apiKey)
+const searchClient = hasAlgolia
+    ? algoliasearch(searchAppId as string, apiKey as string)
+    : null
 
 const updateAfter = 700
 
@@ -48,6 +49,22 @@ export const SmallSearchInput = ({
     placeholder: string
     allowEmptySearch: boolean
 }) => {
+    // `hasAlgolia` is a module-level constant, so this branch is stable across
+    // renders and doesn't violate the rules of hooks.
+    if (!hasAlgolia) {
+        return (
+            <div>
+                <input
+                    type="search"
+                    placeholder={placeholder}
+                    disabled
+                    aria-label="Search (disabled — Algolia not configured)"
+                    className="w-full rounded border border-gray-300 px-3 py-2 text-sm text-gray-400"
+                />
+            </div>
+        )
+    }
+
     const inputRef = useRef<HTMLInputElement>(null)
     const [searchState, setSearchState] = React.useState(
         pathToSearchState(window.location.href)

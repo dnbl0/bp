@@ -10,13 +10,13 @@ import { FigmaIcon } from '../components/atoms/icons/FigmaIcon'
 import { cx } from '../utils/cx'
 import {
     BASE_PATH,
-    SITE_TAGLINE,
     SITE_TITLE,
-    hrefFor,
-    navSections,
     githubEditUrl,
     figmaDesignUrl,
 } from './designSystem.config'
+import { Brand, brandForPath, hrefForItem } from './brands'
+import { BrandProvider } from './BrandContext'
+import { BrandSwitcher } from './BrandSwitcher'
 import { StatusBadge } from './primitives/StatusBadge'
 import { Breadcrumbs } from './primitives/Breadcrumbs'
 import { PrevNext } from './primitives/PrevNext'
@@ -88,14 +88,16 @@ const useTheme = (): [boolean, () => void] => {
 }
 
 const Sidebar = ({
+    brand,
     currentPath,
     onNavigate,
 }: {
+    brand: Brand
     currentPath: string
     onNavigate: () => void
 }) => (
     <nav className="px-4 py-6 space-y-8" aria-label="Design system">
-        {navSections.map(section => {
+        {brand.navSections.map(section => {
             const headingId = `bds-nav-${section.title
                 .toLowerCase()
                 .replace(/\s+/g, '-')}`
@@ -109,7 +111,7 @@ const Sidebar = ({
                 </p>
                 <ul className="space-y-0.5" aria-labelledby={headingId}>
                     {section.items.map(item => {
-                        const href = hrefFor(item.slug)
+                        const href = hrefForItem(brand, item)
                         const active = currentPath === href
                         return (
                             <li key={href}>
@@ -124,7 +126,18 @@ const Sidebar = ({
                                                 : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal'
                                         )}
                                     >
-                                        {item.title}
+                                        <span className="flex items-center gap-1.5">
+                                            {item.title}
+                                            {item.inherited && (
+                                                <span
+                                                    aria-hidden="true"
+                                                    title="Shared from the Bupa core"
+                                                    className="text-disabled-text"
+                                                >
+                                                    ↗
+                                                </span>
+                                            )}
+                                        </span>
                                         {item.status && item.status !== 'stable' && (
                                             <StatusBadge status={item.status} />
                                         )}
@@ -152,23 +165,33 @@ export const DesignSystemLayout = ({
     wide = false,
 }: DesignSystemLayoutProps) => {
     const router = useRouter()
+    const brand = brandForPath(router.asPath)
     const [dark, toggleTheme] = useTheme()
     const [mobileNavOpen, setMobileNavOpen] = useState(false)
     const closeMobileNav = () => setMobileNavOpen(false)
     const activeId = useScrollSpy(toc.map(entry => entry.id))
-    // Strip the base path, leading slash and any query/hash to recover the
-    // page slug used throughout the config (e.g. `components/button`).
+    // Strip the active brand's base path, leading slash and any query/hash to
+    // recover the brand-relative page slug (e.g. `components/button`), used by
+    // breadcrumbs and the prev/next pager.
     const slug = router.asPath
-        .replace(BASE_PATH, '')
+        .replace(brand.basePath, '')
         .split(/[?#]/)[0]
         .replace(/^\//, '')
+    // The path of the page file under pages/design-system, used for the GitHub
+    // edit link. For a sub-brand this includes the brand segment.
+    const editPath = brand.isCore
+        ? slug
+        : slug
+          ? `${brand.id}/${slug}`
+          : `${brand.id}/index`
 
     return (
+        <BrandProvider value={brand}>
         <div className={cx('bds-root', dark && 'dark')}>
             <Head>
-                <title>{`${title} · ${SITE_TITLE}`}</title>
+                <title>{`${title} · ${brand.title}`}</title>
                 <meta name="robots" content="noindex" />
-                <meta name="description" content={SITE_TAGLINE} />
+                <meta name="description" content={brand.tagline} />
             </Head>
             <div className="min-h-screen bg-white dark:bg-grey text-grey dark:text-light-grey">
                 {/* Top bar */}
@@ -193,6 +216,7 @@ export const DesignSystemLayout = ({
                             </span>
                         </a>
                     </Link>
+                    <BrandSwitcher />
                     <div className="flex-1 flex justify-center">
                         <Search onNavigate={closeMobileNav} />
                     </div>
@@ -217,7 +241,11 @@ export const DesignSystemLayout = ({
                             mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
                         )}
                     >
-                        <Sidebar currentPath={router.asPath} onNavigate={closeMobileNav} />
+                        <Sidebar
+                            brand={brand}
+                            currentPath={router.asPath}
+                            onNavigate={closeMobileNav}
+                        />
                     </aside>
 
                     {mobileNavOpen && (
@@ -237,7 +265,7 @@ export const DesignSystemLayout = ({
                             {/* Edit links footer */}
                             <div className="mt-12 pt-6 border-t border-cool-paper-200 dark:border-charcoal flex flex-wrap gap-6">
                                 <a
-                                    href={githubEditUrl(slug)}
+                                    href={githubEditUrl(editPath)}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-2 text-body-small text-grey dark:text-light-grey hover:text-navy dark:hover:text-white transition-colors"
@@ -294,5 +322,6 @@ export const DesignSystemLayout = ({
                 </div>
             </div>
         </div>
+        </BrandProvider>
     )
 }

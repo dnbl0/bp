@@ -123,6 +123,8 @@ export const componentLayers: ComponentLayer[] = [
             { name: 'Footer', source: 'components/organisms/Footer', description: 'The global site footer with navigation, legal and social links.', status: 'stable', docSlug: 'components/footer' },
             { name: 'PreviewEnabledNotification', source: 'components/organisms/PreviewEnabledNotification.tsx', description: 'A banner shown when CMS preview mode is active.', status: 'stable', docSlug: 'components/group-infra' },
             { name: 'LinkHandler', source: 'components/organisms/LinkHandler.tsx', description: 'Centralised handling of internal and external link behaviour.', status: 'stable', docSlug: 'components/group-infra' },
+            { name: 'ChatWidget', source: 'Third-party (Spectrm)', description: 'The site-wide “Chat with us” assistant. A vendor widget, documented as an integration point rather than an in-repo component.', status: 'in-review', docSlug: 'components/group-infra' },
+            { name: 'CookieConsent', source: 'Third-party (OneTrust)', description: 'The site-wide cookie/consent banner. Vendor-managed; documented as an integration point.', status: 'in-review', docSlug: 'components/group-infra' },
         ],
     },
     {
