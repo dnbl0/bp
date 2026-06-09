@@ -14,7 +14,7 @@ import {
     githubEditUrl,
     figmaDesignUrl,
 } from './designSystem.config'
-import { Brand, brandForPath, brandGuidelines, hrefForItem } from './brands'
+import { Brand, brandForPath, brandGuidelines, switcherBrands, hrefForItem } from './brands'
 import { BrandProvider } from './BrandContext'
 import { BrandSwitcher } from './BrandSwitcher'
 import { StatusBadge } from './primitives/StatusBadge'
@@ -104,6 +104,40 @@ const Sidebar = ({
     onNavigate: () => void
 }) => (
     <nav className="px-4 py-6 space-y-8" aria-label="Design system">
+        {/*
+            Brand navigation. The header brand switcher and the brand-guidelines
+            label are hidden below `lg` to keep the bar uncluttered on narrow
+            screens, so we surface brand switching here in the drawer instead —
+            mirroring how the page nav itself moves into the drawer on mobile.
+        */}
+        <div className="lg:hidden">
+            <p className="px-3 mb-2 text-caption font-bold uppercase tracking-wide text-disabled-text">
+                Brands
+            </p>
+            <ul className="space-y-0.5">
+                {[...switcherBrands, brandGuidelines].map(item => {
+                    const active = item.id === brand.id
+                    return (
+                        <li key={item.id}>
+                            <Link href={item.basePath}>
+                                <a
+                                    onClick={onNavigate}
+                                    aria-current={active ? 'page' : undefined}
+                                    className={cx(
+                                        'block px-3 py-2 rounded-lg text-body-small',
+                                        active
+                                            ? 'bg-cyan-50 dark:bg-charcoal text-cyan font-semibold'
+                                            : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal'
+                                    )}
+                                >
+                                    {item.label}
+                                </a>
+                            </Link>
+                        </li>
+                    )
+                })}
+            </ul>
+        </div>
         {brand.navSections.map(section => {
             const headingId = `bds-nav-${section.title
                 .toLowerCase()
@@ -228,23 +262,31 @@ export const DesignSystemLayout = ({
                             </span>
                         </a>
                     </Link>
-                    <BrandSwitcher />
-                    <Link href={brandGuidelines.basePath}>
-                        <a
-                            aria-current={
-                                brand.id === brandGuidelines.id ? 'page' : undefined
-                            }
-                            className={cx(
-                                'flex-none inline-flex items-center px-2.5 h-9 rounded-lg text-body-small font-semibold hover:bg-cool-paper-100 dark:hover:bg-charcoal',
-                                brand.id === brandGuidelines.id
-                                    ? 'text-cyan'
-                                    : 'text-navy dark:text-white'
-                            )}
-                        >
-                            {brandGuidelines.label}
-                        </a>
-                    </Link>
-                    <div className="flex-1 flex justify-center">
+                    {/*
+                        Brand controls live in the bar only from `lg` up, where
+                        the persistent sidebar replaces the drawer. Below `lg`
+                        they move into the drawer (see Sidebar) so the search
+                        field keeps room instead of being crushed.
+                    */}
+                    <div className="hidden lg:flex items-center gap-4 flex-none">
+                        <BrandSwitcher />
+                        <Link href={brandGuidelines.basePath}>
+                            <a
+                                aria-current={
+                                    brand.id === brandGuidelines.id ? 'page' : undefined
+                                }
+                                className={cx(
+                                    'inline-flex items-center px-2.5 h-9 rounded-lg text-body-small font-semibold hover:bg-cool-paper-100 dark:hover:bg-charcoal',
+                                    brand.id === brandGuidelines.id
+                                        ? 'text-cyan'
+                                        : 'text-navy dark:text-white'
+                                )}
+                            >
+                                {brandGuidelines.label}
+                            </a>
+                        </Link>
+                    </div>
+                    <div className="flex-1 min-w-0 flex justify-end lg:justify-center">
                         <Search onNavigate={closeMobileNav} />
                     </div>
                     <button
