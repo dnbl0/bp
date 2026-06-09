@@ -11,7 +11,10 @@
 import { ReactNode } from 'react'
 import { cx } from '../utils/cx'
 
-const BASE = '/brand-assets'
+// Prefix with the base path when the docs are served under one (the GitHub
+// Pages export lives at /bp). Empty for the normal app, where public/ is served
+// from the root. Raw <img src> is not auto-prefixed by Next, so we do it here.
+const BASE = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/brand-assets`
 
 export interface AssetImage {
     src: string

@@ -21,6 +21,11 @@ const nextConfig = {
         ? {
               basePath: docsBasePath,
               assetPrefix: `${docsBasePath}/`,
+              // Expose the base path to the client so absolute references to
+              // static files in public/ (e.g. brand assets, which use a plain
+              // <img>) can be prefixed — Next only auto-prefixes next/image and
+              // _next assets, not raw <img src>.
+              env: { NEXT_PUBLIC_BASE_PATH: docsBasePath },
               trailingSlash: true,
               images: { unoptimized: true },
               typescript: { ignoreBuildErrors: true },
@@ -52,6 +57,7 @@ const nextConfig = {
         ? {
               basePath: '/bp',
               assetPrefix: '/bp/',
+              env: { NEXT_PUBLIC_BASE_PATH: '/bp' },
               trailingSlash: true,
               // The generated Contentful types and the SSR pages live outside
               // the docs build; skip type/lint gates so the static export of
