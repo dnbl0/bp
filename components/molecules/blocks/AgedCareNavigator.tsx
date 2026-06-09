@@ -13,6 +13,7 @@ import { formattingOptions } from '../../../utils/formattingOptions'
 import { CtaBlock } from './CtaBlock'
 import { useRouter } from 'next/router'
 import { setBreadcrumbBackLink } from './BreadCrumbsBlock'
+import { NavigatorOptionButton } from '../NavigatorOptionButton'
 
 
 interface CtaProps {
@@ -490,25 +491,20 @@ export const AgedCareNavigator = ({
                                 setOptionNotice(option.notice);
                             }
                             return (
-                                <button key={option.sys.id} className={cx(
-                                    'flex flex-col justify-center items-center gap-2',
-                                    'border-2',
-                                    isSelected ? 'border-cyan' : 'border-cool-paper-200', 
-                                    isSelected ? 'bg-cyan-50' : 'bg-white',
-                                    'hover:bg-cool-paper-100 cursor-pointer',
-                                    'rounded p-6 flex-grow text-center',
-                                )} onClick={() => handleOptionClick(option.name!, step.name!)}>
-                                    {option.icon &&
-                                        <div className='w-16 min-h-16 pb-4 flex justify-center items-center'>
-                                        <ResponsiveImage                                
-                                        image={{...option.icon, width: 57, height: 57}}
-                                        layout="intrinsic"
+                                <NavigatorOptionButton
+                                    key={option.sys.id}
+                                    heading={option.heading ?? ''}
+                                    description={option.subHeading ?? undefined}
+                                    state={isSelected ? 'selected' : 'default'}
+                                    icon={option.icon ? (
+                                        <ResponsiveImage
+                                            image={{...option.icon, width: 57, height: 57}}
+                                            layout="intrinsic"
                                         />
-                                        </div>
-                                    }
-                                    <div className='font-semibold text-body leading-6'>{option.heading}</div>
-                                    {option.subHeading && <div className='text-sm text-navy'>{option.subHeading}</div>}
-                                </button>
+                                    ) : undefined}
+                                    onClick={() => handleOptionClick(option.name!, step.name!)}
+                                    className="flex-grow"
+                                />
                             )
                         })}
                         </div>
@@ -642,33 +638,26 @@ export const AgedCareNavigator = ({
                         </h3>
                         <p className='text-body'>Change your selections and we&apos;ll update what you need to do next</p>
                         <div className='grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] flex-row gap-2'>
-                            {steps.map((step, index) => {
+                            {steps.map((step) => {
                                 if (!step) return null;
                                 const selectedOption = selectedOptions[step.name || ''];
-                                const stepName = step.name || '';
                                 return (
-                                    <button key={'summary-'+ step.sys.id} className={cx(
-                                        'flex flex-col justify-center items-center gap-2',
-                                        'border-2',
-                                        isModifyStep(step.name!) ? 'border-cyan' : 'border-cool-paper-200', 
-                                        isModifyStep(step.name!) ? 'bg-cyan-50' : 'bg-white',
-                                        'hover:bg-cool-paper-100 cursor-pointer',
-                                        'rounded p-6 flex-grow text-center',
-                                    )} onClick={() => {
-                                        setModifyStep(step.name!);
-                                        setModifyOption(selectedOption);
-                                    }}>
-                                        {step.summaryImage &&
-                                            <div className='w-16 min-h-16 py-4 flex justify-center items-center'>
-                                            <ResponsiveImage                                
-                                            image={{...step.summaryImage, width: 57, height: 57}}
-                                            layout="intrinsic"
+                                    <NavigatorOptionButton
+                                        key={'summary-'+ step.sys.id}
+                                        heading={step.summaryTitle ?? ''}
+                                        description={selectedOption ? (selectedOption.resultTitle || selectedOption.heading) : undefined}
+                                        state={isModifyStep(step.name!) ? 'selected' : 'default'}
+                                        icon={step.summaryImage ? (
+                                            <ResponsiveImage
+                                                image={{...step.summaryImage, width: 57, height: 57}}
+                                                layout="intrinsic"
                                             />
-                                            </div>
-                                        }
-                                        <div className='font-semibold text-body'>{step.summaryTitle}</div>
-                                        {selectedOption && <div className='text-sm text-navy'>{selectedOption.resultTitle || selectedOption.heading }</div>}
-                                    </button>
+                                        ) : undefined}
+                                        onClick={() => {
+                                            setModifyStep(step.name!);
+                                            setModifyOption(selectedOption);
+                                        }}
+                                    />
                                 )})}
                         </div>
                         <div className='flex md:justify-end gap-4'>
