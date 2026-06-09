@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
+import { BupaLogo } from '../components/atoms/icons/BupaLogo'
 import { ChevronDownIcon } from '../components/atoms/icons/ChevronDownIcon'
 import { cx } from '../utils/cx'
 import { switcherBrands } from './brands'
 import { useBrand } from './BrandContext'
-import { StatusBadge } from './primitives/StatusBadge'
 
 /**
  * The global brand switcher in the header, modelled on Primer's site switcher.
@@ -75,12 +75,17 @@ export const BrandSwitcher = () => {
                 aria-haspopup="menu"
                 aria-expanded={open}
                 aria-controls="bds-brand-menu"
-                className="flex items-center gap-1.5 px-2.5 h-9 rounded-lg text-body-small font-semibold text-navy dark:text-white hover:bg-cool-paper-100 dark:hover:bg-charcoal"
+                className={cx(
+                    'flex items-center gap-2 px-3 h-9 rounded-lg text-body-small font-semibold bg-white dark:bg-cool-grey border-2 border-cool-paper-200 dark:border-charcoal text-navy dark:text-white hover:border-cyan dark:hover:border-cyan transition-colors min-w-[10rem]',
+                    open && 'border-cyan dark:border-cyan'
+                )}
             >
-                <span>{brand.label}</span>
+                <span className="flex-1 text-left truncate">
+                    {brand.isCore ? 'Select brand' : brand.label}
+                </span>
                 <ChevronDownIcon
                     className={cx(
-                        'w-2.5 h-2.5 fill-current transition-transform',
+                        'w-3 h-3 flex-none fill-current transition-transform',
                         open && 'rotate-180'
                     )}
                 />
@@ -106,39 +111,28 @@ export const BrandSwitcher = () => {
                                         onClick={() => setOpen(false)}
                                         onMouseEnter={() => setActive(index)}
                                         className={cx(
-                                            'flex flex-col gap-0.5 px-3 py-2 rounded-lg outline-none',
+                                            'flex items-center gap-2 px-3 py-2 rounded-lg outline-none',
                                             index === active
                                                 ? 'bg-cool-paper-100 dark:bg-charcoal'
                                                 : 'hover:bg-cool-paper-100 dark:hover:bg-charcoal'
                                         )}
                                     >
-                                        <span className="flex items-center justify-between gap-2">
-                                            <span
-                                                className={cx(
-                                                    'font-semibold',
-                                                    current
-                                                        ? 'text-cyan'
-                                                        : 'text-navy dark:text-white'
-                                                )}
-                                            >
-                                                {item.label}
-                                            </span>
-                                            {item.isCore ? (
-                                                current && (
-                                                    <span
-                                                        aria-hidden="true"
-                                                        className="text-cyan"
-                                                    >
-                                                        ✓
-                                                    </span>
-                                                )
-                                            ) : (
-                                                <StatusBadge status={item.status} />
+                                        <BupaLogo className="h-5 w-5 flex-none rounded-sm" />
+                                        <span
+                                            className={cx(
+                                                'font-semibold',
+                                                current
+                                                    ? 'text-cyan'
+                                                    : 'text-navy dark:text-white'
                                             )}
+                                        >
+                                            {item.label}
                                         </span>
-                                        <span className="text-caption text-grey dark:text-light-grey">
-                                            {item.tagline}
-                                        </span>
+                                        {item.isCore && current && (
+                                            <span aria-hidden="true" className="ml-auto text-cyan">
+                                                ✓
+                                            </span>
+                                        )}
                                     </a>
                                 </Link>
                             </li>
