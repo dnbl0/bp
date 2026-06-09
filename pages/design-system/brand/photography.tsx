@@ -25,26 +25,26 @@ const toc = [
     { id: 'dos', title: 'Do & don’t' },
 ]
 
-const types: { title: string; body: string; image: AssetImage }[] = [
+const types: { title: string; body: string; images: AssetImage[] }[] = [
     {
         title: 'Everyday moments',
         body: 'Everyday people living everyday lives — real, authentic people with natural expressions.',
-        image: photography.everydayMoments,
+        images: photography.everydayMoments,
     },
     {
         title: 'Bupa delivering care',
         body: 'Demonstrates our experience delivering health and care services with customers, colleagues and the community. Tight crops emphasise our focus on people.',
-        image: photography.deliveringCare,
+        images: photography.deliveringCare,
     },
     {
         title: 'Portraits',
         body: 'Portraits of people in the moment, with real, relaxed expressions in real environments. Subjects can look at, or off, camera.',
-        image: photography.portraits,
+        images: photography.portraits,
     },
     {
         title: 'Everyday still-life',
         body: 'Reflects the world our customer lives in — full of life, imperfect, with irreverent moments and little touches of personality.',
-        image: photography.stillLife,
+        images: photography.stillLife,
     },
 ]
 
@@ -61,28 +61,25 @@ const Photography: NextPageWithLayout = () => (
         </PullQuote>
 
         <Section id="types" title="Our four types of photography">
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="space-y-8">
                 {types.map((type, index) => (
-                    <div
-                        key={type.title}
-                        className="rounded-xl border border-cool-paper-200 dark:border-charcoal overflow-hidden bg-white dark:bg-cool-grey"
-                    >
-                        <img
-                            src={type.image.src}
-                            alt={type.image.alt}
-                            loading="lazy"
-                            className="w-full aspect-[3/2] object-cover"
-                        />
-                        <div className="p-5">
-                            <span className="inline-flex w-7 h-7 rounded-full bg-cyan text-white text-body-small font-semibold items-center justify-center">
+                    <div key={type.title}>
+                        <div className="flex items-center gap-3">
+                            <span className="inline-flex w-7 h-7 flex-none rounded-full bg-cyan text-white text-body-small font-semibold items-center justify-center">
                                 {index + 1}
                             </span>
-                            <h3 className="mt-3 font-semibold text-navy dark:text-white">
+                            <h3 className="font-semibold text-navy dark:text-white">
                                 {type.title}
                             </h3>
-                            <p className="mt-1 text-body-small text-grey dark:text-light-grey">
-                                {type.body}
-                            </p>
+                        </div>
+                        <p className="mt-2 text-body-small text-grey dark:text-light-grey">
+                            {type.body}
+                        </p>
+                        <div className="mt-4">
+                            <BrandGallery
+                                images={type.images}
+                                columns="grid-cols-2 sm:grid-cols-4"
+                            />
                         </div>
                     </div>
                 ))}
@@ -120,6 +117,13 @@ const Photography: NextPageWithLayout = () => (
             <div className="mt-6">
                 <BrandGallery images={photography.touchOfBlue} columns="grid-cols-1 sm:grid-cols-3" />
             </div>
+            <p className="mt-8 text-body-small text-grey dark:text-light-grey">
+                Adjusting an image — sharpen, balance the levels, lighten faces and add
+                a touch of blue — gives a look that is more uniquely Bupa:
+            </p>
+            <div className="mt-3">
+                <BrandGallery images={photography.colourAdjust} columns="grid-cols-2 sm:grid-cols-3" />
+            </div>
         </Section>
 
         <Section id="over-image" title="Text over a photo">
@@ -154,6 +158,16 @@ const Photography: NextPageWithLayout = () => (
                 <BrandFigure
                     image={photography.homepageHeader}
                     caption="A homepage/header photo with the focal point top-right, so it scales gracefully to mobile."
+                />
+            </div>
+            <p className="mt-8 text-body-small text-grey dark:text-light-grey">
+                The same scene cropped for different formats — the top-right focal
+                point survives each crop:
+            </p>
+            <div className="mt-3">
+                <BrandGallery
+                    images={photography.homepageHeaderCrops}
+                    columns="grid-cols-2 sm:grid-cols-4"
                 />
             </div>
         </Section>
