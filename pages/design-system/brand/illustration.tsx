@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import {
-    PageHeader,
+    BrandHero,
     Section,
     Subsection,
 } from '../../../styleguide-components/primitives'
@@ -58,10 +58,9 @@ const colourRules: { title: string; body: string }[] = [
 
 const Illustration: NextPageWithLayout = () => (
     <DesignSystemLayout title="Illustration" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Illustration"
-            status="stable"
             intro="Illustration builds upon our distinctive assets — Bupa Blue and the square. It should be used purposefully to help explain products, services and processes."
         />
 

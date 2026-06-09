@@ -2,7 +2,8 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import {
-    PageHeader,
+    BrandHero,
+    PullQuote,
     Section,
     Do,
     Dont,
@@ -57,12 +58,15 @@ const qualities = [
 
 const Photography: NextPageWithLayout = () => (
     <DesignSystemLayout title="Photography" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Photography"
-            status="stable"
             intro="Photography is always our first choice over illustration. Only use the highest-quality images — our imagery captures moments that are observational and feel real, warm and inviting."
         />
+
+        <PullQuote cite="Keep it real">
+            Photography is our first choice over illustration.
+        </PullQuote>
 
         <Section id="types" title="Our four types of photography">
             <div className="grid gap-5 sm:grid-cols-2">

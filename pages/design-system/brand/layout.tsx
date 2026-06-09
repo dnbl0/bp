@@ -1,7 +1,7 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import {
-    PageHeader,
+    BrandHero,
     Section,
     Subsection,
 } from '../../../styleguide-components/primitives'
@@ -37,10 +37,9 @@ const footerRules: string[] = [
 
 const Layout: NextPageWithLayout = () => (
     <DesignSystemLayout title="Headers & footers" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Headers & footers"
-            status="stable"
             intro="Headers run across the top of almost all pages and are key to how our websites look and work. Footers optimise the site for search and make it easy to navigate without scrolling back up."
         />
 

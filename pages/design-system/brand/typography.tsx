@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import {
-    PageHeader,
+    BrandHero,
     Section,
     Subsection,
     Do,
@@ -49,10 +49,9 @@ const typefaces: Typeface[] = [
 
 const Typography: NextPageWithLayout = () => (
     <DesignSystemLayout title="Typography" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Typography"
-            status="stable"
             intro="Always use sentence case. Type carries our tone — bolder weights for headlines, lighter weights for body copy."
         />
 

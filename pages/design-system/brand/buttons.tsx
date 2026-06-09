@@ -1,7 +1,7 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import {
-    PageHeader,
+    BrandHero,
     Section,
     Subsection,
     Specifications,
@@ -32,10 +32,9 @@ const specGroups: SpecGroup[] = [
 
 const Buttons: NextPageWithLayout = () => (
     <DesignSystemLayout title="Buttons" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Buttons"
-            status="stable"
             intro="Buttons influence user decisions, so make them simple and clear, and let them stand out against surrounding elements."
         />
 
