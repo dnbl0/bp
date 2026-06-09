@@ -1,7 +1,8 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import {
-    PageHeader,
+    BrandHero,
+    PullQuote,
     Section,
     Do,
     Dont,
@@ -42,12 +43,13 @@ const ImageMock = ({
 
 const MessageBoxes: NextPageWithLayout = () => (
     <DesignSystemLayout title="Message boxes" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Message boxes"
-            status="stable"
             intro="Message boxes help with the legibility of text over images, or create impact. They are one of our most distinctive square assets."
         />
+
+        <PullQuote cite="Design principle">Start with a square.</PullQuote>
 
         <Section id="anatomy" title="Shape, colour & placement">
             <div className="grid gap-4 sm:grid-cols-3">

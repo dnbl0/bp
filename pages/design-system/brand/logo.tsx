@@ -3,7 +3,7 @@ import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import { PulseLogo } from '../../../components/atoms/icons/PulseLogo'
 import {
-    PageHeader,
+    BrandHero,
     Section,
     Subsection,
 } from '../../../styleguide-components/primitives'
@@ -57,10 +57,9 @@ const SpecRow = ({ label, children }: { label: string; children: ReactNode }) =>
 
 const Logo: NextPageWithLayout = () => (
     <DesignSystemLayout title="Logo" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Logo"
-            status="stable"
             intro="Our square and horizontal logos are both equally on brand. Which format you choose depends on what works best in your design layout."
         />
 

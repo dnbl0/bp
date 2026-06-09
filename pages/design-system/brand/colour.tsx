@@ -2,7 +2,8 @@ import Link from 'next/link'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import {
-    PageHeader,
+    BrandHero,
+    PullQuote,
     Section,
     Subsection,
     Do,
@@ -18,6 +19,7 @@ import {
     SecondaryPaletteGrid,
 } from '../../../styleguide-components/brandPalette'
 import { photography, BrandFigure } from '../../../styleguide-components/brandAssets'
+import { colourStepRules } from '../../../styleguide-components/brand/content'
 
 const toc = [
     { id: 'primary', title: 'Primary palette' },
@@ -29,24 +31,11 @@ const toc = [
     { id: 'usage', title: 'Using colour' },
 ]
 
-const stepRules: { row: string; pairing: string }[] = [
-    { row: 'Row 9 / Bupa Navy', pairing: 'White or colours from row 4 or below' },
-    { row: 'Row 8', pairing: 'White or colours from row 3 or below' },
-    { row: 'Row 7', pairing: 'White or colours from row 2 or below' },
-    { row: 'Row 6', pairing: 'White or colours from row 1' },
-    { row: 'Row 5 / Core (e.g. Bupa Blue)', pairing: 'White only' },
-    { row: 'Row 4', pairing: 'Black or colours from row 9' },
-    { row: 'Row 3', pairing: 'Black or colours from row 8 or above' },
-    { row: 'Row 2', pairing: 'Black or colours from row 7 or above' },
-    { row: 'Row 1', pairing: 'Black or colours from row 6 or above' },
-]
-
 const Colour: NextPageWithLayout = () => (
     <DesignSystemLayout title="Colour" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Colour"
-            status="stable"
             intro="Blue is the glue that binds together our visual identity. Bupa Blue should be clearly visible on all our communications; the other colours play a functional, supporting role."
         />
 
@@ -64,6 +53,8 @@ const Colour: NextPageWithLayout = () => (
             Grey (<code className="font-mono text-cyan">#f1efeb</code> vs{' '}
             <code className="font-mono">#f0efeb</code>).
         </div>
+
+        <PullQuote cite="Design principle">Blue is the glue.</PullQuote>
 
         <Section id="primary" title="Primary palette">
             <p className="text-grey dark:text-light-grey">
@@ -121,7 +112,7 @@ const Colour: NextPageWithLayout = () => (
                         </tr>
                     </thead>
                     <tbody>
-                        {stepRules.map(rule => (
+                        {colourStepRules.map(rule => (
                             <tr
                                 key={rule.row}
                                 className="border-b border-cool-paper-100 dark:border-charcoal"
