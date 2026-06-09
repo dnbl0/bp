@@ -476,6 +476,15 @@ export const brands: Brand[] = [
 ]
 
 /**
+ * The brands listed in the header brand switcher. Brand guidelines is left out:
+ * it is surfaced as a standalone label in the global header rather than as an
+ * option under the brand toggle.
+ */
+export const switcherBrands: Brand[] = brands.filter(
+    brand => brand.id !== brandGuidelines.id
+)
+
+/**
  * Resolves the active brand from a router path. Because the core base path is
  * a prefix of every sub-brand path, brands are matched longest-base-path-first
  * on a path-segment boundary so a sub-brand page is never mistaken for core.

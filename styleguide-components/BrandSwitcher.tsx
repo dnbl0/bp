@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon } from '../components/atoms/icons/ChevronDownIcon'
 import { cx } from '../utils/cx'
-import { brands } from './brands'
+import { switcherBrands } from './brands'
 import { useBrand } from './BrandContext'
 import { StatusBadge } from './primitives/StatusBadge'
 
@@ -39,7 +39,7 @@ export const BrandSwitcher = () => {
     }, [open, active])
 
     const openMenu = () => {
-        const current = brands.findIndex(b => b.id === brand.id)
+        const current = switcherBrands.findIndex(b => b.id === brand.id)
         setActive(current === -1 ? 0 : current)
         setOpen(true)
     }
@@ -59,10 +59,10 @@ export const BrandSwitcher = () => {
         }
         if (event.key === 'ArrowDown') {
             event.preventDefault()
-            setActive(prev => (prev + 1) % brands.length)
+            setActive(prev => (prev + 1) % switcherBrands.length)
         } else if (event.key === 'ArrowUp') {
             event.preventDefault()
-            setActive(prev => (prev - 1 + brands.length) % brands.length)
+            setActive(prev => (prev - 1 + switcherBrands.length) % switcherBrands.length)
         }
     }
 
@@ -94,7 +94,7 @@ export const BrandSwitcher = () => {
                     onKeyDown={onMenuKeyDown}
                     className="absolute left-0 z-dropdown mt-2 w-72 max-h-[70vh] overflow-y-auto rounded-xl bg-white dark:bg-cool-grey border border-cool-paper-200 dark:border-charcoal shadow p-1.5"
                 >
-                    {brands.map((item, index) => {
+                    {switcherBrands.map((item, index) => {
                         const current = item.id === brand.id
                         return (
                             <li key={item.id} role="none">

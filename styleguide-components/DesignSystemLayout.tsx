@@ -14,7 +14,7 @@ import {
     githubEditUrl,
     figmaDesignUrl,
 } from './designSystem.config'
-import { Brand, brandForPath, hrefForItem } from './brands'
+import { Brand, brandForPath, brandGuidelines, hrefForItem } from './brands'
 import { BrandProvider } from './BrandContext'
 import { BrandSwitcher } from './BrandSwitcher'
 import { StatusBadge } from './primitives/StatusBadge'
@@ -229,6 +229,21 @@ export const DesignSystemLayout = ({
                         </a>
                     </Link>
                     <BrandSwitcher />
+                    <Link href={brandGuidelines.basePath}>
+                        <a
+                            aria-current={
+                                brand.id === brandGuidelines.id ? 'page' : undefined
+                            }
+                            className={cx(
+                                'flex-none inline-flex items-center px-2.5 h-9 rounded-lg text-body-small font-semibold hover:bg-cool-paper-100 dark:hover:bg-charcoal',
+                                brand.id === brandGuidelines.id
+                                    ? 'text-cyan'
+                                    : 'text-navy dark:text-white'
+                            )}
+                        >
+                            {brandGuidelines.label}
+                        </a>
+                    </Link>
                     <div className="flex-1 flex justify-center">
                         <Search onNavigate={closeMobileNav} />
                     </div>
