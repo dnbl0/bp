@@ -43,7 +43,7 @@ export const BrandHero = ({ eyebrow, title, intro, status }: BrandHeroProps) => 
             {eyebrow && (
                 <p className="bds-eyebrow text-cyan">{eyebrow}</p>
             )}
-            <h1 className="mt-4 max-w-3xl text-[2.5rem] sm:text-[3.25rem] lg:text-[4rem] font-bold leading-[1.03] tracking-[-0.03em] [text-wrap:balance]">
+            <h1 className="mt-4 max-w-3xl text-white text-[2.5rem] sm:text-[3.25rem] lg:text-[4rem] font-bold leading-[1.03] tracking-[-0.03em] [text-wrap:balance]">
                 {title}
             </h1>
             {intro && (
