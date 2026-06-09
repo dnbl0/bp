@@ -15,6 +15,7 @@ import {
     BrandFigure,
     BrandGallery,
 } from '../../../styleguide-components/brandAssets'
+import { photographyQualities } from '../../../styleguide-components/brand/content'
 
 const toc = [
     { id: 'types', title: 'Our four types' },
@@ -45,15 +46,6 @@ const types: { title: string; body: string; image: AssetImage }[] = [
         body: 'Reflects the world our customer lives in — full of life, imperfect, with irreverent moments and little touches of personality.',
         image: photography.stillLife,
     },
-]
-
-const qualities = [
-    'Authentic, natural and unstaged',
-    'Observations in the moment',
-    'Tighter crops to get closer to people and the moment',
-    'Always have a touch of blue',
-    'Real people with real expressions, not posed',
-    'Highest quality',
 ]
 
 const Photography: NextPageWithLayout = () => (
@@ -104,7 +96,7 @@ const Photography: NextPageWithLayout = () => (
                 models living perfect lives. Let’s use images that are:
             </p>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                {qualities.map(quality => (
+                {photographyQualities.map(quality => (
                     <li
                         key={quality}
                         className="flex gap-2 rounded-lg border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey px-4 py-3 text-body-small text-grey dark:text-light-grey"

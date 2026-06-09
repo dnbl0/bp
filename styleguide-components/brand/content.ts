@@ -184,3 +184,93 @@ export const toneRewrites: { label: string; before: string; after: string }[] = 
 /** What changed across the rewrites (p.64). */
 export const toneRewriteNotes =
     'What changed? We started with gentle observation, used inclusive pronouns and everyday language, kept it positive, and broke long sentences into shorter, more digestible ones.'
+
+/* ---- Design toolkit ----------------------------------------------------- */
+
+/** The accessibility "step system" pairing rules from the Colour section. */
+export const colourStepRules: { row: string; pairing: string }[] = [
+    { row: 'Row 9 / Bupa Navy', pairing: 'White or colours from row 4 or below' },
+    { row: 'Row 8', pairing: 'White or colours from row 3 or below' },
+    { row: 'Row 7', pairing: 'White or colours from row 2 or below' },
+    { row: 'Row 6', pairing: 'White or colours from row 1' },
+    { row: 'Row 5 / Core (e.g. Bupa Blue)', pairing: 'White only' },
+    { row: 'Row 4', pairing: 'Black or colours from row 9' },
+    { row: 'Row 3', pairing: 'Black or colours from row 8 or above' },
+    { row: 'Row 2', pairing: 'Black or colours from row 7 or above' },
+    { row: 'Row 1', pairing: 'Black or colours from row 6 or above' },
+]
+
+/** The four kinds of illustration. */
+export const illustrationTypes: { title: string; body: string }[] = [
+    {
+        title: 'People',
+        body: 'Built from a component library of heads, upper bodies, legs and accessories that can be modified and combined.',
+    },
+    {
+        title: 'Objects',
+        body: 'A library of object illustrations, used individually or combined into an object cluster, built from simple geometric shapes.',
+    },
+    {
+        title: 'Scenes',
+        body: 'Combine people and objects into a single illustration that tells one story. Keep scenes simple — less is more.',
+    },
+    {
+        title: 'Explanatory',
+        body: 'Fact-based, literal illustrations for processes, instructional and technical subjects. As simple and direct as possible.',
+    },
+]
+
+/** How each palette applies to illustration. */
+export const illustrationColourRules: { title: string; body: string }[] = [
+    {
+        title: 'Primary palette',
+        body: 'The most prominent colours — illustrations should always include Bupa Blue.',
+    },
+    {
+        title: 'Secondary palette',
+        body: 'Should never overpower the primary palette. Don’t use colours from more than two different families together.',
+    },
+    {
+        title: 'Neutral palette',
+        body: 'Neutral colours can be used freely. Use white to lighten and create clear areas within an illustration.',
+    },
+    {
+        title: 'Skin-tone palette',
+        body: 'Specially developed to show diversity. Colours can also be used for objects, clothing, and so on.',
+    },
+]
+
+/** What good photography looks like. */
+export const photographyQualities: string[] = [
+    'Authentic, natural and unstaged',
+    'Observations in the moment',
+    'Tighter crops to get closer to people and the moment',
+    'Always have a touch of blue',
+    'Real people with real expressions, not posed',
+    'Highest quality',
+]
+
+/** The three header styles. */
+export const headerStyles: { name: string; body: string }[] = [
+    {
+        name: 'Primary header',
+        body: 'The standard header for most pages: Bupa logo, page name, search, menu, login and contact. Can carry the square or horizontal logo in the top-left, and may include a business-unit logo.',
+    },
+    {
+        name: 'Secondary header',
+        body: 'A lighter header for microsites and landing pages — typically a BU / service-area label and an optional tagline.',
+    },
+    {
+        name: 'Neutral header',
+        body: 'An exceptional style for pages that are not Bupa URLs, where we want to be seen as neutral.',
+    },
+]
+
+/** Footer rules. */
+export const footerRules: string[] = [
+    'Footers can be Bupa Blue or Bupa Navy.',
+    'Footers must contain copyright information, privacy and cookies, accessibility and legal notices.',
+    'Links in desktop footers should be arranged in columns; mobile footers use accordions.',
+    'Adding the Bupa logo is not mandatory but reinforces the brand — position it top-left for desktop, top-centred for mobile.',
+    'If social media logos are used, place them lower-right for desktop; left, right or centred for mobile.',
+]

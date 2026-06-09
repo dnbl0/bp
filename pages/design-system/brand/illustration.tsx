@@ -8,6 +8,7 @@ import {
 } from '../../../styleguide-components/primitives'
 import { skinTones, BrandSwatchGrid, BlueSquare } from '../../../styleguide-components/brandPalette'
 import { illustration, BrandGallery } from '../../../styleguide-components/brandAssets'
+import { illustrationTypes, illustrationColourRules } from '../../../styleguide-components/brand/content'
 
 const toc = [
     { id: 'types', title: 'Types of illustration' },
@@ -16,44 +17,6 @@ const toc = [
     { id: 'keylines', title: 'Keylines' },
     { id: 'people', title: 'People components' },
     { id: 'animation', title: 'Animation' },
-]
-
-const types: { title: string; body: string }[] = [
-    {
-        title: 'People',
-        body: 'Built from a component library of heads, upper bodies, legs and accessories that can be modified and combined.',
-    },
-    {
-        title: 'Objects',
-        body: 'A library of object illustrations, used individually or combined into an object cluster, built from simple geometric shapes.',
-    },
-    {
-        title: 'Scenes',
-        body: 'Combine people and objects into a single illustration that tells one story. Keep scenes simple — less is more.',
-    },
-    {
-        title: 'Explanatory',
-        body: 'Fact-based, literal illustrations for processes, instructional and technical subjects. As simple and direct as possible.',
-    },
-]
-
-const colourRules: { title: string; body: string }[] = [
-    {
-        title: 'Primary palette',
-        body: 'The most prominent colours — illustrations should always include Bupa Blue.',
-    },
-    {
-        title: 'Secondary palette',
-        body: 'Should never overpower the primary palette. Don’t use colours from more than two different families together.',
-    },
-    {
-        title: 'Neutral palette',
-        body: 'Neutral colours can be used freely. Use white to lighten and create clear areas within an illustration.',
-    },
-    {
-        title: 'Skin-tone palette',
-        body: 'Specially developed to show diversity. Colours can also be used for objects, clothing, and so on.',
-    },
 ]
 
 const Illustration: NextPageWithLayout = () => (
@@ -66,7 +29,7 @@ const Illustration: NextPageWithLayout = () => (
 
         <Section id="types" title="Types of illustration">
             <div className="grid gap-4 sm:grid-cols-2">
-                {types.map(type => (
+                {illustrationTypes.map(type => (
                     <div
                         key={type.title}
                         className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey"
@@ -139,7 +102,7 @@ const Illustration: NextPageWithLayout = () => (
                 Bupa Blue, Bupa Navy, Bupa Warm Grey or white.
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                {colourRules.map(rule => (
+                {illustrationColourRules.map(rule => (
                     <div
                         key={rule.title}
                         className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey"

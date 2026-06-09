@@ -5,34 +5,12 @@ import {
     Section,
     Subsection,
 } from '../../../styleguide-components/primitives'
+import { headerStyles, footerRules } from '../../../styleguide-components/brand/content'
 
 const toc = [
     { id: 'headers', title: 'Headers' },
     { id: 'header-styles', title: 'Header styles' },
     { id: 'footers', title: 'Footers' },
-]
-
-const headerStyles: { name: string; body: string }[] = [
-    {
-        name: 'Primary header',
-        body: 'The standard header for most pages: Bupa logo, page name, search, menu, login and contact. Can carry the square or horizontal logo in the top-left, and may include a business-unit logo.',
-    },
-    {
-        name: 'Secondary header',
-        body: 'A lighter header for microsites and landing pages — typically a BU / service-area label and an optional tagline.',
-    },
-    {
-        name: 'Neutral header',
-        body: 'An exceptional style for pages that are not Bupa URLs, where we want to be seen as neutral.',
-    },
-]
-
-const footerRules: string[] = [
-    'Footers can be Bupa Blue or Bupa Navy.',
-    'Footers must contain copyright information, privacy and cookies, accessibility and legal notices.',
-    'Links in desktop footers should be arranged in columns; mobile footers use accordions.',
-    'Adding the Bupa logo is not mandatory but reinforces the brand — position it top-left for desktop, top-centred for mobile.',
-    'If social media logos are used, place them lower-right for desktop; left, right or centred for mobile.',
 ]
 
 const Layout: NextPageWithLayout = () => (
