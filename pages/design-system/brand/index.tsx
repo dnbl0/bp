@@ -4,7 +4,8 @@ import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import { ArrowRight } from '../../../components/atoms/icons/ArrowRight'
 import { brandGuidelines, hrefForItem } from '../../../styleguide-components/brands'
-import { Section } from '../../../styleguide-components/primitives'
+import { BrandHero, BigStatement, Section } from '../../../styleguide-components/primitives'
+import { purpose } from '../../../styleguide-components/brand/content'
 
 const toc = [
     { id: 'pillars', title: 'The four pillars' },
@@ -81,17 +82,15 @@ const Group = ({ title, children }: { title: string; children: ReactNode }) => (
 
 const BrandHome: NextPageWithLayout = () => (
     <DesignSystemLayout title="Introduction" toc={toc} wide>
-        <header className="mb-12">
-            <p className="bds-eyebrow text-cyan">Brand guidelines · 2023 (v1)</p>
-            <h1 className="mt-3 max-w-3xl text-[2.25rem] sm:text-[3rem] leading-[1.08] tracking-[-0.02em] font-bold text-navy dark:text-white">
-                Our brand guidelines
-            </h1>
-            <p className="mt-5 max-w-2xl bds-lead text-grey dark:text-light-grey">
-                Helping people live longer, healthier, happier lives, and making a
-                better world. These guidelines show how the Bupa brand looks, sounds
-                and behaves — so every communication feels distinctly, confidently Bupa.
-            </p>
-        </header>
+        <BrandHero
+            eyebrow="Brand guidelines · 2023 (v1)"
+            title="Our brand guidelines"
+            intro="How the Bupa brand looks, sounds and behaves — so every communication feels distinctly, confidently Bupa."
+        />
+
+        <BigStatement label="Our purpose" tone="blue">
+            {purpose}
+        </BigStatement>
 
         <Section id="pillars" title="The four pillars">
             <div className="grid gap-4 sm:grid-cols-2">
