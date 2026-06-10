@@ -57,9 +57,104 @@ const PillarCard = ({ pillar }: { pillar: Pillar }) => (
     </Link>
 )
 
-const PageCard = ({ title, summary, href }: { title: string; summary?: string; href: string }) => (
+/**
+ * Line icons for the overview cards, keyed by page slug. All share a 24px
+ * grid, currentColor stroke and rounded joins so they read as one set.
+ */
+const cardIcons: Record<string, ReactNode> = {
+    strategy: (
+        <>
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="5" />
+            <circle cx="12" cy="12" r="1" />
+        </>
+    ),
+    'design-principles': (
+        <rect x="4" y="4" width="16" height="16" rx="2" />
+    ),
+    logo: (
+        <path d="M3 13h4l2-5 3 9 2.5-6 1.5 2h5" />
+    ),
+    colour: (
+        <>
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="9" cy="9" r="1" />
+            <circle cx="15" cy="9" r="1" />
+            <circle cx="9" cy="15" r="1" />
+            <circle cx="15" cy="15" r="1" />
+        </>
+    ),
+    typography: (
+        <path d="M5 7V5h14v2M12 5v14M9 19h6" />
+    ),
+    layout: (
+        <>
+            <rect x="4" y="5" width="16" height="14" rx="2" />
+            <path d="M4 9h16M4 15h16" />
+        </>
+    ),
+    photography: (
+        <>
+            <path d="M4 8a2 2 0 0 1 2-2h2l1.5-2h5L18 6h0a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" />
+            <circle cx="12" cy="13" r="3" />
+        </>
+    ),
+    illustration: (
+        <path d="M16.5 4.5l3 3L9 18l-4 1 1-4z" />
+    ),
+    iconography: (
+        <>
+            <rect x="4" y="4" width="7" height="7" rx="1" />
+            <rect x="13" y="4" width="7" height="7" rx="1" />
+            <rect x="4" y="13" width="7" height="7" rx="1" />
+            <rect x="13" y="13" width="7" height="7" rx="1" />
+        </>
+    ),
+    buttons: (
+        <>
+            <rect x="3" y="8" width="18" height="8" rx="4" />
+            <path d="M8 12h8" />
+        </>
+    ),
+    'promotional-flashes': (
+        <path d="M12 3l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L4.8 8.3l5-.7z" />
+    ),
+    'tone-of-voice': (
+        <path d="M5 5h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9l-4 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" />
+    ),
+}
+
+const CardIcon = ({ slug }: { slug: string }) => (
+    <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="w-6 h-6"
+        aria-hidden="true"
+    >
+        {cardIcons[slug] ?? <rect x="5" y="4" width="14" height="16" rx="2" />}
+    </svg>
+)
+
+const PageCard = ({
+    title,
+    summary,
+    href,
+    slug,
+}: {
+    title: string
+    summary?: string
+    href: string
+    slug: string
+}) => (
     <Link href={href}>
         <a className="group flex flex-col rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
+            <span className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-cool-paper-100 dark:bg-charcoal text-cyan group-hover:bg-cyan group-hover:text-white transition-colors">
+                <CardIcon slug={slug} />
+            </span>
             <span className="text-body font-semibold text-navy dark:text-white group-hover:text-cyan">
                 {title}
             </span>
@@ -75,7 +170,7 @@ const Group = ({ title, children }: { title: string; children: ReactNode }) => (
         <h3 className="mb-3 text-body-small font-bold uppercase tracking-wide text-disabled-text">
             {title}
         </h3>
-        <div className="grid gap-4 sm:grid-cols-2">{children}</div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{children}</div>
     </div>
 )
 
@@ -113,6 +208,7 @@ const BrandHome: NextPageWithLayout = () => (
                                     title={item.title}
                                     summary={item.summary}
                                     href={hrefForItem(brandGuidelines, item)}
+                                    slug={item.slug}
                                 />
                             ))}
                     </Group>
