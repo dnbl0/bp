@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { PulseLogo } from '../components/atoms/icons/PulseLogo'
 import { BurgerIcon } from '../components/atoms/icons/BurgerIcon'
+import { ChevronDownIcon } from '../components/atoms/icons/ChevronDownIcon'
 import { CloseIcon } from '../components/atoms/icons/CloseIcon'
 import { GitHubIcon } from '../components/atoms/icons/GitHubIcon'
 import { FigmaIcon } from '../components/atoms/icons/FigmaIcon'
@@ -103,7 +104,7 @@ const Sidebar = ({
     currentPath: string
     onNavigate: () => void
 }) => (
-    <nav className="px-4 py-6 space-y-8" aria-label="Design system">
+    <nav className="px-2 py-6 space-y-8" aria-label="Design system">
         {/*
             Brand navigation. The header brand switcher and the brand-guidelines
             label are hidden below `lg` to keep the bar uncluttered on narrow
@@ -153,7 +154,12 @@ const Sidebar = ({
                 <ul className="space-y-0.5" aria-labelledby={headingId}>
                     {section.items.map(item => {
                         const href = hrefForItem(brand, item)
-                        const active = currentPath === href
+                        const cleanPath = currentPath.split(/[?#]/)[0]
+                        const active = cleanPath === href
+                        const isOpen = item.children?.length
+                            ? cleanPath === href || cleanPath.startsWith(href + '/')
+                            : false
+
                         return (
                             <li key={href}>
                                 <Link href={href}>
@@ -179,11 +185,47 @@ const Sidebar = ({
                                                 </span>
                                             )}
                                         </span>
-                                        {item.status && item.status !== 'stable' && (
-                                            <StatusBadge status={item.status} />
-                                        )}
+                                        <span className="flex items-center gap-1.5">
+                                            {item.status && item.status !== 'stable' && (
+                                                <StatusBadge status={item.status} />
+                                            )}
+                                            {item.children?.length ? (
+                                                <ChevronDownIcon
+                                                    className={cx(
+                                                        'w-3 h-3 flex-none fill-current transition-transform',
+                                                        isOpen && 'rotate-180'
+                                                    )}
+                                                />
+                                            ) : null}
+                                        </span>
                                     </a>
                                 </Link>
+                                {item.children?.length && isOpen ? (
+                                    <ul className="mt-0.5 ml-3 pl-2 border-l border-cool-paper-200 dark:border-charcoal space-y-0.5">
+                                        {item.children.map(child => {
+                                            const childHref = hrefForItem(brand, child)
+                                            const childActive = cleanPath === childHref
+                                            return (
+                                                <li key={childHref}>
+                                                    <Link href={childHref}>
+                                                        <a
+                                                            onClick={onNavigate}
+                                                            aria-current={childActive ? 'page' : undefined}
+                                                            className={cx(
+                                                                'block px-3 py-1.5 rounded-lg text-body-small',
+                                                                childActive
+                                                                    ? 'bg-cyan-50 dark:bg-charcoal text-cyan font-semibold'
+                                                                    : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal'
+                                                            )}
+                                                        >
+                                                            {child.title}
+                                                        </a>
+                                                    </Link>
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                ) : null}
                             </li>
                         )
                     })}

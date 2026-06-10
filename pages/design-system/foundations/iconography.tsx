@@ -8,10 +8,12 @@ import {
 } from '../../../styleguide-components/primitives'
 import { productIcons } from '../../../styleguide-components/iconRegistry'
 import { SearchIcon } from '../../../components/atoms/icons/SearchIcon'
+import { BupaIconGrid, bupaIcons } from '../../../styleguide-components/brandAssets'
 
 const toc = [
     { id: 'library', title: 'Library' },
     { id: 'usage', title: 'Usage' },
+    { id: 'bupa-icons', title: 'Bupa icon set' },
 ]
 
 const Iconography: NextPageWithLayout = () => (
@@ -45,6 +47,26 @@ const Iconography: NextPageWithLayout = () => (
                 <SearchIcon className="w-6 h-6 fill-cyan" />
                 <SearchIcon className="w-8 h-8 fill-fuchsia" />
             </Example>
+        </Section>
+
+        <Section id="bupa-icons" title="Bupa icon set">
+            <p className="text-grey dark:text-light-grey">
+                The Bupa icon set covers health services, specialties, facilities and
+                functional actions — {bupaIcons.length} icons supplied as PNG assets.
+                These complement the inline SVG library above and are intended for use
+                at <strong>48–64px</strong> with a supporting label. Full brand guidance
+                lives on the{' '}
+                <a
+                    href="/design-system/brand/iconography"
+                    className="font-semibold text-cyan hover:underline"
+                >
+                    Brand → Icons
+                </a>{' '}
+                page.
+            </p>
+            <div className="mt-6">
+                <BupaIconGrid />
+            </div>
         </Section>
     </DesignSystemLayout>
 )

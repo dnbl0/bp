@@ -7,6 +7,8 @@ export const ImageGalleryIcon = (props: SVGProps<SVGSVGElement>) => (
         viewBox="0 0 14 14"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
+        className="fill-current"
+        {...props}
     >
         <path
             fillRule="evenodd"

@@ -7,6 +7,14 @@ import { cx } from '../utils/cx'
 import { switcherBrands } from './brands'
 import { useBrand } from './BrandContext'
 
+const brandIconMap: Record<string, string> = {
+    'health-care':       '/brand-assets/bupa-brand-icons/health-care/health-care.png',
+    'dental':            '/brand-assets/bupa-brand-icons/dental/dental.png',
+    'aged-care':         '/brand-assets/bupa-brand-icons/aged-care/aged-care.png',
+    'corporate-business':'/brand-assets/bupa-brand-icons/corporate/corporate.png',
+    'vision':            '/brand-assets/bupa-brand-icons/optical/optical.png',
+}
+
 /**
  * The global brand switcher in the header, modelled on Primer's site switcher.
  * Lists the shared core plus every sub-brand, marks the active one and
@@ -117,7 +125,16 @@ export const BrandSwitcher = () => {
                                                 : 'hover:bg-cool-paper-100 dark:hover:bg-charcoal'
                                         )}
                                     >
-                                        <BupaLogo className="h-5 w-5 flex-none rounded-sm" />
+                                        {brandIconMap[item.id] ? (
+                                            // eslint-disable-next-line @next/next/no-img-element
+                                            <img
+                                                src={brandIconMap[item.id]}
+                                                alt=""
+                                                className="h-5 w-5 flex-none rounded-sm object-contain"
+                                            />
+                                        ) : (
+                                            <BupaLogo className="h-5 w-5 flex-none rounded-sm" />
+                                        )}
                                         <span
                                             className={cx(
                                                 'font-semibold',

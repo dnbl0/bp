@@ -130,8 +130,9 @@ module.exports = {
                 400: '#2595DC',
                 50: '#F0F9FF',
             },
-            'navy': '#00335B',
-            'warm-grey': '#f0efeb',
+            // Updated to match the published brand-guidelines PDF (Bupa 2023 v1)
+            'navy': '#0d1846',
+            'warm-grey': '#f1efeb',
             'white': '#ffffff',
             'grey': '#333333',
             'cool-grey': '#24292E',
@@ -145,7 +146,8 @@ module.exports = {
             'burgandy': '#942151',
             'orange': '#db3907',
             'teal': {
-                DEFAULT: '#008385',
+                // PDF lists Bupa Teal as #007d79; keep the 50 tint consistent.
+                DEFAULT: '#007d79',
                 50: '#e1fcfd',
             },
             'dark-green': '#18542c',

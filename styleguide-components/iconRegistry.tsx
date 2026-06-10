@@ -1,39 +1,18 @@
 /*
-    Registry of every SVG icon in `components/atoms/icons`, used to generate the
-    Iconography and Logo foundation pages. Each entry records the component, the
-    exported name and the import path so the docs can show a copyable import.
+    Registry of every system icon in `public/brand-assets/system-icons`, used to
+    generate the Iconography foundation page. Each entry records the display name,
+    the source SVG file, and the React component file path so the docs can show a
+    copyable import.
+
+    Icons are rendered as <img> tags pointing to the static SVG assets so that
+    colours baked into the SVGs are preserved exactly.
 */
+/* eslint-disable @next/next/no-img-element */
 import { ComponentType } from 'react'
 
-import { ArrowLeft } from '../components/atoms/icons/ArrowLeft'
-import { ArrowRight } from '../components/atoms/icons/ArrowRight'
-import { ArrowUp } from '../components/atoms/icons/ArrowUp'
 import { BupaLogo } from '../components/atoms/icons/BupaLogo'
 import { BupaAgedCareLogo } from '../components/atoms/icons/BupaAgedCareLogo'
-import { BurgerIcon } from '../components/atoms/icons/BurgerIcon'
-import { CallBackIcon } from '../components/atoms/icons/CallBackIcon'
-import { CallNowIcon } from '../components/atoms/icons/CallNowIcon'
-import { CheckCircleIcon } from '../components/atoms/icons/CheckCircle'
-import { ChevronDownIcon } from '../components/atoms/icons/ChevronDownIcon'
-import { ChevronRightIcon } from '../components/atoms/icons/ChevronRightIcon'
-import { ClipboardIcon } from '../components/atoms/icons/Clipboard'
-import { CloseIcon } from '../components/atoms/icons/CloseIcon'
-import { FacebookIcon } from '../components/atoms/icons/FacebookIcon'
-import HomeIcon from '../components/atoms/icons/HomeIcon'
-import { ImageGalleryIcon } from '../components/atoms/icons/ImageGalleryIcon'
-import { ImagePlaceholderIcon } from '../components/atoms/icons/ImagePlaceholderIcon'
-import { InstagramIcon } from '../components/atoms/icons/InstagramIcon'
-import { LinkedInIcon } from '../components/atoms/icons/LinkedInIcon'
 import { PulseLogo } from '../components/atoms/icons/PulseLogo'
-import { ListIcon } from '../components/atoms/icons/ListIcon'
-import { LoadingSpinnerIcon } from '../components/atoms/icons/LoadingSpinnerIcon'
-import { PencilIcon } from '../components/atoms/icons/PencilIcon'
-import { PersonIcon } from '../components/atoms/icons/PersonIcon'
-import { PlayArrow } from '../components/atoms/icons/PlayArrow'
-import { SearchEmpty } from '../components/atoms/icons/SearchEmpty'
-import { SearchIcon } from '../components/atoms/icons/SearchIcon'
-import { TwitterIcon } from '../components/atoms/icons/TwitterIcon'
-import { YouTubeIcon } from '../components/atoms/icons/YouTubeIcon'
 
 export interface IconEntry {
     /** Exported component name, used for the import snippet. */
@@ -46,36 +25,46 @@ export interface IconEntry {
     defaultExport?: boolean
 }
 
+/** Wraps a static SVG asset as a React component for use in the icon gallery. */
+const svgIcon = (filename: string): ComponentType<{ className?: string }> => {
+    const SvgImg = ({ className }: { className?: string }) => (
+        <img
+            src={`/brand-assets/system-icons/${filename}`}
+            alt=""
+            className={className}
+        />
+    )
+    SvgImg.displayName = filename
+    return SvgImg
+}
+
 export const icons: IconEntry[] = [
-    { name: 'ArrowLeft', file: 'ArrowLeft', Component: ArrowLeft, category: 'icon' },
-    { name: 'ArrowRight', file: 'ArrowRight', Component: ArrowRight, category: 'icon' },
-    { name: 'ArrowUp', file: 'ArrowUp', Component: ArrowUp, category: 'icon' },
-    { name: 'BurgerIcon', file: 'BurgerIcon', Component: BurgerIcon, category: 'icon' },
-    { name: 'CallBackIcon', file: 'CallBackIcon', Component: CallBackIcon, category: 'icon' },
-    { name: 'CallNowIcon', file: 'CallNowIcon', Component: CallNowIcon, category: 'icon' },
-    { name: 'CheckCircleIcon', file: 'CheckCircle', Component: CheckCircleIcon, category: 'icon' },
-    { name: 'ChevronDownIcon', file: 'ChevronDownIcon', Component: ChevronDownIcon, category: 'icon' },
-    { name: 'ChevronRightIcon', file: 'ChevronRightIcon', Component: ChevronRightIcon, category: 'icon' },
-    { name: 'ClipboardIcon', file: 'Clipboard', Component: ClipboardIcon, category: 'icon' },
-    { name: 'CloseIcon', file: 'CloseIcon', Component: CloseIcon, category: 'icon' },
-    { name: 'FacebookIcon', file: 'FacebookIcon', Component: FacebookIcon, category: 'icon' },
-    { name: 'HomeIcon', file: 'HomeIcon', Component: HomeIcon, category: 'icon', defaultExport: true },
-    { name: 'ImageGalleryIcon', file: 'ImageGalleryIcon', Component: ImageGalleryIcon, category: 'icon' },
-    { name: 'ImagePlaceholderIcon', file: 'ImagePlaceholderIcon', Component: ImagePlaceholderIcon, category: 'icon' },
-    { name: 'InstagramIcon', file: 'InstagramIcon', Component: InstagramIcon, category: 'icon' },
-    { name: 'LinkedInIcon', file: 'LinkedInIcon', Component: LinkedInIcon, category: 'icon' },
-    { name: 'ListIcon', file: 'ListIcon', Component: ListIcon, category: 'icon' },
-    { name: 'LoadingSpinnerIcon', file: 'LoadingSpinnerIcon', Component: LoadingSpinnerIcon, category: 'icon' },
-    { name: 'PencilIcon', file: 'PencilIcon', Component: PencilIcon, category: 'icon' },
-    { name: 'PersonIcon', file: 'PersonIcon', Component: PersonIcon, category: 'icon' },
-    { name: 'PlayArrow', file: 'PlayArrow', Component: PlayArrow, category: 'icon' },
-    { name: 'SearchEmpty', file: 'SearchEmpty', Component: SearchEmpty, category: 'icon' },
-    { name: 'SearchIcon', file: 'SearchIcon', Component: SearchIcon, category: 'icon' },
-    { name: 'TwitterIcon', file: 'TwitterIcon', Component: TwitterIcon, category: 'icon' },
-    { name: 'YouTubeIcon', file: 'YouTubeIcon', Component: YouTubeIcon, category: 'icon' },
-    { name: 'BupaLogo', file: 'BupaLogo', Component: BupaLogo, category: 'logo' },
-    { name: 'BupaAgedCareLogo', file: 'BupaAgedCareLogo', Component: BupaAgedCareLogo, category: 'logo' },
-    { name: 'PulseLogo', file: 'PulseLogo', Component: PulseLogo, category: 'logo' },
+    { name: 'ArrowLeft',          file: 'ArrowLeft',          Component: svgIcon('ArrowLeft.svg'),          category: 'icon' },
+    { name: 'ArrowRight',         file: 'ArrowRight',         Component: svgIcon('ArrowRight.svg'),         category: 'icon' },
+    { name: 'ArrowUp',            file: 'ArrowUp',            Component: svgIcon('ArrowUp.svg'),            category: 'icon' },
+    { name: 'BurgerIcon',         file: 'BurgerIcon',         Component: svgIcon('BurgerIcon.svg'),         category: 'icon' },
+    { name: 'CallBackIcon',       file: 'CallBackIcon',       Component: svgIcon('CallBackIcon.svg'),       category: 'icon' },
+    { name: 'CallNowIcon',        file: 'CallNowIcon',        Component: svgIcon('CallNowIcon.svg'),        category: 'icon' },
+    { name: 'CheckCircleIcon',    file: 'CheckCircle',        Component: svgIcon('CheckCircle.svg'),        category: 'icon' },
+    { name: 'ChevronDownIcon',    file: 'ChevronDownIcon',    Component: svgIcon('ChevronDownIcon.svg'),    category: 'icon' },
+    { name: 'ChevronRightIcon',   file: 'ChevronRightIcon',   Component: svgIcon('ChevronRightIcon.svg'),   category: 'icon' },
+    { name: 'ClipboardIcon',      file: 'Clipboard',          Component: svgIcon('Clipboard.svg'),          category: 'icon' },
+    { name: 'CloseIcon',          file: 'CloseIcon',          Component: svgIcon('CloseIcon.svg'),          category: 'icon' },
+    { name: 'FacebookIcon',       file: 'FacebookIcon',       Component: svgIcon('FacebookIcon.svg'),       category: 'icon' },
+    { name: 'ImageGalleryIcon',   file: 'ImageGalleryIcon',   Component: svgIcon('ImageGalleryIcon.svg'),   category: 'icon' },
+    { name: 'InstagramIcon',      file: 'InstagramIcon',      Component: svgIcon('InstagramIcon.svg'),      category: 'icon' },
+    { name: 'LinkedInIcon',       file: 'LinkedInIcon',       Component: svgIcon('LinkedInIcon.svg'),       category: 'icon' },
+    { name: 'ListIcon',           file: 'ListIcon',           Component: svgIcon('ListIcon.svg'),           category: 'icon' },
+    { name: 'LoadingSpinnerIcon', file: 'LoadingSpinnerIcon', Component: svgIcon('LoadingSpinnerIcon.svg'), category: 'icon' },
+    { name: 'PencilIcon',         file: 'PencilIcon',         Component: svgIcon('PencilIcon.svg'),         category: 'icon' },
+    { name: 'PersonIcon',         file: 'PersonIcon',         Component: svgIcon('PersonIcon.svg'),         category: 'icon' },
+    { name: 'PlayArrow',          file: 'PlayArrow',          Component: svgIcon('PlayArrow.svg'),          category: 'icon' },
+    { name: 'SearchIcon',         file: 'SearchIcon',         Component: svgIcon('SearchIcon.svg'),         category: 'icon' },
+    { name: 'TwitterIcon',        file: 'TwitterIcon',        Component: svgIcon('TwitterIcon.svg'),        category: 'icon' },
+    { name: 'YouTubeIcon',        file: 'YouTubeIcon',        Component: svgIcon('YouTubeIcon.svg'),        category: 'icon' },
+    { name: 'BupaLogo',           file: 'BupaLogo',           Component: BupaLogo,                          category: 'logo' },
+    { name: 'BupaAgedCareLogo',   file: 'BupaAgedCareLogo',   Component: BupaAgedCareLogo,                  category: 'logo' },
+    { name: 'PulseLogo',          file: 'PulseLogo',          Component: PulseLogo,                         category: 'logo' },
 ]
 
 export const productIcons = icons.filter(icon => icon.category === 'icon')

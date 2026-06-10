@@ -392,13 +392,6 @@ export const brandGuidelines: Brand = makeBrand({
                     keywords: ['colour', 'color', 'palette', 'bupa blue', 'navy', 'warm grey', 'secondary', 'tints', 'shades', 'accessibility', 'step system'],
                 },
                 {
-                    title: 'Message boxes',
-                    slug: 'message-boxes',
-                    status: 'stable',
-                    summary: 'Square message boxes in Bupa Blue or Navy, placed in a corner to aid legibility over images.',
-                    keywords: ['message box', 'square', 'corner', 'overlay', 'legibility', 'blue', 'navy'],
-                },
-                {
                     title: 'Typography',
                     slug: 'typography',
                     status: 'stable',

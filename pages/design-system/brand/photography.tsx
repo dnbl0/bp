@@ -11,7 +11,6 @@ import {
 } from '../../../styleguide-components/primitives'
 import {
     photography,
-    AssetImage,
     BrandFigure,
     BrandGallery,
 } from '../../../styleguide-components/brandAssets'
@@ -20,31 +19,81 @@ import { photographyQualities } from '../../../styleguide-components/brand/conte
 const toc = [
     { id: 'types', title: 'Our four types' },
     { id: 'qualities', title: 'What good looks like' },
+    { id: 'okay', title: "Okay isn't good enough" },
     { id: 'touch-of-blue', title: 'A touch of blue' },
+    { id: 'retouching', title: 'Retouching photography' },
     { id: 'over-image', title: 'Text over a photo' },
-    { id: 'dos', title: 'Do & don’t' },
+    { id: 'choosing-wisely', title: 'Choosing wisely' },
 ]
 
-const types: { title: string; body: string; images: AssetImage[] }[] = [
+const types = [
     {
         title: 'Everyday moments',
         body: 'Everyday people living everyday lives — real, authentic people with natural expressions.',
-        images: photography.everydayMoments,
+        images: photography.everydayMomentsGallery,
     },
     {
         title: 'Bupa delivering care',
         body: 'Demonstrates our experience delivering health and care services with customers, colleagues and the community. Tight crops emphasise our focus on people.',
-        images: photography.deliveringCare,
+        images: photography.deliveringCareGallery,
     },
     {
         title: 'Portraits',
         body: 'Portraits of people in the moment, with real, relaxed expressions in real environments. Subjects can look at, or off, camera.',
-        images: photography.portraits,
+        images: photography.portraitsGallery,
     },
     {
         title: 'Everyday still-life',
         body: 'Reflects the world our customer lives in — full of life, imperfect, with irreverent moments and little touches of personality.',
-        images: photography.stillLife,
+        images: photography.stillLifeGallery,
+    },
+]
+
+const retouchingSteps = [
+    { label: 'Original', image: photography.retouching[0] },
+    { label: 'Step 1 — Sharpen image, tighten crop', image: photography.retouching[1] },
+    { label: 'Step 2 — Adjust Levels to balance colours', image: photography.retouching[2] },
+    { label: 'Step 3 — Adjust Brightness/Contrast to lighten faces', image: photography.retouching[3] },
+    { label: 'Step 4 — Add a touch of blue', image: photography.retouching[4] },
+    { label: 'Final result', image: photography.retouching[5] },
+]
+
+const choosingWiselyPairs = [
+    {
+        bad: photography.choosingWiselyBadGallery[0],
+        badNote: "Doesn't feel like a genuine moment in time. Feels staged. Lacks emotion. The golden sunset doesn't feel natural.",
+        good: photography.choosingWiselyGoodGallery[0],
+        goodNote: 'This image feels like we are witnessing a genuine moment in time. The imperfect clothes and untidy garden feel authentic. The lighting is natural.',
+    },
+    {
+        bad: photography.choosingWiselyBadGallery[1],
+        badNote: "Doesn't feel like a genuine moment in time. The clothing doesn't feel genuine. The strong forward lighting and obvious retouching lack authenticity.",
+        good: photography.choosingWiselyGoodGallery[1],
+        goodNote: 'This image feels observational — the blurred face in the foreground gives an authentic feel. The clothing, natural lighting and facial expressions all reinforce the feeling of a real moment in time.',
+    },
+    {
+        bad: photography.choosingWiselyBadGallery[2],
+        badNote: "Swimming with dry hair and make-up doesn't feel authentic. The composition lacks interest.",
+        good: photography.choosingWiselyGoodGallery[2],
+        goodNote: 'This image feels authentic. We are witnessing a genuine moment in a busy pool. The subject looking off camera and the shallow depth of field creates an observational feel.',
+    },
+    {
+        bad: photography.choosingWiselyBadGallery[3],
+        badNote: 'Does not feel like a genuine moment in time.',
+        good: photography.choosingWiselyGoodGallery[3],
+        goodNote: 'Real, authentic and in the moment.',
+    },
+    {
+        bad: photography.choosingWiselyBadGallery[4],
+        badNote: 'Staged and unnatural.',
+        good: photography.choosingWiselyGoodGallery[4],
+        goodNote: 'Warm, genuine and naturally inviting.',
+    },
+    {
+        bad: photography.choosingWiselyBadGallery[5],
+        badNote: 'Lacks authenticity and real emotion.',
+        good: photography.choosingWiselyGoodGallery[5],
+        goodNote: 'Natural, observational and real.',
     },
 ]
 
@@ -88,9 +137,9 @@ const Photography: NextPageWithLayout = () => (
 
         <Section id="qualities" title="What good looks like">
             <p className="text-grey dark:text-light-grey">
-                <strong>Okay isn’t good enough.</strong> No cheesy, staged or false
+                <strong>Okay isn't good enough.</strong> No cheesy, staged or false
                 images; no fake smiles, pointing fingers or golden sunsets; no perfect
-                models living perfect lives. Let’s use images that are:
+                models living perfect lives. Let's use images that are:
             </p>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                 {photographyQualities.map(quality => (
@@ -105,6 +154,26 @@ const Photography: NextPageWithLayout = () => (
             </ul>
         </Section>
 
+        <Section id="okay" title="Okay isn't good enough">
+            <ul className="mb-6 space-y-2 text-body-small text-grey dark:text-light-grey">
+                {[
+                    'No cheesy, staged or false images',
+                    'No fake smiles, pointing fingers or golden sunsets',
+                    'No perfect models living perfect lives',
+                ].map(item => (
+                    <li key={item} className="flex gap-2">
+                        <span className="text-red-500 flex-none font-semibold">✕</span>
+                        <span>{item}</span>
+                    </li>
+                ))}
+            </ul>
+            <BrandGallery
+                images={photography.rejected}
+                columns="grid-cols-2 sm:grid-cols-4"
+                aspect="aspect-[3/2]"
+            />
+        </Section>
+
         <Section id="touch-of-blue" title="A touch of blue">
             <p className="text-grey dark:text-light-grey">
                 All images should have a touch of blue — but keep it natural and not
@@ -114,8 +183,59 @@ const Photography: NextPageWithLayout = () => (
                 modifying photographs, make sure you have the correct usage rights —
                 speak to your local brand and legal teams.
             </p>
-            <div className="mt-6">
-                <BrandGallery images={photography.touchOfBlue} columns="grid-cols-1 sm:grid-cols-3" />
+            <div className="mt-6 space-y-5">
+                <div>
+                    <p className="mb-3 text-body-small font-semibold text-grey dark:text-light-grey">
+                        Before — these images have no touch of blue in them
+                    </p>
+                    <BrandGallery
+                        images={photography.touchOfBlueBefore}
+                        columns="grid-cols-1 sm:grid-cols-3"
+                        aspect="aspect-[3/2]"
+                    />
+                </div>
+                <div>
+                    <p className="mb-3 text-body-small font-semibold text-cyan">
+                        After — a touch of blue has been added; the images have been colour balanced and sharpened
+                    </p>
+                    <BrandGallery
+                        images={photography.touchOfBlueAfter}
+                        columns="grid-cols-1 sm:grid-cols-3"
+                        aspect="aspect-[3/2]"
+                    />
+                </div>
+            </div>
+        </Section>
+
+        <Section id="retouching" title="Retouching photography">
+            <p className="text-grey dark:text-light-grey">
+                By adjusting the crop, light and colour within an image we can achieve a
+                look that is more unique for Bupa.
+            </p>
+            <ol className="mt-4 space-y-2">
+                {[
+                    'Sharpen image and tighten crop to create more impact',
+                    'Adjust Levels to balance the colour and make less red — care will need to be taken to avoid the skin tones appearing cold',
+                    'Adjust Brightness/Contrast to lighten the faces and create natural lighting',
+                    'Add a touch of blue',
+                ].map((step, i) => (
+                    <li key={i} className="flex gap-3 text-body-small text-grey dark:text-light-grey">
+                        <span className="inline-flex w-5 h-5 rounded-full bg-cyan text-white text-caption font-semibold items-center justify-center flex-none mt-0.5">
+                            {i + 1}
+                        </span>
+                        <span>{step}</span>
+                    </li>
+                ))}
+            </ol>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {retouchingSteps.map(step => (
+                    <BrandFigure
+                        key={step.label}
+                        image={step.image}
+                        caption={step.label}
+                        aspect="aspect-[3/2]"
+                    />
+                ))}
             </div>
             <p className="mt-8 text-body-small text-grey dark:text-light-grey">
                 Adjusting an image — sharpen, balance the levels, lighten faces and add
@@ -128,36 +248,25 @@ const Photography: NextPageWithLayout = () => (
 
         <Section id="over-image" title="Text over a photo">
             <ul className="space-y-2 text-body-small text-grey dark:text-light-grey">
-                <li className="flex gap-2">
-                    <span className="text-cyan flex-none">—</span>
-                    <span>If text is used over an image, limit it to a short heading.</span>
-                </li>
-                <li className="flex gap-2">
-                    <span className="text-cyan flex-none">—</span>
-                    <span>
-                        Contrast between image and text must guarantee legibility —
-                        adjust the photo if necessary.
-                    </span>
-                </li>
-                <li className="flex gap-2">
-                    <span className="text-cyan flex-none">—</span>
-                    <span>
-                        Position the message in the part of the image with the least
-                        visual noise. If the text still isn’t clear, use a message box.
-                    </span>
-                </li>
-                <li className="flex gap-2">
-                    <span className="text-cyan flex-none">—</span>
-                    <span>
-                        For homepage and header photos, choose images whose focal point
-                        is top-right — this works best on responsive formats.
-                    </span>
-                </li>
+                {[
+                    'Select photos where the focal point is top-right — this works best on responsive formats.',
+                    'If text is used over an image, limit it to a short heading.',
+                    'Contrast between image and text must guarantee legibility — adjust the photo if necessary.',
+                    'Position the message in the part of the image with the least visual noise. If the text still isn\'t clear, use a message box.',
+                    'Do not cover the focal point of the photo with icons, text or a message box.',
+                    'Do not use cut-out, monotone or black and white imagery.',
+                ].map(item => (
+                    <li key={item} className="flex gap-2">
+                        <span className="text-cyan flex-none">—</span>
+                        <span>{item}</span>
+                    </li>
+                ))}
             </ul>
-            <div className="mt-6 sm:max-w-md">
-                <BrandFigure
-                    image={photography.homepageHeader}
-                    caption="A homepage/header photo with the focal point top-right, so it scales gracefully to mobile."
+            <div className="mt-6">
+                <BrandGallery
+                    images={photography.inSitu}
+                    columns="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                    aspect="aspect-[3/2]"
                 />
             </div>
             <p className="mt-8 text-body-small text-grey dark:text-light-grey">
@@ -172,25 +281,32 @@ const Photography: NextPageWithLayout = () => (
             </div>
         </Section>
 
-        <Section id="dos" title="Do & don’t">
-            <DoDontGrid>
-                <Do note="Use authentic, tightly cropped photography with a natural touch of blue.">
-                    <img
-                        src={photography.choosingWiselyGood.src}
-                        alt={photography.choosingWiselyGood.alt}
-                        loading="lazy"
-                        className="w-full max-w-xs rounded-lg aspect-[3/2] object-cover"
-                    />
-                </Do>
-                <Dont note="Don’t use staged, cheesy imagery, golden sunsets, or cut-out, monotone and black-and-white photography.">
-                    <img
-                        src={photography.choosingWiselyBad.src}
-                        alt={photography.choosingWiselyBad.alt}
-                        loading="lazy"
-                        className="w-full max-w-xs rounded-lg aspect-[3/2] object-cover grayscale"
-                    />
-                </Dont>
-            </DoDontGrid>
+        <Section id="choosing-wisely" title="Choosing wisely">
+            <p className="mb-8 text-grey dark:text-light-grey">
+                Side-by-side comparisons of images that don't work versus images that do.
+            </p>
+            <div className="space-y-8">
+                {choosingWiselyPairs.map((pair, i) => (
+                    <DoDontGrid key={i}>
+                        <Dont note={pair.badNote}>
+                            <img
+                                src={pair.bad.src}
+                                alt={pair.bad.alt}
+                                loading="lazy"
+                                className="w-full rounded-lg aspect-[3/2] object-cover"
+                            />
+                        </Dont>
+                        <Do note={pair.goodNote}>
+                            <img
+                                src={pair.good.src}
+                                alt={pair.good.alt}
+                                loading="lazy"
+                                className="w-full rounded-lg aspect-[3/2] object-cover"
+                            />
+                        </Do>
+                    </DoDontGrid>
+                ))}
+            </div>
         </Section>
     </DesignSystemLayout>
 )

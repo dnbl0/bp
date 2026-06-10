@@ -47,7 +47,7 @@ export const IconGallery = ({ icons }: { icons: IconEntry[] }) => {
                             title="Copy import"
                         >
                             <span className="h-8 flex items-center justify-center text-navy dark:text-white">
-                                <Icon className="w-7 h-7 fill-current" aria-hidden="true" />
+                                <Icon className="w-7 h-7 object-contain" aria-hidden="true" />
                             </span>
                             <span className="text-caption font-mono text-grey dark:text-light-grey text-center break-all">
                                 {copied === icon.name ? 'Copied!' : icon.name}

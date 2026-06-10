@@ -35,6 +35,8 @@ export interface NavItem {
      * reading order (breadcrumbs, previous/next).
      */
     inherited?: boolean
+    /** Nested sub-pages rendered as an accordion group in the sidebar. */
+    children?: NavItem[]
 }
 
 export interface NavSection {
@@ -91,19 +93,51 @@ export const navSections: NavSection[] = [
                 title: 'Design tokens',
                 slug: 'foundations/tokens',
                 status: 'stable',
-                summary: 'The complete token reference — colour, type, spacing, radius, elevation, layering and motion.',
-                keywords: [
-                    'color',
-                    'typography',
-                    'spacing',
-                    'radius',
-                    'elevation',
-                    'shadow',
-                    'layering',
-                    'z-index',
-                    'motion',
-                    'animation',
-                    'reference',
+                summary: 'How design tokens work in the Bupa Design System — the entry point for all token categories.',
+                keywords: ['tokens', 'design tokens', 'reference', 'tailwind', 'theme'],
+                children: [
+                    {
+                        title: 'Color',
+                        slug: 'foundations/tokens/color',
+                        status: 'stable',
+                        summary: 'Primary, secondary, UI and background colour tokens.',
+                        keywords: ['color', 'colour', 'palette', 'cyan', 'navy', 'swatch'],
+                    },
+                    {
+                        title: 'Typography',
+                        slug: 'foundations/tokens/typography',
+                        status: 'stable',
+                        summary: 'The responsive semantic type scale and font weights.',
+                        keywords: ['typography', 'type', 'font', 'scale', 'heading', 'body'],
+                    },
+                    {
+                        title: 'Spacing',
+                        slug: 'foundations/tokens/spacing',
+                        status: 'stable',
+                        summary: 'The 4px spacing scale used for padding, margin and gap.',
+                        keywords: ['spacing', 'padding', 'margin', 'gap', 'rem', 'px'],
+                    },
+                    {
+                        title: 'Radius',
+                        slug: 'foundations/tokens/radius',
+                        status: 'stable',
+                        summary: 'Border radius tokens for cards, inputs and pills.',
+                        keywords: ['radius', 'border-radius', 'rounded', 'corners'],
+                    },
+                    {
+                        title: 'Elevation',
+                        slug: 'foundations/tokens/elevation',
+                        status: 'stable',
+                        summary: 'Box shadow tokens that separate and lift surfaces.',
+                        keywords: ['elevation', 'shadow', 'box-shadow', 'depth'],
+                    },
+                    {
+                        title: 'Motion',
+                        slug: 'foundations/tokens/motion',
+                        status: 'stable',
+                        summary: 'Animation utilities and staggered delay tokens.',
+                        keywords: ['motion', 'animation', 'transition', 'delay', 'fade', 'slide'],
+                    },
                 ],
             },
             {
@@ -171,6 +205,13 @@ export const navSections: NavSection[] = [
                 slug: 'foundations/logo',
                 status: 'stable',
                 summary: 'The Bupa Aged Care logo marks and usage guidance.',
+            },
+            {
+                title: 'Illustrations',
+                slug: 'foundations/illustrations',
+                status: 'stable',
+                summary: 'Types of illustration, the blue square, colour palettes, keylines, people components and animation.',
+                keywords: ['illustration', 'blue square', 'keyline', 'people', 'objects', 'scenes', 'explanatory', 'skin tone', 'animation'],
             },
         ],
     },
@@ -797,8 +838,10 @@ export const navSections: NavSection[] = [
     },
 ]
 
-/** Flattened list of every documented page, used for search. */
-export const allDocs: NavItem[] = navSections.flatMap(section => section.items)
+/** Flattened list of every documented page, used for search and prev/next navigation. */
+export const allDocs: NavItem[] = navSections.flatMap(section =>
+    section.items.flatMap(item => (item.children ? [item, ...item.children] : [item]))
+)
 
 export const hrefFor = (slug: string): string =>
     slug ? `${BASE_PATH}/${slug}` : BASE_PATH
@@ -815,6 +858,8 @@ export const githubEditUrl = (slug: string): string => {
     else if (slug === 'components') filePath = 'pages/design-system/components/index'
     else if (slug === 'foundations/accessibility')
         filePath = 'pages/design-system/foundations/accessibility/index'
+    else if (slug === 'foundations/tokens')
+        filePath = 'pages/design-system/foundations/tokens/index'
     else filePath = `pages/design-system/${slug}`
     return `${repo}/${filePath}.tsx`
 }
@@ -831,6 +876,9 @@ const slugToSection: Record<string, string> = navSections.reduce(
     (map, section) => {
         section.items.forEach(item => {
             map[item.slug] = section.title
+            item.children?.forEach(child => {
+                map[child.slug] = section.title
+            })
         })
         return map
     },
