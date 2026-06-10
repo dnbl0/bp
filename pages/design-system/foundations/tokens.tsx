@@ -6,6 +6,7 @@ import {
     Section,
     SwatchGrid,
     TokenTable,
+    TokenName,
 } from '../../../styleguide-components/primitives'
 import type { TokenRow } from '../../../styleguide-components/primitives'
 import {
@@ -88,6 +89,16 @@ const Tokens: NextPageWithLayout = () => (
             intro="Every token on this page is read live from tailwind.config.js and typography.css — the production source of truth — so the reference can never drift from the real theme. Use this as the one-stop lookup; each section links to its deep-dive foundations page."
         />
 
+        <p className="text-grey dark:text-light-grey">
+            New to tokens? See{' '}
+            <Link href="/design-system/foundations/token-anatomy">
+                <a className="text-cyan font-semibold hover:underline">
+                    Anatomy of a token
+                </a>
+            </Link>{' '}
+            for how to read these names and how the tiers fit together.
+        </p>
+
         <Section id="color" title="Color">
             <p className="text-grey dark:text-light-grey">
                 The full palette grouped into primary, secondary, UI and
@@ -99,6 +110,13 @@ const Tokens: NextPageWithLayout = () => (
                 </Link>{' '}
                 for usage guidance and contrast notes.
             </p>
+            <TokenName
+                segments={[
+                    { text: 'bg', label: 'Property', description: 'Background colour (also text, border).' },
+                    { text: 'cyan', label: 'Palette', description: 'The named colour family in the theme.' },
+                    { text: '50', label: 'Tint step', description: 'The lightness stop within that family.' },
+                ]}
+            />
             {colorGroups.map(group => (
                 <SwatchGrid key={group.name} group={group} />
             ))}
@@ -115,6 +133,13 @@ const Tokens: NextPageWithLayout = () => (
                 </Link>
                 .
             </p>
+            <TokenName
+                segments={[
+                    { text: 'text', label: 'Property', description: 'Sets the font size.' },
+                    { text: 'heading', label: 'Role', description: 'The semantic role in the type scale.' },
+                    { text: 'l', label: 'Scale step', description: 'The size step: xl, l, m, s.' },
+                ]}
+            />
             <TokenTable rows={typeRows} withPreview withDescription />
         </Section>
 
@@ -123,6 +148,12 @@ const Tokens: NextPageWithLayout = () => (
                 The 4px spacing scale, applied through padding, margin and gap
                 utilities.
             </p>
+            <TokenName
+                segments={[
+                    { text: 'p', label: 'Property', description: 'Padding on all sides (also m for margin, gap for gaps).' },
+                    { text: '3', label: 'Spacing step', description: 'The step on the 4px scale; step 3 resolves to 12px.' },
+                ]}
+            />
             <TokenTable rows={spacingRows} />
         </Section>
 
