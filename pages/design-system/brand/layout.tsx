@@ -1,10 +1,11 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import {
-    PageHeader,
+    BrandHero,
     Section,
     Subsection,
 } from '../../../styleguide-components/primitives'
+import { headerStyles, footerRules } from '../../../styleguide-components/brand/content'
 
 const toc = [
     { id: 'headers', title: 'Headers' },
@@ -12,35 +13,11 @@ const toc = [
     { id: 'footers', title: 'Footers' },
 ]
 
-const headerStyles: { name: string; body: string }[] = [
-    {
-        name: 'Primary header',
-        body: 'The standard header for most pages: Bupa logo, page name, search, menu, login and contact. Can carry the square or horizontal logo in the top-left, and may include a business-unit logo.',
-    },
-    {
-        name: 'Secondary header',
-        body: 'A lighter header for microsites and landing pages — typically a BU / service-area label and an optional tagline.',
-    },
-    {
-        name: 'Neutral header',
-        body: 'An exceptional style for pages that are not Bupa URLs, where we want to be seen as neutral.',
-    },
-]
-
-const footerRules: string[] = [
-    'Footers can be Bupa Blue or Bupa Navy.',
-    'Footers must contain copyright information, privacy and cookies, accessibility and legal notices.',
-    'Links in desktop footers should be arranged in columns; mobile footers use accordions.',
-    'Adding the Bupa logo is not mandatory but reinforces the brand — position it top-left for desktop, top-centred for mobile.',
-    'If social media logos are used, place them lower-right for desktop; left, right or centred for mobile.',
-]
-
 const Layout: NextPageWithLayout = () => (
     <DesignSystemLayout title="Headers & footers" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Headers & footers"
-            status="stable"
             intro="Headers run across the top of almost all pages and are key to how our websites look and work. Footers optimise the site for search and make it easy to navigate without scrolling back up."
         />
 

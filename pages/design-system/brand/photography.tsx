@@ -2,7 +2,8 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import {
-    PageHeader,
+    BrandHero,
+    PullQuote,
     Section,
     Do,
     Dont,
@@ -13,6 +14,7 @@ import {
     BrandFigure,
     BrandGallery,
 } from '../../../styleguide-components/brandAssets'
+import { photographyQualities } from '../../../styleguide-components/brand/content'
 
 const toc = [
     { id: 'types', title: 'Our four types' },
@@ -27,49 +29,24 @@ const toc = [
 const types = [
     {
         title: 'Everyday moments',
-        bullets: [
-            'Everyday people living everyday lives',
-            'Real, authentic people',
-            'Natural expressions',
-        ],
+        body: 'Everyday people living everyday lives — real, authentic people with natural expressions.',
         images: photography.everydayMomentsGallery,
     },
     {
         title: 'Bupa delivering care',
-        bullets: [
-            'Demonstrates our experience delivering health and care services',
-            'With our customers, colleagues and the community',
-            'Tight crops emphasise our focus on people',
-        ],
+        body: 'Demonstrates our experience delivering health and care services with customers, colleagues and the community. Tight crops emphasise our focus on people.',
         images: photography.deliveringCareGallery,
     },
     {
         title: 'Portraits',
-        bullets: [
-            'Portraits of people in the moment',
-            'Real, relaxed expressions in real environments',
-            'Subjects can look at, or off, camera',
-        ],
+        body: 'Portraits of people in the moment, with real, relaxed expressions in real environments. Subjects can look at, or off, camera.',
         images: photography.portraitsGallery,
     },
     {
         title: 'Everyday still-life',
-        bullets: [
-            'Reflects the world our customer lives in',
-            'Full of life, imperfect',
-            'Irreverent moments and little touches of personality',
-        ],
+        body: 'Reflects the world our customer lives in — full of life, imperfect, with irreverent moments and little touches of personality.',
         images: photography.stillLifeGallery,
     },
-]
-
-const qualities = [
-    'Authentic, natural and unstaged',
-    'Observations in the moment',
-    'Tighter crops to get closer to people and the moment',
-    'Always have a touch of blue',
-    'Real people with real expressions, not posed',
-    'Highest quality',
 ]
 
 const retouchingSteps = [
@@ -122,39 +99,35 @@ const choosingWiselyPairs = [
 
 const Photography: NextPageWithLayout = () => (
     <DesignSystemLayout title="Photography" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Photography"
-            status="stable"
             intro="Photography is always our first choice over illustration. Only use the highest-quality images — our imagery captures moments that are observational and feel real, warm and inviting."
         />
 
+        <PullQuote cite="Keep it real">
+            Photography is our first choice over illustration.
+        </PullQuote>
+
         <Section id="types" title="Our four types of photography">
-            <div className="space-y-12">
+            <div className="space-y-8">
                 {types.map((type, index) => (
                     <div key={type.title}>
-                        <div className="flex items-center gap-3 mb-4">
-                            <span className="inline-flex w-7 h-7 rounded-full bg-cyan text-white text-body-small font-semibold items-center justify-center flex-none">
+                        <div className="flex items-center gap-3">
+                            <span className="inline-flex w-7 h-7 flex-none rounded-full bg-cyan text-white text-body-small font-semibold items-center justify-center">
                                 {index + 1}
                             </span>
-                            <h3 className="font-semibold text-navy dark:text-white">{type.title}</h3>
+                            <h3 className="font-semibold text-navy dark:text-white">
+                                {type.title}
+                            </h3>
                         </div>
-                        <div className="grid gap-6 sm:grid-cols-[14rem_1fr]">
-                            <ul className="space-y-2">
-                                {type.bullets.map(bullet => (
-                                    <li
-                                        key={bullet}
-                                        className="flex gap-2 text-body-small text-grey dark:text-light-grey"
-                                    >
-                                        <span className="text-cyan flex-none">—</span>
-                                        <span>{bullet}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                        <p className="mt-2 text-body-small text-grey dark:text-light-grey">
+                            {type.body}
+                        </p>
+                        <div className="mt-4">
                             <BrandGallery
                                 images={type.images}
-                                columns="grid-cols-2"
-                                aspect="aspect-[3/2]"
+                                columns="grid-cols-2 sm:grid-cols-4"
                             />
                         </div>
                     </div>
@@ -169,7 +142,7 @@ const Photography: NextPageWithLayout = () => (
                 models living perfect lives. Let's use images that are:
             </p>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                {qualities.map(quality => (
+                {photographyQualities.map(quality => (
                     <li
                         key={quality}
                         className="flex gap-2 rounded-lg border border-cool-paper-200 dark:border-charcoal bg-white dark:bg-cool-grey px-4 py-3 text-body-small text-grey dark:text-light-grey"
@@ -264,6 +237,13 @@ const Photography: NextPageWithLayout = () => (
                     />
                 ))}
             </div>
+            <p className="mt-8 text-body-small text-grey dark:text-light-grey">
+                Adjusting an image — sharpen, balance the levels, lighten faces and add
+                a touch of blue — gives a look that is more uniquely Bupa:
+            </p>
+            <div className="mt-3">
+                <BrandGallery images={photography.colourAdjust} columns="grid-cols-2 sm:grid-cols-3" />
+            </div>
         </Section>
 
         <Section id="over-image" title="Text over a photo">
@@ -287,6 +267,16 @@ const Photography: NextPageWithLayout = () => (
                     images={photography.inSitu}
                     columns="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                     aspect="aspect-[3/2]"
+                />
+            </div>
+            <p className="mt-8 text-body-small text-grey dark:text-light-grey">
+                The same scene cropped for different formats — the top-right focal
+                point survives each crop:
+            </p>
+            <div className="mt-3">
+                <BrandGallery
+                    images={photography.homepageHeaderCrops}
+                    columns="grid-cols-2 sm:grid-cols-4"
                 />
             </div>
         </Section>

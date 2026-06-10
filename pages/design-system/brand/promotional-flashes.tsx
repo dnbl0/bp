@@ -1,6 +1,6 @@
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
-import { PageHeader, Section } from '../../../styleguide-components/primitives'
+import { BrandHero, Section } from '../../../styleguide-components/primitives'
 
 const toc = [
     { id: 'types', title: 'Flash types' },
@@ -17,10 +17,9 @@ const FlashContent = () => (
 
 const PromotionalFlashes: NextPageWithLayout = () => (
     <DesignSystemLayout title="Promotional flashes" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Promotional flashes"
-            status="stable"
             intro="Promotional flashes can be used in both digital and print to highlight an offer or call to action."
         />
 

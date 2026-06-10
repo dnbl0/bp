@@ -11,7 +11,10 @@
 import { ReactNode } from 'react'
 import { cx } from '../utils/cx'
 
-const BASE = '/brand-assets'
+// Prefix with the base path when the docs are served under one (the GitHub
+// Pages export lives at /bp). Empty for the normal app, where public/ is served
+// from the root. Raw <img src> is not auto-prefixed by Next, so we do it here.
+const BASE = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/brand-assets`
 
 export interface AssetImage {
     src: string
@@ -43,18 +46,55 @@ export const photography = {
         photo('p06_design_in_action_167_728x486.jpg', 'Design in action — web layout'),
         photo('p07_design_in_action_270_891x594.jpg', 'Design in action — app and print'),
     ],
-    everydayMoments: photo('p25_photo_everyday_moments_936_660x466.jpg', 'Everyday moments'),
-    deliveringCare: photo('p26_photo_delivering_care_958_660x466.jpg', 'Bupa delivering care'),
-    portraits: photo('p27_photo_portraits_979_661x466.jpg', 'Portrait'),
-    stillLife: photo('p28_photo_still_life_1000_661x466.jpg', 'Everyday still-life'),
+    everydayMoments: [
+        photo('p25_photo_everyday_moments_936_660x466.jpg', 'Everyday moments'),
+        photo('p25_photo_everyday_moments_938_661x466.jpg', 'Everyday moments'),
+        photo('p25_photo_everyday_moments_940_661x466.jpg', 'Everyday moments'),
+        photo('p25_photo_everyday_moments_942_661x467.jpg', 'Everyday moments'),
+    ],
+    deliveringCare: [
+        photo('p26_photo_delivering_care_958_660x466.jpg', 'Bupa delivering care'),
+        photo('p26_photo_delivering_care_960_661x466.jpg', 'Bupa delivering care'),
+        photo('p26_photo_delivering_care_962_661x466.jpg', 'Bupa delivering care'),
+        photo('p26_photo_delivering_care_964_660x465.jpg', 'Bupa delivering care'),
+    ],
+    portraits: [
+        photo('p27_photo_portraits_979_661x466.jpg', 'Portrait'),
+        photo('p27_photo_portraits_981_661x463.jpg', 'Portrait'),
+        photo('p27_photo_portraits_983_661x463.jpg', 'Portrait'),
+        photo('p27_photo_portraits_985_660x466.jpg', 'Portrait'),
+    ],
+    stillLife: [
+        photo('p28_photo_still_life_1000_661x466.jpg', 'Everyday still-life'),
+        photo('p28_photo_still_life_1002_661x466.jpg', 'Everyday still-life'),
+        photo('p28_photo_still_life_1004_661x466.jpg', 'Everyday still-life'),
+        photo('p28_photo_still_life_1006_660x467.jpg', 'Everyday still-life'),
+    ],
     touchOfBlue: [
         photo('p31_photo_touch_of_blue_1075_453x313.jpg', 'Image with a touch of blue'),
+        photo('p31_photo_touch_of_blue_1076_455x317.jpg', 'Image with a touch of blue'),
         photo('p31_photo_touch_of_blue_1078_456x316.jpg', 'Image with a touch of blue'),
+        photo('p31_photo_touch_of_blue_1080_455x318.jpg', 'Image with a touch of blue'),
         photo('p31_photo_touch_of_blue_1082_456x315.jpg', 'Image with a touch of blue'),
+        photo('p31_photo_touch_of_blue_1084_455x317.jpg', 'Image with a touch of blue'),
+    ],
+    colourAdjust: [
+        photo('p32_photo_colour_adjust_1099_429x287.jpg', 'Adjusting an image — a touch of blue'),
+        photo('p32_photo_colour_adjust_1101_429x287.jpg', 'Adjusting an image — a touch of blue'),
+        photo('p32_photo_colour_adjust_1103_429x288.jpg', 'Adjusting an image — a touch of blue'),
+        photo('p32_photo_colour_adjust_1105_429x288.jpg', 'Adjusting an image — a touch of blue'),
+        photo('p32_photo_colour_adjust_1109_429x287.jpg', 'Adjusting an image — a touch of blue'),
+        photo('p32_photo_colour_adjust_1113_429x287.jpg', 'Adjusting an image — a touch of blue'),
     ],
     choosingWiselyGood: photo('p30_photo_choosing_wisely_1048_478x319.jpg', 'A genuine, observational moment'),
     choosingWiselyBad: photo('p30_photo_choosing_wisely_1047_478x319.jpg', 'A staged image lacking authenticity'),
     homepageHeader: photo('p33_photo_homepage_header_1133_497x345.jpg', 'Homepage header photo with top-right focal point'),
+    homepageHeaderCrops: [
+        photo('p33_photo_homepage_header_1129_497x345.jpg', 'Homepage/header photo — responsive crop'),
+        photo('p33_photo_homepage_header_1131_373x255.jpg', 'Homepage/header photo — narrow responsive crop'),
+        photo('p33_photo_homepage_header_1135_497x345.jpg', 'Homepage/header photo — responsive crop'),
+        photo('p33_photo_homepage_header_1137_497x345.jpg', 'Homepage/header photo — responsive crop'),
+    ],
     colourExample: photo('p12_colour_examples_494_698x466.jpg', 'Colour used to organise information'),
     usingColour: photo('p17_using_colour_612_1086x724.jpg', 'Using colour across applications'),
     messageBox: photo('p18_message_boxes_667_416x278.jpg', 'Message box over a photograph'),

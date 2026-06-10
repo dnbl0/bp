@@ -1,7 +1,8 @@
-import { ReactNode } from 'react'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
-import { PageHeader, Section } from '../../../styleguide-components/primitives'
+import { BrandHero, BigStatement, Section } from '../../../styleguide-components/primitives'
+import { BlueSquare } from '../../../styleguide-components/brandPalette'
+import { purpose, ambition, values } from '../../../styleguide-components/brand/content'
 
 const toc = [
     { id: 'purpose', title: 'Our purpose' },
@@ -9,61 +10,27 @@ const toc = [
     { id: 'values', title: 'Our values' },
 ]
 
-const values: { title: string; body: string }[] = [
-    {
-        title: 'Caring',
-        body: 'We act with empathy and respect for our customers, our communities and each other.',
-    },
-    {
-        title: 'Brave',
-        body: 'We make new things possible, taking on the challenges that make a real difference to health.',
-    },
-    {
-        title: 'Responsible',
-        body: 'We own our decisions and actions, and do what is right for the long term.',
-    },
-]
-
-const Statement = ({
-    label,
-    children,
-}: {
-    label: string
-    children: ReactNode
-}) => (
-    <div className="rounded-2xl border border-cool-paper-200 dark:border-charcoal bg-cool-paper-50 dark:bg-cool-grey p-6 sm:p-10">
-        <p className="bds-eyebrow text-cyan">{label}</p>
-        <p className="mt-3 text-heading-m sm:text-heading-l font-bold text-navy dark:text-white leading-tight">
-            {children}
-        </p>
-    </div>
-)
-
 const Strategy: NextPageWithLayout = () => (
     <DesignSystemLayout title="Our strategy" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Brand guidelines"
             title="Our strategy"
-            status="stable"
-            intro="Our strategy is the foundation of the brand. It sets out the reason we exist (our purpose), what we want to be (our ambition) and how we think and act (our values)."
+            intro="Our strategy is the foundation of the brand: the reason we exist, what we want to be, and how we think and act."
         />
 
         <Section id="purpose" title="Our purpose">
             <p className="text-grey dark:text-light-grey">The reason we exist.</p>
             <div className="mt-4">
-                <Statement label="Our purpose">
-                    Helping people live longer, healthier, happier lives, and making a
-                    better world.
-                </Statement>
+                <BigStatement label="Our purpose" tone="blue">
+                    {purpose}
+                </BigStatement>
             </div>
         </Section>
 
         <Section id="ambition" title="Our ambition">
             <p className="text-grey dark:text-light-grey">What we want to be.</p>
             <div className="mt-4">
-                <Statement label="Our ambition">
-                    To become the world&rsquo;s most customer-centric healthcare company.
-                </Statement>
+                <BigStatement label="Our ambition">{ambition}</BigStatement>
             </div>
         </Section>
 
@@ -75,11 +42,15 @@ const Strategy: NextPageWithLayout = () => (
                 {values.map(value => (
                     <div
                         key={value.title}
-                        className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey"
+                        className="flex flex-col rounded-2xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey"
                     >
-                        <h3 className="text-heading-s font-semibold text-cyan">
+                        <BlueSquare className="w-10 h-10 flex-none rounded-md" />
+                        <h3 className="mt-4 text-heading-s font-bold text-navy dark:text-white">
                             {value.title}
                         </h3>
+                        <p className="mt-1 text-body-small font-semibold text-cyan">
+                            {value.tagline}
+                        </p>
                         <p className="mt-2 text-body-small text-grey dark:text-light-grey">
                             {value.body}
                         </p>

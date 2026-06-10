@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
 import {
-    PageHeader,
+    BrandHero,
     Section,
     Subsection,
 } from '../../../styleguide-components/primitives'
@@ -16,10 +16,9 @@ const toc = [
 
 const Iconography: NextPageWithLayout = () => (
     <DesignSystemLayout title="Icons" toc={toc}>
-        <PageHeader
+        <BrandHero
             eyebrow="Design toolkit"
             title="Icons"
-            status="stable"
             intro="We use two distinct icon families. Illustrated icons add a richer tier of hierarchy; navigation icons are functional aids. They share style principles but should never be interchanged."
         />
 
