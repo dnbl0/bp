@@ -26,34 +26,19 @@ const TokenAnatomy: NextPageWithLayout = () => (
         />
 
         <Section id="why" title="Why tokens">
-            <p className="text-grey dark:text-light-grey">
-                Rather than hard-coding <code className="font-mono text-cyan">#00335B</code>{' '}
-                or <code className="font-mono text-cyan">12px</code> directly into a
-                component, we reference a token. The token carries intent —{' '}
-                <em>this is heading text</em>, <em>this is the danger action</em> —
-                and resolves to a concrete value from the one source of truth in{' '}
-                <code className="font-mono text-cyan">tailwind.config.js</code>. Change
-                the value once and every usage updates. Every token on the{' '}
-                <Link href="/design-system/foundations/tokens">
-                    <a className="text-cyan font-semibold hover:underline">
-                        Design tokens
-                    </a>
-                </Link>{' '}
-                reference is read live from that file, so the docs can never drift.
+            <p className="text-body-small text-grey dark:text-light-grey mb-4">
+                Instead of hard-coding <code className="font-mono text-cyan">#00335B</code>, reference a token. The token carries intent, resolves to a concrete value from <code className="font-mono text-cyan">tailwind.config.js</code>, and updates everywhere when that one file changes.
             </p>
         </Section>
 
         <Section id="tiers" title="The three tiers">
-            <p className="text-grey dark:text-light-grey">
-                Tokens build up in three layers. Each tier references the one below
-                it, so a single value change ripples predictably outwards.
+            <p className="text-body-small text-grey dark:text-light-grey mb-6">
+                Tokens build in three layers — each tier references the one below, so a single change ripples outwards predictably.
             </p>
 
             <Subsection title="1 · Primitive">
-                <p className="text-grey dark:text-light-grey">
-                    The raw palette and scale values — a specific colour stop, a step
-                    on the 4px spacing scale. Primitives are the vocabulary; they have
-                    no opinion about <em>where</em> they are used.
+                <p className="text-body-small text-grey dark:text-light-grey mb-3">
+                    Raw palette and scale values. No opinion about <em>where</em> they are used — just the vocabulary.
                 </p>
                 <TokenName
                     segments={[
@@ -74,10 +59,8 @@ const TokenAnatomy: NextPageWithLayout = () => (
             </Subsection>
 
             <Subsection title="2 · Semantic">
-                <p className="text-grey dark:text-light-grey">
-                    A role-based name that maps intent to a primitive. Semantic tokens
-                    are what you reach for day to day — they say what the value is{' '}
-                    <em>for</em>, not what it literally is.
+                <p className="text-body-small text-grey dark:text-light-grey mb-3">
+                    Role-based names — what you reach for day to day. They say what the value is <em>for</em>, not what it literally is.
                 </p>
                 <TokenName
                     segments={[
@@ -104,26 +87,19 @@ const TokenAnatomy: NextPageWithLayout = () => (
             </Subsection>
 
             <Subsection title="3 · Component">
-                <p className="text-grey dark:text-light-grey">
-                    At the component tier, several semantic and primitive tokens are
-                    composed together to describe one part — a button&apos;s padding,
-                    background and radius. The{' '}
+                <p className="text-body-small text-grey dark:text-light-grey mb-3">
+                    Several semantic and primitive tokens composed into one part — a button&apos;s padding, background, radius. See the{' '}
                     <Link href="/design-system/components/button">
-                        <a className="text-cyan font-semibold hover:underline">
-                            component spec sheets
-                        </a>
+                        <a className="text-cyan font-semibold hover:underline">component spec sheets</a>
                     </Link>{' '}
-                    pair every part with its resolved token, the same way the{' '}
-                    <em>Tokens in context</em> diagram below does.
+                    and the <em>Tokens in context</em> diagram below.
                 </p>
             </Subsection>
         </Section>
 
         <Section id="reading" title="Reading a token name">
-            <p className="text-grey dark:text-light-grey">
-                Tokens here are Tailwind utilities: a property prefix followed by
-                hyphen-separated parts. Read left to right — property, then role or
-                palette, then the step.
+            <p className="text-body-small text-grey dark:text-light-grey mb-4">
+                Tailwind utilities: property prefix → role or palette → step. Read left to right.
             </p>
 
             <TokenName
@@ -164,9 +140,8 @@ const TokenAnatomy: NextPageWithLayout = () => (
         </Section>
 
         <Section id="context" title="Tokens in context">
-            <p className="text-grey dark:text-light-grey">
-                The same tokens applied to a real card. Each label points to the part
-                it styles; a green dot means the token resolved live from the theme.
+            <p className="text-body-small text-grey dark:text-light-grey mb-4">
+                The same tokens applied to a real card — each label points to the part it styles.
             </p>
 
             <TokenCallout

@@ -3,7 +3,6 @@ import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemL
 import {
     BrandHero,
     Section,
-    Subsection,
 } from '../../../styleguide-components/primitives'
 import { headerStyles, footerRules } from '../../../styleguide-components/brand/content'
 
@@ -22,34 +21,18 @@ const Layout: NextPageWithLayout = () => (
         />
 
         <Section id="headers" title="Headers">
-            <p className="text-grey dark:text-light-grey">
-                A website header shows how a site is navigated and organised. Keeping
-                consistent elements — and using a sticky header — makes our sites easier
-                to navigate and more user-friendly. Headers include the Bupa logo
-                (mandatory), page name, search bar, menu, login and contact.
-            </p>
-            <Subsection title="Responsive behaviour">
-                <ul className="space-y-2 text-body-small text-grey dark:text-light-grey">
-                    <li className="flex gap-2">
-                        <span className="text-cyan flex-none">—</span>
-                        <span>
-                            On desktop, the square or horizontal logo can sit in the
-                            top-left corner.
-                        </span>
-                    </li>
-                    <li className="flex gap-2">
-                        <span className="text-cyan flex-none">—</span>
-                        <span>
-                            Below <strong>767px</strong> width the header switches to
-                            mobile view and a horizontal logo should be used.
-                        </span>
-                    </li>
-                    <li className="flex gap-2">
-                        <span className="text-cyan flex-none">—</span>
-                        <span>Avoid using more than two icons positioned on the right.</span>
-                    </li>
-                </ul>
-            </Subsection>
+            <div className="grid gap-2 sm:grid-cols-3 mb-6">
+                {[
+                    { label: 'Desktop', value: 'Square or horizontal logo, top-left' },
+                    { label: 'Mobile (< 767px)', value: 'Horizontal logo, max 2 icons on the right' },
+                    { label: 'Sticky', value: 'Use a sticky header for easier navigation' },
+                ].map(item => (
+                    <div key={item.label} className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-4 bg-white dark:bg-cool-grey">
+                        <p className="text-caption font-semibold uppercase tracking-wide text-disabled-text">{item.label}</p>
+                        <p className="mt-1 text-body-small text-navy dark:text-white">{item.value}</p>
+                    </div>
+                ))}
+            </div>
         </Section>
 
         <Section id="header-styles" title="Header styles">
@@ -104,14 +87,14 @@ const Layout: NextPageWithLayout = () => (
                     Terms and conditions | Privacy | Accessibility | Sitemap | ©Bupa
                 </p>
             </div>
-            <ul className="mt-6 space-y-2 text-body-small text-grey dark:text-light-grey">
+            <div className="mt-6 grid gap-2 sm:grid-cols-2">
                 {footerRules.map(rule => (
-                    <li key={rule} className="flex gap-2">
-                        <span className="text-cyan flex-none">—</span>
-                        <span>{rule}</span>
-                    </li>
+                    <div key={rule} className="flex gap-3 items-start rounded-xl border border-cool-paper-200 dark:border-charcoal px-4 py-3 bg-white dark:bg-cool-grey">
+                        <span className="text-cyan flex-none mt-0.5" aria-hidden="true">✓</span>
+                        <span className="text-body-small text-grey dark:text-light-grey">{rule}</span>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </Section>
     </DesignSystemLayout>
 )

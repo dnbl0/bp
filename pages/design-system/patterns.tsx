@@ -27,12 +27,7 @@ const Patterns: NextPageWithLayout = () => (
         />
 
         <Section id="atomic-design" title="Atomic design">
-            <p className="text-grey dark:text-light-grey">
-                The library follows an atomic-design hierarchy. Smaller pieces
-                compose into larger ones, so a change to an atom ripples through
-                everything built on top of it.
-            </p>
-            <ol className="mt-4 space-y-3">
+            <ol className="space-y-2">
                 {layers.map((layer, index) => (
                     <li
                         key={layer.name}
@@ -86,20 +81,33 @@ const Patterns: NextPageWithLayout = () => (
         </Section>
 
         <Section id="forms" title="Forms">
-            <p className="text-grey dark:text-light-grey">
-                Lead-capture forms are rendered through the SnapForms integration and
-                surfaced either inline (via <code className="font-mono text-cyan">FormBlock</code>)
-                or in a modal. Keep forms short, label every field, and pair the
-                submit action with a single primary button.
-            </p>
+            <div className="grid gap-2 sm:grid-cols-3">
+                {[
+                    { label: 'Integration', value: 'SnapForms — inline via FormBlock or in a modal' },
+                    { label: 'Length', value: 'Keep forms short; label every field' },
+                    { label: 'Submit', value: 'One primary button per form' },
+                ].map(item => (
+                    <div key={item.label} className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-4 bg-white dark:bg-cool-grey">
+                        <p className="text-caption font-semibold uppercase tracking-wide text-disabled-text">{item.label}</p>
+                        <p className="mt-1 text-body-small text-navy dark:text-white">{item.value}</p>
+                    </div>
+                ))}
+            </div>
         </Section>
 
         <Section id="search" title="Search">
-            <p className="text-grey dark:text-light-grey">
-                The find-a-home experience is built on Algolia InstantSearch with
-                type-ahead autocomplete. Present results progressively, keep the query
-                visible, and provide a clear empty state when nothing matches.
-            </p>
+            <div className="grid gap-2 sm:grid-cols-3">
+                {[
+                    { label: 'Engine', value: 'Algolia InstantSearch with type-ahead autocomplete' },
+                    { label: 'Results', value: 'Present progressively; keep the query visible' },
+                    { label: 'Empty state', value: 'Always provide a clear message when nothing matches' },
+                ].map(item => (
+                    <div key={item.label} className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-4 bg-white dark:bg-cool-grey">
+                        <p className="text-caption font-semibold uppercase tracking-wide text-disabled-text">{item.label}</p>
+                        <p className="mt-1 text-body-small text-navy dark:text-white">{item.value}</p>
+                    </div>
+                ))}
+            </div>
         </Section>
     </DesignSystemLayout>
 )

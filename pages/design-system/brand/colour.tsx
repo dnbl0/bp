@@ -57,47 +57,22 @@ const Colour: NextPageWithLayout = () => (
         <PullQuote cite="Design principle">Blue is the glue.</PullQuote>
 
         <Section id="primary" title="Primary palette">
-            <p className="text-grey dark:text-light-grey">
-                Our defining colours, led by Bupa Blue, Bupa Navy and Bupa Warm Grey —
-                these should be our most prominent colours. For large areas of colour,
-                use a primary colour at 100%. Bupa Blue meets AA accessibility standards
-                on a Bupa White or Bupa Black background only.
+            <p className="text-body-small text-grey dark:text-light-grey mb-4">
+                Led by Bupa Blue, Bupa Navy and Bupa Warm Grey — these should always be the most prominent colours in any communication.
             </p>
-            <div className="mt-6">
-                <BrandSwatchGrid colors={primaryPalette} />
-            </div>
+            <BrandSwatchGrid colors={primaryPalette} />
         </Section>
 
         <Section id="secondary" title="Secondary palette">
-            <p className="text-grey dark:text-light-grey">
-                The secondary palette supplements the primary palette. It includes six
-                core colours and a defined system of light <strong>tints</strong> (rows
-                1–4) and dark <strong>shades</strong> (rows 6–9) around each{' '}
-                <strong>core</strong> colour (row 5, ringed below). Use these colours
-                purposefully — as accents — to emphasise content or actions, clarify
-                information and help people navigate. Other colours should never
-                overpower our blue.
+            <p className="text-body-small text-grey dark:text-light-grey mb-4">
+                Six core colours (row 5, ringed below) with light <strong>tints</strong> (rows 1–4) and dark <strong>shades</strong> (rows 6–9). Use as accents only — never let secondary colours overpower Bupa Blue.
             </p>
-            <div className="mt-6">
-                <SecondaryPaletteGrid />
-            </div>
-            <p className="mt-4 text-body-small text-grey dark:text-light-grey">
-                Core colours: Bupa Blue <code className="font-mono">#0079c8</code>,
-                Bupa Fuchsia <code className="font-mono">#d02670</code>, Bupa Orange{' '}
-                <code className="font-mono">#db3907</code>, Bupa Green{' '}
-                <code className="font-mono">#1b883c</code>, Bupa Teal{' '}
-                <code className="font-mono">#007d79</code> and Bupa Purple{' '}
-                <code className="font-mono">#8a3ff5</code>.
-            </p>
+            <SecondaryPaletteGrid />
         </Section>
 
         <Section id="accessibility" title="Accessibility system">
-            <p className="text-grey dark:text-light-grey">
-                A simple step system helps you choose accessible colour combinations
-                within a family. To find an accessible pairing, move{' '}
-                <strong>five steps lighter or darker</strong> within the same colour
-                family. White text meets standards on core colours and dark shades;
-                Bupa Black text meets standards on light tints.
+            <p className="text-body-small text-grey dark:text-light-grey mb-4">
+                Move <strong>five steps</strong> lighter or darker within a colour family for an accessible pairing. Don&apos;t mix text and background colours from different families.
             </p>
             <div className="mt-6 overflow-x-auto">
                 <table className="w-full text-body-small border-collapse">
@@ -128,49 +103,32 @@ const Colour: NextPageWithLayout = () => (
                     </tbody>
                 </table>
             </div>
-            <p className="mt-4 text-body-small text-grey dark:text-light-grey">
-                Please don’t mix text and background colours from different colour
-                families.
-            </p>
         </Section>
 
-        <Section id="neutral" title="Neutral palette">
-            <p className="text-grey dark:text-light-grey">
-                A backdrop and technical support. Bupa Text Grey is for text in digital
-                applications; Bupa Black for text in print. Bupa Ink replaces Bupa Warm
-                Grey in digital “dark mode”. The warm and cool greys give a range of
-                background options across print and digital.
+        <Section id=”neutral” title=”Neutral palette”>
+            <p className=”text-body-small text-grey dark:text-light-grey mb-4”>
+                Text Grey for digital body copy, Black for print, Ink for dark mode. Warm and cool greys for backgrounds.
             </p>
-            <div className="mt-6">
-                <BrandSwatchGrid colors={neutralPalette} />
-            </div>
+            <BrandSwatchGrid colors={neutralPalette} />
         </Section>
 
-        <Section id="alert" title="Alert palette">
-            <p className="text-grey dark:text-light-grey">
-                Provides instruction. These colours can be assigned as required by
-                Market Units to communicate state.
+        <Section id=”alert” title=”Alert palette”>
+            <p className=”text-body-small text-grey dark:text-light-grey mb-4”>
+                State colours assigned by Market Units to communicate success, warning and error.
             </p>
-            <div className="mt-6">
-                <BrandSwatchGrid colors={alertPalette} />
-            </div>
+            <BrandSwatchGrid colors={alertPalette} />
         </Section>
 
-        <Section id="skin-tone" title="Skin-tone palette">
-            <p className="text-grey dark:text-light-grey">
-                A skin-tone palette helps show diversity in illustration. This palette
-                should be used for <strong>illustration only</strong>.
+        <Section id=”skin-tone” title=”Skin-tone palette”>
+            <p className=”text-body-small text-grey dark:text-light-grey mb-4”>
+                For <strong>illustration only</strong> — developed to show diversity across people, objects and clothing.
             </p>
-            <div className="mt-6">
-                <BrandSwatchGrid colors={skinTones} />
-            </div>
+            <BrandSwatchGrid colors={skinTones} />
         </Section>
 
-        <Section id="usage" title="Using colour">
-            <p className="text-grey dark:text-light-grey">
-                Primary palette colours should be the most prominent. Lighter neutral
-                colours work well as backgrounds. Secondary palette colours are used in
-                small areas to emphasise, inform and navigate.
+        <Section id=”usage” title=”Using colour”>
+            <p className=”text-body-small text-grey dark:text-light-grey mb-4”>
+                Lead with primary palette colours. Use secondary colours in small areas only to emphasise, inform and navigate.
             </p>
             <DoDontGrid>
                 <Do note="Lead with Bupa Blue, then use a single core secondary colour to highlight a call to action.">

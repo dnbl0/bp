@@ -4,7 +4,6 @@ import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemL
 import {
     BrandHero,
     Section,
-    Subsection,
     Do,
     Dont,
     DoDontGrid,
@@ -56,15 +55,10 @@ const Typography: NextPageWithLayout = () => (
         />
 
         <Section id="typefaces" title="Our typefaces">
-            <p className="text-grey dark:text-light-grey">
-                <strong>Gotham</strong> is our brand typeface.{' '}
-                <strong>Montserrat</strong> is used for websites and apps, and{' '}
-                <strong>Arial</strong> for PowerPoint and Word. Use Montserrat and Arial
-                as you would Gotham — bolder weights for headlines, lighter weights for
-                body copy. Gotham can be purchased and downloaded; Montserrat is open
-                source and free to download. Font licences should be purchased locally.
+            <p className="text-body-small text-grey dark:text-light-grey mb-4">
+                <strong>Gotham</strong> for brand, <strong>Montserrat</strong> for web and apps (open source), <strong>Arial</strong> for Office. Use bolder weights for headlines, lighter for body copy.
             </p>
-            <div className="mt-6 space-y-4">
+            <div className="space-y-4">
                 {typefaces.map(face => (
                     <div
                         key={face.name}
@@ -90,73 +84,50 @@ const Typography: NextPageWithLayout = () => (
             </p>
         </Section>
 
-        <Section id="colour" title="Colour">
-            <ul className="space-y-2 text-body-small text-grey dark:text-light-grey">
-                <li className="flex gap-2">
-                    <span className="text-cyan flex-none">—</span>
-                    <span>Use Bupa Blue, Bupa Navy or white for headlines.</span>
-                </li>
-                <li className="flex gap-2">
-                    <span className="text-cyan flex-none">—</span>
-                    <span>
-                        Use Bupa Blue for hyperlinks or large, short headlines — but only
-                        when accessible.
-                    </span>
-                </li>
-            </ul>
+        <Section id=”colour” title=”Colour”>
+            <div className=”grid gap-2 sm:grid-cols-2”>
+                {[
+                    { rule: 'Headlines', value: 'Bupa Blue, Bupa Navy or white' },
+                    { rule: 'Hyperlinks', value: 'Bupa Blue — only when accessible' },
+                ].map(item => (
+                    <div
+                        key={item.rule}
+                        className=”flex items-start gap-3 rounded-xl border border-cool-paper-200 dark:border-charcoal px-4 py-3 bg-white dark:bg-cool-grey”
+                    >
+                        <span className=”text-caption font-semibold uppercase tracking-wide text-disabled-text w-24 flex-none pt-0.5”>{item.rule}</span>
+                        <span className=”text-body-small text-navy dark:text-white”>{item.value}</span>
+                    </div>
+                ))}
+            </div>
         </Section>
 
-        <Section id="placement" title="Placement">
-            <ul className="space-y-2 text-body-small text-grey dark:text-light-grey">
-                <li className="flex gap-2">
-                    <span className="text-cyan flex-none">—</span>
-                    <span>Short, direct headlines can be used over imagery.</span>
-                </li>
-                <li className="flex gap-2">
-                    <span className="text-cyan flex-none">—</span>
-                    <span>Centred headlines are preferred for bold headlines over images.</span>
-                </li>
-                <li className="flex gap-2">
-                    <span className="text-cyan flex-none">—</span>
-                    <span>Left-aligned headlines elsewhere.</span>
-                </li>
-                <li className="flex gap-2">
-                    <span className="text-cyan flex-none">—</span>
-                    <span>
-                        Full stops are used for headlines that include grammar (commas,
-                        exclamation marks) or multiple sentences.
-                    </span>
-                </li>
-            </ul>
+        <Section id=”placement” title=”Placement”>
+            <div className=”grid gap-2 sm:grid-cols-2”>
+                {[
+                    { rule: 'Over imagery', value: 'Short, direct headlines — centred' },
+                    { rule: 'Elsewhere', value: 'Left-aligned' },
+                    { rule: 'Full stops', value: 'Only when the headline includes grammar or multiple sentences' },
+                    { rule: 'Case', value: 'Always sentence case' },
+                ].map(item => (
+                    <div
+                        key={item.rule}
+                        className=”flex items-start gap-3 rounded-xl border border-cool-paper-200 dark:border-charcoal px-4 py-3 bg-white dark:bg-cool-grey”
+                    >
+                        <span className=”text-caption font-semibold uppercase tracking-wide text-disabled-text w-24 flex-none pt-0.5”>{item.rule}</span>
+                        <span className=”text-body-small text-navy dark:text-white”>{item.value}</span>
+                    </div>
+                ))}
+            </div>
         </Section>
 
-        <Section id="expressive" title="Type as illustration & expressive type">
-            <p className="text-grey dark:text-light-grey">
-                Type can be used in a clever, imaginative way to bring a more
-                light-hearted tone to our communication.
+        <Section id=”expressive” title=”Type as illustration & expressive type”>
+            <p className=”text-body-small text-grey dark:text-light-grey mb-4”>
+                Type can be integrated into illustration (use <strong>Gotham Black</strong>) or used expressively — climbing, shrinking, moving off the page. Keep messages short and direct.
             </p>
-            <Subsection title="Type as illustration">
-                <p className="text-body-small text-grey dark:text-light-grey">
-                    Type can be integrated into an illustration, or used expressively to
-                    make an idea more engaging. Consider the audience and environment
-                    first. A bolder weight, <strong>Gotham Black</strong>, can be used for
-                    type as illustration.
-                </p>
-            </Subsection>
-            <Subsection title="Expressive type">
-                <p className="text-body-small text-grey dark:text-light-grey">
-                    Expressive type brings to life ideas that are difficult to visualise
-                    with photography or illustration. Keep copy witty and engaging,
-                    messages short and direct — think “less is more”. Type can move off
-                    the page, climb or shrink within the layout.
-                </p>
-            </Subsection>
-            <Subsection title="In context">
-                <BrandGallery
-                    images={photography.typography}
-                    columns="grid-cols-1 sm:grid-cols-2"
-                />
-            </Subsection>
+            <BrandGallery
+                images={photography.typography}
+                columns=”grid-cols-1 sm:grid-cols-2”
+            />
         </Section>
 
         <Section id="dos" title="Do & don’t">

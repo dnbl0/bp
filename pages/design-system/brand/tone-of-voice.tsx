@@ -7,7 +7,6 @@ import {
     PullQuote,
     WordSwapTable,
     Section,
-    Subsection,
 } from '../../../styleguide-components/primitives'
 import {
     toneIntro,
@@ -26,17 +25,18 @@ const toc = [
     { id: 'in-action', title: 'Tone in action' },
 ]
 
-const Checklist = ({ items }: { items: string[] }) => (
-    <ul className="space-y-2 text-body-small text-grey dark:text-light-grey">
-        {items.map(item => (
-            <li key={item} className="flex gap-2">
-                <span aria-hidden="true" className="flex-none text-cyan">
-                    —
-                </span>
-                <span>{item}</span>
-            </li>
-        ))}
-    </ul>
+const CheckCard = ({ title, items }: { title: string; items: string[] }) => (
+    <div className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey">
+        <p className="text-caption font-semibold uppercase tracking-wide text-disabled-text mb-3">{title}</p>
+        <ul className="space-y-2">
+            {items.map(item => (
+                <li key={item} className="flex gap-2 text-body-small text-grey dark:text-light-grey">
+                    <span aria-hidden="true" className="flex-none text-cyan mt-0.5">✓</span>
+                    <span>{item}</span>
+                </li>
+            ))}
+        </ul>
+    </div>
 )
 
 const ToneOfVoice: NextPageWithLayout = () => (
@@ -57,13 +57,11 @@ const ToneOfVoice: NextPageWithLayout = () => (
             </div>
         </Section>
 
-        <Section id="writing" title="While you’re writing">
-            <Subsection title="Before you start">
-                <Checklist items={beforeYouWrite} />
-            </Subsection>
-            <Subsection title="As you write">
-                <Checklist items={whileYouWrite} />
-            </Subsection>
+        <Section id="writing" title="While you&apos;re writing">
+            <div className="grid gap-4 sm:grid-cols-2">
+                <CheckCard title="Before you start" items={beforeYouWrite} />
+                <CheckCard title="As you write" items={whileYouWrite} />
+            </div>
         </Section>
 
         <Section id="swaps" title="Word swaps">
