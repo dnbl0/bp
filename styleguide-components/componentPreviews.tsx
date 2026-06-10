@@ -15,6 +15,7 @@ import { YouTubeIcon } from '../components/atoms/icons/YouTubeIcon'
 import { PersonIcon } from '../components/atoms/icons/PersonIcon'
 import HomeIcon from '../components/atoms/icons/HomeIcon'
 import { PulseLogo } from '../components/atoms/icons/PulseLogo'
+import { resolveColor } from './tokenResolver'
 
 /*
     Compact, static, NON-INTERACTIVE preview of each component, rendered as a
@@ -50,11 +51,15 @@ const Field = ({ placeholder = '', icon, className }: { placeholder?: string; ic
     </div>
 )
 
-const Tagish = ({ children, bg, color }: { children: ReactNode; bg: string; color: string }) => (
-    <span className="inline-block px-2 py-0.5 rounded text-caption" style={{ backgroundColor: bg, color }}>
-        {children}
-    </span>
-)
+const Tagish = ({ children, bg, color, bgToken, colorToken }: { children: ReactNode; bg?: string; color?: string; bgToken?: string; colorToken?: string }) => {
+    const bgHex = bg ?? (bgToken ? resolveColor(bgToken) ?? undefined : undefined)
+    const colorHex = color ?? (colorToken ? resolveColor(colorToken) ?? undefined : undefined)
+    return (
+        <span className="inline-block px-2 py-0.5 rounded text-caption" style={{ backgroundColor: bgHex, color: colorHex }}>
+            {children}
+        </span>
+    )
+}
 
 const Frame = ({ className, children }: { className?: string; children?: ReactNode }) => (
     <div className={cx('flex items-center justify-center rounded-lg bg-cool-paper-100', className)}>
@@ -93,8 +98,8 @@ export const componentPreviews: Record<string, ReactNode> = {
     ),
     Tag: (
         <div className="flex flex-wrap gap-2 justify-center">
-            <Tagish bg="#e1fcfd" color="#008385">Wellbeing</Tagish>
-            <Tagish bg="#f0f9ff" color="#0079c8">Nutrition</Tagish>
+            <Tagish bgToken="teal-50" colorToken="teal">Wellbeing</Tagish>
+            <Tagish bgToken="cyan-50" colorToken="cyan">Nutrition</Tagish>
             <Tagish bg="#f8f7f4" color="#942151">Community</Tagish>
         </div>
     ),

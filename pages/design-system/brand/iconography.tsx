@@ -6,9 +6,10 @@ import {
     Section,
     Subsection,
 } from '../../../styleguide-components/primitives'
-import { icons, BrandGallery } from '../../../styleguide-components/brandAssets'
+import { icons, BrandGallery, BupaIconGrid, bupaIcons } from '../../../styleguide-components/brandAssets'
 
 const toc = [
+    { id: 'bupa-icons', title: 'Bupa icon set' },
     { id: 'illustrated', title: 'Illustrated icons' },
     { id: 'navigation', title: 'Navigation icons' },
 ]
@@ -21,6 +22,18 @@ const Iconography: NextPageWithLayout = () => (
             status="stable"
             intro="We use two distinct icon families. Illustrated icons add a richer tier of hierarchy; navigation icons are functional aids. They share style principles but should never be interchanged."
         />
+
+        <Section id="bupa-icons" title="Bupa icon set">
+            <p className="text-grey dark:text-light-grey">
+                The Bupa icon set covers health services, specialties, facilities and
+                functional actions. Use them at <strong>48–64px</strong> with supporting
+                labels — they should never appear without context. All{' '}
+                {bupaIcons.length} icons are available as PNG assets.
+            </p>
+            <div className="mt-6">
+                <BupaIconGrid />
+            </div>
+        </Section>
 
         <Section id="illustrated" title="Illustrated icons">
             <p className="text-grey dark:text-light-grey">
