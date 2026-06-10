@@ -188,6 +188,13 @@ export const navSections: NavSection[] = [
                 status: 'stable',
                 summary: 'The Bupa Aged Care logo marks and usage guidance.',
             },
+            {
+                title: 'Illustrations',
+                slug: 'foundations/illustrations',
+                status: 'stable',
+                summary: 'Types of illustration, the blue square, colour palettes, keylines, people components and animation.',
+                keywords: ['illustration', 'blue square', 'keyline', 'people', 'objects', 'scenes', 'explanatory', 'skin tone', 'animation'],
+            },
         ],
     },
     {
