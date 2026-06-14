@@ -13,6 +13,7 @@ export { SwatchGrid } from './Swatches'
 export { TokenTable } from './TokenTable'
 export type { TokenRow } from './TokenTable'
 export { IconGallery } from './IconGallery'
+export { MaterialSymbolsExplorer } from './MaterialSymbolsExplorer'
 export { PageHeader, Section, Subsection } from './PageHeader'
 export {
     BrandHero,

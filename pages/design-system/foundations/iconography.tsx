@@ -3,70 +3,95 @@ import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemL
 import {
     PageHeader,
     Section,
-    IconGallery,
-    Example,
+    MaterialSymbolsExplorer,
 } from '../../../styleguide-components/primitives'
-import { productIcons } from '../../../styleguide-components/iconRegistry'
-import { SearchIcon } from '../../../components/atoms/icons/SearchIcon'
-import { BupaIconGrid, bupaIcons } from '../../../styleguide-components/brandAssets'
+import { allSymbols } from '../../../styleguide-components/materialSymbols'
 
 const toc = [
     { id: 'library', title: 'Library' },
     { id: 'usage', title: 'Usage' },
-    { id: 'bupa-icons', title: 'Bupa icon set' },
 ]
 
 const Iconography: NextPageWithLayout = () => (
-    <DesignSystemLayout title="Iconography" toc={toc}>
+    <DesignSystemLayout title="Iconography" toc={toc} wide>
         <PageHeader
             eyebrow="Foundations"
-            title="Iconography"
+            title="Material Symbols"
             status="stable"
-            intro="Icons are inline SVG React components that inherit colour from their parent via fill-current. Size them with width and height utilities and colour them with text/fill utilities."
+            intro="Our icons are Google Material Symbols — a single variable font with over 2,500 glyphs across three styles. Adjust the fill, weight, grade and optical size to match any context, then copy the icon you need."
         />
 
         <Section id="library" title="Library">
             <p className="text-grey dark:text-light-grey">
-                Click any icon to copy its import. {productIcons.length} icons are
-                available.
+                Browse the {allSymbols.length} catalogued symbols below. Choose a style,
+                tune the four axes, filter by category or search by name, then click an
+                icon to copy its markup — exactly like{' '}
+                <a
+                    href="https://fonts.google.com/icons"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-cyan hover:underline"
+                >
+                    fonts.google.com/icons
+                </a>
+                .
             </p>
-            <IconGallery icons={productIcons} />
+            <MaterialSymbolsExplorer />
         </Section>
 
         <Section id="usage" title="Usage">
             <p className="text-grey dark:text-light-grey">
-                Icons default to{' '}
-                <code className="font-mono text-cyan">fill-current</code>, so set the
-                colour on the icon or an ancestor and the size explicitly.
+                Load the Material Symbols stylesheet once, then render any glyph by
+                putting its ligature name inside a styled <code className="font-mono text-cyan">span</code>.
+                The four variable-font axes are controlled with{' '}
+                <code className="font-mono text-cyan">font-variation-settings</code>.
             </p>
-            <Example
-                caption="Sizing and colouring an icon"
-                code={`<SearchIcon className="w-6 h-6 fill-navy" />`}
-            >
-                <SearchIcon className="w-5 h-5 fill-navy" />
-                <SearchIcon className="w-6 h-6 fill-cyan" />
-                <SearchIcon className="w-8 h-8 fill-fuchsia" />
-            </Example>
-        </Section>
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-cool-paper-100 dark:bg-cool-grey border border-cool-paper-200 dark:border-charcoal p-4 text-caption font-mono text-grey dark:text-light-grey">
+{`<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
 
-        <Section id="bupa-icons" title="Bupa icon set">
-            <p className="text-grey dark:text-light-grey">
-                The Bupa icon set covers health services, specialties, facilities and
-                functional actions — {bupaIcons.length} icons supplied as PNG assets.
-                These complement the inline SVG library above and are intended for use
-                at <strong>48–64px</strong> with a supporting label. Full brand guidance
-                lives on the{' '}
-                <a
-                    href="/design-system/brand/iconography"
-                    className="font-semibold text-cyan hover:underline"
-                >
-                    Brand → Icons
-                </a>{' '}
-                page.
-            </p>
-            <div className="mt-6">
-                <BupaIconGrid />
-            </div>
+<span class="material-symbols-outlined">favorite</span>
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}`}
+            </pre>
+            <ul className="mt-6 space-y-2 text-body-small text-grey dark:text-light-grey">
+                <li className="flex gap-2">
+                    <span className="text-cyan flex-none">—</span>
+                    <span>
+                        <strong>FILL</strong> (0–1) switches between the outlined and filled
+                        appearance; use it to signal a selected or active state.
+                    </span>
+                </li>
+                <li className="flex gap-2">
+                    <span className="text-cyan flex-none">—</span>
+                    <span>
+                        <strong>Weight</strong> (100–700) sets the stroke thickness; 400 is
+                        the default.
+                    </span>
+                </li>
+                <li className="flex gap-2">
+                    <span className="text-cyan flex-none">—</span>
+                    <span>
+                        <strong>Grade</strong> (−25–200) fine-tunes emphasis without changing
+                        the icon size — handy for dark backgrounds.
+                    </span>
+                </li>
+                <li className="flex gap-2">
+                    <span className="text-cyan flex-none">—</span>
+                    <span>
+                        <strong>Optical size</strong> (20–48px) adapts the design to the
+                        rendered size so strokes stay legible.
+                    </span>
+                </li>
+            </ul>
         </Section>
     </DesignSystemLayout>
 )
