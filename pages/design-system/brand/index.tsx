@@ -1,10 +1,8 @@
-import Link from 'next/link'
 import { ReactNode } from 'react'
 import { NextPageWithLayout } from '../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemLayout'
-import { ArrowRight } from '../../../components/atoms/icons/ArrowRight'
 import { brandGuidelines, hrefForItem } from '../../../styleguide-components/brands'
-import { BrandHero, BigStatement, Section } from '../../../styleguide-components/primitives'
+import { BrandHero, BigStatement, InfoCard, Section, cardIcons } from '../../../styleguide-components/primitives'
 import { purpose } from '../../../styleguide-components/brand/content'
 
 const toc = [
@@ -17,46 +15,35 @@ interface Pillar {
     title: string
     href: string
     description: string
+    icon: string
 }
 
 const pillars: Pillar[] = [
     {
         title: 'Our strategy',
+        icon: 'strategy',
         href: `${brandGuidelines.basePath}/strategy`,
         description: 'Our purpose, ambition and values — the reason we exist and what we want to be.',
     },
     {
         title: 'Design principles',
+        icon: 'principles',
         href: `${brandGuidelines.basePath}/design-principles`,
         description: 'Start with a square. Blue is the glue. Less is more. Keep it real.',
     },
     {
         title: 'Design toolkit',
+        icon: 'toolkit',
         href: `${brandGuidelines.basePath}/logo`,
         description: 'Logo, colour, typography, imagery, icons, buttons and more — the building blocks of the brand.',
     },
     {
         title: 'Tone of voice',
+        icon: 'voice',
         href: `${brandGuidelines.basePath}/tone-of-voice`,
         description: 'How we sound: helpful, straightforward, friendly and inviting.',
     },
 ]
-
-const PillarCard = ({ pillar }: { pillar: Pillar }) => (
-    <Link href={pillar.href}>
-        <a className="group flex flex-col rounded-2xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
-            <span className="flex items-center gap-2 text-heading-s font-semibold text-navy dark:text-white group-hover:text-cyan">
-                {pillar.title}
-                <span className="text-cyan opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">
-                    <ArrowRight className="w-4 h-4 fill-current" />
-                </span>
-            </span>
-            <span className="mt-2 flex-1 text-body-small text-grey dark:text-light-grey">
-                {pillar.description}
-            </span>
-        </a>
-    </Link>
-)
 
 /**
  * Line icons for the overview cards, keyed by page slug. All share a 24px
@@ -140,32 +127,6 @@ const CardIcon = ({ slug }: { slug: string }) => (
     </svg>
 )
 
-const PageCard = ({
-    title,
-    summary,
-    href,
-    slug,
-}: {
-    title: string
-    summary?: string
-    href: string
-    slug: string
-}) => (
-    <Link href={href}>
-        <a className="group flex flex-col rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
-            <span className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-cool-paper-100 dark:bg-charcoal text-cyan group-hover:bg-cyan group-hover:text-white transition-colors">
-                <CardIcon slug={slug} />
-            </span>
-            <span className="text-body font-semibold text-navy dark:text-white group-hover:text-cyan">
-                {title}
-            </span>
-            <span className="mt-1 flex-1 text-body-small text-grey dark:text-light-grey">
-                {summary}
-            </span>
-        </a>
-    </Link>
-)
-
 const Group = ({ title, children }: { title: string; children: ReactNode }) => (
     <div>
         <h3 className="mb-3 text-body-small font-bold uppercase tracking-wide text-disabled-text">
@@ -190,7 +151,13 @@ const BrandHome: NextPageWithLayout = () => (
         <Section id="pillars" title="The four pillars">
             <div className="grid gap-4 sm:grid-cols-2">
                 {pillars.map(pillar => (
-                    <PillarCard key={pillar.title} pillar={pillar} />
+                    <InfoCard
+                        key={pillar.title}
+                        icon={cardIcons[pillar.icon]}
+                        href={pillar.href}
+                        title={pillar.title}
+                        description={pillar.description}
+                    />
                 ))}
             </div>
         </Section>
@@ -202,12 +169,12 @@ const BrandHome: NextPageWithLayout = () => (
                         {section.items
                             .filter(item => item.slug !== '')
                             .map(item => (
-                                <PageCard
+                                <InfoCard
                                     key={item.slug}
-                                    title={item.title}
-                                    summary={item.summary}
                                     href={hrefForItem(brandGuidelines, item)}
-                                    slug={item.slug}
+                                    icon={<CardIcon slug={item.slug} />}
+                                    title={item.title}
+                                    description={item.summary}
                                 />
                             ))}
                     </Group>

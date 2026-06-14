@@ -5,6 +5,8 @@ import {
     PageHeader,
     Section,
     Subsection,
+    InfoCard,
+    cardIcons,
 } from '../../../styleguide-components/primitives'
 import { skinTones, BrandSwatchGrid, BlueSquare } from '../../../styleguide-components/brandPalette'
 import { illustration, BrandGallery } from '../../../styleguide-components/brandAssets'
@@ -18,40 +20,48 @@ const toc = [
     { id: 'animation', title: 'Animation' },
 ]
 
-const types: { title: string; body: string }[] = [
+const types: { title: string; body: string; icon: string }[] = [
     {
         title: 'People',
+        icon: 'people',
         body: 'Built from a component library of heads, upper bodies, legs and accessories that can be modified and combined.',
     },
     {
         title: 'Objects',
+        icon: 'objects',
         body: 'A library of object illustrations, used individually or combined into an object cluster, built from simple geometric shapes.',
     },
     {
         title: 'Scenes',
+        icon: 'scenes',
         body: 'Combine people and objects into a single illustration that tells one story. Keep scenes simple — less is more.',
     },
     {
         title: 'Explanatory',
+        icon: 'explanatory',
         body: 'Fact-based, literal illustrations for processes, instructional and technical subjects. As simple and direct as possible.',
     },
 ]
 
-const colourRules: { title: string; body: string }[] = [
+const colourRules: { title: string; body: string; icon: string }[] = [
     {
         title: 'Primary palette',
+        icon: 'palette-primary',
         body: 'The most prominent colours — illustrations should always include Bupa Blue.',
     },
     {
         title: 'Secondary palette',
+        icon: 'palette-secondary',
         body: "Should never overpower the primary palette. Don’t use colours from more than two different families together.",
     },
     {
         title: 'Neutral palette',
+        icon: 'palette-neutral',
         body: 'Neutral colours can be used freely. Use white to lighten and create clear areas within an illustration.',
     },
     {
         title: 'Skin-tone palette',
+        icon: 'palette-skin',
         body: 'Specially developed to show diversity. Colours can also be used for objects, clothing, and so on.',
     },
 ]
@@ -68,17 +78,7 @@ const Illustrations: NextPageWithLayout = () => (
         <Section id="types" title="Types of illustration">
             <div className="grid gap-4 sm:grid-cols-2">
                 {types.map(type => (
-                    <div
-                        key={type.title}
-                        className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey"
-                    >
-                        <h3 className="font-semibold text-navy dark:text-white">
-                            {type.title}
-                        </h3>
-                        <p className="mt-1 text-body-small text-grey dark:text-light-grey">
-                            {type.body}
-                        </p>
-                    </div>
+                    <InfoCard key={type.title} icon={cardIcons[type.icon]} title={type.title} description={type.body} />
                 ))}
             </div>
 
@@ -141,17 +141,7 @@ const Illustrations: NextPageWithLayout = () => (
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {colourRules.map(rule => (
-                    <div
-                        key={rule.title}
-                        className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey"
-                    >
-                        <h3 className="font-semibold text-navy dark:text-white">
-                            {rule.title}
-                        </h3>
-                        <p className="mt-1 text-body-small text-grey dark:text-light-grey">
-                            {rule.body}
-                        </p>
-                    </div>
+                    <InfoCard key={rule.title} icon={cardIcons[rule.icon]} title={rule.title} description={rule.body} />
                 ))}
             </div>
             <Subsection title="Skin-tone palette (illustration only)">

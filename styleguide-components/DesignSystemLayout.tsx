@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { PulseLogo } from '../components/atoms/icons/PulseLogo'
 import { BurgerIcon } from '../components/atoms/icons/BurgerIcon'
-import { ChevronDownIcon } from '../components/atoms/icons/ChevronDownIcon'
 import { CloseIcon } from '../components/atoms/icons/CloseIcon'
 import { GitHubIcon } from '../components/atoms/icons/GitHubIcon'
 import { FigmaIcon } from '../components/atoms/icons/FigmaIcon'
@@ -39,6 +38,10 @@ interface DesignSystemLayoutProps {
      * gallery-style pages like the component overview.
      */
     wide?: boolean
+    /** Hide the left nav sidebar entirely — used for the homepage. */
+    noSidebar?: boolean
+    /** Replace the default sticky header with a custom element. */
+    customHeader?: ReactNode
 }
 
 const THEME_KEY = 'bds-theme'
@@ -95,6 +98,38 @@ const useTheme = (): [boolean, () => void] => {
     return [dark, toggle]
 }
 
+/** Theme-toggle glyphs — line icons matched to the rest of the icon set. */
+const SunIcon = ({ className }: { className?: string }) => (
+    <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+        aria-hidden="true"
+    >
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+    </svg>
+)
+
+const MoonIcon = ({ className }: { className?: string }) => (
+    <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+        aria-hidden="true"
+    >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+    </svg>
+)
+
 const Sidebar = ({
     brand,
     currentPath,
@@ -104,7 +139,7 @@ const Sidebar = ({
     currentPath: string
     onNavigate: () => void
 }) => (
-    <nav className="px-2 py-6 space-y-8" aria-label="Design system">
+    <nav className="pl-0 pr-3 lg:pl-16 py-6 space-y-8" aria-label="Design system">
         {/*
             Brand navigation. The header brand switcher and the brand-guidelines
             label are hidden below `lg` to keep the bar uncluttered on narrow
@@ -112,7 +147,7 @@ const Sidebar = ({
             mirroring how the page nav itself moves into the drawer on mobile.
         */}
         <div className="lg:hidden">
-            <p className="px-3 mb-2 text-caption font-bold uppercase tracking-wide text-disabled-text">
+            <p className="pl-4 mb-2 text-caption font-bold uppercase tracking-wide text-disabled-text">
                 Brands
             </p>
             <ul className="space-y-0.5">
@@ -125,7 +160,7 @@ const Sidebar = ({
                                     onClick={onNavigate}
                                     aria-current={active ? 'page' : undefined}
                                     className={cx(
-                                        'block px-3 py-2 rounded-lg text-body-small',
+                                        'block pl-4 pr-3 py-2 rounded-lg text-body-small',
                                         active
                                             ? 'bg-cyan-50 dark:bg-charcoal text-cyan font-semibold'
                                             : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal'
@@ -147,7 +182,7 @@ const Sidebar = ({
             <div key={section.title}>
                 <p
                     id={headingId}
-                    className="px-3 mb-2 text-caption font-bold uppercase tracking-wide text-disabled-text"
+                    className="pl-4 mb-2 text-caption font-bold uppercase tracking-wide text-disabled-text"
                 >
                     {section.title}
                 </p>
@@ -156,9 +191,9 @@ const Sidebar = ({
                         const href = hrefForItem(brand, item)
                         const cleanPath = currentPath.split(/[?#]/)[0]
                         const active = cleanPath === href
-                        const isOpen = item.children?.length
-                            ? cleanPath === href || cleanPath.startsWith(href + '/')
-                            : false
+                            || (item.children?.length
+                                ? cleanPath.startsWith(href + '/')
+                                : false)
 
                         return (
                             <li key={href}>
@@ -167,7 +202,7 @@ const Sidebar = ({
                                         onClick={onNavigate}
                                         aria-current={active ? 'page' : undefined}
                                         className={cx(
-                                            'flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-body-small',
+                                            'flex items-center justify-between gap-2 pl-4 pr-3 py-2 rounded-lg text-body-small',
                                             active
                                                 ? 'bg-cyan-50 dark:bg-charcoal text-cyan font-semibold'
                                                 : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal'
@@ -185,47 +220,11 @@ const Sidebar = ({
                                                 </span>
                                             )}
                                         </span>
-                                        <span className="flex items-center gap-1.5">
-                                            {item.status && item.status !== 'stable' && (
-                                                <StatusBadge status={item.status} />
-                                            )}
-                                            {item.children?.length ? (
-                                                <ChevronDownIcon
-                                                    className={cx(
-                                                        'w-3 h-3 flex-none fill-current transition-transform',
-                                                        isOpen && 'rotate-180'
-                                                    )}
-                                                />
-                                            ) : null}
-                                        </span>
+                                        {item.status && item.status !== 'stable' && (
+                                            <StatusBadge status={item.status} />
+                                        )}
                                     </a>
                                 </Link>
-                                {item.children?.length && isOpen ? (
-                                    <ul className="mt-0.5 ml-3 pl-2 border-l border-cool-paper-200 dark:border-charcoal space-y-0.5">
-                                        {item.children.map(child => {
-                                            const childHref = hrefForItem(brand, child)
-                                            const childActive = cleanPath === childHref
-                                            return (
-                                                <li key={childHref}>
-                                                    <Link href={childHref}>
-                                                        <a
-                                                            onClick={onNavigate}
-                                                            aria-current={childActive ? 'page' : undefined}
-                                                            className={cx(
-                                                                'block px-3 py-1.5 rounded-lg text-body-small',
-                                                                childActive
-                                                                    ? 'bg-cyan-50 dark:bg-charcoal text-cyan font-semibold'
-                                                                    : 'text-grey dark:text-light-grey hover:bg-cool-paper-100 dark:hover:bg-charcoal'
-                                                            )}
-                                                        >
-                                                            {child.title}
-                                                        </a>
-                                                    </Link>
-                                                </li>
-                                            )
-                                        })}
-                                    </ul>
-                                ) : null}
                             </li>
                         )
                     })}
@@ -246,6 +245,8 @@ export const DesignSystemLayout = ({
     title,
     toc = [],
     wide = false,
+    noSidebar = false,
+    customHeader,
 }: DesignSystemLayoutProps) => {
     const router = useRouter()
     const brand = brandForPath(router.asPath)
@@ -283,76 +284,101 @@ export const DesignSystemLayout = ({
             </Head>
             <div className="min-h-screen bg-white dark:bg-grey text-grey dark:text-light-grey">
                 {/* Top bar */}
-                <header className="sticky top-0 z-header flex items-center gap-4 h-16 px-4 lg:px-6 bg-white dark:bg-grey border-b border-cool-paper-200 dark:border-charcoal">
-                    <button
-                        type="button"
-                        className="lg:hidden"
-                        onClick={() => setMobileNavOpen(open => !open)}
-                        aria-label="Toggle navigation"
-                    >
-                        {mobileNavOpen ? (
-                            <CloseIcon className="w-6 h-6 fill-navy dark:fill-white" />
-                        ) : (
-                            <BurgerIcon className="w-6 h-6 fill-navy dark:fill-white" />
-                        )}
-                    </button>
-                    <Link href={BASE_PATH}>
-                        <a className="flex items-center gap-3">
-                            <PulseLogo className="h-8 w-auto rounded" />
-                            <span className="hidden sm:block font-bold text-navy dark:text-white">
-                                {SITE_TITLE}
-                            </span>
-                        </a>
-                    </Link>
-                    {/*
-                        Brand controls live in the bar only from `lg` up, where
-                        the persistent sidebar replaces the drawer. Below `lg`
-                        they move into the drawer (see Sidebar) so the search
-                        field keeps room instead of being crushed.
-                    */}
-                    <div className="hidden lg:flex items-center gap-4 flex-none">
-                        <BrandSwitcher />
-                        <Link href={brandGuidelines.basePath}>
-                            <a
-                                aria-current={
-                                    brand.id === brandGuidelines.id ? 'page' : undefined
-                                }
-                                className={cx(
-                                    'inline-flex items-center px-2.5 h-9 rounded-lg text-body-small font-semibold hover:bg-cool-paper-100 dark:hover:bg-charcoal',
-                                    brand.id === brandGuidelines.id
-                                        ? 'text-cyan'
-                                        : 'text-navy dark:text-white'
-                                )}
+                {customHeader ?? (
+                <header className="sticky top-0 z-header bg-white dark:bg-grey border-b border-cool-paper-200 dark:border-charcoal">
+                    <div className="flex items-stretch">
+                        {/*
+                            Logo zone. On desktop this is exactly the sidebar's
+                            width (w-80) so the content zone beside it starts at the
+                            same x as the page content — letting the first nav item
+                            sit directly above the breadcrumb and heading.
+                        */}
+                        <div
+                            className={cx(
+                                'flex items-center gap-4 flex-none px-4 py-3',
+                                noSidebar ? 'lg:px-16' : 'lg:w-80 lg:px-16'
+                            )}
+                        >
+                            {/* Mobile burger */}
+                            <button
+                                type="button"
+                                className="flex h-9 w-9 flex-none items-center justify-center rounded-lg hover:bg-cool-paper-100 dark:hover:bg-charcoal lg:hidden"
+                                onClick={() => setMobileNavOpen(open => !open)}
+                                aria-label="Toggle navigation"
+                                aria-expanded={mobileNavOpen}
                             >
-                                {brandGuidelines.label}
-                            </a>
-                        </Link>
-                    </div>
-                    <div className="flex-1 min-w-0 flex justify-end lg:justify-center">
-                        <Search onNavigate={closeMobileNav} />
-                    </div>
-                    <button
-                        type="button"
-                        onClick={toggleTheme}
-                        aria-pressed={dark}
-                        aria-label={
-                            dark ? 'Switch to light theme' : 'Switch to dark theme'
-                        }
-                        className="flex-none w-10 h-10 rounded-lg flex items-center justify-center hover:bg-cool-paper-100 dark:hover:bg-charcoal text-xl"
-                    >
-                        <span aria-hidden="true">{dark ? '☀' : '☾'}</span>
-                    </button>
-                </header>
+                                {mobileNavOpen ? (
+                                    <CloseIcon className="h-6 w-6 fill-navy dark:fill-white" />
+                                ) : (
+                                    <BurgerIcon className="h-6 w-6 fill-navy dark:fill-white" />
+                                )}
+                            </button>
 
-                <div className="mx-auto max-w-[1600px] flex">
+                            {/* Logo */}
+                            <Link href={BASE_PATH}>
+                                <a className="flex-none flex items-center outline-none focus-visible:ring-2 focus-visible:ring-cyan rounded-lg">
+                                    <PulseLogo className="h-10 w-10 rounded-md" />
+                                </a>
+                            </Link>
+                        </div>
+
+                        {/*
+                            Content-aligned zone. Mirrors the body wrapper
+                            (mx-auto max-w-[1400px] + lg:px-12) so the nav's left
+                            edge tracks the page content's left edge at every width.
+                            The -ml-3 cancels the first link's px-3 so its text — not
+                            its hover padding — aligns with the content below.
+                        */}
+                        <div className="flex-1 min-w-0">
+                            <div className="mx-auto flex w-full max-w-[1400px] items-center gap-6 px-4 lg:px-12 py-3">
+                                {/* Nav links */}
+                                <nav className="hidden lg:flex items-center gap-1 lg:-ml-3" aria-label="Main">
+                                    {([
+                                        { label: 'Getting Started', href: `${BASE_PATH}/getting-started` },
+                                        { label: 'Foundations',     href: `${BASE_PATH}/foundations/tokens` },
+                                        { label: 'Components',      href: `${BASE_PATH}/components` },
+                                        { label: 'Accessibility',   href: `${BASE_PATH}/foundations/accessibility` },
+                                        { label: 'Brand Toolkit',   href: `${BASE_PATH}/brand/colour` },
+                                    ] as const).map(link => (
+                                        <Link key={link.href} href={link.href}>
+                                            <a className="px-3 py-1.5 text-[14px] font-semibold text-navy dark:text-white whitespace-nowrap rounded-lg hover:bg-cool-paper-100 dark:hover:bg-charcoal transition-colors">
+                                                {link.label}
+                                            </a>
+                                        </Link>
+                                    ))}
+                                </nav>
+
+                                {/* Right: search + theme toggle */}
+                                <div className="flex items-center gap-3 flex-none ml-auto">
+                                    <div className="w-56 lg:w-72">
+                                        <Search onNavigate={closeMobileNav} />
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={toggleTheme}
+                                        aria-pressed={dark}
+                                        aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+                                        className="flex h-9 w-9 flex-none items-center justify-center rounded-lg text-navy transition-colors hover:bg-cool-paper-100 dark:text-white dark:hover:bg-charcoal"
+                                    >
+                                        {dark ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                )}
+
+                <div className="flex">
                     {/* Sidebar */}
+                    {!noSidebar && (
                     <aside
                         ref={restoreSidebarScroll}
                         onScroll={event => {
                             sidebarScrollTop = event.currentTarget.scrollTop
                         }}
                         className={cx(
-                            'fixed lg:sticky top-16 z-fixed lg:z-ground h-[calc(100vh-4rem)] w-72 flex-none overflow-y-auto bg-white dark:bg-grey border-r border-cool-paper-200 dark:border-charcoal transition-transform lg:translate-x-0',
+                            'fixed lg:sticky top-16 z-fixed lg:z-ground h-[calc(100vh-4rem)] w-80 flex-none overflow-y-auto [&::-webkit-scrollbar]:hidden [scrollbar-width:none] bg-[#f8f8f8] dark:bg-grey border-r border-cool-paper-200 dark:border-charcoal transition-transform lg:translate-x-0',
                             mobileNavOpen ? 'translate-x-0' : '-translate-x-full'
                         )}
                     >
@@ -362,6 +388,7 @@ export const DesignSystemLayout = ({
                             onNavigate={closeMobileNav}
                         />
                     </aside>
+                    )}
 
                     {mobileNavOpen && (
                         <div
@@ -371,9 +398,16 @@ export const DesignSystemLayout = ({
                         />
                     )}
 
+                    {/*
+                        Content + on-this-page rail are capped and centred in
+                        the space to the right of the sidebar, so reading lines
+                        stay comfortable on wide screens while the sidebar hugs
+                        the viewport's left edge (no dead space beside it).
+                    */}
+                    <div className="mx-auto flex w-full min-w-0 max-w-[1400px] flex-1">
                     {/* Content */}
-                    <main className="flex-1 min-w-0 px-6 lg:px-12 py-10">
-                        <div className={cx('bds-prose mx-auto', wide ? 'max-w-6xl' : 'max-w-3xl')}>
+                    <main className={cx('flex-1 min-w-0', noSidebar ? 'p-0' : 'px-6 lg:px-12 py-10')}>
+                        <div className={cx('bds-prose', noSidebar ? 'w-full' : (wide ? 'max-w-6xl' : 'max-w-3xl'))}>
                             <Breadcrumbs slug={slug} />
                             {children}
                             <PrevNext slug={slug} />
@@ -434,6 +468,7 @@ export const DesignSystemLayout = ({
                             </div>
                         </aside>
                     )}
+                    </div>
                 </div>
             </div>
         </div>

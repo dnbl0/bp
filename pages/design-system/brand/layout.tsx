@@ -3,8 +3,16 @@ import { DesignSystemLayout } from '../../../styleguide-components/DesignSystemL
 import {
     BrandHero,
     Section,
+    InfoCard,
+    cardIcons,
 } from '../../../styleguide-components/primitives'
 import { headerStyles, footerRules } from '../../../styleguide-components/brand/content'
+
+const headerStyleIcons: Record<string, string> = {
+    'Primary header': 'header-primary',
+    'Secondary header': 'header-secondary',
+    'Neutral header': 'header-neutral',
+}
 
 const toc = [
     { id: 'headers', title: 'Headers' },
@@ -51,17 +59,7 @@ const Layout: NextPageWithLayout = () => (
             </div>
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 {headerStyles.map(style => (
-                    <div
-                        key={style.name}
-                        className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey"
-                    >
-                        <h3 className="font-semibold text-navy dark:text-white">
-                            {style.name}
-                        </h3>
-                        <p className="mt-1 text-body-small text-grey dark:text-light-grey">
-                            {style.body}
-                        </p>
-                    </div>
+                    <InfoCard key={style.name} icon={cardIcons[headerStyleIcons[style.name]]} title={style.name} description={style.body} />
                 ))}
             </div>
         </Section>

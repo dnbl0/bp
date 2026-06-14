@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 import { NextPageWithLayout } from '../../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../../styleguide-components/DesignSystemLayout'
 import { hrefFor } from '../../../../styleguide-components/designSystem.config'
+import { InfoCard, cardIcons } from '../../../../styleguide-components/primitives'
 
 /* ---- Inline pillar icons (self-contained, inherit currentColor) ---------- */
 
@@ -93,22 +94,6 @@ const ChecklistIcon = () => (
     <svg {...iconProps}>
         <path d="M9 5h11M9 12h11M9 19h11" />
         <path d="M3 5l1.5 1.5L7 4M3 12l1.5 1.5L7 11M3 19l1.5 1.5L7 18" />
-    </svg>
-)
-
-const ArrowIcon = () => (
-    <svg
-        width={18}
-        height={18}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-    >
-        <path d="M5 12h14M13 6l6 6-6 6" />
     </svg>
 )
 
@@ -265,40 +250,25 @@ const groups: PillarGroup[] = [
 const principles = [
     {
         title: 'Perceivable',
+        icon: 'perceivable',
         body: 'Content meets AA contrast, has text alternatives, and never relies on colour or sound alone to convey meaning.',
     },
     {
         title: 'Operable',
+        icon: 'operable',
         body: 'Everything works with a keyboard and touch, with a visible focus indicator and enough time to act.',
     },
     {
         title: 'Understandable',
+        icon: 'understandable',
         body: 'Labels, errors and instructions are clear, written in plain language and announced to assistive tech.',
     },
     {
         title: 'Robust',
+        icon: 'robust',
         body: 'Semantic HTML comes first; ARIA only fills genuine gaps so a wide range of assistive tech can interpret the UI.',
     },
 ]
-
-const PillarCard = ({ pillar }: { pillar: Pillar }) => (
-    <Link href={hrefFor(pillar.slug)}>
-        <a className="group flex flex-col rounded-2xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
-            <span className="flex items-center justify-center w-12 h-12 rounded-xl bg-cyan-50 dark:bg-charcoal text-cyan">
-                {pillar.icon}
-            </span>
-            <span className="mt-5 flex items-center gap-2 text-heading-s font-semibold text-navy dark:text-white group-hover:text-cyan">
-                {pillar.title}
-                <span className="text-cyan opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">
-                    <ArrowIcon />
-                </span>
-            </span>
-            <span className="mt-2 flex-1 text-body-small text-grey dark:text-light-grey">
-                {pillar.description}
-            </span>
-        </a>
-    </Link>
-)
 
 const AccessibilityHome: NextPageWithLayout = () => (
     <DesignSystemLayout title="Accessibility" wide>
@@ -337,7 +307,13 @@ const AccessibilityHome: NextPageWithLayout = () => (
                 </div>
                 <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {group.pillars.map(pillar => (
-                        <PillarCard key={pillar.slug} pillar={pillar} />
+                        <InfoCard
+                            key={pillar.slug}
+                            href={hrefFor(pillar.slug)}
+                            icon={pillar.icon}
+                            title={pillar.title}
+                            description={pillar.description}
+                        />
                     ))}
                 </div>
             </section>
@@ -353,17 +329,12 @@ const AccessibilityHome: NextPageWithLayout = () => (
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {principles.map(principle => (
-                    <div
+                    <InfoCard
                         key={principle.title}
-                        className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-grey"
-                    >
-                        <h3 className="text-heading-s font-semibold text-navy dark:text-white">
-                            {principle.title}
-                        </h3>
-                        <p className="mt-2 text-body-small text-grey dark:text-light-grey">
-                            {principle.body}
-                        </p>
-                    </div>
+                        icon={cardIcons[principle.icon]}
+                        title={principle.title}
+                        description={principle.body}
+                    />
                 ))}
             </div>
         </section>

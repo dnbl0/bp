@@ -1,6 +1,8 @@
+import { ReactNode } from 'react'
 import { NextPageWithLayout } from '../../types/nextLayout'
 import { DesignSystemLayout } from '../../styleguide-components/DesignSystemLayout'
-import { PageHeader, Section } from '../../styleguide-components/primitives'
+import { InfoCard, PageHeader, Section, cardIcons } from '../../styleguide-components/primitives'
+import { FigmaIcon } from '../../components/atoms/icons/FigmaIcon'
 
 const toc = [
     { id: 'design', title: 'Design' },
@@ -8,45 +10,23 @@ const toc = [
     { id: 'contributing', title: 'Contributing' },
 ]
 
-const designLinks = [
+const designLinks: { title: string; href: string; detail: string; icon: ReactNode }[] = [
     {
         title: 'Figma UI Kit',
+        icon: <FigmaIcon width={18} height={18} />,
         href: 'https://www.figma.com/file/iYWhlWxkIXlSYfdZUm8Zra/BVAC-UI-Kit',
         detail: 'The source design file with the colour, typography and component reference.',
     },
 ]
 
-const contentLinks = [
+const contentLinks: { title: string; href: string; detail: string; icon: ReactNode }[] = [
     {
         title: 'Contentful space',
+        icon: cardIcons.content,
         href: 'https://app.contentful.com/spaces/7jbjw06z88y9/home',
         detail: 'Where the CMS-driven blocks, sections and pages are authored.',
     },
 ]
-
-const LinkCard = ({
-    title,
-    href,
-    detail,
-}: {
-    title: string
-    href: string
-    detail: string
-}) => (
-    <a
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className="block rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey hover:border-cyan transition-colors"
-    >
-        <span className="block font-semibold text-navy dark:text-white">
-            {title} ↗
-        </span>
-        <span className="mt-1 block text-body-small text-grey dark:text-light-grey">
-            {detail}
-        </span>
-    </a>
-)
 
 const Resources: NextPageWithLayout = () => (
     <DesignSystemLayout title="Resources" toc={toc}>
@@ -60,7 +40,7 @@ const Resources: NextPageWithLayout = () => (
         <Section id="design" title="Design">
             <div className="grid gap-3 sm:grid-cols-2">
                 {designLinks.map(link => (
-                    <LinkCard key={link.href} {...link} />
+                    <InfoCard key={link.href} icon={link.icon} href={link.href} title={link.title} description={link.detail} external />
                 ))}
             </div>
         </Section>
@@ -68,7 +48,7 @@ const Resources: NextPageWithLayout = () => (
         <Section id="content" title="Content">
             <div className="grid gap-3 sm:grid-cols-2">
                 {contentLinks.map(link => (
-                    <LinkCard key={link.href} {...link} />
+                    <InfoCard key={link.href} icon={link.icon} href={link.href} title={link.title} description={link.detail} external />
                 ))}
             </div>
         </Section>

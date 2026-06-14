@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { BupaLogo } from '../components/atoms/icons/BupaLogo'
 import { ChevronDownIcon } from '../components/atoms/icons/ChevronDownIcon'
 import { cx } from '../utils/cx'
-import { switcherBrands } from './brands'
+import { switcherBrands, brandGuidelines } from './brands'
 import { useBrand } from './BrandContext'
 
 const brandIconMap: Record<string, string> = {
@@ -89,7 +89,11 @@ export const BrandSwitcher = () => {
                 )}
             >
                 <span className="flex-1 text-left truncate">
-                    {brand.isCore ? 'Select brand' : brand.label}
+                    {brand.isCore
+                        ? 'Bupa core'
+                        : brand.id === brandGuidelines.id
+                          ? 'Select brand'
+                          : brand.label}
                 </span>
                 <ChevronDownIcon
                     className={cx(

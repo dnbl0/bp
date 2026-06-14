@@ -4,6 +4,8 @@ import {
     PageHeader,
     Section,
     Subsection,
+    InfoCard,
+    cardIcons,
 } from '../../../../styleguide-components/primitives'
 
 const toc = [
@@ -15,18 +17,22 @@ const toc = [
 const principles = [
     {
         title: 'Perceivable',
+        icon: 'perceivable',
         body: 'Information and interface components must be presentable in ways people can perceive. Provide text alternatives, captions and adaptable structure; meet contrast; never rely on colour or sound alone.',
     },
     {
         title: 'Operable',
+        icon: 'operable',
         body: 'Interface components and navigation must be operable. Everything works by keyboard and touch, nothing traps focus, targets are large enough, time limits are adjustable and motion is controllable.',
     },
     {
         title: 'Understandable',
+        icon: 'understandable',
         body: 'Information and the operation of the interface must be understandable. Use plain language, label fields clearly, identify and explain errors, and keep behaviour predictable and consistent.',
     },
     {
         title: 'Robust',
+        icon: 'robust',
         body: 'Content must be robust enough to be interpreted by a wide range of user agents and assistive technologies. Use semantic HTML first; expose name, role and value; reach for ARIA only to fill genuine gaps.',
     },
 ]
@@ -50,17 +56,12 @@ const Page: NextPageWithLayout = () => (
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {principles.map(principle => (
-                    <div
+                    <InfoCard
                         key={principle.title}
-                        className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-6 bg-white dark:bg-cool-grey"
-                    >
-                        <h3 className="text-heading-s font-semibold text-navy dark:text-white">
-                            {principle.title}
-                        </h3>
-                        <p className="mt-2 text-body-small text-grey dark:text-light-grey">
-                            {principle.body}
-                        </p>
-                    </div>
+                        icon={cardIcons[principle.icon]}
+                        title={principle.title}
+                        description={principle.body}
+                    />
                 ))}
             </div>
         </Section>

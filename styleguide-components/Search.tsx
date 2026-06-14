@@ -137,15 +137,12 @@ export const Search = ({ onNavigate }: { onNavigate: () => void }) => {
                 aria-haspopup="dialog"
                 aria-expanded={open}
                 aria-label={`Search ${brand.label}`}
-                className="w-full max-w-md flex items-center gap-2 px-3 h-10 rounded-lg bg-cool-paper-100 dark:bg-cool-grey border border-cool-paper-200 dark:border-charcoal hover:border-cyan text-left transition-colors"
+                className="w-full flex items-center gap-2 px-3 h-10 rounded-lg bg-cool-paper-100 dark:bg-cool-grey border border-cool-paper-200 dark:border-charcoal hover:border-cyan text-left transition-colors"
             >
                 <SearchIcon className="w-5 h-5 flex-none fill-grey dark:fill-light-grey" />
                 <span className="flex-1 truncate text-body-small text-disabled-text">
-                    Search {brand.label}
+                    Search
                 </span>
-                <kbd className="hidden sm:flex items-center gap-0.5 px-1.5 h-6 rounded border border-cool-paper-200 dark:border-charcoal text-caption text-disabled-text font-sans">
-                    ⌘K
-                </kbd>
             </button>
 
             {open && (

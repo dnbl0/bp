@@ -1,7 +1,6 @@
-import Link from 'next/link'
 import { NextPageWithLayout } from '../../../../types/nextLayout'
 import { DesignSystemLayout } from '../../../../styleguide-components/DesignSystemLayout'
-import { PageHeader, Section } from '../../../../styleguide-components/primitives'
+import { InfoCard, PageHeader, Section, cardIcons } from '../../../../styleguide-components/primitives'
 
 const toc = [
     { id: 'what-are-tokens', title: 'What are design tokens?' },
@@ -12,31 +11,37 @@ const toc = [
 const categories = [
     {
         title: 'Color',
+        icon: 'color',
         href: '/design-system/foundations/tokens/color',
         description: 'Primary, secondary, UI and background colour tokens read live from the Tailwind theme.',
     },
     {
         title: 'Typography',
+        icon: 'typography',
         href: '/design-system/foundations/tokens/typography',
         description: 'The responsive semantic type scale — heading sizes, body and caption with breakpoint values.',
     },
     {
         title: 'Spacing',
+        icon: 'spacing',
         href: '/design-system/foundations/tokens/spacing',
         description: 'The 4px spacing scale applied through padding, margin and gap utilities.',
     },
     {
         title: 'Radius',
+        icon: 'radius',
         href: '/design-system/foundations/tokens/radius',
         description: 'Corner radius tokens for cards, inputs, pills and other rounded surfaces.',
     },
     {
         title: 'Elevation',
+        icon: 'elevation',
         href: '/design-system/foundations/tokens/elevation',
         description: 'Box shadow tokens that separate surfaces and signal interactivity.',
     },
     {
         title: 'Motion',
+        icon: 'motion',
         href: '/design-system/foundations/tokens/motion',
         description: 'Animation utilities and staggered delay tokens for purposeful, consistent movement.',
     },
@@ -72,45 +77,39 @@ const Tokens: NextPageWithLayout = () => (
         </Section>
 
         <Section id="how-we-use-them" title="How we use them">
-            <ul className="space-y-3">
+            <div className="space-y-3">
                 {[
                     {
                         rule: 'Always use a token, never a raw value.',
+                        icon: 'rule-token',
                         detail: 'Avoid hard-coding hex colours, rem values or pixel sizes. Use the Tailwind utility that maps to the token instead.',
                     },
                     {
                         rule: 'Prefer semantic names over numeric aliases.',
+                        icon: 'rule-semantic',
                         detail: 'Use text-body-small rather than text-sm; use heading-l rather than text-3xl. Semantic names survive a type scale revision.',
                     },
                     {
                         rule: 'Tokens are the contract between design and code.',
+                        icon: 'rule-contract',
                         detail: 'Figma variables are kept in sync with the Tailwind theme. If a Figma component references a token, the same token name is available as a Tailwind class.',
                     },
                 ].map(item => (
-                    <li
-                        key={item.rule}
-                        className="rounded-xl border border-cool-paper-200 dark:border-charcoal p-4 bg-white dark:bg-cool-grey"
-                    >
-                        <p className="font-semibold text-navy dark:text-white">{item.rule}</p>
-                        <p className="mt-1 text-body-small text-grey dark:text-light-grey">{item.detail}</p>
-                    </li>
+                    <InfoCard key={item.rule} icon={cardIcons[item.icon]} title={item.rule} description={item.detail} />
                 ))}
-            </ul>
+            </div>
         </Section>
 
         <Section id="categories" title="Token categories">
             <div className="grid gap-4 sm:grid-cols-2">
                 {categories.map(cat => (
-                    <Link key={cat.href} href={cat.href}>
-                        <a className="group block rounded-xl border border-cool-paper-200 dark:border-charcoal p-5 bg-white dark:bg-cool-grey hover:border-cyan dark:hover:border-cyan transition-colors">
-                            <p className="font-semibold text-navy dark:text-white group-hover:text-cyan transition-colors">
-                                {cat.title}
-                            </p>
-                            <p className="mt-1 text-body-small text-grey dark:text-light-grey">
-                                {cat.description}
-                            </p>
-                        </a>
-                    </Link>
+                    <InfoCard
+                        key={cat.href}
+                        icon={cardIcons[cat.icon]}
+                        href={cat.href}
+                        title={cat.title}
+                        description={cat.description}
+                    />
                 ))}
             </div>
         </Section>

@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { NextPageWithLayout } from '../../types/nextLayout'
 import { DesignSystemLayout } from '../../styleguide-components/DesignSystemLayout'
 import {
@@ -6,6 +5,8 @@ import {
     Section,
     Example,
     CodeBlock,
+    InfoCard,
+    cardIcons,
 } from '../../styleguide-components/primitives'
 
 const toc = [
@@ -108,22 +109,19 @@ tailwind.config.js        # Source of truth for design tokens`}
         <Section id="next-steps" title="Next steps">
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {[
-                    { label: 'Design tokens', href: '/design-system/foundations/tokens', detail: 'Full colour, type, spacing and motion reference' },
-                    { label: 'Components', href: '/design-system/components', detail: 'Every component with props and live examples' },
-                    { label: 'Patterns', href: '/design-system/patterns', detail: 'Grid, forms and composition guidance' },
-                    { label: 'Resources', href: '/design-system/resources', detail: 'Figma kit, Contentful authoring, how to contribute' },
-                    { label: 'Component status', href: '/design-system/status', detail: 'Coverage matrix — what still needs documentation' },
+                    { label: 'Design tokens', icon: 'tokens', href: '/design-system/foundations/tokens', detail: 'Full colour, type, spacing and motion reference' },
+                    { label: 'Components', icon: 'components', href: '/design-system/components', detail: 'Every component with props and live examples' },
+                    { label: 'Patterns', icon: 'patterns', href: '/design-system/patterns', detail: 'Grid, forms and composition guidance' },
+                    { label: 'Resources', icon: 'resources', href: '/design-system/resources', detail: 'Figma kit, Contentful authoring, how to contribute' },
+                    { label: 'Component status', icon: 'status', href: '/design-system/status', detail: 'Coverage matrix — what still needs documentation' },
                 ].map(link => (
-                    <Link key={link.href} href={link.href}>
-                        <a className="group flex flex-col rounded-xl border border-cool-paper-200 dark:border-charcoal p-4 bg-white dark:bg-cool-grey hover:border-cyan hover:shadow-depth-hover transition-all">
-                            <span className="font-semibold text-navy dark:text-white group-hover:text-cyan transition-colors">
-                                {link.label}
-                            </span>
-                            <span className="mt-1 text-body-small text-grey dark:text-light-grey">
-                                {link.detail}
-                            </span>
-                        </a>
-                    </Link>
+                    <InfoCard
+                        key={link.href}
+                        icon={cardIcons[link.icon]}
+                        href={link.href}
+                        title={link.label}
+                        description={link.detail}
+                    />
                 ))}
             </div>
         </Section>
