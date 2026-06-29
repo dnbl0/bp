@@ -1,0 +1,18 @@
+.mobile-iframe {
+    background-color: #313649;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100vh;
+
+    & > .outer-grid > .outer-grid__grid.lxs-grid.lxs-grid {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    & > .outer-grid.lxs-grid-row.form-grid,
+    & .add-payment-card {
+        padding-top: 0;
+    }
+}

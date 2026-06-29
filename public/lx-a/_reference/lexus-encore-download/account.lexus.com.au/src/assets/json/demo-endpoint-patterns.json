@@ -1,0 +1,15 @@
+[
+  { "pattern": "/lexus/guests", "filename": "guest-details.json" },
+  { "pattern": "/getguestvehicle", "filename": "getguestvehicle.json" },
+  { "pattern": "/ondemand\\?accountid", "filename": "ondemand.json" },
+  { "pattern": "/vehicleunits/vins/", "filename": "vehicle-unit-by-vin.json" },
+  { "pattern": "/airportlounge/balance", "filename": "airport-lounge-balance.json" },
+  { "pattern": "/valet/balance", "filename": "valet-balance.json" },
+  { "pattern": "/allrewards", "filename": "all-rewards.json" },
+  { "pattern": "/ondemand/users/\\d+/bookings", "filename": "ondemand-bookings.json" },
+  { "pattern": "/valet/partners", "filename": "valet-partners.json" },
+  { "pattern": "/ondemand/locations/\\d+/vehicles/\\d{4}-\\d{2}-\\d{2}/\\d{2}:\\d{2}/\\d{4}-\\d{2}-\\d{2}/\\d{2}:\\d{2}", "filename": "ondemand-vehicles.json" },
+  { "pattern": "/ondemand/locations", "filename": "ondemand-locations.json" },
+  { "pattern": "/payments\\?customerid", "filename": "payments.json" },
+  { "pattern": "/ondemand/bookings", "filename": "bookings.json" }
+]

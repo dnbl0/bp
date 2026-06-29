@@ -1,0 +1,49 @@
+@import "lexus-style-guide/colors/index";
+
+body {
+    margin: 0;
+
+    #root {
+        background-color: lx-color("deep-blue");
+    }
+}
+
+html {
+    &.is-iframe {
+        height: auto;
+        min-height: auto;
+        background-color: rgb(22, 24, 37);
+
+        body {
+            height: auto;
+            min-height: auto;
+            background-color: rgb(22, 24, 37);
+
+            > #root {
+                background-color: rgb(22, 24, 37);
+            }
+        }
+
+        .layout {
+            height: auto;
+            min-height: auto;
+            position: relative;
+
+            &__left {
+                height: auto;
+                min-height: auto;
+                position: relative;
+            }
+        }
+
+        .pop-tart {
+            display: none;
+        }
+    }
+}
+
+// This is a fix for Safari where dragging on input fields doesn't scroll the page.
+html,
+body {
+    -webkit-overflow-scrolling: touch;
+}

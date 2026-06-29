@@ -1,0 +1,713 @@
+@import "./tokens.css";
+
+/* ----------------------------------------------------------------------------
+ * Nobel — the Lexus brand typeface. Self-hosted woff2 extracted from the
+ * production account.lexus.com.au bundle so body/UI text renders in-brand
+ * instead of falling back to Arial. Weight mapping matches production:
+ *   Book → 300, Regular → 400, Bold → 700.
+ * The typography tokens in tokens.css already declare `font-family: Nobel`. */
+@font-face {
+  font-family: Nobel;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("./fonts/Nobel-Book.woff2") format("woff2");
+}
+@font-face {
+  font-family: Nobel;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/Nobel-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: Nobel;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/Nobel-Bold.woff2") format("woff2");
+}
+
+/* Display preference — scales the root font-size; relative text inherits. */
+html[data-text-size="large"] {
+  font-size: 112.5%;
+}
+html[data-text-size="xl"] {
+  font-size: 125%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--fg);
+  font-family: var(--ld-s-typography-body1-font-family);
+  font-size: var(--ld-s-typography-body2-font-size);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* All headings share the Lexus light weight (300). Class-based headings
+   inherit this via the heading-N weight tokens; this covers semantic elements. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--ld-s-typography-heading1-font-weight);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Skip-to-main link — hidden until focused, then pinned top-left. */
+.skiplink {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 10px 16px;
+  background: var(--fg);
+  color: var(--fg-on-accent);
+  font-size: var(--ld-s-typography-body2-font-size);
+  font-weight: var(--ld-s-typography-label2-font-weight);
+  letter-spacing: var(--ld-s-typography-label1-letter-spacing);
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+  transition: transform var(--dur) var(--ease);
+}
+.skiplink:focus,
+.skiplink:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Main wrapper is focusable for skip-link target — strip default outline. */
+main:focus {
+  outline: none;
+}
+
+/* Section content fade on route change — keyed remount drives this. */
+.app__sectionfade {
+  animation: sectionFade var(--dur-3) var(--ease-decelerate);
+}
+@keyframes sectionFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Choreographed stagger — apply .reveal-in to children of a container,
+ * combined with --reveal-i (the row index) to step entries in. */
+.reveal-in {
+  animation: revealIn var(--dur-3) var(--ease-decelerate) both;
+  animation-delay: calc(var(--reveal-i, 0) * 60ms);
+}
+@keyframes revealIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* A subtle pulse for primary numeric values that change in place. */
+@keyframes numberPulse {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Scroll-reveal — sections fade and rise as they enter the viewport, driven
+ * by useScrollReveal. Hidden only once JS marks the document `reveal-ready`,
+ * so content is never trapped invisible if scripts are slow or blocked. */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--dur-4) var(--ease-emphasized),
+    transform var(--dur-4) var(--ease-emphasized);
+  transition-delay: calc(var(--reveal-i, 0) * 70ms);
+  will-change: opacity, transform;
+}
+.reveal-ready [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-in,
+  .app__sectionfade {
+    animation: none;
+  }
+  .reveal-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app__sectionfade {
+    animation: none;
+  }
+}
+
+/* ---------- Skeleton ---------- */
+.skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--surface) 0%,
+    var(--surface-raised) 50%,
+    var(--surface) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s var(--ease) infinite;
+}
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+/* ---------- Dashboard skeleton ---------- */
+.skelhero {
+  background: var(--surface);
+}
+.skelhero::after {
+  display: none;
+}
+.skelcard {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.skelcard__media {
+  aspect-ratio: 16 / 10;
+  width: 100%;
+}
+.skelcard__body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.skelpanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.skelpanel__card {
+  height: 360px;
+  border-radius: var(--radius-md);
+}
+.skelpanel__strip {
+  height: 80px;
+  border-radius: var(--radius-md);
+}
+
+/* ---------- Command palette ---------- */
+.cmdk {
+  position: fixed;
+  inset: 0;
+  z-index: 240;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+}
+.cmdk__scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--canvas-scrim);
+  backdrop-filter: blur(6px);
+  animation: fade var(--dur-2) var(--ease);
+}
+.cmdk__panel {
+  position: relative;
+  width: min(640px, 92vw);
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  animation: revealIn var(--dur-3) var(--ease-emphasized);
+}
+.cmdk__inputrow {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 14px var(--space-4);
+  border-bottom: 1px solid var(--border);
+  color: var(--fg-muted);
+}
+.cmdk__input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-family: inherit;
+  font-size: var(--ld-s-typography-caption1-font-size);
+  color: var(--fg);
+}
+.cmdk__input::placeholder {
+  color: var(--fg-dim);
+}
+.cmdk__close {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  color: var(--fg-muted);
+}
+.cmdk__close:hover {
+  color: var(--fg);
+  background: var(--overlay-hover);
+}
+.cmdk__results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+.cmdk__group {
+  padding: 6px 0;
+}
+.cmdk__grouphead {
+  margin: 0;
+  padding: 8px var(--space-4) 4px;
+  font-size: var(--ld-s-typography-label2-font-size);
+  letter-spacing: var(--ld-s-typography-heading5-letter-spacing);
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+.cmdk__item {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 10px var(--space-4);
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg);
+  transition: background var(--dur-1) var(--ease);
+}
+.cmdk__item.is-active {
+  background: var(--overlay-hover);
+  color: var(--fg-strong);
+}
+.cmdk__itemlabel {
+  min-width: 0;
+  flex: 1;
+}
+.cmdk__itemmeta {
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+.cmdk__empty {
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  color: var(--fg-muted);
+}
+.cmdk__foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: 10px var(--space-4);
+  border-top: 1px solid var(--border);
+  font-size: var(--ld-s-typography-label2-font-size);
+  letter-spacing: var(--ld-s-typography-label1-letter-spacing);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.cmdk__foot kbd {
+  display: inline-block;
+  min-width: 18px;
+  padding: 2px 6px;
+  margin-right: 4px;
+  background: var(--elevation-inset);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--ld-s-typography-label2-font-size);
+  color: var(--fg);
+}
+
+/* ---------- Concierge floating button ---------- */
+.concierge-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 52px;
+  padding: 0 22px 0 18px;
+  background: var(--tier-gradient);
+  color: var(--ld-color-lexus-deepblue-900);
+  font-size: var(--ld-s-typography-label1-font-size);
+  font-weight: var(--ld-s-typography-label1-font-weight);
+  letter-spacing: var(--ld-s-typography-heading5-letter-spacing);
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md), var(--tier-glow);
+  transition: transform var(--dur-2) var(--ease-emphasized),
+    box-shadow var(--dur-2) var(--ease-standard);
+}
+.concierge-fab:hover {
+  transform: translateY(-2px);
+}
+.concierge-fab.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px) scale(0.95);
+}
+.concierge-fab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.concierge-fab__label {
+  line-height: 1;
+}
+@media (max-width: 640px) {
+  .concierge-fab__label {
+    display: none;
+  }
+  .concierge-fab {
+    width: 52px;
+    padding: 0;
+    justify-content: center;
+  }
+}
+
+/* Visually hidden — for aria-live announcements etc. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Modal overlay ---------- */
+/* One shared backdrop for every overlay surface — the mobile menu drawer and
+ * the slide-out flyouts. Paints a dark, blurred dim over the page beneath.
+ * The host element supplies the positioning context and owns the enter/exit
+ * transition (fade for the menu, opacity for the flyout); this only sets the
+ * look so all overlays are visually identical. */
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--canvas-scrim-strong);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- Shared primitives ---------- */
+.shell {
+  width: 100%;
+  margin: 0 auto;
+  max-width: calc(var(--grid-max-width) + var(--grid-pad-desktop) * 2);
+  padding-inline: var(--grid-pad-desktop);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--ld-s-typography-heading5-font-size);
+  font-weight: var(--ld-s-typography-label2-font-weight);
+  letter-spacing: var(--ld-s-typography-label1-letter-spacing);
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.eyebrow--muted {
+  color: var(--fg-muted);
+}
+
+.tick {
+  width: 28px;
+  height: 2px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--ld-s-typography-label1-font-size);
+  font-weight: var(--ld-s-typography-label2-font-weight);
+  letter-spacing: var(--ld-s-typography-heading5-letter-spacing);
+  text-transform: uppercase;
+  color: var(--fg);
+  transition: gap var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.link-arrow svg {
+  transition: transform var(--dur) var(--ease);
+}
+.link-arrow:hover {
+  color: var(--fg-strong);
+}
+.link-arrow:hover svg {
+  transform: translateX(4px);
+}
+
+/* ---------- Data table (key/value) ---------- */
+.dtable {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.dtable__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.dtable__row:last-child {
+  border-bottom: none;
+}
+.dtable__label {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg-muted);
+}
+.dtable__value {
+  margin: 0;
+  min-width: 0;
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg);
+  word-break: break-word;
+}
+.dtable__action {
+  font-size: var(--ld-s-typography-label1-font-size);
+  letter-spacing: var(--ld-s-typography-heading5-letter-spacing);
+  text-transform: uppercase;
+  color: var(--fg-strong);
+  white-space: nowrap;
+}
+.dtable__action a,
+a.dtable__action,
+button.dtable__action {
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 1px;
+}
+.dtable__action a:hover,
+a.dtable__action:hover,
+button.dtable__action:hover {
+  border-color: var(--fg);
+}
+button.dtable__action {
+  background: none;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  padding: 0 0 1px;
+  font: inherit;
+  font-size: var(--ld-s-typography-label1-font-size);
+  letter-spacing: var(--ld-s-typography-heading5-letter-spacing);
+  text-transform: uppercase;
+  color: var(--fg-strong);
+  cursor: pointer;
+}
+
+/* Stack label/value on narrow viewports so long values don't crush. */
+@media (max-width: 480px) {
+  .dtable__row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: var(--space-3) 0;
+  }
+  .dtable__value {
+    color: var(--fg-strong);
+  }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 28px;
+  font-size: var(--ld-s-typography-body2-font-size);
+  font-weight: var(--ld-s-typography-label2-font-weight);
+  letter-spacing: var(--ld-s-typography-heading5-letter-spacing);
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    transform var(--dur-1) var(--ease-standard);
+}
+/* Tactile press — a small give on pointer-down across all button variants. */
+.btn:active:not(:disabled),
+.btn--pill:active:not(:disabled) {
+  transform: translateY(1px) scale(0.985);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn--pill {
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+      border-color var(--dur) var(--ease);
+  }
+  .btn:active:not(:disabled),
+  .btn--pill:active:not(:disabled) {
+    transform: none;
+  }
+}
+.btn--primary {
+  background: var(--fg);
+  color: var(--fg-on-accent);
+}
+.btn--primary:hover {
+  background: var(--fg-strong);
+}
+.btn--primary:disabled {
+  background: var(--fg-dim);
+  color: var(--fg-on-accent);
+  cursor: not-allowed;
+}
+.btn--ghost {
+  border: 1px solid var(--border-strong);
+  color: var(--fg);
+}
+.btn--ghost:hover {
+  background: var(--overlay-hover);
+  border-color: var(--fg-muted);
+}
+.btn--pill {
+  height: 40px;
+  border-radius: var(--radius-pill);
+  padding: 0 22px;
+  border: 1px solid var(--border-strong);
+  font-size: var(--ld-s-typography-label1-font-size);
+}
+.btn--pill:hover {
+  background: var(--overlay-hover);
+}
+
+/* Keyboard focus ring — applied to all common interactive primitives. */
+.btn:focus-visible,
+.btn--pill:focus-visible,
+.btn--ghost:focus-visible,
+.link-arrow:focus-visible,
+.crumb:focus-visible,
+.fly__goback:focus-visible,
+.fly__more:focus-visible,
+.fly__loc:focus-visible,
+.segtab:focus-visible,
+.timeslot:focus-visible,
+.flyout__close:focus-visible,
+.iconbtn:focus-visible,
+.account__trigger:focus-visible,
+.account__item:focus-visible,
+.roundbtn:focus-visible,
+.dot:focus-visible,
+.faq__q:focus-visible,
+.vaccord__head:focus-visible,
+.vquick__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ────────── Light theme utilities ────────── */
+/* Ensures WCAG AA contrast for elements on light backgrounds. */
+.theme-light {
+  --fg: var(--ld-color-lexus-deepblue-900);
+  --fg-strong: var(--ld-color-lexus-deepblue-900);
+  --fg-muted: #4a4a4a;
+  /* #999 failed AA on white (~2.8:1); #646872 clears 4.5:1. */
+  --fg-dim: #646872;
+  --fg: var(--ld-color-lexus-deepblue-900);
+  --border-base: #d0d0d0;
+
+  /* Status / accent / tier hues re-tinted for AA as text on these light cards
+   * (mirrors the [data-theme="light"] overrides in tokens.css). */
+  --accent-bright: #c41f22;
+  --accent-electrified: #1a52cc;
+  --success: #277821;
+  --error: #c41540;
+  --ld-color-lexus-clay-400: #7a6223;
+}
+
+.theme-light a,
+.theme-light button,
+.theme-light span,
+.theme-light p,
+.theme-light h1,
+.theme-light h2,
+.theme-light h3,
+.theme-light h4,
+.theme-light h5,
+.theme-light h6 {
+  color: inherit;
+}

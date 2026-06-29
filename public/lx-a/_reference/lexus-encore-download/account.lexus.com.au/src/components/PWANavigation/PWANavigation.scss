@@ -1,0 +1,39 @@
+@import "../../styles/mixins";
+@import "lexus-style-guide/colors/index";
+@import "lexus-style-guide/utilities/mixins";
+
+.pwa-navigation {
+    background-color: lx-color("deep-blue", "darker");
+    position: fixed;
+    padding-bottom: env(safe-area-inset-bottom);
+    bottom: 0;
+    z-index: 900; // needs to be lower than portal src\components\Portal\Portal.scss
+    width: 100%;
+    
+    &__nav-grid {
+        grid-column: 1/7;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+
+        @include desktop {
+            grid-column: 1/13;
+            justify-content: center;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        opacity: 0.7;
+
+        &.active {
+            opacity: 1;
+        }
+
+        &--isDisabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+}

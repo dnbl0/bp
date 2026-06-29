@@ -1,0 +1,10 @@
+@import "lexus-style-guide/colors/index";
+@import "../../styles/mixins";
+
+.page-content {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: lx-color("deep-blue");
+}

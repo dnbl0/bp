@@ -1,0 +1,32 @@
+@import "../../styles/module/index";
+@import "../../styles/mixins";
+@import "lexus-style-guide/css-grid/index";
+
+.outer-grid {
+    width: 100%;
+
+    &__grid.lxs-grid {
+        // IE needs width to be 100%, but because there is margin, this is wrong.
+        // so we are replacing the grid margin with padding
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: $lxs-grid-margin-width-mobile;
+        padding-right: $lxs-grid-margin-width-mobile;
+        max-width: $lxs-grid-max-width-mobile-with-margin;
+
+        @include desktop {
+            padding-left: $lxs-grid-margin-width-desktop;
+            padding-right: $lxs-grid-margin-width-desktop;
+            max-width: $lxs-grid-max-width-desktop-with-margin;
+        }
+    }
+
+    &--full-height {
+        flex: 1;
+
+        .outer-grid__grid {
+            height: 100%;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+@import "../../../../../styles/mixins";
+@import "lexus-style-guide/colors/index";
+
+.add-payment-card {
+    .error-card {
+        &__title {
+            text-align: left;
+        }
+    }
+}
+

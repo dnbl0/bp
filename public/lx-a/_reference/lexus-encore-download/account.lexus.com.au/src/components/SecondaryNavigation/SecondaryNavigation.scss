@@ -1,0 +1,96 @@
+@import "../../styles/module/index";
+@import "lexus-style-guide/colors/index";
+@import "../../styles/mixins";
+
+.secondary-navigation {
+    height: 6.4rem;
+    position: relative;
+    z-index: 2;
+
+    .outer-grid__grid {
+        height: 100%;
+    }
+
+    @include desktop {
+        margin: 0 4rem;
+    }
+
+    &__main {
+        grid-column: 1/7;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+
+        @include desktop {
+            grid-column: 1/13;
+            justify-content: flex-start;
+        }
+    }
+
+    &__featured-link {
+        display: flex;
+        align-items: center;
+        padding-right: 2rem;
+        position: relative;
+
+        & > .secondary-navigation__item-link.link-uppercase {
+            margin-left: 1.6rem;
+        }
+
+        @include desktop {
+            &::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 23%;
+                height: 2.2rem;
+                width: 0.1rem;
+                border-right: lx-color("white") 0.1rem solid;
+            }
+        }
+    }
+
+    &__featured-link__icon {
+        width: 3.83rem;
+        display: flex;
+
+        @include desktop {
+            width: 4.5rem;
+        }
+
+        > svg {
+            margin: auto;
+        }
+    }
+
+    &__featured-link-link {
+        margin: 0 2rem 0 0;
+
+        &--desktop {
+            display: none;
+
+            @include desktop {
+                display: inline;
+            }
+        }
+
+        &--mobile {
+            @include desktop {
+                display: none;
+            }
+        }
+    }
+
+    &__mobile-menu__icon {
+        display: inline;
+
+        > span {
+            display: flex;
+        }
+
+        @include desktop {
+            display: none;
+        }
+    }
+}

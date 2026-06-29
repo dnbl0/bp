@@ -1,0 +1,232 @@
+@import "../module/index";
+@import "../mixins";
+@import "lexus-style-guide/colors/index";
+
+body { // We need to be more specific to overwrite lexus-style-guide typography
+    span,
+    p,
+    label,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    a,
+    button {
+        color: lx-color("smoke");
+    }
+}
+
+.text {
+    @include font-family;
+    font-weight: 300;
+    font-size: 1.9rem;
+    color: lx-color("smoke");
+}
+
+p {
+    font-size: 1.9rem;
+    line-height: 3.2rem;
+
+    &.small {
+        font-size: 1.7rem;
+    }
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 300;
+}
+
+h4,
+h5,
+h6 {
+    font-weight: 400;
+}
+
+h1 {
+    margin-bottom: 2.5rem;
+    line-height: 3.2rem;
+    font-size: 3rem;
+    letter-spacing: 0.2rem;
+
+    &::before {
+        display: none;
+    }
+
+    &.senkei-line::before {
+        display: inline-block;
+    }
+
+    &.senkei-line--desktop::before {
+        display: none;
+
+        @include desktop {
+            display: inline-block;
+        }
+    }
+
+    @include desktop {
+        margin-bottom: 4rem;
+        line-height: 4.4rem;
+        font-size: 4rem;
+        letter-spacing: 0.3rem;
+    }
+}
+
+h2 {
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    line-height: 3.2rem;
+    letter-spacing: 0.15rem;
+    text-align: left;
+
+    &::after {
+        display: none;
+    }
+
+    &.senkei-line::after {
+        display: block;
+    }
+
+    &.senkei-line--left::after {
+        transform: none;
+        left: 0;
+    }
+
+    &.senkei-line--inset {
+        padding-bottom: 2.4rem;
+    }
+
+    @include desktop {
+        margin-bottom: 3.5rem;
+        font-size: 3.2rem;
+        letter-spacing: 0.2rem;
+        line-height: 3.2rem;
+
+        &.small-desktop {
+            font-size: 2.6rem;
+        }
+    }
+}
+
+h3 {
+    margin-bottom: 1.5rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.15rem;
+    font-size: 2.1rem;
+
+    &::after {
+        display: none;
+    }
+
+    &.senkei-line::after {
+        display: block;
+    }
+
+    @include desktop {
+        margin-bottom: 2.8rem;
+        line-height: 3.2rem;
+        font-size: 2.6rem;
+        letter-spacing: 0.2rem;
+    }
+}
+
+h4 {
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.1rem;
+
+    @include desktop {
+        margin-bottom: 1.8rem;
+        letter-spacing: 0.1rem;
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+    }
+}
+
+h5 {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    letter-spacing: 0.1rem;
+
+    @include desktop {
+        font-size: 1.6rem;
+        letter-spacing: 0.1rem;
+        margin-bottom: 1.5rem;
+        line-height: 2rem;
+    }
+}
+
+h6 {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.15rem;
+
+    @include desktop {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.6rem;
+        letter-spacing: 0.1rem;
+    }
+}
+
+// Todo (FZ): All these styles need to be moved to style guide. To be done in
+// the style guide repo and update their usage here.
+.caption-emphasis {
+    font-family: Nobel, Ariel;
+    letter-spacing: 0.2rem;
+    font-size: 2.8rem;
+
+    @include desktop {
+        font-size: 4.2rem;
+    }
+}
+
+.fineprint-small {
+    font-family: Nobel, Ariel;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+
+    @include desktop {
+        font-size: 1.2rem;
+    }
+}
+
+.label-small {
+    font-family: Nobel;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
+    text-transform: uppercase;
+
+    @include desktop {
+        font-size: 1.8rem;
+    }
+}
+
+.large-subtitle {
+    font-family: Nobel, Arial;
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 32px;
+    letter-spacing: 0.5px;
+
+    // This is a webkit specific rule, and I'm not sure if autoprefixer will
+    // prefix it with browser engine name, so using the prefix here.
+    -webkit-font-smoothing: antialiased;
+}
+
+.small-subtitle {
+    font-family: Nobel, Arial;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+}

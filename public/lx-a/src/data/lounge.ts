@@ -1,0 +1,58 @@
+export const lounge = {
+  title: "Airport Lounge Access",
+  redemptions: 2,
+  subtitle: "Get access to over 800 airport lounges",
+  description:
+    "Whether you are travelling for business or pleasure, the Lexus Encore Program enables you to enjoy over 800 airport lounges globally – select from the list of lounges found at DragonPass Airports. Redemptions are based on Encore membership eligibility and offer availability. Airport Lounge Access is also available for purchase.",
+  image: "assets/benefit-lounge.png",
+  feature: {
+    title: "Lexus Encore Airport Lounge Access",
+    body: "You can explore all of the lounges at DragonPass Airports and redeem your passes by logging into the Lexus Encore App.",
+    primaryCta: "Redeem in the Lexus Encore App",
+    secondaryCta: "View terms and conditions",
+  },
+};
+
+export const loungeStats = [
+  { value: "800+", label: "Airport lounges" },
+  { value: "Global", label: "DragonPass network" },
+  { value: "90 days", label: "E-certificate validity" },
+];
+
+export const loungeSteps = [
+  {
+    title: "Select a lounge",
+    body: "Select from the list of participating lounges found at DragonPass Airports.",
+  },
+  {
+    title: "Call the assistance centre",
+    body: "Contact the Lexus Customer Assistance Centre on 1800 023 009.",
+  },
+  {
+    title: "Speak with concierge",
+    body: "Select #2 for Lexus Encore Enquiries and you'll be connected with our Concierge to purchase or redeem your lounge access. You'll receive an e-certificate via email, valid for 90 days.",
+  },
+  {
+    title: "Present your e-certificate",
+    body: "Present your e-certificate — printed or digital — to the participating lounge along with your boarding pass and passport, ensuring all names match for entry.",
+  },
+];
+
+export const loungeFaqs = [
+  {
+    q: "What is DragonPass?",
+    a: "DragonPass is the global lounge network Lexus Encore partners with, giving members access to over 800 airport lounges worldwide.",
+  },
+  {
+    q: "Eligibility & redemptions",
+    a: "Redemptions are based on your Encore membership tier and offer availability. Additional lounge access is also available for purchase.",
+  },
+  {
+    q: "Fees and charges",
+    a: "Complimentary redemptions are included with eligible memberships. Purchased access is charged per lounge visit at the time of redemption.",
+  },
+  {
+    q: "Terms and conditions",
+    a: "Your e-certificate is valid for 90 days from issue. Present it with your boarding pass and passport; all names must match for entry.",
+  },
+];

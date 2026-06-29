@@ -1,0 +1,44 @@
+@use "@tmca/lexus-dls/css/component/spinner.module";
+
+.lx-nav-search {
+    .search-list__label, a {
+        line-height: 1.5em;
+    }
+
+    a {
+        color: inherit;
+        font-size: 16px;
+    }
+
+    ul {
+        color: inherit;
+        margin: 0;
+
+        > li {
+            color: inherit;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            text-indent: 0;
+        }
+    }
+
+    li::before {
+        display: none;
+        content: none;
+    }
+
+    li {
+        color: inherit;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        text-indent: 0;
+    }
+}
+
+// Override LSG style to align with search bar
+.lxs-main-nav--dark:has(.lx-nav-search__form-desktop) [class*="lk_navbarWrapper"] {
+    background-image: none;
+    background-color: var(--ld-color-legacy-deepblue-darkest, lx-color("deep-blue", "darker"));
+}

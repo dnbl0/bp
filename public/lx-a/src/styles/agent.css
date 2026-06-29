@@ -1,0 +1,995 @@
+/* ============================================================
+   Encore AI — docked co-pilot panel (Rovo / Canva-class agent)
+   Right-anchored, full-height, streaming transcript + live steps.
+   ============================================================ */
+
+/* Dim + blur come from the shared .scrim class; this adds the stacking layer
+ * and the open/close fade. */
+.agent-scrim {
+  z-index: 210;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-3) var(--ease-decelerate);
+}
+.agent-scrim.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.agent-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 220;
+  height: 100vh;
+  height: 100dvh;
+  width: min(460px, 100vw);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(100%);
+  transition: transform var(--dur-3) var(--ease-emphasized);
+}
+.agent-panel.is-open {
+  transform: translateX(0);
+}
+
+/* ---- Header ---- */
+.agent-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 64px;
+  padding: 0 var(--space-3) 0 var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+.agent-head__avatar {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--tier-gradient);
+  color: var(--ld-color-lexus-deepblue-900);
+  box-shadow: var(--tier-glow);
+}
+.agent-head__id {
+  flex: 1;
+  min-width: 0;
+}
+.agent-head__name,
+.agent-head__sub {
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.agent-head__name {
+  font-size: var(--ld-s-typography-caption1-font-size);
+  font-weight: var(--ld-s-typography-label1-font-weight);
+  color: var(--fg-strong);
+  line-height: 1.2;
+}
+.agent-head__sub {
+  font-size: var(--ld-s-typography-label1-font-size);
+  color: var(--fg-muted);
+  line-height: 1.3;
+}
+.agent-head__action {
+  flex: none;
+  font-size: var(--ld-s-typography-label1-font-size);
+  letter-spacing: var(--ld-s-typography-label2-letter-spacing);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  transition: color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+}
+.agent-head__action:hover {
+  color: var(--fg-strong);
+  background: var(--overlay-hover);
+}
+.agent-head__close {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  color: var(--fg-muted);
+  transition: color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+}
+.agent-head__close:hover {
+  color: var(--fg-strong);
+  background: var(--overlay-hover);
+}
+
+/* ---- Body ---- */
+.agent-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+}
+
+/* ---- Welcome / empty state (Rovo-inspired: centred identity + prompt stack) ---- */
+.agent-welcome {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-5) 0;
+  animation: agent-fade var(--dur-3) var(--ease-decelerate);
+}
+.agent-welcome__orb {
+  align-self: center;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--tier-gradient);
+  color: var(--ld-color-lexus-deepblue-900);
+  box-shadow: 0 10px 28px -10px color-mix(in srgb, var(--tier-clay) 55%, transparent);
+}
+.agent-welcome__hi {
+  font-family: var(--ld-s-typography-heading1-font-family);
+  font-weight: var(--ld-s-typography-body1-font-weight);
+  font-size: var(--ld-s-typography-heading5-font-size);
+  color: var(--fg-strong);
+  line-height: 1.15;
+}
+.agent-welcome__lead {
+  margin: var(--space-2) auto 0;
+  max-width: 32ch;
+  font-size: var(--ld-s-typography-caption1-font-size);
+  color: var(--fg-muted);
+  line-height: 1.5;
+}
+
+/* ---- Suggested prompt stack ---- */
+.agent-starters {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: left;
+}
+.agent-starter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--ld-s-typography-body2-font-size);
+  font-weight: var(--ld-s-typography-label2-font-weight);
+  color: var(--fg);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--dur-1) var(--ease), background var(--dur-1) var(--ease),
+    transform var(--dur-1) var(--ease);
+}
+.agent-starter__icon {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--elevation-inset);
+  color: var(--tier-clay);
+}
+.agent-starter__label {
+  flex: 1;
+  min-width: 0;
+}
+.agent-starter__arrow {
+  flex: none;
+  color: var(--fg-dim);
+  transition: color var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
+}
+.agent-starter:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+  transform: translateY(-1px);
+}
+.agent-starter:hover .agent-starter__arrow {
+  color: var(--tier-clay);
+  transform: translateX(2px);
+}
+
+/* ---- Thread ---- */
+.agent-thread {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.agent-msg {
+  font-size: var(--ld-s-typography-caption1-font-size);
+  line-height: 1.5;
+  animation: agent-rise var(--dur-2) var(--ease-decelerate);
+}
+.agent-msg--user {
+  align-self: flex-end;
+  max-width: 88%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-lg);
+  color: var(--fg-strong);
+  overflow-wrap: anywhere;
+}
+.agent-msg--agent {
+  display: flex;
+  gap: var(--space-2);
+  max-width: 88%;
+}
+.agent-msg__avatar {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--tier-gradient);
+  color: var(--ld-color-lexus-deepblue-900);
+}
+.agent-msg__text {
+  margin: 0;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+}
+.agent-msg--user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+.agent-msg__col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.agent-msg__time {
+  font-size: var(--ld-s-typography-label1-font-size);
+  letter-spacing: var(--ld-s-typography-subtitle2-letter-spacing);
+  color: var(--fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+.agent-msg--agent .agent-msg__time {
+  padding-left: 2px;
+}
+
+/* Streaming caret */
+.agent-caret {
+  display: inline-block;
+  width: 7px;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--tier-clay);
+  border-radius: 1px;
+  animation: agent-blink 1s steps(2) infinite;
+}
+
+/* ---- Steps ---- */
+.agent-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-left: 2px;
+  animation: agent-rise var(--dur-2) var(--ease-decelerate);
+}
+.agent-step {
+  display: flex;
+  gap: var(--space-3);
+}
+.agent-step__bullet {
+  flex: none;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--elevation-inset);
+  color: var(--fg-muted);
+}
+.agent-step.is-done .agent-step__bullet {
+  background: rgba(var(--tier-clay-rgb), 0.18);
+  color: var(--tier-clay);
+}
+.agent-step.is-error .agent-step__bullet,
+.agent-step.is-skipped .agent-step__bullet {
+  color: var(--fg-dim);
+}
+/* connector line between bullets */
+.agent-step:not(:last-child) .agent-step__bullet::after {
+  content: "";
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  width: 1px;
+  height: calc(100% - 6px);
+  transform: translateX(-50%);
+  background: var(--border);
+}
+.agent-step__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+.agent-step__spin {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--tier-clay-rgb), 0.25);
+  border-top-color: var(--tier-clay);
+  animation: agent-spin 0.7s linear infinite;
+}
+.agent-step__main {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: var(--space-3);
+}
+.agent-step__label {
+  font-size: var(--ld-s-typography-caption1-font-size);
+  color: var(--fg);
+  line-height: 1.4;
+}
+.agent-step.is-running .agent-step__label {
+  color: var(--fg-strong);
+}
+.agent-step.is-skipped .agent-step__label {
+  color: var(--fg-dim);
+  text-decoration: line-through;
+}
+
+/* ---- Confirm gate ---- */
+.agent-confirm {
+  margin-top: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--elevation-inset);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  animation: agent-rise var(--dur-2) var(--ease-emphasized);
+}
+.agent-confirm__q {
+  font-size: var(--ld-s-typography-caption1-font-size);
+  color: var(--fg-strong);
+  line-height: 1.45;
+  margin-bottom: var(--space-3);
+}
+.agent-confirm__actions {
+  display: flex;
+  gap: var(--space-2);
+}
+.btn--sm {
+  height: 34px;
+  padding: 0 16px;
+  font-size: var(--ld-s-typography-label1-font-size);
+}
+
+/* ---- Result cards ---- */
+.agent-card {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.agent-card--booking,
+.agent-card--contact {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+.agent-card__icon {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: rgba(var(--tier-clay-rgb), 0.16);
+  color: var(--tier-clay);
+}
+.agent-card__body {
+  flex: 1;
+  min-width: 0;
+}
+.agent-card__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--ld-s-typography-caption1-font-size);
+  font-weight: var(--ld-s-typography-label1-font-weight);
+  color: var(--fg-strong);
+}
+.agent-card__meta {
+  margin-top: 2px;
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg-muted);
+}
+.agent-card__when {
+  margin-top: 4px;
+  font-size: var(--ld-s-typography-body2-font-size);
+  font-weight: var(--ld-s-typography-label1-font-weight);
+  color: var(--tier-clay);
+}
+.agent-card__link,
+.agent-card__call {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: center;
+  font-size: var(--ld-s-typography-body2-font-size);
+  font-weight: var(--ld-s-typography-label1-font-weight);
+  color: var(--fg-strong);
+}
+.agent-card__call {
+  margin-top: var(--space-2);
+}
+.agent-card__link:hover,
+.agent-card__call:hover {
+  color: var(--tier-clay);
+}
+
+.agent-card__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.agent-card__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--ld-s-typography-body2-font-size);
+}
+.agent-card__row dt {
+  color: var(--fg-muted);
+}
+.agent-card__row dd {
+  color: var(--fg-strong);
+  font-weight: var(--ld-s-typography-label2-font-weight);
+  text-align: right;
+}
+
+/* Owner's-manual card: how-to topic chips + official-resource links. */
+.agent-card--manual .agent-card__body {
+  margin-top: var(--space-2);
+}
+.agent-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.agent-card__chip {
+  padding: 2px 10px;
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg-muted);
+  background: var(--surface-sunken, rgba(var(--tier-clay-rgb), 0.08));
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.agent-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+.agent-card__links .agent-card__link {
+  align-self: flex-start;
+}
+
+.agent-card--benefits .agent-card__tier {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+.agent-card__tierbadge {
+  font-size: var(--ld-s-typography-label1-font-size);
+  font-weight: var(--ld-s-typography-label1-font-weight);
+  letter-spacing: var(--ld-s-typography-label1-letter-spacing);
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--tier-gradient);
+  color: var(--ld-color-lexus-deepblue-900);
+}
+.agent-card__points {
+  font-size: var(--ld-s-typography-caption1-font-size);
+  font-weight: var(--ld-s-typography-label1-font-weight);
+  color: var(--fg-strong);
+}
+.agent-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+}
+.agent-card__list li {
+  position: relative;
+  padding-left: var(--space-4);
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg);
+}
+.agent-card__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--tier-clay);
+}
+
+.agent-card--offers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.agent-offer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.agent-offer__img {
+  flex: none;
+  width: 56px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--elevation-inset);
+}
+.agent-offer__brand {
+  font-size: var(--ld-s-typography-caption1-font-size);
+  font-weight: var(--ld-s-typography-label1-font-weight);
+  color: var(--fg-strong);
+}
+.agent-offer__loc {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg-muted);
+}
+
+.agent-card__history {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.agent-card__history li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.agent-card__histtitle {
+  font-size: var(--ld-s-typography-caption1-font-size);
+  font-weight: var(--ld-s-typography-label2-font-weight);
+  color: var(--fg-strong);
+}
+.agent-card__histmeta {
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg-muted);
+}
+
+/* ---- Footer ---- */
+.agent-foot {
+  flex: none;
+  padding: var(--space-3) var(--space-5) var(--space-4);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+.agent-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.agent-chip {
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg);
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  transition: border-color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+}
+.agent-chip:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+}
+
+.agent-composer {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  background: var(--elevation-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--dur-1) var(--ease);
+}
+.agent-composer:focus-within {
+  border-color: var(--fg);
+}
+.agent-composer__input {
+  flex: 1;
+  min-width: 0;
+  max-height: 120px;
+  overflow-y: auto;
+  border: none;
+  background: transparent;
+  resize: none;
+  color: var(--fg-strong);
+  font-family: var(--ld-s-typography-body1-font-family);
+  font-size: var(--ld-s-typography-caption1-font-size);
+  line-height: 1.5;
+  padding: 8px 0;
+}
+.agent-composer__input::placeholder {
+  color: var(--fg-dim);
+}
+.agent-composer__input:focus {
+  outline: none;
+}
+.agent-composer__send {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--tier-gradient);
+  color: var(--ld-color-lexus-deepblue-900);
+  transition: opacity var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
+}
+.agent-composer__send:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+.agent-composer__send:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+/* Stop control — replaces Send while a turn is running. */
+.agent-composer__stop {
+  background: var(--surface-hover);
+  color: var(--fg-strong);
+  border: 1px solid var(--border-strong);
+}
+.agent-composer__stopicon {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.agent-foot__note {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: var(--space-3);
+  font-size: var(--ld-s-typography-label1-font-size);
+  color: var(--fg-dim);
+}
+
+/* ---- FAB badge ---- */
+.concierge-fab__badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: #fff;
+  font-size: var(--ld-s-typography-label1-font-size);
+  font-weight: var(--ld-s-typography-label1-font-weight);
+  box-shadow: 0 0 0 2px var(--canvas);
+}
+.concierge-fab {
+  position: fixed; /* anchor for the badge */
+}
+
+/* ---- Motion ---- */
+@keyframes agent-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes agent-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes agent-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes agent-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* ---- Inline booking form (booking-flow card) ---- */
+.agent-bf {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  --agent-bf-body-max: clamp(240px, 42dvh, 420px);
+  margin-top: var(--space-3);
+  padding: var(--space-4);
+  /* Match the agent result-card surface so the form reads as native to the
+     thread rather than a dark inset widget. */
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.agent-bf__head {
+  font-size: var(--ld-s-typography-caption1-font-size);
+  color: var(--fg-strong);
+  font-weight: var(--ld-s-typography-label2-font-weight);
+}
+.agent-bf__note {
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg-muted);
+  line-height: 1.5;
+}
+.agent-bf__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 0;
+  max-height: var(--agent-bf-body-max);
+  overflow-y: auto;
+  overflow-x: visible;
+}
+.agent-bf__body--date {
+  max-height: none;
+  overflow: visible;
+}
+.agent-bf__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.agent-bf__grouphead {
+  font-size: var(--ld-s-typography-label1-font-size);
+  letter-spacing: var(--ld-s-typography-label1-letter-spacing);
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  margin-top: var(--space-1);
+}
+/* Time grid */
+.agent-bf__times {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+.agent-bf__time {
+  padding: var(--space-2) 0;
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+}
+.agent-bf__time:hover {
+  border-color: var(--border-strong);
+}
+.agent-bf__time.is-on {
+  background: var(--surface-hover);
+  border-color: var(--fg);
+  color: var(--fg-strong);
+}
+/* Confirm summary */
+.agent-bf__summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.agent-bf__summary > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--ld-s-typography-body2-font-size);
+}
+.agent-bf__summary dt {
+  color: var(--fg-muted);
+}
+.agent-bf__summary dd {
+  color: var(--fg-strong);
+  text-align: right;
+}
+.agent-bf__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+/* Done state */
+.agent-bf--done {
+  gap: var(--space-1);
+}
+.agent-bf__donehead {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--ld-s-typography-label1-font-size);
+  letter-spacing: var(--ld-s-typography-label1-letter-spacing);
+  text-transform: uppercase;
+  color: var(--success);
+}
+.agent-bf__donetitle {
+  font-size: var(--ld-s-typography-caption1-font-size);
+  color: var(--fg-strong);
+  font-weight: var(--ld-s-typography-label2-font-weight);
+}
+.agent-bf__donemeta,
+.agent-bf__donewhen {
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg-muted);
+}
+
+/* ---- Polish: focus, feedback, error, indicators ---- */
+
+/* Visible keyboard focus on every interactive concierge control, matching the
+   app's accent ring convention. */
+.agent-head__action:focus-visible,
+.agent-head__close:focus-visible,
+.agent-starter:focus-visible,
+.agent-chip:focus-visible,
+.agent-composer__send:focus-visible,
+.agent-bf__time:focus-visible,
+.agent-jump:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.agent-composer:focus-within {
+  border-color: var(--fg);
+}
+
+/* Failed-step reason (was: silent X icon). */
+.agent-step__error {
+  margin-top: var(--space-1);
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--error);
+  line-height: 1.45;
+}
+
+/* "Thinking" indicator — the gap before the first token (e.g. Gemini latency). */
+.agent-thinking {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: var(--space-2) 0;
+}
+.agent-thinking span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fg-dim);
+  animation: agent-think 1.2s ease-in-out infinite;
+}
+.agent-thinking span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.agent-thinking span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes agent-think {
+  0%, 60%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* "New message" pill — shown when the user has scrolled up. */
+.agent-jump {
+  position: sticky;
+  bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin: var(--space-2) auto 0;
+  padding: 6px 14px;
+  font-size: var(--ld-s-typography-body2-font-size);
+  color: var(--fg-strong);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  animation: agent-rise var(--dur-2) var(--ease-decelerate);
+}
+.agent-jump svg {
+  transform: rotate(90deg);
+}
+.agent-jump:hover {
+  border-color: var(--fg-muted);
+}
+
+/* Stop button — visible press feedback so the tap registers. */
+.agent-composer__stop:active {
+  transform: scale(0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-caret,
+  .agent-step__spin,
+  .agent-thinking span {
+    animation: none;
+  }
+  .agent-welcome,
+  .agent-msg,
+  .agent-steps,
+  .agent-confirm,
+  .agent-jump {
+    animation: none;
+  }
+  .agent-starter:hover,
+  .agent-composer__send:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .agent-panel {
+    width: 100vw;
+    border-left: none;
+  }
+}
+@media (max-height: 820px) {
+  .agent-bf {
+    --agent-bf-body-max: clamp(200px, 36dvh, 340px);
+  }
+}
+/* Short viewports (soft keyboard / landscape): keep the composer from eating
+   the thread. */
+@media (max-height: 680px) {
+  .agent-composer__input {
+    max-height: 72px;
+  }
+}

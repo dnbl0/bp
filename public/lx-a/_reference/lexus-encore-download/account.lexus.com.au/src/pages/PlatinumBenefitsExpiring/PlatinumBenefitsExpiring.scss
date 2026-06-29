@@ -1,0 +1,98 @@
+@import "lexus-style-guide/colors/index";
+@import "../../styles/mixins";
+
+.platinum-benefits-expiring {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: $lx-blue-opaque-75;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    &__container {
+        p, li {
+            color: lx-color("white");
+            line-height: 3.2rem;
+            margin-bottom: unset;
+        }
+    
+        ul {
+            margin: 1.6rem 0;
+        }
+    }
+
+    @include mobile {
+        &__container {
+            display: flex;
+            flex-direction: column;
+            padding: 4.2rem 2.4rem 0;
+
+            div {
+                margin-bottom: 6.4rem;
+            }
+        }
+    }
+
+    @include desktop {
+        &__container {
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50% );
+            padding: 6.4rem;
+            background-color: lx-color("deep-blue");
+            display: flex;
+            flex-direction: column;       
+            
+            h2 {
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                margin-bottom: 2.4rem;
+                width: 100%;
+
+                &::after {
+                    content: none;
+                }
+            }
+
+            div {
+                margin-bottom: 6.4rem;
+            }
+
+            button {
+                box-sizing: border-box;
+                width: 273px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    &__title {
+        div.section-header__content {
+            padding: 2.4rem 0;
+            min-height: unset;
+
+            svg > path {
+                fill: lx-color("white");
+            }
+        }
+
+        .section-header-title__text {
+            font-size: 1.7rem;
+            color: lx-color("white");
+        }
+
+        font-size: 17px;
+    }
+
+    &__tandc {
+        font-size: 1.5rem;
+        line-height: 2.4rem;
+    }
+}

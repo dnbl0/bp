@@ -1,0 +1,906 @@
+/*
+ * Lexus design tokens — curated dark-theme subset.
+ * Values sourced from the Lexus AU design system token export
+ * (Documents/folio/lexus-ds/tokens/tokens.css).
+ */
+:root {
+  /* ---- Brand scales ---- */
+  --ld-color-lexus-smoke-100: #fafaf9;
+  --ld-color-lexus-smoke-300: #f1f0ec;
+  --ld-color-lexus-smoke-500: #e8e6e0;
+  --ld-color-lexus-smoke-700: #dfdcd4;
+
+  --ld-color-lexus-deepblue-50: #6e727e;
+  --ld-color-lexus-deepblue-100: #303547;
+  --ld-color-lexus-deepblue-300: #2b2f3e;
+  --ld-color-lexus-deepblue-400: #272a39;
+  --ld-color-lexus-deepblue-500: #232632;
+  --ld-color-lexus-deepblue-600: #1e212b;
+  --ld-color-lexus-deepblue-700: #1b1d25;
+  --ld-color-lexus-deepblue-800: #181a20;
+  --ld-color-lexus-deepblue-900: #15171d;
+
+  --ld-color-lexus-ochre-400: #e94345;
+  --ld-color-lexus-ochre-500: #bb1619;
+  --ld-color-lexus-inari-500: #cc4c19;
+  --ld-color-lexus-clay-400: #e9b943;
+
+  /* ---- Lexus DS colour system ----
+   * The authoritative semantic colour tokens from the Lexus DS export
+   * (dark theme). Anchored to the brand primitives above where values match
+   * so there is a single source of truth. Component-level --ld-c-* tokens in
+   * the DS resolve onto these. */
+  --ld-s-color-accent-primary-lighter: #edebe6;
+  --ld-s-color-accent-primary-default: var(--ld-color-lexus-smoke-500); /* #e8e6e0 */
+  --ld-s-color-accent-primary-darker: #e3e1da;
+  --ld-s-color-accent-primary-disabled: rgba(232, 230, 224, 0.5);
+  --ld-s-color-accent-primary-opacity-default-lighter: rgba(232, 230, 224, 0.3);
+  --ld-s-color-accent-secondary-lighter: #ea7b50;
+  --ld-s-color-accent-secondary-default: var(--ld-color-lexus-inari-500); /* #cc4c19 */
+  --ld-s-color-accent-secondary-darker: #8f3511;
+  --ld-s-color-accent-secondary-disabled: var(--ld-color-lexus-inari-500); /* #cc4c19 */
+  --ld-s-color-accent-electrified-default: #2468ff;
+
+  --ld-s-color-foreground-lighter: #edebe6;
+  --ld-s-color-foreground-default: var(--ld-color-lexus-smoke-500); /* #e8e6e0 */
+  --ld-s-color-foreground-darker: #e3e1da;
+  --ld-s-color-foreground-disabled: var(--ld-color-lexus-smoke-500); /* #e8e6e0 */
+  --ld-s-color-foreground-on-accent: var(--ld-color-lexus-deepblue-500); /* #232632 */
+  --ld-s-color-foreground-on-disabled: var(--ld-color-lexus-deepblue-500); /* #232632 */
+  --ld-s-color-foreground-opacity-on-accent-lighter: rgba(35, 38, 50, 0.3);
+
+  --ld-s-color-elevation-raised-lighter: var(--ld-color-lexus-deepblue-100); /* #303547 */
+  --ld-s-color-elevation-raised-default: #2e3243;
+  --ld-s-color-elevation-raised-darker: var(--ld-color-lexus-deepblue-300); /* #2b2f3e */
+  --ld-s-color-elevation-inset-lighter: var(--ld-color-lexus-deepblue-700); /* #1b1d25 */
+  --ld-s-color-elevation-inset-default: var(--ld-color-lexus-deepblue-800); /* #181a20 */
+  --ld-s-color-elevation-inset-darker: var(--ld-color-lexus-deepblue-900); /* #15171d */
+  --ld-s-color-canvas-lighter: var(--ld-color-lexus-deepblue-400); /* #272a39 */
+  --ld-s-color-canvas-default: var(--ld-color-lexus-deepblue-500); /* #232632 */
+  --ld-s-color-canvas-darker: var(--ld-color-lexus-deepblue-600); /* #1e212b */
+
+  --ld-s-color-utility-error-lighter: hsl(347, 100%, 60%);
+  --ld-s-color-utility-error-default: hsl(347, 60%, 40%);
+  --ld-s-color-utility-error-darker: hsl(347, 60%, 40%);
+  --ld-s-color-utility-error-disabled: hsl(347, 60%, 40%);
+  --ld-s-color-utility-success-lighter: hsl(115, 100%, 60%);
+  --ld-s-color-utility-success-default: hsl(115, 60%, 40%);
+  --ld-s-color-utility-success-darker: hsl(115, 60%, 40%);
+  --ld-s-color-utility-success-disabled: hsl(115, 60%, 40%);
+  --ld-s-color-utility-warning-lighter: hsl(39, 100%, 60%);
+  --ld-s-color-utility-warning-default: hsl(39, 80%, 50%);
+  --ld-s-color-utility-warning-darker: hsl(39, 60%, 40%);
+  --ld-s-color-utility-warning-disabled: hsl(39, 80%, 50%);
+  --ld-s-color-utility-information-lighter: hsl(206, 100%, 60%);
+  --ld-s-color-utility-information-default: hsl(206, 80%, 50%);
+  --ld-s-color-utility-information-darker: hsl(206, 60%, 40%);
+  --ld-s-color-utility-information-disabled: hsl(206, 80%, 50%);
+  --ld-s-color-utility-modifiers-midlight: #ffffff1a;
+  --ld-s-color-utility-modifiers-mid: rgba(255, 255, 255, 0.3);
+
+  --ld-s-color-common-white: #ffffff;
+  --ld-s-color-common-black: #171717;
+  --ld-s-color-common-true-black: #000000;
+  --ld-s-color-common-opacity-white-lightest: rgba(255, 255, 255, 0.1);
+  --ld-s-color-common-opacity-white-lighter: rgba(255, 255, 255, 0.2);
+  --ld-s-color-common-opacity-true-black-light: rgba(0, 0, 0, 0.3);
+  --ld-s-color-common-opacity-true-black-lightest: rgba(0, 0, 0, 0.1);
+  --ld-s-color-common-opacity-true-black-darker: rgba(0, 0, 0, 0.75);
+  --ld-s-color-common-opacity-true-black-darkest: rgba(0, 0, 0, 0.9);
+  --ld-s-color-common-opacity-black-lightest: rgba(23, 23, 23, 0.1);
+  --ld-s-color-common-opacity-black-darker: rgba(23, 23, 23, 0.75);
+  --ld-s-color-common-opacity-black-darkest: rgba(23, 23, 23, 0.9);
+  --ld-s-color-common-inherit-theme-default: #171717;
+  --ld-s-color-common-inherit-theme-inverse: #ffffff;
+
+  /* ---- Semantic — dark (alt) theme ----
+   * Routed through the Lexus DS colour system above (each value is identical
+   * to the DS token it references — brand primitive → DS semantic → app
+   * semantic, one source of truth). --surface keeps a bespoke shade with no
+   * DS equivalent. */
+  --canvas: var(--ld-s-color-elevation-inset-darker); /* #15171d */
+  --canvas-raised: var(--ld-s-color-canvas-darker); /* #1e212b */
+  --surface: #1c1f28;
+  --surface-raised: var(--ld-s-color-elevation-raised-darker); /* #2b2f3e */
+  --surface-hover: var(--ld-s-color-elevation-raised-lighter); /* #303547 */
+  --elevation-inset: var(--ld-s-color-elevation-inset-default); /* #181a20 */
+
+  /* Scrim — sits over imagery/canvas; one canonical RGB triple. */
+  --canvas-scrim-rgb: 8, 9, 12;
+  --canvas-scrim-strong: rgba(var(--canvas-scrim-rgb), 0.85);
+  --canvas-scrim: rgba(var(--canvas-scrim-rgb), 0.7);
+  --canvas-scrim-soft: rgba(var(--canvas-scrim-rgb), 0.45);
+
+  --fg: var(--ld-s-color-foreground-default); /* smoke-500 #e8e6e0 */
+  --fg-strong: var(--ld-color-lexus-smoke-100);
+  --fg-muted: #9b9ea6;
+  /* Lifted from deepblue-50 (#6e727e) so secondary/placeholder text clears
+   * WCAG AA (4.5:1) on raised surfaces, where #6e727e dropped to ~2.8:1. */
+  --fg-dim: #9499a1;
+  --fg-on-accent: var(--ld-s-color-foreground-on-accent); /* deepblue-500 #232632 */
+
+  /* --accent stays Lexus red (ochre #e94345) — the prototype's deliberate
+   * accent for borders, focus rings and fills, distinct from the DS secondary
+   * accent (inari). */
+  --accent: var(--ld-color-lexus-ochre-400);
+  /* --accent-bright is the red used for *text* and emphasis. Lifted from
+   * ochre #e94345 (which only cleared AA on --canvas) to an AA-safe tint that
+   * passes 4.5:1 on raised dark surfaces too. */
+  --accent-bright: #f47a7c;
+  /* Lifted from #2468ff so the EV accent clears AA as text on dark surfaces. */
+  --accent-electrified: #6b9bff;
+  --accent-warm: var(--ld-s-color-accent-secondary-default); /* inari #cc4c19 */
+
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --border-tier: rgba(233, 185, 67, 0.4);
+  --overlay-hover: rgba(255, 255, 255, 0.06);
+
+  /* Tier identity — Platinum gets a metallic clay gradient and a soft glow.
+   * Apply to eyebrows, badges and the Encore tier surfaces. */
+  --tier-clay: var(--ld-color-lexus-clay-400);
+  --tier-clay-rgb: 233, 185, 67;
+  /* Literal clay mid-stop (not var(--ld-color-lexus-clay-400)) so the metallic
+   * gradient stays bright even when the light theme re-tints clay for text AA. */
+  --tier-gradient: linear-gradient(
+    135deg,
+    #f4cb6c 0%,
+    #e9b943 50%,
+    #9c7e2d 100%
+  );
+  --tier-glow: 0 0 0 1px rgba(var(--tier-clay-rgb), 0.32),
+    0 8px 24px -8px rgba(var(--tier-clay-rgb), 0.28);
+
+  /* Lifted from the DS values (#33a329 / #ff335f) so status *text* clears
+   * WCAG AA (4.5:1) on raised dark surfaces, where the DS hues dropped to
+   * ~3.4–4.1:1. */
+  --success: #3cbf30;
+  --warning: #e69e1a; /* no DS equivalent */
+  --error: #ff6680;
+  --error-border: var(--ld-s-color-utility-error-default); /* #a32943 */
+
+  /* ---- Typography ---- */
+  /* Lexus Design System typography tokens — the authoritative type system.
+   * These are the only typography tokens; weights come from each style's
+   * *-font-weight (300 / 400 / 700). */
+  --ld-s-typography-heading1-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-heading1-font-weight: 300;
+  --ld-s-typography-heading1-line-height: 1.15;
+  --ld-s-typography-heading1-font-size: 37px;
+  --ld-s-typography-heading1-letter-spacing: 1.85px;
+  --ld-s-typography-heading1-paragraph-spacing: 16px;
+  --ld-s-typography-heading1-text-case: uppercase;
+  --ld-s-typography-heading2-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-heading2-font-weight: 300;
+  --ld-s-typography-heading2-line-height: 1.15;
+  --ld-s-typography-heading2-font-size: 33px;
+  --ld-s-typography-heading2-letter-spacing: 1.65px;
+  --ld-s-typography-heading2-paragraph-spacing: 16px;
+  --ld-s-typography-heading2-text-case: uppercase;
+  --ld-s-typography-heading3-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-heading3-font-weight: 300;
+  --ld-s-typography-heading3-line-height: 1.15;
+  --ld-s-typography-heading3-font-size: 29px;
+  --ld-s-typography-heading3-letter-spacing: 1.45px;
+  --ld-s-typography-heading3-paragraph-spacing: 16px;
+  --ld-s-typography-heading3-text-case: uppercase;
+  --ld-s-typography-heading4-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-heading4-font-weight: 300;
+  --ld-s-typography-heading4-line-height: 1.15;
+  --ld-s-typography-heading4-font-size: 26px;
+  --ld-s-typography-heading4-letter-spacing: 1.3px;
+  --ld-s-typography-heading4-paragraph-spacing: 16px;
+  --ld-s-typography-heading4-text-case: uppercase;
+  --ld-s-typography-heading5-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-heading5-font-weight: 300;
+  --ld-s-typography-heading5-line-height: 1.15;
+  --ld-s-typography-heading5-font-size: 23px;
+  --ld-s-typography-heading5-letter-spacing: 1.15px;
+  --ld-s-typography-heading5-paragraph-spacing: 16px;
+  --ld-s-typography-heading5-text-case: uppercase;
+  --ld-s-typography-heading6-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-heading6-font-weight: 300;
+  --ld-s-typography-heading6-line-height: 1.15;
+  --ld-s-typography-heading6-font-size: 18px;
+  --ld-s-typography-heading6-letter-spacing: calc(20px * 0.02);
+  --ld-s-typography-heading6-paragraph-spacing: 16px;
+  --ld-s-typography-heading6-text-case: uppercase;
+  --ld-s-typography-subtitle1-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-subtitle1-font-weight: 300;
+  --ld-s-typography-subtitle1-line-height: 1.5;
+  --ld-s-typography-subtitle1-font-size: 20px;
+  --ld-s-typography-subtitle1-letter-spacing: 0.25px;
+  --ld-s-typography-subtitle1-paragraph-spacing: 16px;
+  --ld-s-typography-subtitle1-text-case: none;
+  --ld-s-typography-subtitle2-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-subtitle2-font-weight: 300;
+  --ld-s-typography-subtitle2-line-height: 1.5;
+  --ld-s-typography-subtitle2-font-size: 18px;
+  --ld-s-typography-subtitle2-letter-spacing: 0.225px;
+  --ld-s-typography-subtitle2-paragraph-spacing: 16px;
+  --ld-s-typography-subtitle2-text-case: none;
+  --ld-s-typography-body1-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-body1-font-weight: 300;
+  --ld-s-typography-body1-line-height: 1.5;
+  --ld-s-typography-body1-font-size: 19px;
+  --ld-s-typography-body1-letter-spacing: 0px;
+  --ld-s-typography-body1-paragraph-spacing: 32px;
+  --ld-s-typography-body1-text-case: none;
+  --ld-s-typography-body2-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-body2-font-weight: 300;
+  --ld-s-typography-body2-line-height: 1.5;
+  --ld-s-typography-body2-font-size: 16px;
+  --ld-s-typography-body2-letter-spacing: 0px;
+  --ld-s-typography-body2-paragraph-spacing: 32px;
+  --ld-s-typography-body2-text-case: none;
+  --ld-s-typography-caption1-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-caption1-font-weight: 300;
+  --ld-s-typography-caption1-line-height: 1.5;
+  --ld-s-typography-caption1-font-size: 15px;
+  --ld-s-typography-caption1-letter-spacing: 0px;
+  --ld-s-typography-caption1-paragraph-spacing: 32px;
+  --ld-s-typography-caption1-text-case: none;
+  --ld-s-typography-disclaimer1-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-disclaimer1-font-weight: 300;
+  --ld-s-typography-disclaimer1-line-height: 1.5;
+  --ld-s-typography-disclaimer1-font-size: 15px;
+  --ld-s-typography-disclaimer1-letter-spacing: 0px;
+  --ld-s-typography-disclaimer1-paragraph-spacing: 32px;
+  --ld-s-typography-disclaimer1-text-case: none;
+  --ld-s-typography-price1-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-price1-font-weight: 300;
+  --ld-s-typography-price1-line-height: 1.5;
+  --ld-s-typography-price1-font-size: 13px;
+  --ld-s-typography-price1-letter-spacing: 0px;
+  --ld-s-typography-price1-paragraph-spacing: 32px;
+  --ld-s-typography-price1-text-case: none;
+  --ld-s-typography-label1-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-label1-font-weight: 300;
+  --ld-s-typography-label1-line-height: 1;
+  --ld-s-typography-label1-font-size: 12px;
+  --ld-s-typography-label1-letter-spacing: 1.44px;
+  --ld-s-typography-label1-paragraph-spacing: 32px;
+  --ld-s-typography-label1-text-case: uppercase;
+  --ld-s-typography-label2-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-label2-font-weight: 400;
+  --ld-s-typography-label2-line-height: 1.3;
+  --ld-s-typography-label2-font-size: 12px;
+  --ld-s-typography-label2-letter-spacing: 1.44px;
+  --ld-s-typography-label2-paragraph-spacing: 32px;
+  --ld-s-typography-label2-text-case: uppercase;
+  --ld-s-typography-banner-font-family: Nobel, arial, sans-serif;
+  --ld-s-typography-banner-font-weight: 300;
+  --ld-s-typography-banner-line-height: 1.5;
+  --ld-s-typography-banner-font-size: 13px;
+  --ld-s-typography-banner-letter-spacing: 1.44px;
+  --ld-s-typography-banner-paragraph-spacing: 32px;
+  --ld-s-typography-banner-text-case: none;
+
+  /* ---- Layout ---- */
+  --grid-max-width: 1360px;
+  --grid-pad-desktop: 48px;
+  --grid-pad-mobile: 24px;
+
+  /* ---- Lexus DS dimension scale ----
+   * Authoritative spacing/sizing primitives. `static` steps are fixed;
+   * `scaled` steps are the responsive set the DS uses for fluid layout. */
+  --ld-s-dim-static-none: 0px;
+  --ld-s-dim-static-4xs: 4px;
+  --ld-s-dim-static-3xs: 8px;
+  --ld-s-dim-static-2xs: 12px;
+  --ld-s-dim-static-xs: 16px;
+  --ld-s-dim-static-s: 24px;
+  --ld-s-dim-static-m: 32px;
+  --ld-s-dim-static-l: 40px;
+  --ld-s-dim-static-xl: 48px;
+  --ld-s-dim-static-2xl: 64px;
+  --ld-s-dim-static-3xl: 80px;
+  --ld-s-dim-static-4xl: 96px;
+  --ld-s-dim-static-5xl: 120px;
+  --ld-s-dim-scaled-none: 0px;
+  --ld-s-dim-scaled-least: 8px;
+  --ld-s-dim-scaled-even-less: 16px;
+  --ld-s-dim-scaled-less: 20px;
+  --ld-s-dim-scaled-default: 24px;
+  --ld-s-dim-scaled-more: 32px;
+  --ld-s-dim-scaled-even-more: 40px;
+  --ld-s-dim-scaled-most: 48px;
+  --ld-s-dim-scaled-beyond-most: 64px;
+
+  --ld-s-opacity-disabled: 0.5;
+  --ld-s-opacity-overlay: 0.8;
+  --ld-s-min-w-default: 190px;
+  --ld-s-min-w-more: 220px;
+
+  /* Spacing scale (4-based) — mapped onto the Lexus DS dimension scale so the
+   * prototype's --space-* aliases resolve to DS primitives (values identical;
+   * no visual change). Prefer the --ld-s-dim-* tokens directly in new work. */
+  --space-1: var(--ld-s-dim-static-4xs); /* 4px */
+  --space-2: var(--ld-s-dim-static-3xs); /* 8px */
+  --space-3: var(--ld-s-dim-static-2xs); /* 12px */
+  --space-4: var(--ld-s-dim-static-xs); /* 16px */
+  --space-5: var(--ld-s-dim-scaled-less); /* 20px */
+  --space-6: var(--ld-s-dim-static-s); /* 24px */
+  --space-7: var(--ld-s-dim-static-m); /* 32px */
+  --space-8: var(--ld-s-dim-static-l); /* 40px */
+  --space-9: var(--ld-s-dim-static-xl); /* 48px */
+  --space-10: var(--ld-s-dim-static-2xl); /* 64px */
+  --space-11: var(--ld-s-dim-static-3xl); /* 80px */
+
+  /* ---- Border radius ----
+   * Lexus Design System border-radius scale — the authoritative source.
+   * (Documents/folio/lexus-ds/tokens/tokens.css) */
+  --ld-s-border-radius-none: 0;
+  --ld-s-border-radius-small: 3px;
+  --ld-s-border-radius-medium: 5px;
+  --ld-s-border-radius-extra-medium: 6px;
+  --ld-s-border-radius-large: 7px;
+  --ld-s-border-radius-extra-large: 8px;
+  --ld-s-border-radius-rounded: 999px;
+
+  /* Legacy aliases — mapped onto the Lexus DS scale above so existing rules
+   * adopt the correct radii. Prefer the --ld-s-border-radius-* tokens directly
+   * in new work. */
+  --radius-sm: var(--ld-s-border-radius-small); /* 3px */
+  --radius-md: var(--ld-s-border-radius-medium); /* 5px */
+  --radius-lg: var(--ld-s-border-radius-extra-large); /* 8px */
+  --radius-pill: var(--ld-s-border-radius-rounded); /* 999px */
+  --nav-height: 72px;
+
+  /* ---- Elevation ---- */
+  /* Lexus DS box-shadow primitives (decomposed x/y/blur/spread/colour, the
+   * shape the DS component tokens consume). */
+  --ld-s-box-shadow-default-x: 0;
+  --ld-s-box-shadow-default-y: 8px;
+  --ld-s-box-shadow-default-blur: 16px;
+  --ld-s-box-shadow-default-spread: 0;
+  --ld-s-box-shadow-default-color: #17171726;
+  --ld-s-box-shadow-default-type: dropShadow;
+  --ld-prim-box-shadow-0-12-24-x: 0;
+  --ld-prim-box-shadow-0-12-24-y: 12px;
+  --ld-prim-box-shadow-0-12-24-blur: 24px;
+  --ld-prim-box-shadow-0-12-24-spread: 0;
+  --ld-prim-box-shadow-0-12-24-color: #17171726;
+  --ld-prim-box-shadow-0-12-24-type: dropShadow;
+  --ld-s-box-shadow-more-x: 0;
+  --ld-s-box-shadow-more-y: 12px;
+  --ld-s-box-shadow-more-blur: 24px;
+  --ld-s-box-shadow-more-spread: 0;
+  --ld-s-box-shadow-more-color: #17171726;
+  --ld-s-box-shadow-more-type: dropShadow;
+
+  --shadow-sm: 0 18px 24px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 24px 60px rgba(0, 0, 0, 0.5);
+  --shadow-lg: -30px 0 80px rgba(0, 0, 0, 0.55);
+  --shadow-render-sm: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45));
+  --shadow-render-md: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.5));
+  --shadow-render-lg: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.5));
+
+  color-scheme: dark;
+
+  /* ---- Motion ----
+   * One signature curve (emphasized) drives meaningful state changes —
+   * flyouts opening, primary CTAs, hero reveals. Decelerate is for content
+   * entering the viewport. Sharp is for affordances that snap (toggles,
+   * tabs). Standard is the everyday hover/focus baseline.
+   */
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --ease-standard: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --ease-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+  --ease: var(--ease-standard);
+
+  /* Lexus DS transition durations. The prototype's --dur-* curve below is a
+   * separate, intentionally tuned set kept alongside these. */
+  --ld-s-transition-duration-fast: 150ms;
+  --ld-s-transition-duration-default: 300ms;
+  --ld-s-transition-duration-slow: 600ms;
+
+  --dur-1: 140ms; /* sharp affordances */
+  --dur-2: 240ms; /* everyday transitions (default) */
+  --dur-3: 360ms; /* deliberate motion — flyout, section change */
+  --dur-4: 560ms; /* showcase reveals — hero, celebrations */
+  --dur: var(--dur-2);
+
+  /* ---- Lexus DS component tokens (--ld-c-*) ----
+   * The component-contract layer from the Lexus DS export — the CSS the
+   * brief supplied. Each resolves onto the --ld-s-* foundation above.
+   * Declared at :root (the DS scopes them to component classes) so they
+   * are available app-wide. */
+
+  /* border-radius */
+  --ld-c-border-radius-extra-large: var(--ld-s-border-radius-extra-large);
+  --ld-c-border-radius-extra-medium: var(--ld-s-border-radius-extra-medium);
+  --ld-c-border-radius-large: var(--ld-s-border-radius-large);
+  --ld-c-border-radius-medium: var(--ld-s-border-radius-medium);
+  --ld-c-border-radius-none: var(--ld-s-border-radius-none);
+  --ld-c-border-radius-rounded: var(--ld-s-border-radius-rounded);
+  --ld-c-border-radius-small: var(--ld-s-border-radius-small);
+
+  /* surface */
+  --ld-c-surface-canvas-darker: var(--ld-s-color-canvas-darker);
+  --ld-c-surface-canvas-default: var(--ld-s-color-canvas-default);
+  --ld-c-surface-canvas-lighter: var(--ld-s-color-canvas-lighter);
+  --ld-c-surface-elevation-inset-darker: var(--ld-s-color-elevation-inset-darker);
+  --ld-c-surface-elevation-inset-default: var(--ld-s-color-elevation-inset-default);
+  --ld-c-surface-elevation-inset-lighter: var(--ld-s-color-elevation-inset-lighter);
+  --ld-c-surface-elevation-raised-darker: var(--ld-s-color-elevation-raised-darker);
+  --ld-c-surface-elevation-raised-default: var(--ld-s-color-elevation-raised-default);
+  --ld-c-surface-elevation-raised-lighter: var(--ld-s-color-elevation-raised-lighter);
+  --ld-c-surface-highlight: var(--ld-s-color-utility-modifiers-midlight);
+
+  /* focus-outline */
+  --ld-c-focus-outline-default: var(--ld-s-border-radius-extra-medium);
+  --ld-c-focus-outline-error: 1px dashed var(--ld-s-color-utility-error-default);
+  --ld-c-focus-outline-extra-large: var(--ld-s-border-radius-extra-large);
+  --ld-c-focus-outline-large: var(--ld-s-border-radius-large);
+  --ld-c-focus-outline-medium: var(--ld-s-border-radius-medium);
+  --ld-c-focus-outline-none: var(--ld-s-border-radius-none);
+  --ld-c-focus-outline-offset-default: var(--ld-s-dim-static-4xs);
+  --ld-c-focus-outline-offset-smaller: 2px;
+  --ld-c-focus-outline-offset-smallest: -1px;
+  --ld-c-focus-outline-outline: 1px dashed var(--ld-s-color-accent-primary-default);
+  --ld-c-focus-outline-rounded: var(--ld-s-border-radius-rounded);
+  --ld-c-focus-outline-small: var(--ld-s-border-radius-small);
+  --ld-c-focus-outline-success: 1px dashed var(--ld-s-color-utility-success-darker);
+
+  /* input-border */
+  --ld-c-input-border-border-default: 1px solid var(--ld-s-color-accent-primary-default);
+  --ld-c-input-border-border-error: 2px solid var(--ld-s-color-utility-error-default);
+  --ld-c-input-border-border-hover: 2px solid var(--ld-s-color-accent-primary-default);
+  --ld-c-input-border-border-radius-default: var(--ld-s-border-radius-small);
+  --ld-c-input-border-border-radius-extra-large: var(--ld-s-border-radius-extra-large);
+  --ld-c-input-border-border-radius-extra-medium: var(--ld-s-border-radius-extra-medium);
+  --ld-c-input-border-border-radius-large: var(--ld-s-border-radius-large);
+  --ld-c-input-border-border-radius-medium: var(--ld-s-border-radius-medium);
+  --ld-c-input-border-border-radius-rounded: var(--ld-s-border-radius-rounded);
+  --ld-c-input-border-border-success: 2px solid var(--ld-s-color-utility-success-darker);
+  --ld-c-input-border-default-blur: 0;
+  --ld-c-input-border-default-color: var(--ld-s-color-accent-primary-default);
+  --ld-c-input-border-default-spread: 1px;
+  --ld-c-input-border-default-type: inset;
+  --ld-c-input-border-default-x: 0;
+  --ld-c-input-border-default-y: 0;
+  --ld-c-input-border-disabled: 0.5;
+  --ld-c-input-border-error-blur: 0;
+  --ld-c-input-border-error-color: var(--ld-s-color-utility-error-default);
+  --ld-c-input-border-error-spread: 2px;
+  --ld-c-input-border-error-type: inset;
+  --ld-c-input-border-error-x: 0;
+  --ld-c-input-border-error-y: 0;
+  --ld-c-input-border-hover-blur: 0;
+  --ld-c-input-border-hover-color: var(--ld-s-color-accent-primary-default);
+  --ld-c-input-border-hover-spread: 2px;
+  --ld-c-input-border-hover-type: inset;
+  --ld-c-input-border-hover-x: 0;
+  --ld-c-input-border-hover-y: 0;
+  --ld-c-input-border-success-blur: 0;
+  --ld-c-input-border-success-color: var(--ld-s-color-utility-success-darker);
+  --ld-c-input-border-success-spread: 2px;
+  --ld-c-input-border-success-type: inset;
+  --ld-c-input-border-success-x: 0;
+  --ld-c-input-border-success-y: 0;
+
+  /* stack-gap */
+  --ld-c-stack-gap-scaled-default: var(--ld-s-dim-scaled-default);
+  --ld-c-stack-gap-scaled-even-less: var(--ld-s-dim-scaled-even-less);
+  --ld-c-stack-gap-scaled-even-more: var(--ld-s-dim-scaled-even-more);
+  --ld-c-stack-gap-scaled-least: var(--ld-s-dim-scaled-least);
+  --ld-c-stack-gap-scaled-less: var(--ld-s-dim-scaled-less);
+  --ld-c-stack-gap-scaled-more: var(--ld-s-dim-scaled-more);
+  --ld-c-stack-gap-scaled-most: var(--ld-s-dim-scaled-most);
+  --ld-c-stack-gap-static-2xl: var(--ld-s-dim-static-2xl);
+  --ld-c-stack-gap-static-2xs: var(--ld-s-dim-static-2xs);
+  --ld-c-stack-gap-static-3xl: var(--ld-s-dim-static-3xl);
+  --ld-c-stack-gap-static-3xs: var(--ld-s-dim-static-3xs);
+  --ld-c-stack-gap-static-4xl: var(--ld-s-dim-static-4xl);
+  --ld-c-stack-gap-static-4xs: var(--ld-s-dim-static-4xs);
+  --ld-c-stack-gap-static-5xl: var(--ld-s-dim-static-5xl);
+  --ld-c-stack-gap-static-l: var(--ld-s-dim-static-l);
+  --ld-c-stack-gap-static-m: var(--ld-s-dim-static-m);
+  --ld-c-stack-gap-static-none: var(--ld-s-dim-static-none);
+  --ld-c-stack-gap-static-s: var(--ld-s-dim-static-s);
+  --ld-c-stack-gap-static-xl: var(--ld-s-dim-static-xl);
+  --ld-c-stack-gap-static-xs: var(--ld-s-dim-static-xs);
+
+  /* box-pad */
+  --ld-c-box-pad-scaled-default: var(--ld-s-dim-scaled-default);
+  --ld-c-box-pad-scaled-even-less: var(--ld-s-dim-scaled-even-less);
+  --ld-c-box-pad-scaled-even-more: var(--ld-s-dim-scaled-even-more);
+  --ld-c-box-pad-scaled-least: var(--ld-s-dim-scaled-least);
+  --ld-c-box-pad-scaled-less: var(--ld-s-dim-scaled-less);
+  --ld-c-box-pad-scaled-more: var(--ld-s-dim-scaled-more);
+  --ld-c-box-pad-scaled-most: var(--ld-s-dim-scaled-most);
+  --ld-c-box-pad-static-2xl: var(--ld-s-dim-static-2xl);
+  --ld-c-box-pad-static-2xs: var(--ld-s-dim-static-2xs);
+  --ld-c-box-pad-static-3xl: var(--ld-s-dim-static-3xl);
+  --ld-c-box-pad-static-3xs: var(--ld-s-dim-static-3xs);
+  --ld-c-box-pad-static-4xl: var(--ld-s-dim-static-4xl);
+  --ld-c-box-pad-static-4xs: var(--ld-s-dim-static-4xs);
+  --ld-c-box-pad-static-5xl: var(--ld-s-dim-static-5xl);
+  --ld-c-box-pad-static-l: var(--ld-s-dim-static-l);
+  --ld-c-box-pad-static-m: var(--ld-s-dim-static-m);
+  --ld-c-box-pad-static-none: var(--ld-s-dim-static-none);
+  --ld-c-box-pad-static-s: var(--ld-s-dim-static-s);
+  --ld-c-box-pad-static-xl: var(--ld-s-dim-static-xl);
+  --ld-c-box-pad-static-xs: var(--ld-s-dim-static-xs);
+
+  /* spinner */
+  --ld-c-spinner-bg: 2px solid var(--ld-s-color-utility-modifiers-midlight);
+  --ld-c-spinner-border-radius: var(--ld-s-border-radius-rounded);
+  --ld-c-spinner-fg: 2px solid var(--ld-s-color-accent-secondary-default);
+  --ld-c-spinner-frame-size: var(--ld-s-dim-static-m);
+  --ld-c-spinner-overlay-bg: 0.9;
+  --ld-c-spinner-overlay-opacity: 0.1;
+  --ld-c-spinner-size: var(--ld-s-dim-static-m)- var(--ld-s-dim-static-4xs);
+
+  /* popover */
+  --ld-c-popover-border: 1px solid var(--ld-s-color-utility-modifiers-midlight);
+  --ld-c-popover-box-shadow-blur: var(--ld-s-box-shadow-default-blur);
+  --ld-c-popover-box-shadow-color: var(--ld-s-box-shadow-default-color);
+  --ld-c-popover-box-shadow-spread: var(--ld-s-box-shadow-default-spread);
+  --ld-c-popover-box-shadow-type: var(--ld-s-box-shadow-default-type);
+  --ld-c-popover-box-shadow-x: var(--ld-s-box-shadow-default-x);
+  --ld-c-popover-box-shadow-y: var(--ld-s-box-shadow-default-y);
+  --ld-c-popover-max-w: 400px;
+
+  /* link */
+  --ld-c-link-external-margin-left: 6px;
+  --ld-c-link-external-transform-y: -1px;
+  --ld-c-link-line-w: 2px;
+
+  /* autocomplete */
+  --ld-c-autocomplete-min-height: var(--ld-s-dim-static-xl);
+  --ld-c-autocomplete-popover-bg: var(--ld-s-color-elevation-raised-lighter);
+  --ld-c-autocomplete-popover-hover: var(--ld-s-color-utility-modifiers-midlight);
+
+  /* form */
+  --ld-c-form-border-default: 1px solid var(--ld-s-color-accent-primary-default);
+  --ld-c-form-border-error: 2px solid var(--ld-c-form-color-error);
+  --ld-c-form-border-hover: 2px solid var(--ld-s-color-accent-primary-default);
+  --ld-c-form-border-success: 2px solid var(--ld-c-form-color-success);
+  --ld-c-form-color-disabled: var(--ld-s-color-accent-primary-default);
+  --ld-c-form-color-enabled: var(--ld-s-color-accent-primary-default);
+  --ld-c-form-color-error: var(--ld-s-color-utility-error-default);
+  --ld-c-form-color-focus: var(--ld-s-color-accent-primary-default);
+  --ld-c-form-color-placeholder-text: var(--ld-s-color-accent-primary-default);
+  --ld-c-form-color-success: var(--ld-s-color-utility-success-darker);
+  --ld-c-form-disabled: var(--ld-s-opacity-disabled);
+  --ld-c-form-form-section-bg: var(--ld-s-color-elevation-raised-darker);
+  --ld-c-form-form-section-border-radius: var(--ld-s-border-radius-extra-large);
+  --ld-c-form-form-section-box-shadow-focus-blur: var(--ld-prim-box-shadow-0-12-24-blur);
+  --ld-c-form-form-section-box-shadow-focus-color: var(--ld-prim-box-shadow-0-12-24-color);
+  --ld-c-form-form-section-box-shadow-focus-spread: var(--ld-prim-box-shadow-0-12-24-spread);
+  --ld-c-form-form-section-box-shadow-focus-type: var(--ld-prim-box-shadow-0-12-24-type);
+  --ld-c-form-form-section-box-shadow-focus-x: var(--ld-prim-box-shadow-0-12-24-x);
+  --ld-c-form-form-section-box-shadow-focus-y: var(--ld-prim-box-shadow-0-12-24-y);
+  --ld-c-form-form-section-default: 1px solid var(--ld-s-color-utility-modifiers-midlight);
+  --ld-c-form-form-section-focus: 2px solid var(--ld-s-color-accent-primary-default);
+  --ld-c-form-form-section-h-pad: var(--ld-s-dim-scaled-default);
+  --ld-c-form-form-section-v-pad: var(--ld-s-dim-scaled-default);
+  --ld-c-form-input-container-default-border-radius: var(--ld-s-border-radius-small);
+  --ld-c-form-input-container-default-min-height: var(--ld-s-dim-static-xl);
+  --ld-c-form-input-container-default-v-pad: var(--ld-s-dim-static-3xs);
+  --ld-c-form-input-container-h-pad: var(--ld-s-dim-static-xs);
+  --ld-c-form-input-container-large-border-radius: var(--ld-s-border-radius-medium);
+  --ld-c-form-input-container-large-min-height: var(--ld-s-dim-static-5xl);
+  --ld-c-form-input-container-large-v-pad: var(--ld-s-dim-static-xs);
+  --ld-c-form-input-min-w: var(--ld-s-min-w-default);
+  --ld-c-form-name-value-header-font-family: var(--ld-s-typography-label2-font-family);
+  --ld-c-form-name-value-header-font-size: var(--ld-s-typography-label2-font-size);
+  --ld-c-form-name-value-header-font-weight: var(--ld-s-typography-label2-font-weight);
+  --ld-c-form-name-value-header-letter-spacing: var(--ld-s-typography-label2-letter-spacing);
+  --ld-c-form-name-value-header-line-height: var(--ld-s-typography-label2-line-height);
+  --ld-c-form-name-value-header-paragraph-spacing: var(--ld-s-typography-label2-paragraph-spacing);
+  --ld-c-form-name-value-header-text-case: var(--ld-s-typography-label2-text-case);
+  --ld-c-form-name-value-subheader-font-family: var(--ld-s-typography-body1-font-family);
+  --ld-c-form-name-value-subheader-font-size: var(--ld-s-typography-body1-font-size);
+  --ld-c-form-name-value-subheader-font-weight: var(--ld-s-typography-body1-font-weight);
+  --ld-c-form-name-value-subheader-letter-spacing: var(--ld-s-typography-body1-letter-spacing);
+  --ld-c-form-name-value-subheader-line-height: var(--ld-s-typography-body1-line-height);
+  --ld-c-form-name-value-subheader-paragraph-spacing: var(--ld-s-typography-body1-paragraph-spacing);
+  --ld-c-form-name-value-subheader-text-case: var(--ld-s-typography-body1-text-case);
+  --ld-c-form-outline-focus: 1px dashed var(--ld-s-color-accent-primary-default);
+  --ld-c-form-placeholder-text-offset: 2px;
+  --ld-c-form-radio-border-radius: var(--ld-s-border-radius-rounded);
+  --ld-c-form-section-bg: var(--ld-s-color-elevation-raised-darker);
+  --ld-c-form-section-border-radius: var(--ld-s-border-radius-extra-large);
+  --ld-c-form-section-box-shadow-focus-blur: var(--ld-s-box-shadow-more-blur);
+  --ld-c-form-section-box-shadow-focus-color: var(--ld-s-box-shadow-more-color);
+  --ld-c-form-section-box-shadow-focus-spread: var(--ld-s-box-shadow-more-spread);
+  --ld-c-form-section-box-shadow-focus-type: var(--ld-s-box-shadow-more-type);
+  --ld-c-form-section-box-shadow-focus-x: var(--ld-s-box-shadow-more-x);
+  --ld-c-form-section-box-shadow-focus-y: var(--ld-s-box-shadow-more-y);
+  --ld-c-form-section-default: 1px solid var(--ld-s-color-utility-modifiers-midlight);
+  --ld-c-form-section-focus: 2px solid var(--ld-s-color-accent-primary-default);
+  --ld-c-form-section-h-pad: var(--ld-s-dim-scaled-default);
+  --ld-c-form-section-v-pad: var(--ld-s-dim-scaled-default);
+  --ld-c-form-select-container-border-radius: var(--ld-s-border-radius-small);
+  --ld-c-form-select-item-default-bg: var(--ld-s-color-elevation-raised-lighter);
+  --ld-c-form-select-item-hover-bg: var(--ld-s-color-elevation-raised-darker);
+  --ld-c-form-select-item-min-height: var(--ld-s-dim-static-xl);
+  --ld-c-form-text-field-body-text-font-family: var(--ld-s-typography-body1-font-family);
+  --ld-c-form-text-field-body-text-font-size: var(--ld-s-typography-body1-font-size);
+  --ld-c-form-text-field-body-text-font-weight: var(--ld-s-typography-body1-font-weight);
+  --ld-c-form-text-field-body-text-letter-spacing: var(--ld-s-typography-body1-letter-spacing);
+  --ld-c-form-text-field-body-text-line-height: var(--ld-s-typography-body1-line-height);
+  --ld-c-form-text-field-body-text-paragraph-spacing: var(--ld-s-typography-body1-paragraph-spacing);
+  --ld-c-form-text-field-body-text-text-case: var(--ld-s-typography-body1-text-case);
+  --ld-c-form-text-field-label-font-family: var(--ld-s-typography-label1-font-family);
+  --ld-c-form-text-field-label-font-size: var(--ld-s-typography-label1-font-size);
+  --ld-c-form-text-field-label-font-weight: var(--ld-s-typography-label1-font-weight);
+  --ld-c-form-text-field-label-letter-spacing: var(--ld-s-typography-label1-letter-spacing);
+  --ld-c-form-text-field-label-line-height: var(--ld-s-typography-label1-line-height);
+  --ld-c-form-text-field-label-paragraph-spacing: var(--ld-s-typography-label1-paragraph-spacing);
+  --ld-c-form-text-field-label-text-case: var(--ld-s-typography-label1-text-case);
+  --ld-c-form-text-field-placeholder-text-font-family: var(--ld-s-typography-body1-font-family);
+  --ld-c-form-text-field-placeholder-text-font-size: var(--ld-s-typography-body1-font-size);
+  --ld-c-form-text-field-placeholder-text-font-weight: var(--ld-s-typography-body1-font-weight);
+  --ld-c-form-text-field-placeholder-text-letter-spacing: var(--ld-s-typography-body1-letter-spacing);
+  --ld-c-form-text-field-placeholder-text-line-height: var(--ld-s-typography-body1-line-height);
+  --ld-c-form-text-field-placeholder-text-paragraph-spacing: var(--ld-s-typography-body1-paragraph-spacing);
+  --ld-c-form-text-field-placeholder-text-text-case: var(--ld-s-typography-body1-text-case);
+  --ld-c-form-text-field-support-text-font-family: var(--ld-s-typography-body2-font-family);
+  --ld-c-form-text-field-support-text-font-size: var(--ld-s-typography-body2-font-size);
+  --ld-c-form-text-field-support-text-font-weight: var(--ld-s-typography-body2-font-weight);
+  --ld-c-form-text-field-support-text-letter-spacing: var(--ld-s-typography-body2-letter-spacing);
+  --ld-c-form-text-field-support-text-line-height: var(--ld-s-typography-body2-line-height);
+  --ld-c-form-text-field-support-text-paragraph-spacing: var(--ld-s-typography-body2-paragraph-spacing);
+  --ld-c-form-text-field-support-text-text-case: var(--ld-s-typography-body2-text-case);
+  --ld-c-form-text-info-header-font-family: var(--ld-s-typography-subtitle1-font-family);
+  --ld-c-form-text-info-header-font-size: var(--ld-s-typography-subtitle1-font-size);
+  --ld-c-form-text-info-header-font-weight: var(--ld-s-typography-subtitle1-font-weight);
+  --ld-c-form-text-info-header-letter-spacing: var(--ld-s-typography-subtitle1-letter-spacing);
+  --ld-c-form-text-info-header-line-height: var(--ld-s-typography-subtitle1-line-height);
+  --ld-c-form-text-info-header-paragraph-spacing: var(--ld-s-typography-subtitle1-paragraph-spacing);
+  --ld-c-form-text-info-header-text-case: var(--ld-s-typography-subtitle1-text-case);
+  --ld-c-form-text-info-subheader-font-family: var(--ld-s-typography-body2-font-family);
+  --ld-c-form-text-info-subheader-font-size: var(--ld-s-typography-body2-font-size);
+  --ld-c-form-text-info-subheader-font-weight: var(--ld-s-typography-body2-font-weight);
+  --ld-c-form-text-info-subheader-letter-spacing: var(--ld-s-typography-body2-letter-spacing);
+  --ld-c-form-text-info-subheader-line-height: var(--ld-s-typography-body2-line-height);
+  --ld-c-form-text-info-subheader-paragraph-spacing: var(--ld-s-typography-body2-paragraph-spacing);
+  --ld-c-form-text-info-subheader-text-case: var(--ld-s-typography-body2-text-case);
+  --ld-c-form-transition-duration-default: var(--ld-s-transition-duration-default);
+  --ld-c-form-transition-duration-fast: var(--ld-s-transition-duration-fast);
+  --ld-c-form-transition-duration-slow: var(--ld-s-transition-duration-slow);
+  --ld-c-form-transition-easing-default: ease-out;
+}
+
+/* ---- Light theme ----
+ * Mirror palette flipped to warm smoke surfaces. Applied either by explicit
+ * [data-theme="light"] override or, when [data-theme="auto"] is set, by the
+ * system's prefers-color-scheme.
+ */
+:root[data-theme="light"],
+:root[data-theme="auto"] {
+  color-scheme: light;
+}
+
+:root[data-theme="light"] {
+  /* ---- Lexus DS colour system — light theme ----
+   * The authoritative semantic tokens for light. App-semantic + --ld-c-*
+   * tokens resolve onto these, so flipping this layer flips the theme. */
+  --ld-s-color-accent-primary-lighter: #272a39;
+  --ld-s-color-accent-primary-default: #232632;
+  --ld-s-color-accent-primary-darker: #1e212b;
+  --ld-s-color-accent-primary-disabled: rgba(35, 38, 50, 0.5);
+  --ld-s-color-accent-primary-opacity-default-lighter: rgba(35, 38, 50, 0.3);
+  --ld-s-color-accent-secondary-lighter: #ea7b50;
+  --ld-s-color-accent-secondary-default: #cc4c19;
+  --ld-s-color-accent-secondary-darker: #8f3511;
+  --ld-s-color-accent-secondary-disabled: #cc4c19;
+  --ld-s-color-accent-electrified-default: #2468ff;
+
+  --ld-s-color-foreground-lighter: #272a39;
+  --ld-s-color-foreground-default: #232632;
+  --ld-s-color-foreground-darker: #1e212b;
+  --ld-s-color-foreground-disabled: #232632;
+  --ld-s-color-foreground-on-accent: #e8e6e0;
+  --ld-s-color-foreground-on-disabled: #e8e6e0;
+  --ld-s-color-foreground-opacity-on-accent-lighter: rgba(232, 230, 224, 0.3);
+
+  --ld-s-color-elevation-raised-lighter: #fafaf9;
+  --ld-s-color-elevation-raised-default: #f6f5f3;
+  --ld-s-color-elevation-raised-darker: #f1f0ec;
+  --ld-s-color-elevation-inset-lighter: #dfdcd4;
+  --ld-s-color-elevation-inset-default: #dad8ce;
+  --ld-s-color-elevation-inset-darker: #d6d3c8;
+  --ld-s-color-canvas-lighter: #e8e6e0;
+  --ld-s-color-canvas-default: #e3e1da;
+  --ld-s-color-canvas-darker: #dfdcd4;
+
+  --ld-s-color-utility-error-lighter: hsl(347, 100%, 60%);
+  --ld-s-color-utility-error-default: hsl(347, 60%, 40%);
+  --ld-s-color-utility-error-darker: hsl(347, 60%, 40%);
+  --ld-s-color-utility-error-disabled: hsl(347, 60%, 40%);
+  --ld-s-color-utility-success-lighter: hsl(115, 100%, 60%);
+  --ld-s-color-utility-success-default: hsl(115, 60%, 40%);
+  --ld-s-color-utility-success-darker: hsl(115, 60%, 40%);
+  --ld-s-color-utility-success-disabled: hsl(115, 60%, 40%);
+  --ld-s-color-utility-warning-lighter: hsl(39, 100%, 60%);
+  --ld-s-color-utility-warning-default: hsl(39, 80%, 50%);
+  --ld-s-color-utility-warning-darker: hsl(39, 60%, 40%);
+  --ld-s-color-utility-warning-disabled: hsl(39, 80%, 50%);
+  --ld-s-color-utility-information-lighter: hsl(206, 100%, 60%);
+  --ld-s-color-utility-information-default: hsl(206, 80%, 50%);
+  --ld-s-color-utility-information-darker: hsl(206, 60%, 40%);
+  --ld-s-color-utility-information-disabled: hsl(206, 80%, 50%);
+  --ld-s-color-utility-modifiers-midlight: #1717171a;
+  --ld-s-color-utility-modifiers-mid: rgba(23, 23, 23, 0.3);
+
+  --ld-s-color-common-white: #ffffff;
+  --ld-s-color-common-black: #171717;
+  --ld-s-color-common-true-black: #000000;
+  --ld-s-color-common-opacity-white-lightest: rgba(255, 255, 255, 0.1);
+  --ld-s-color-common-opacity-white-lighter: rgba(255, 255, 255, 0.2);
+  --ld-s-color-common-opacity-true-black-light: rgba(0, 0, 0, 0.3);
+  --ld-s-color-common-opacity-true-black-lightest: rgba(0, 0, 0, 0.1);
+  --ld-s-color-common-opacity-true-black-darker: rgba(0, 0, 0, 0.75);
+  --ld-s-color-common-opacity-true-black-darkest: rgba(0, 0, 0, 0.9);
+  --ld-s-color-common-opacity-black-lightest: rgba(23, 23, 23, 0.1);
+  --ld-s-color-common-opacity-black-darker: rgba(23, 23, 23, 0.75);
+  --ld-s-color-common-opacity-black-darkest: rgba(23, 23, 23, 0.9);
+  --ld-s-color-common-inherit-theme-default: #171717;
+  --ld-s-color-common-inherit-theme-inverse: #ffffff;
+
+  /* App surfaces / foreground sourced from the DS light tokens above
+   * (same hex as the previous smoke values — appearance unchanged). */
+  --canvas: var(--ld-s-color-elevation-raised-lighter); /* #fafaf9 */
+  --canvas-raised: var(--ld-s-color-elevation-raised-darker); /* #f1f0ec */
+  --surface: var(--ld-s-color-common-white); /* #ffffff */
+  --surface-raised: var(--ld-s-color-elevation-raised-darker); /* #f1f0ec */
+  --surface-hover: var(--ld-s-color-canvas-lighter); /* #e8e6e0 */
+  --elevation-inset: var(--ld-s-color-elevation-raised-darker); /* #f1f0ec */
+
+  --canvas-scrim-rgb: 22, 22, 26;
+  --canvas-scrim-strong: rgba(var(--canvas-scrim-rgb), 0.55);
+  --canvas-scrim: rgba(var(--canvas-scrim-rgb), 0.4);
+  --canvas-scrim-soft: rgba(var(--canvas-scrim-rgb), 0.18);
+
+  --fg: var(--ld-s-color-foreground-default); /* #232632 */
+  --fg-strong: var(--ld-color-lexus-deepblue-900);
+  /* Darkened from deepblue-50 / #969aa3 so secondary + dim text clears WCAG AA
+   * (4.5:1) on the light smoke surfaces. */
+  --fg-muted: #5f636d;
+  --fg-dim: #646872;
+  --fg-on-accent: var(--ld-s-color-foreground-on-accent); /* #e8e6e0 */
+
+  /* Status, accent and tier hues re-tinted darker for AA as *text* on light
+   * surfaces (the dark-theme values are tuned for dark backgrounds and fail
+   * here). Decorative fills using these tokens are small dots/tints, unaffected;
+   * the metallic --tier-gradient is decoupled so it stays bright. */
+  --accent-bright: #c41f22;
+  --accent-electrified: #1a52cc;
+  --success: #277821;
+  /* Re-tinted darker so warning text clears WCAG AA (4.5:1) on light surfaces —
+   * the DS amber (#e69e1a) only reaches ~2:1 on the light smoke palette. */
+  --warning: #8a5e00;
+  --error: #c41540;
+  --ld-color-lexus-clay-400: #7a6223;
+
+  --border: rgba(0, 0, 0, 0.1);
+  --border-strong: rgba(0, 0, 0, 0.18);
+  --border-tier: rgba(192, 138, 24, 0.45);
+  --overlay-hover: rgba(0, 0, 0, 0.04);
+
+  --shadow-sm: 0 18px 24px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 24px 60px rgba(0, 0, 0, 0.14);
+  --shadow-lg: -30px 0 80px rgba(0, 0, 0, 0.18);
+  --shadow-render-sm: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.14));
+  --shadow-render-md: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.16));
+  --shadow-render-lg: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.2));
+
+  --tier-glow: 0 0 0 1px rgba(var(--tier-clay-rgb), 0.35),
+    0 8px 24px -8px rgba(var(--tier-clay-rgb), 0.4);
+}
+
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] {
+    /* Lexus DS colour system — light theme (mirrors [data-theme="light"]). */
+    --ld-s-color-accent-primary-lighter: #272a39;
+    --ld-s-color-accent-primary-default: #232632;
+    --ld-s-color-accent-primary-darker: #1e212b;
+    --ld-s-color-accent-primary-disabled: rgba(35, 38, 50, 0.5);
+    --ld-s-color-accent-primary-opacity-default-lighter: rgba(35, 38, 50, 0.3);
+    --ld-s-color-accent-secondary-lighter: #ea7b50;
+    --ld-s-color-accent-secondary-default: #cc4c19;
+    --ld-s-color-accent-secondary-darker: #8f3511;
+    --ld-s-color-accent-secondary-disabled: #cc4c19;
+    --ld-s-color-accent-electrified-default: #2468ff;
+
+    --ld-s-color-foreground-lighter: #272a39;
+    --ld-s-color-foreground-default: #232632;
+    --ld-s-color-foreground-darker: #1e212b;
+    --ld-s-color-foreground-disabled: #232632;
+    --ld-s-color-foreground-on-accent: #e8e6e0;
+    --ld-s-color-foreground-on-disabled: #e8e6e0;
+    --ld-s-color-foreground-opacity-on-accent-lighter: rgba(232, 230, 224, 0.3);
+
+    --ld-s-color-elevation-raised-lighter: #fafaf9;
+    --ld-s-color-elevation-raised-default: #f6f5f3;
+    --ld-s-color-elevation-raised-darker: #f1f0ec;
+    --ld-s-color-elevation-inset-lighter: #dfdcd4;
+    --ld-s-color-elevation-inset-default: #dad8ce;
+    --ld-s-color-elevation-inset-darker: #d6d3c8;
+    --ld-s-color-canvas-lighter: #e8e6e0;
+    --ld-s-color-canvas-default: #e3e1da;
+    --ld-s-color-canvas-darker: #dfdcd4;
+
+    --ld-s-color-utility-error-lighter: hsl(347, 100%, 60%);
+    --ld-s-color-utility-error-default: hsl(347, 60%, 40%);
+    --ld-s-color-utility-error-darker: hsl(347, 60%, 40%);
+    --ld-s-color-utility-error-disabled: hsl(347, 60%, 40%);
+    --ld-s-color-utility-success-lighter: hsl(115, 100%, 60%);
+    --ld-s-color-utility-success-default: hsl(115, 60%, 40%);
+    --ld-s-color-utility-success-darker: hsl(115, 60%, 40%);
+    --ld-s-color-utility-success-disabled: hsl(115, 60%, 40%);
+    --ld-s-color-utility-warning-lighter: hsl(39, 100%, 60%);
+    --ld-s-color-utility-warning-default: hsl(39, 80%, 50%);
+    --ld-s-color-utility-warning-darker: hsl(39, 60%, 40%);
+    --ld-s-color-utility-warning-disabled: hsl(39, 80%, 50%);
+    --ld-s-color-utility-information-lighter: hsl(206, 100%, 60%);
+    --ld-s-color-utility-information-default: hsl(206, 80%, 50%);
+    --ld-s-color-utility-information-darker: hsl(206, 60%, 40%);
+    --ld-s-color-utility-information-disabled: hsl(206, 80%, 50%);
+    --ld-s-color-utility-modifiers-midlight: #1717171a;
+    --ld-s-color-utility-modifiers-mid: rgba(23, 23, 23, 0.3);
+
+    --ld-s-color-common-white: #ffffff;
+    --ld-s-color-common-black: #171717;
+    --ld-s-color-common-true-black: #000000;
+    --ld-s-color-common-opacity-white-lightest: rgba(255, 255, 255, 0.1);
+    --ld-s-color-common-opacity-white-lighter: rgba(255, 255, 255, 0.2);
+    --ld-s-color-common-opacity-true-black-light: rgba(0, 0, 0, 0.3);
+    --ld-s-color-common-opacity-true-black-lightest: rgba(0, 0, 0, 0.1);
+    --ld-s-color-common-opacity-true-black-darker: rgba(0, 0, 0, 0.75);
+    --ld-s-color-common-opacity-true-black-darkest: rgba(0, 0, 0, 0.9);
+    --ld-s-color-common-opacity-black-lightest: rgba(23, 23, 23, 0.1);
+    --ld-s-color-common-opacity-black-darker: rgba(23, 23, 23, 0.75);
+    --ld-s-color-common-opacity-black-darkest: rgba(23, 23, 23, 0.9);
+    --ld-s-color-common-inherit-theme-default: #171717;
+    --ld-s-color-common-inherit-theme-inverse: #ffffff;
+
+    --canvas: var(--ld-s-color-elevation-raised-lighter); /* #fafaf9 */
+    --canvas-raised: var(--ld-s-color-elevation-raised-darker); /* #f1f0ec */
+    --surface: var(--ld-s-color-common-white); /* #ffffff */
+    --surface-raised: var(--ld-s-color-elevation-raised-darker); /* #f1f0ec */
+    --surface-hover: var(--ld-s-color-canvas-lighter); /* #e8e6e0 */
+    --elevation-inset: var(--ld-s-color-elevation-raised-darker); /* #f1f0ec */
+
+    --canvas-scrim-rgb: 22, 22, 26;
+    --canvas-scrim-strong: rgba(var(--canvas-scrim-rgb), 0.55);
+    --canvas-scrim: rgba(var(--canvas-scrim-rgb), 0.4);
+    --canvas-scrim-soft: rgba(var(--canvas-scrim-rgb), 0.18);
+
+    --fg: var(--ld-s-color-foreground-default); /* #232632 */
+    --fg-strong: var(--ld-color-lexus-deepblue-900);
+    /* See [data-theme="light"] above — AA-safe secondary/dim text on light. */
+    --fg-muted: #5f636d;
+    --fg-dim: #646872;
+    --fg-on-accent: var(--ld-s-color-foreground-on-accent); /* #e8e6e0 */
+
+    --accent-bright: #c41f22;
+    --accent-electrified: #1a52cc;
+    --success: #277821;
+    /* See [data-theme="light"] — AA-safe warning text on light surfaces. */
+    --warning: #8a5e00;
+    --error: #c41540;
+    --ld-color-lexus-clay-400: #7a6223;
+
+    --border: rgba(0, 0, 0, 0.1);
+    --border-strong: rgba(0, 0, 0, 0.18);
+    --border-tier: rgba(192, 138, 24, 0.45);
+    --overlay-hover: rgba(0, 0, 0, 0.04);
+
+    --shadow-sm: 0 18px 24px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 24px 60px rgba(0, 0, 0, 0.14);
+    --shadow-lg: -30px 0 80px rgba(0, 0, 0, 0.18);
+    --shadow-render-sm: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.14));
+    --shadow-render-md: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.16));
+    --shadow-render-lg: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.2));
+
+    --tier-glow: 0 0 0 1px rgba(var(--tier-clay-rgb), 0.35),
+      0 8px 24px -8px rgba(var(--tier-clay-rgb), 0.4);
+  }
+}

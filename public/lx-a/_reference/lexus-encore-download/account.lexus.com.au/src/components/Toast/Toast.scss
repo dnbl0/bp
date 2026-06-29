@@ -1,0 +1,40 @@
+@import "lexus-style-guide/colors/index";
+@import "../../styles/mixins";
+
+.toast {
+    $block: &;
+    $toast-padding: 2.4rem;
+
+    @include desktop {
+        align-items: center;
+    }
+
+    &__content {
+        position: relative;
+        background-color: lx-color("smoke");
+        border-radius: 0.3rem;
+        padding: $toast-padding;
+        width: 100%;
+
+        @include desktop {
+            width: 37.6rem;
+        }
+    }
+
+    &__close {
+        cursor: pointer;
+        position: absolute;
+        top: 1.4rem;
+        right: 1.4rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &--hide-close-button {
+        #{$block}__close {
+            display: none;
+        }
+    }
+}

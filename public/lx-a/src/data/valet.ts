@@ -1,0 +1,128 @@
+export interface ValetLocation {
+  id: string;
+  name: string;
+  brand: "Westfield" | "Chadstone";
+  note: string;
+  address: string;
+  hours: string;
+}
+
+export interface ValetRegion {
+  state: string;
+  locations: ValetLocation[];
+}
+
+export const valetIntro =
+  "Arrive in your Lexus at one of the valet locations and the friendly staff will park your car for you.";
+
+export const valetRedemptions = 2;
+
+export const valetRegions: ValetRegion[] = [
+  {
+    state: "New South Wales",
+    locations: [
+      {
+        id: "bondi",
+        name: "Bondi Junction",
+        brand: "Westfield",
+        note: "Complimentary parking for 2 hours.",
+        address: "500 Oxford St, Bondi Junction NSW 2022",
+        hours: "Mon–Sun, 9:00am – 6:00pm",
+      },
+      {
+        id: "miranda",
+        name: "Miranda",
+        brand: "Westfield",
+        note: "Complimentary parking for 2 hours.",
+        address: "600 Kingsway, Miranda NSW 2228",
+        hours: "Mon–Sun, 9:00am – 6:00pm",
+      },
+      {
+        id: "parramatta",
+        name: "Parramatta",
+        brand: "Westfield",
+        note: "Complimentary parking for 2 hours.",
+        address: "159–175 Church St, Parramatta NSW 2150",
+        hours: "Mon–Sun, 9:00am – 6:00pm",
+      },
+    ],
+  },
+  {
+    state: "Queensland",
+    locations: [
+      {
+        id: "chermside",
+        name: "Chermside",
+        brand: "Westfield",
+        note: "Complimentary parking for 2 hours.",
+        address: "Gympie Rd & Hamilton Rd, Chermside QLD 4032",
+        hours: "Mon–Sun, 9:00am – 6:00pm",
+      },
+      {
+        id: "garden-city",
+        name: "Garden City",
+        brand: "Westfield",
+        note: "Complimentary parking for 2 hours.",
+        address: "Kessels Rd & Logan Rd, Upper Mount Gravatt QLD 4122",
+        hours: "Mon–Sun, 9:00am – 6:00pm",
+      },
+    ],
+  },
+  {
+    state: "Victoria",
+    locations: [
+      {
+        id: "doncaster",
+        name: "Doncaster",
+        brand: "Westfield",
+        note: "Complimentary parking for 2 hours.",
+        address: "619 Doncaster Rd, Doncaster VIC 3108",
+        hours: "Mon–Sun, 9:00am – 6:00pm",
+      },
+      {
+        id: "chadstone",
+        name: "Chadstone",
+        brand: "Chadstone",
+        note: "Complimentary parking for 2 hours.",
+        address: "1341 Dandenong Rd, Chadstone VIC 3148",
+        hours: "Mon–Sun, 9:00am – 6:00pm",
+      },
+    ],
+  },
+  {
+    state: "Western Australia",
+    locations: [
+      {
+        id: "carousel",
+        name: "Carousel",
+        brand: "Westfield",
+        note: "Complimentary parking for 2 hours.",
+        address: "1382 Albany Hwy, Cannington WA 6107",
+        hours: "Mon–Sun, 9:00am – 6:00pm",
+      },
+    ],
+  },
+];
+
+export const valetSteps = [
+  {
+    title: "Choose a location",
+    body: "Look at our list of providers to see if a location suits your needs.",
+  },
+  {
+    title: "Drive to your desired destination",
+    body: "No need to book!",
+  },
+  {
+    title: "Drop off your Lexus",
+    body: "Just arrive and the friendly staff will park your car for you.",
+  },
+  {
+    title: "Enjoy yourself",
+    body: "Enjoy your shopping centre visit. Please check each location for details on complimentary parking.",
+  },
+  {
+    title: "Collect your Lexus",
+    body: "Head back to the Valet attendant and receive your Lexus.",
+  },
+];

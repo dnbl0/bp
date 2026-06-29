@@ -1,0 +1,82 @@
+@import "../../../styles/mixins";
+@import "../variables";
+
+.section-header-title {
+    $parent: ".section-header";
+    $icon-size: 2.4rem;
+    $text-icon-space: $icon-size + 2.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 0 30px;
+
+        @include desktop {
+            margin: 0 0 4px;
+        }
+    }
+
+
+    &__text {
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        display: block;
+        color: lx-color("white");
+        font-weight: 400;
+        #{$parent}--main-page &,
+        #{$parent}--sub-page & {
+            margin: 0 0 0 0;
+            letter-spacing: 0.175rem;
+
+            @include desktop {
+                font-size: 4.2rem;
+                letter-spacing: 0.2rem;
+            }
+        }
+
+        #{$parent}--flow-page & {
+            margin: 0;
+            text-align: center;
+            font-size: 1.7rem;
+            letter-spacing: 0.175rem;
+            line-height: 2.4rem;
+            font-weight: 400;
+
+            @include desktop {
+                text-align: start;
+                font-size: 3.2rem;
+                letter-spacing: 0.2rem;
+                line-height: 3.2rem;
+                font-weight: 300;
+            }
+        }
+
+        #{$parent}--no-back#{$parent}--flow-page & {
+            margin: 0;
+        }
+
+        @include desktop {
+            margin: 0;
+            font-size: 4.2rem;
+            letter-spacing: 0.2rem;
+
+            #{$parent}--sub-page &,
+            #{$parent}--flow-page & {
+                margin: 0 0 0 2.4rem;
+            }
+        }
+    }
+
+    &__subtitle {
+        margin-bottom: 0;
+
+        @include desktop {
+            position: relative;
+            left: 9.7rem;
+        }
+    }
+}

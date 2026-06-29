@@ -1,0 +1,21 @@
+html,
+body,
+#root {
+    height: 100%;
+    overflow: initial;
+}
+
+.margin-bottom-zero {
+    margin-bottom: 0;
+}
+
+.link-disabled {
+    text-decoration: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.DayPicker_transitionContainer {
+    height: 310px !important;
+}

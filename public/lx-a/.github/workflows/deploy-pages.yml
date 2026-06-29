@@ -1,0 +1,54 @@
+name: Deploy case study (GitHub Pages)
+
+# Publishes the /folio case study to GitHub Pages at
+# https://dnbl0.github.io/lexus-auth-state/folio/
+# A small root redirect sends the bare repo URL to /folio/.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "folio/**"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stage site (case study served at /folio)
+        run: |
+          mkdir -p _site/folio
+          cp -R folio/. _site/folio/
+          cat > _site/index.html <<'HTML'
+          <!doctype html><html lang="en"><head><meta charset="utf-8">
+          <title>Redirecting…</title>
+          <meta http-equiv="refresh" content="0; url=./folio/">
+          <link rel="canonical" href="./folio/"></head>
+          <body>Redirecting to <a href="./folio/">the case study</a>…</body></html>
+          HTML
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

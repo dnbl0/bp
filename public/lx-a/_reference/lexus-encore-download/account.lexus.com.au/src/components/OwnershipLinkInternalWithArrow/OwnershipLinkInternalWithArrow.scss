@@ -1,0 +1,48 @@
+@use "sass:list";
+@import "../../styles/variables";
+@import "lexus-style-guide/colors/index";
+
+.ownership-link-internal-with-arrow {
+    cursor: pointer;
+    display: inline-flex;
+
+    &__arrow {
+        cursor: inherit;
+        margin: auto 0;
+        display: flex;
+    }
+
+    .ownership-link-internal {
+        margin-right: 0.8rem;
+        transition-property: list.append($ownership-link-transition-property, margin-right);
+    }
+
+    &:hover,
+    &:focus {
+        .ownership-link-internal {
+            color: $ownership-link-color-hover;
+            margin-right: 1.2rem;
+        }
+
+        .ownership-link-internal-with-arrow__arrow > svg > path {
+            fill: $ownership-link-color-hover;
+        }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        .ownership-link-internal {
+            text-decoration-color: rgba($ownership-link-color, 0);
+        }
+    }
+
+    &--circle-arrow & {
+        &__arrow {
+            // icon looks too far left so 0.1rem padding moved from right to left
+            padding: 0.5rem 0.4rem 0.5rem 0.6rem;
+            border-radius: 50%;
+            background-color: $lx-blue-opaque-75;
+        }
+    }
+}

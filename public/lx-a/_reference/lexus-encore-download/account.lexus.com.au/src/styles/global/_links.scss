@@ -1,0 +1,49 @@
+@import "../mixins";
+@import "../variables";
+
+.link {
+    @include link;
+}
+
+.link-uppercase {
+    @include link-uppercase;
+    cursor: pointer;
+}
+
+.ownership-link {
+    font-size: 1.9rem;
+    line-height: 3.2rem;
+    text-decoration: underline;
+    text-decoration-color: rgba($ownership-link-color, 1);
+    color: $ownership-link-color;
+    transition-property: $ownership-link-transition-property;
+    transition-duration: 200ms;
+    font-weight: 400;
+
+    &--small {
+        font-size: 1.7rem;
+    }
+
+    &--large {
+        font-size: 2.1rem;
+    }
+
+    &--extra-large {
+        font-size: 2.5rem;
+    }
+
+    &--light {
+        font-weight: 300;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration-color: rgba($ownership-link-color, 0);
+    }
+
+    &:hover,
+    &:focus {
+        color: $ownership-link-color-hover;
+    }
+}

@@ -1,0 +1,12 @@
+.lx-nav-search-menu-trigger {
+    cursor: pointer;
+    width: 100%;
+    font-size: var(--primary-nav-tg-item-font-size);
+    font-weight: var(--primary-nav-tg-item-font-weight);
+    line-height: var(--primary-nav-tg-item-line-height);
+    color: var(--ld-color-legacy-lexus-brand-white);
+
+    &:hover {
+        color: var(--ld-color-legacy-lexus-brand-white);
+    }
+}

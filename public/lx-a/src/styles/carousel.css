@@ -1,0 +1,74 @@
+/* ============================================================
+   Carousel — one implementation, reused everywhere
+   Scroll-snap track that always reveals a peek of the next item,
+   with a centred  ‹ • • • ›  control row.
+   ============================================================ */
+.carousel {
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel__viewport {
+  position: relative;
+  display: flex;
+  gap: var(--gap, 24px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* let a focused viewport show its ring without clipping */
+  padding-bottom: 2px;
+  margin-bottom: -2px;
+  /* Soften only the peeking item: fade to transparent across the peek sliver,
+     and only on the side that has more content (scroll-aware — see Carousel).
+     Fully-visible cards stay crisp; at each scroll extreme that side is solid. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--fade-start, 0px),
+    #000 calc(100% - var(--fade-end, 0px)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--fade-start, 0px),
+    #000 calc(100% - var(--fade-end, 0px)),
+    transparent 100%
+  );
+}
+.carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+.carousel__viewport:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.carousel__item {
+  /* per-view items + a peek of the next: (track − peek − inner gaps) / per */
+  flex: 0 0
+    calc(
+      (100% - var(--peek, 0px) - (var(--per, 1) - 1) * var(--gap, 24px)) /
+        var(--per, 1)
+    );
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+/* Control row: prev arrow · dots · next arrow */
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-7);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__viewport {
+    scroll-behavior: auto;
+  }
+}
