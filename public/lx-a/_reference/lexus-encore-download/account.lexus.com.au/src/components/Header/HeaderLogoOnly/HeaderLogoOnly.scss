@@ -1,9 +1,0 @@
-@import "../../../styles/module/index";
-@import "../../../styles/mixins";
-@import "../../../styles/variables";
-
-.logo-only {
-    &__logo {
-        padding-left: $lxs-grid-margin-width-mobile;
-    }
-}
