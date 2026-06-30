@@ -1,0 +1,1 @@
+import{r as s}from"./index-ClcD9ViR.js";function u(t,e){const[r,a]=s.useState(()=>{if(typeof window>"u")return e;try{const o=window.localStorage.getItem(t);return o===null?e:JSON.parse(o)}catch{return e}});return s.useEffect(()=>{try{window.localStorage.setItem(t,JSON.stringify(r))}catch{}},[t,r]),[r,a]}export{u};

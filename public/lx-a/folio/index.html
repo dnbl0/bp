@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>My Lexus — Authenticated Experience · Case Study</title>
+<meta name="description" content="A hiring-focused case study of my role leading UX/UI for the authenticated My Lexus experience — design system, motion, interactive components, mobile, accessibility and a handoff-ready React build." />
+<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="assets/fonts/Nobel-Book.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/Nobel-Bold.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="cs-root" id="cs-root">
+
+<a class="cs-skip" href="#overview">Skip to content</a>
+<div class="cs-progress" id="cs-progress" aria-hidden="true"></div>
+
+<!-- ===== HEADER ===== -->
+<header class="cs-header">
+  <div class="cs-header-inner">
+    <a class="cs-header-brand" href="#top" aria-label="My Lexus — back to top">
+      <img src="assets/brand/lexus-logo.svg" alt="Lexus" width="100" height="20" />
+      <span class="cs-header-brand-tag">Case study</span>
+    </a>
+    <div class="cs-header-actions">
+      <button class="cs-header-icon" id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+      </button>
+      <a class="cs-header-btn cs-header-btn--primary" href="https://dnbl0.github.io/bp/lx-a/" target="_blank" rel="noopener">
+        Open prototype
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TOC ===== -->
+<nav class="cs-toc" id="cs-toc" aria-label="On this page">
+  <p class="cs-toc-title">On this page</p>
+  <ul>
+    <li><button data-target="overview">The brief</button></li>
+    <li><button data-target="system">Design system</button></li>
+    <li><button data-target="ui">UI</button></li>
+    <li><button data-target="motion">Motion</button></li>
+    <li><button data-target="components">Components</button></li>
+    <li><button data-target="mobile">Mobile</button></li>
+    <li><button data-target="a11y">Accessibility</button></li>
+    <li><button data-target="live">Live build</button></li>
+    <li><button data-target="reflections">Reflections</button></li>
+  </ul>
+</nav>
+
+<main id="top">
+
+<!-- ===== HERO ===== -->
+<section class="cs-hero cs-container">
+  <div class="cs-reveal is-in">
+    <div class="cs-hero-meta">
+      <span class="cs-chip cs-chip--accent">Case study</span>
+      <span class="cs-chip">UX/UI · Prototyping</span>
+      <span class="cs-chip">Lexus Australia · 2026</span>
+    </div>
+    <h1 class="cs-display">The authenticated <em>My&nbsp;Lexus</em> experience.</h1>
+    <p class="cs-hero-lead">
+      I led UX/UI direction and prototyping for the signed-in My Lexus journey — using advanced Figma
+      techniques to test <strong>motion</strong>, <strong>micro-interactions</strong>,
+      <strong>dynamic flyouts and cards</strong> and <strong>mobile gestures</strong>, then building it
+      all as a working React prototype.
+    </p>
+  </div>
+  <div class="cs-reveal cs-hero-demo" style="--reveal-delay:120ms">
+    <div class="cs-demo-frame cs-demo-frame--flush">
+      <span class="cs-demo-label">Recorded walkthrough</span>
+      <video class="device__screen video-pop" muted loop playsinline autoplay preload="none"
+             poster="assets/media/d-pages-poster.jpg" style="aspect-ratio:1366/768;object-fit:cover;width:100%;border-radius:18px;cursor:pointer"
+             data-cap="Member dashboard — calm scroll through the signed-in experience">
+        <source src="assets/media/d-pages.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="cs-stats-strip cs-container">
+  <div class="cs-reveal">
+    <div class="cs-stats" data-counter-group>
+      <div class="cs-stat"><div class="cs-stat-value" data-count="7">0</div><div class="cs-stat-label">Authenticated screens</div></div>
+      <div class="cs-stat"><div class="cs-stat-value" data-count="132">0</div><div class="cs-stat-label">Storybook stories</div></div>
+      <div class="cs-stat"><div class="cs-stat-value" data-count="240" data-suffix="+">0</div><div class="cs-stat-label">Design tokens</div></div>
+      <div class="cs-stat"><div class="cs-stat-value">WCAG AA</div><div class="cs-stat-label">Accessibility target</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 THE BRIEF ===== -->
+<section class="cs-section" id="overview" tabindex="-1">
+  <div class="cs-reveal">
+    <div class="cs-section-head">
+      <span class="cs-eyebrow">The brief</span>
+      <h2 class="cs-h2">Everything that happens after login.</h2>
+      <p class="cs-body">I redesigned the entire authenticated experience — dashboard, garage, Encore benefits,
+        profile and concierge — into one consistent member journey with clear IA, reusable patterns and
+        production-ready interaction behaviour.</p>
+      <p class="cs-body cs-body--muted">Rather than hand over static mockups, I designed each decision and then built
+        it as a working React prototype, so behaviour, edge cases and final UX quality could be reviewed in a real
+        interface — a shared reference for product, content and engineering conversations.</p>
+    </div>
+  </div>
+  <div class="cs-reveal cs-pull">
+    <blockquote>Clearer UX, stronger delivery confidence, faster handoff.</blockquote>
+  </div>
+</section>
+
+<!-- ===== 02 DESIGN SYSTEM ===== -->
+<section class="cs-section cs-section--surface" id="system" tabindex="-1">
+  <div class="cs-reveal">
+    <div class="cs-section-head">
+      <span class="cs-eyebrow">Design system</span>
+      <h2 class="cs-h2">One source of truth, primitive to pixel.</h2>
+      <p class="cs-body">I built and maintained the token structure in Figma and mapped it to React UI components,
+        so the system could scale with fewer visual regressions. The same tokens are documented in a 132-story
+        Storybook, ready for handoff.</p>
+    </div>
+  </div>
+  <!-- Colour system — full width, three tiers -->
+  <div class="cs-reveal lx-color" id="lx-color">
+    <div class="lx-color__head">
+      <h3 class="cs-h3">Colour — a layered token system</h3>
+      <p class="cs-body cs-body--muted"><span class="cs-strong">Base</span> tints become
+        <span class="cs-strong">primitive</span> tokens, which feed <span class="cs-strong">semantic</span> roles, which
+        feed <span class="cs-strong">component</span> tokens — the layered architecture used by IBM Carbon, Adobe
+        Spectrum, Google Material and Atlassian. <span id="lx-color-count"></span> Click any row for details.</p>
+    </div>
+    <div id="lx-palette"></div>
+    <details class="lx-browse" id="lx-browse">
+      <summary><span class="lx-browse__label">Browse all tokens</span><span class="lx-browse__hint">base tints · semantic roles · component tokens</span></summary>
+      <div id="lx-browse-body"></div>
+    </details>
+  </div>
+
+  <!-- Typography — full width, on its own -->
+  <div class="cs-reveal lx-typeblock">
+    <div class="lx-color__head"><h3 class="cs-h3">Typography — Nobel</h3>
+      <p class="cs-body cs-body--muted">The Lexus brand typeface, set as a 16-style scale — calm, precise, confident,
+        with generous tracking on headings. <span id="lx-type-count"></span></p></div>
+    <div id="lx-type"></div>
+  </div>
+</section>
+
+<!-- ===== 03 UI ===== -->
+<section class="cs-section" id="ui" tabindex="-1">
+  <div class="cs-reveal">
+    <div class="cs-section-head">
+      <span class="cs-eyebrow">UI design</span>
+      <h2 class="cs-h2">One unmistakable voice, every surface.</h2>
+      <p class="cs-body">Each surface was designed in Figma, validated through interactive prototypes, then built as a
+        working React interface. Click any screen to enlarge.</p>
+    </div>
+  </div>
+  <div class="cs-reveal lx-showcase" id="gallery">
+    <figure class="lx-stage">
+      <div class="lx-stage__chrome"><i></i><i></i><i></i><span class="lx-stage__url" id="lx-stage-url">account.lexus.com.au / dashboard</span></div>
+      <button class="lx-stage__media" id="lx-stage-media" aria-label="Enlarge screen">
+        <img id="lx-stage-img" src="assets/media/d-dashboard.jpg" alt="Member dashboard" />
+        <span class="lx-stage__zoom">⤢ Enlarge</span>
+      </button>
+    </figure>
+    <p class="lx-stage__cap"><b id="lx-stage-name">Dashboard</b> — <span id="lx-stage-desc">Time-of-day hero, an Encore benefits rail and a verified vehicle garage.</span></p>
+    <div class="lx-thumbs" role="tablist" aria-label="Screens">
+      <button class="lx-thumb is-active" role="tab" aria-selected="true" data-src="assets/media/d-dashboard.jpg" data-name="Dashboard" data-url="account.lexus.com.au / dashboard" data-desc="Time-of-day hero, an Encore benefits rail and a verified vehicle garage.">
+        <img src="assets/media/d-dashboard.jpg" alt="Dashboard" loading="lazy" /><span>Dashboard</span>
+      </button>
+      <button class="lx-thumb" role="tab" aria-selected="false" data-src="assets/media/d-encore.jpg" data-name="Encore Benefits" data-url="account.lexus.com.au / encore" data-desc="Limited-availability benefit cards, partner offers and refer-a-friend.">
+        <img src="assets/media/d-encore.jpg" alt="Encore Benefits" loading="lazy" /><span>Encore</span>
+      </button>
+      <button class="lx-thumb" role="tab" aria-selected="false" data-src="assets/media/d-mylexus.jpg" data-name="Vehicle Garage" data-url="account.lexus.com.au / my-lexus" data-desc="Verified vehicles with live service status and quick actions.">
+        <img src="assets/media/d-mylexus.jpg" alt="Vehicle Garage" loading="lazy" /><span>Garage</span>
+      </button>
+      <button class="lx-thumb" role="tab" aria-selected="false" data-src="assets/media/d-profile.jpg" data-name="Profile" data-url="account.lexus.com.au / profile" data-desc="Personal details and Encore membership with a points sparkline.">
+        <img src="assets/media/d-profile.jpg" alt="Profile" loading="lazy" /><span>Profile</span>
+      </button>
+      <button class="lx-thumb" role="tab" aria-selected="false" data-src="assets/media/d-search.jpg" data-name="Command Palette" data-url="account.lexus.com.au / ⌘K" data-desc="Keyboard-first navigation across every section and action.">
+        <img src="assets/media/d-search.jpg" alt="Command Palette" loading="lazy" /><span>Search</span>
+      </button>
+      <button class="lx-thumb" role="tab" aria-selected="false" data-src="assets/media/d-concierge.jpg" data-name="AI Concierge" data-url="account.lexus.com.au / concierge" data-desc="An AI booking flow in a right-anchored concierge panel.">
+        <img src="assets/media/d-concierge.jpg" alt="AI Concierge" loading="lazy" /><span>Concierge</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 MOTION ===== -->
+<section class="cs-section cs-section--surface" id="motion" tabindex="-1">
+  <div class="cs-reveal">
+    <div class="cs-section-head">
+      <span class="cs-eyebrow">Animation &amp; micro-interactions</span>
+      <h2 class="cs-h2">Motion in use.</h2>
+      <p class="cs-body">The four named eases and three durations aren't abstract — here's where each one shows up
+        across the authenticated experience, looping live. Motion stands down under <code>prefers-reduced-motion</code>.</p>
+    </div>
+  </div>
+  <div class="cs-reveal motionlab" aria-hidden="true">
+    <div class="mdemo">
+      <div class="mdemo__stage"><div class="mrev"><span></span><span></span><span></span></div></div>
+      <div class="mdemo__cap"><b>Scroll reveal</b><i>emphasized · 560ms</i></div>
+    </div>
+    <div class="mdemo">
+      <div class="mdemo__stage mdemo__stage--frame"><div class="mfly__scrim"></div><div class="mfly__panel"><span></span><span></span><span></span></div></div>
+      <div class="mdemo__cap"><b>Flyout / drawer</b><i>emphasized · 360ms</i></div>
+    </div>
+    <div class="mdemo">
+      <div class="mdemo__stage"><div class="mcard"><span></span><span></span></div></div>
+      <div class="mdemo__cap"><b>Card hover lift</b><i>standard · 600ms</i></div>
+    </div>
+    <div class="mdemo">
+      <div class="mdemo__stage mdemo__stage--frame"><div class="mtoast"><i></i> Saved</div></div>
+      <div class="mdemo__cap"><b>Toast confirm</b><i>emphasized · 240ms</i></div>
+    </div>
+    <div class="mdemo">
+      <div class="mdemo__stage"><div class="mskel"><span></span><span></span><span></span></div></div>
+      <div class="mdemo__cap"><b>Skeleton loading</b><i>linear · loop</i></div>
+    </div>
+    <div class="mdemo">
+      <div class="mdemo__stage"><div class="mtab"><b class="mtab__ind"></b><span>Encore</span><span>Profile</span></div></div>
+      <div class="mdemo__cap"><b>Segment switch</b><i>emphasized · 240ms</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05 COMPONENTS ===== -->
+<section class="cs-section" id="components" tabindex="-1">
+  <div class="cs-reveal">
+    <div class="cs-section-head">
+      <span class="cs-eyebrow">Dynamic components</span>
+      <h2 class="cs-h2">Isolated, and genuinely interactive.</h2>
+      <p class="cs-body">I designed and tested dynamic flyouts, pop-ups and card interactions in Figma first, then built
+        the same behaviour as production-grade React components. These are live Storybook embeds, not recordings.</p>
+    </div>
+  </div>
+  <div class="cs-reveal">
+    <div class="lab">
+      <div class="lab__tabs" id="lab-tabs" role="tablist" aria-label="Components">
+        <button role="tab" id="labtab-0" class="is-active" aria-selected="true" aria-controls="lab-panel" tabindex="0" data-embed="patterns-flyout--default" data-h="540" data-hint="Click &ldquo;Open flyout&rdquo; — Esc or the ✕ closes it">Flyout</button>
+        <button role="tab" id="labtab-1" aria-selected="false" aria-controls="lab-panel" tabindex="-1" data-embed="search-command-palette--default" data-h="540" data-hint="Click the search bar to open — ↑ ↓ to move, Esc to close">Command palette</button>
+        <button role="tab" id="labtab-2" aria-selected="false" aria-controls="lab-panel" tabindex="-1" data-embed="composition-offerscarousel--default">Offers carousel</button>
+        <button role="tab" id="labtab-3" aria-selected="false" aria-controls="lab-panel" tabindex="-1" data-embed="composition-benefitcard--interactive">Benefit card</button>
+        <button role="tab" id="labtab-4" aria-selected="false" aria-controls="lab-panel" tabindex="-1" data-embed="primitives-datepicker--default" data-hint="Click the field, then use arrow keys">Date picker</button>
+        <button role="tab" id="labtab-5" aria-selected="false" aria-controls="lab-panel" tabindex="-1" data-embed="composition-vehiclepanel--default">Vehicle panel</button>
+        <button role="tab" id="labtab-6" aria-selected="false" aria-controls="lab-panel" tabindex="-1" data-embed="visualisation-pointssparkline--default">Points sparkline</button>
+      </div>
+      <div class="lab__stage" id="lab-panel" role="tabpanel" tabindex="0" aria-labelledby="labtab-0">
+        <div class="lab__stagebar">
+          <span class="lab__badge"><i></i> Live · interactive</span>
+          <span class="lab__hint" id="lab-hint" hidden></span>
+        </div>
+        <div class="lab__view">
+          <iframe id="lab-frame" title="Interactive component" loading="lazy" data-base="assets/storybook/iframe.html"></iframe>
+        </div>
+        <div class="lab__loading" aria-hidden="true"><span class="lab__spinner"></span>Loading component…</div>
+      </div>
+    </div>
+    <p class="cs-demo-cap"><a class="cs-link" href="assets/storybook/index.html" target="_blank" rel="noopener">Open the full component library ↗</a></p>
+  </div>
+</section>
+
+<!-- ===== 06 MOBILE ===== -->
+<section class="cs-section cs-section--surface" id="mobile" tabindex="-1">
+  <div class="cs-reveal">
+    <div class="cs-section-head">
+      <span class="cs-eyebrow">Mobile &amp; gestures</span>
+      <h2 class="cs-h2">Built for the thumb.</h2>
+      <p class="cs-body">Mobile UX was prototyped with scroll choreography, off-canvas transitions and real-time
+        notifications, tuned to feel natural on touch devices — validated in Figma, then refined in-browser.</p>
+    </div>
+  </div>
+  <div class="cs-reveal lx-phones">
+    <div class="lx-phone-col">
+      <h3 class="cs-h3">Scroll choreography</h3>
+      <p class="cs-body cs-body--muted">Calm, staged reveal as the member scrolls the dashboard.</p>
+      <figure class="device--phone">
+        <div class="device__notch"></div>
+        <video class="device__screen video-pop" muted loop playsinline preload="none" autoplay
+               poster="assets/media/m-scroll-poster.jpg" data-cap="Mobile — scroll choreography">
+          <source src="assets/media/m-scroll.mp4" type="video/mp4" />
+        </video>
+      </figure>
+    </div>
+    <div class="lx-phone-col">
+      <h3 class="cs-h3">Notifications, in context</h3>
+      <p class="cs-body cs-body--muted">The member bell surfaces service, lounge and offer alerts — recorded live, including a "mark all read" sweep.</p>
+      <figure class="device--phone">
+        <div class="device__notch"></div>
+        <video class="device__screen video-pop" muted loop playsinline preload="none" autoplay
+               poster="assets/media/m-notifications-poster.jpg" data-cap="Mobile — the notifications centre in action">
+          <source src="assets/media/m-notifications.mp4" type="video/mp4" />
+        </video>
+      </figure>
+    </div>
+    <div class="lx-phone-col">
+      <h3 class="cs-h3">Drawer &amp; concierge</h3>
+      <p class="cs-body cs-body--muted">Off-canvas navigation and the AI concierge panel.</p>
+      <figure class="device--phone">
+        <div class="device__notch"></div>
+        <video class="device__screen video-pop" muted loop playsinline preload="none" autoplay
+               poster="assets/media/m-concierge-poster.jpg" data-cap="Mobile — off-canvas drawer &amp; concierge">
+          <source src="assets/media/m-concierge.mp4" type="video/mp4" />
+        </video>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07 ACCESSIBILITY ===== -->
+<section class="cs-section" id="a11y" tabindex="-1">
+  <div class="cs-reveal">
+    <div class="cs-section-head">
+      <span class="cs-eyebrow">Accessibility</span>
+      <h2 class="cs-h2">Designed to be used by everyone.</h2>
+      <p class="cs-body">Accessibility was a constraint from the first token, not an audit at the end. Every story runs
+        <code>axe</code> via Storybook's a11y addon — and this case study holds the same bar.</p>
+    </div>
+  </div>
+  <div class="cs-principles">
+    <div class="cs-reveal"><article class="cs-principle">
+      <div class="cs-principle-head"><div class="cs-principle-num">01</div><div class="cs-principle-icon">◑</div></div>
+      <h3 class="cs-h3">WCAG AA contrast</h3>
+      <p class="cs-body">Secondary text was lifted from <code>#6e727e</code> to <code>#9499a1</code> so it clears 4.5:1 on raised surfaces. Foreground, accents and states are all AA-checked.</p>
+    </article></div>
+    <div class="cs-reveal" style="--reveal-delay:60ms"><article class="cs-principle">
+      <div class="cs-principle-head"><div class="cs-principle-num">02</div><div class="cs-principle-icon">⤿</div></div>
+      <h3 class="cs-h3">Reduced motion</h3>
+      <p class="cs-body">Every reveal, parallax, autoplay video and transition stands down under <code>prefers-reduced-motion</code> — in the product and on this page.</p>
+    </article></div>
+    <div class="cs-reveal"><article class="cs-principle">
+      <div class="cs-principle-head"><div class="cs-principle-num">03</div><div class="cs-principle-icon">⌨</div></div>
+      <h3 class="cs-h3">Full keyboard path</h3>
+      <p class="cs-body">⌘K command palette with arrow/enter/esc, focus-trapped flyouts that return focus on close, visible focus rings, and a skip link.</p>
+    </article></div>
+    <div class="cs-reveal" style="--reveal-delay:60ms"><article class="cs-principle">
+      <div class="cs-principle-head"><div class="cs-principle-num">04</div><div class="cs-principle-icon">⊕</div></div>
+      <h3 class="cs-h3">Semantics &amp; ARIA</h3>
+      <p class="cs-body">Native landmarks, <code>role="dialog"</code>, <code>switch</code>, <code>tablist</code>, <code>aria-current</code> nav and <code>aria-live</code> toasts — announced correctly.</p>
+    </article></div>
+    <div class="cs-reveal"><article class="cs-principle">
+      <div class="cs-principle-head"><div class="cs-principle-num">05</div><div class="cs-principle-icon">⊙</div></div>
+      <h3 class="cs-h3">Comfortable targets</h3>
+      <p class="cs-body">Touch targets meet the 44px minimum, with generous spacing on the mobile drawer and carousels for thumb reach.</p>
+    </article></div>
+    <div class="cs-reveal" style="--reveal-delay:60ms"><article class="cs-principle">
+      <div class="cs-principle-head"><div class="cs-principle-num">06</div><div class="cs-principle-icon">✓</div></div>
+      <h3 class="cs-h3">Automated + manual</h3>
+      <p class="cs-body">axe-core on every Storybook story catches regressions; manual screen-reader and keyboard passes catch what automation can't.</p>
+    </article></div>
+  </div>
+</section>
+
+<!-- ===== 08 LIVE ===== -->
+<section class="cs-section cs-section--surface" id="live" tabindex="-1">
+  <div class="cs-reveal">
+    <div class="cs-section-head">
+      <span class="cs-eyebrow">Try it yourself</span>
+      <h2 class="cs-h2">The real thing, embedded.</h2>
+      <p class="cs-body">This embedded build is the interaction model I defined in Figma and built in React.
+        Toggle desktop / mobile to review behaviour.</p>
+    </div>
+  </div>
+  <div class="cs-reveal">
+    <div class="live">
+      <div class="live__toolbar">
+        <div class="live__dots"><i></i><i></i><i></i></div>
+        <div class="live__url">account.lexus.com.au / my-lexus</div>
+        <div class="live__toggle" role="group" aria-label="Viewport">
+          <button data-view="desktop" aria-pressed="true">Desktop</button>
+          <button data-view="mobile" aria-pressed="false">Mobile</button>
+        </div>
+      </div>
+      <div class="live__stage" id="live-stage" data-view="desktop">
+        <iframe id="live-frame" title="Live My Lexus prototype" loading="lazy"
+                src="https://dnbl0.github.io/bp/lx-a/" referrerpolicy="no-referrer"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 09 REFLECTIONS / CTA ===== -->
+<section class="cs-section" id="reflections" tabindex="-1">
+  <div class="cs-reveal cs-footer">
+    <span class="cs-eyebrow">In closing</span>
+    <h2 class="cs-h2">Shaping direction, then proving it in a real build.</h2>
+    <p>This project demonstrates my value as a senior designer: setting UX direction, building advanced
+      prototypes in Figma, and taking them all the way to a polished, accessible React build that engineering
+      can pick up with confidence.</p>
+    <div class="cs-footer-actions">
+      <a class="cs-cta cs-cta--primary" href="https://dnbl0.github.io/bp/lx-a/" target="_blank" rel="noopener">Launch the prototype ↗</a>
+      <a class="cs-cta cs-cta--ghost" href="#top">Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CREDITS ===== -->
+<section class="cs-credits cs-container">
+  <div class="cs-reveal">
+    <div class="cs-credits-card">
+      <div class="cs-credits-grid">
+        <div><div class="cs-credits-label">Role</div><div class="cs-credits-value">Senior Product Designer · UX/UI</div></div>
+        <div><div class="cs-credits-label">System</div><div class="cs-credits-value">Lexus AU tokens · Nobel</div></div>
+        <div><div class="cs-credits-label">Build</div><div class="cs-credits-value">Figma · React · Storybook</div></div>
+        <div><div class="cs-credits-label">Year</div><div class="cs-credits-value">2026</div></div>
+      </div>
+    </div>
+    <p class="cs-foot-note">Independent design case study · prototype, captures &amp; component library by the author. Lexus marks shown for portfolio context.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Media viewer">
+  <button class="lightbox__close" id="lightbox-close" aria-label="Close">✕</button>
+  <figure class="lightbox__fig"><div class="lightbox__media" id="lightbox-media"></div></figure>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ===== COLOUR TOKEN MODAL ===== -->
+<div class="cmodal" id="cmodal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Colour token details">
+  <div class="cmodal__backdrop" data-close></div>
+  <div class="cmodal__card">
+    <button class="cmodal__close" id="cmodal-close" aria-label="Close">✕</button>
+    <div class="cmodal__head">
+      <span class="cmodal__swatch" id="cm-swatch"></span>
+      <div class="cmodal__id">
+        <span class="cmodal__tier" id="cm-tier"></span>
+        <h3 class="cmodal__name" id="cm-name"></h3>
+        <code class="cmodal__var" id="cm-var"></code>
+      </div>
+    </div>
+    <div class="cmodal__grid" id="cm-values"></div>
+    <div class="cmodal__lineage" id="cm-lineage"></div>
+    <div class="cmodal__actions">
+      <button class="cs-cta cs-cta--primary" id="cm-copy-var">Copy token</button>
+      <button class="cs-cta cs-cta--ghost" id="cm-copy-val">Copy value</button>
+    </div>
+  </div>
+</div>
+
+</div>
+<script src="script.js" defer></script>
+</body>
+</html>

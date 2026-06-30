@@ -1,0 +1,162 @@
+[
+ {
+  "style": "heading1",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.15",
+  "size": "37px",
+  "tracking": "1.85px",
+  "textCase": "uppercase",
+  "px": 37
+ },
+ {
+  "style": "heading2",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.15",
+  "size": "33px",
+  "tracking": "1.65px",
+  "textCase": "uppercase",
+  "px": 33
+ },
+ {
+  "style": "heading3",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.15",
+  "size": "29px",
+  "tracking": "1.45px",
+  "textCase": "uppercase",
+  "px": 29
+ },
+ {
+  "style": "heading4",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.15",
+  "size": "26px",
+  "tracking": "1.3px",
+  "textCase": "uppercase",
+  "px": 26
+ },
+ {
+  "style": "heading5",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.15",
+  "size": "23px",
+  "tracking": "1.15px",
+  "textCase": "uppercase",
+  "px": 23
+ },
+ {
+  "style": "subtitle1",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.5",
+  "size": "20px",
+  "tracking": "0.25px",
+  "textCase": "none",
+  "px": 20
+ },
+ {
+  "style": "body1",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.5",
+  "size": "19px",
+  "tracking": "0px",
+  "textCase": "none",
+  "px": 19
+ },
+ {
+  "style": "heading6",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.15",
+  "size": "18px",
+  "tracking": "0.4px",
+  "textCase": "uppercase",
+  "px": 18
+ },
+ {
+  "style": "subtitle2",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.5",
+  "size": "18px",
+  "tracking": "0.225px",
+  "textCase": "none",
+  "px": 18
+ },
+ {
+  "style": "body2",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.5",
+  "size": "16px",
+  "tracking": "0px",
+  "textCase": "none",
+  "px": 16
+ },
+ {
+  "style": "caption1",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.5",
+  "size": "15px",
+  "tracking": "0px",
+  "textCase": "none",
+  "px": 15
+ },
+ {
+  "style": "disclaimer1",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.5",
+  "size": "15px",
+  "tracking": "0px",
+  "textCase": "none",
+  "px": 15
+ },
+ {
+  "style": "banner",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.5",
+  "size": "13px",
+  "tracking": "1.44px",
+  "textCase": "none",
+  "px": 13
+ },
+ {
+  "style": "price1",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1.5",
+  "size": "13px",
+  "tracking": "0px",
+  "textCase": "none",
+  "px": 13
+ },
+ {
+  "style": "label1",
+  "family": "Nobel",
+  "weight": "300",
+  "lineHeight": "1",
+  "size": "12px",
+  "tracking": "1.44px",
+  "textCase": "uppercase",
+  "px": 12
+ },
+ {
+  "style": "label2",
+  "family": "Nobel",
+  "weight": "400",
+  "lineHeight": "1.3",
+  "size": "12px",
+  "tracking": "1.44px",
+  "textCase": "uppercase",
+  "px": 12
+ }
+]

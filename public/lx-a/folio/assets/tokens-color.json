@@ -1,0 +1,1565 @@
+{
+ "primitive": {
+  "smoke": [
+   {
+    "name": "--ld-color-lexus-smoke-100",
+    "label": "100",
+    "dark": "#fafaf9",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-200",
+    "label": "200",
+    "dark": "#f6f5f3",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-300",
+    "label": "300",
+    "dark": "#f1f0ec",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-400",
+    "label": "400",
+    "dark": "#edebe6",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-500",
+    "label": "500",
+    "dark": "#e8e6e0",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-600",
+    "label": "600",
+    "dark": "#e3e1da",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-700",
+    "label": "700",
+    "dark": "#dfdcd4",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-800",
+    "label": "800",
+    "dark": "#dad8ce",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-900",
+    "label": "900",
+    "dark": "#d6d3c8",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-1000",
+    "label": "1000",
+    "dark": "#b6b6b5",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-opacity-30",
+    "label": "opacity-30",
+    "dark": "rgba(232, 230, 224, 0.3)",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-smoke-opacity-50",
+    "label": "opacity-50",
+    "dark": "rgba(232, 230, 224, 0.5)",
+    "light": null
+   }
+  ],
+  "deepblue": [
+   {
+    "name": "--ld-color-lexus-deepblue-50",
+    "label": "50",
+    "dark": "#6e727e",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-100",
+    "label": "100",
+    "dark": "#303547",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-200",
+    "label": "200",
+    "dark": "#2e3243",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-300",
+    "label": "300",
+    "dark": "#2b2f3e",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-400",
+    "label": "400",
+    "dark": "#272a39",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-500",
+    "label": "500",
+    "dark": "#232632",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-600",
+    "label": "600",
+    "dark": "#1e212b",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-700",
+    "label": "700",
+    "dark": "#1b1d25",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-800",
+    "label": "800",
+    "dark": "#181a20",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-900",
+    "label": "900",
+    "dark": "#15171d",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-opacity-30",
+    "label": "opacity-30",
+    "dark": "rgba(35, 38, 50, 0.3)",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-deepblue-opacity-50",
+    "label": "opacity-50",
+    "dark": "rgba(35, 38, 50, 0.5)",
+    "light": null
+   }
+  ],
+  "inari": [
+   {
+    "name": "--ld-color-lexus-inari-100",
+    "label": "100",
+    "dark": "#f8d2c3",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-inari-200",
+    "label": "200",
+    "dark": "#f5bfa9",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-inari-300",
+    "label": "300",
+    "dark": "#f0a384",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-inari-400",
+    "label": "400",
+    "dark": "#ea7b50",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-inari-500",
+    "label": "500",
+    "dark": "#cc4c19",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-inari-600",
+    "label": "600",
+    "dark": "#8f3511",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-inari-700",
+    "label": "700",
+    "dark": "#64250c",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-inari-800",
+    "label": "800",
+    "dark": "#461a08",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-inari-900",
+    "label": "900",
+    "dark": "#311206",
+    "light": null
+   }
+  ],
+  "ochre": [
+   {
+    "name": "--ld-color-lexus-ochre-100",
+    "label": "100",
+    "dark": "#f8bfc0",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-ochre-200",
+    "label": "200",
+    "dark": "#f5a3a5",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-ochre-300",
+    "label": "300",
+    "dark": "#f07c7d",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-ochre-400",
+    "label": "400",
+    "dark": "#e94345",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-ochre-500",
+    "label": "500",
+    "dark": "#bb1619",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-ochre-600",
+    "label": "600",
+    "dark": "#830f11",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-ochre-700",
+    "label": "700",
+    "dark": "#5c0a0c",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-ochre-800",
+    "label": "800",
+    "dark": "#400708",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-ochre-900",
+    "label": "900",
+    "dark": "#2d0506",
+    "light": null
+   }
+  ],
+  "clay": [
+   {
+    "name": "--ld-color-lexus-clay-100",
+    "label": "100",
+    "dark": "#f8e7bf",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-clay-200",
+    "label": "200",
+    "dark": "#f5dda3",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-clay-300",
+    "label": "300",
+    "dark": "#f0ce7c",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-clay-400",
+    "label": "400",
+    "dark": "#e9b943",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-clay-500",
+    "label": "500",
+    "dark": "#bb8c16",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-clay-600",
+    "label": "600",
+    "dark": "#83620f",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-clay-700",
+    "label": "700",
+    "dark": "#5c440a",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-clay-800",
+    "label": "800",
+    "dark": "#403007",
+    "light": null
+   },
+   {
+    "name": "--ld-color-lexus-clay-900",
+    "label": "900",
+    "dark": "#2d2205",
+    "light": null
+   }
+  ]
+ },
+ "semanticDS": {
+  "accent": [
+   {
+    "name": "--ld-s-color-accent-primary-lighter",
+    "label": "accent-primary-lighter",
+    "dark": "#edebe6",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-smoke-400",
+      "label": "smoke-400",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-accent-primary-default",
+    "label": "accent-primary-default",
+    "dark": "#e8e6e0",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-smoke-500",
+      "label": "smoke-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-accent-primary-darker",
+    "label": "accent-primary-darker",
+    "dark": "#e3e1da",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-smoke-600",
+      "label": "smoke-600",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-accent-primary-disabled",
+    "label": "accent-primary-disabled",
+    "dark": "rgba(232, 230, 224, 0.5)",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-smoke-opacity-50",
+      "label": "smoke-opacity-50",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-accent-primary-opacity-default-lighter",
+    "label": "accent-primary-opacity-default-lighter",
+    "dark": "rgba(232, 230, 224, 0.3)",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-smoke-opacity-30",
+      "label": "smoke-opacity-30",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-accent-secondary-lighter",
+    "label": "accent-secondary-lighter",
+    "dark": "#ea7b50",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-inari-400",
+      "label": "inari-400",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-accent-secondary-default",
+    "label": "accent-secondary-default",
+    "dark": "#cc4c19",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-inari-500",
+      "label": "inari-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-accent-secondary-darker",
+    "label": "accent-secondary-darker",
+    "dark": "#8f3511",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-inari-600",
+      "label": "inari-600",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-accent-secondary-disabled",
+    "label": "accent-secondary-disabled",
+    "dark": "#cc4c19",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-inari-500",
+      "label": "inari-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-accent-electrified-default",
+    "label": "accent-electrified-default",
+    "dark": "#2468ff",
+    "light": null,
+    "lineage": []
+   }
+  ],
+  "foreground": [
+   {
+    "name": "--ld-s-color-foreground-lighter",
+    "label": "foreground-lighter",
+    "dark": "#edebe6",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-smoke-400",
+      "label": "smoke-400",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-foreground-default",
+    "label": "foreground-default",
+    "dark": "#e8e6e0",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-smoke-500",
+      "label": "smoke-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-foreground-darker",
+    "label": "foreground-darker",
+    "dark": "#e3e1da",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-smoke-600",
+      "label": "smoke-600",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-foreground-disabled",
+    "label": "foreground-disabled",
+    "dark": "#e8e6e0",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-smoke-500",
+      "label": "smoke-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-foreground-on-accent",
+    "label": "foreground-on-accent",
+    "dark": "#232632",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-500",
+      "label": "deepblue-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-foreground-on-disabled",
+    "label": "foreground-on-disabled",
+    "dark": "#232632",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-500",
+      "label": "deepblue-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-foreground-opacity-on-accent-lighter",
+    "label": "foreground-opacity-on-accent-lighter",
+    "dark": "rgba(35, 38, 50, 0.3)",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-opacity-30",
+      "label": "deepblue-opacity-30",
+      "tier": "primitive"
+     }
+    ]
+   }
+  ],
+  "elevation": [
+   {
+    "name": "--ld-s-color-elevation-raised-lighter",
+    "label": "elevation-raised-lighter",
+    "dark": "#303547",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-100",
+      "label": "deepblue-100",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-elevation-raised-default",
+    "label": "elevation-raised-default",
+    "dark": "#2e3243",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-200",
+      "label": "deepblue-200",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-elevation-raised-darker",
+    "label": "elevation-raised-darker",
+    "dark": "#2b2f3e",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-300",
+      "label": "deepblue-300",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-elevation-inset-lighter",
+    "label": "elevation-inset-lighter",
+    "dark": "#1b1d25",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-700",
+      "label": "deepblue-700",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-elevation-inset-default",
+    "label": "elevation-inset-default",
+    "dark": "#181a20",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-800",
+      "label": "deepblue-800",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-elevation-inset-darker",
+    "label": "elevation-inset-darker",
+    "dark": "#15171d",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-900",
+      "label": "deepblue-900",
+      "tier": "primitive"
+     }
+    ]
+   }
+  ],
+  "canvas": [
+   {
+    "name": "--ld-s-color-canvas-lighter",
+    "label": "canvas-lighter",
+    "dark": "#272a39",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-400",
+      "label": "deepblue-400",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-canvas-default",
+    "label": "canvas-default",
+    "dark": "#232632",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-500",
+      "label": "deepblue-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-s-color-canvas-darker",
+    "label": "canvas-darker",
+    "dark": "#1e212b",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-color-lexus-deepblue-600",
+      "label": "deepblue-600",
+      "tier": "primitive"
+     }
+    ]
+   }
+  ],
+  "utility": [
+   {
+    "name": "--ld-s-color-utility-error-lighter",
+    "label": "utility-error-lighter",
+    "dark": "hsl(347, 100%, 60%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-error-default",
+    "label": "utility-error-default",
+    "dark": "hsl(347, 60%, 40%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-error-darker",
+    "label": "utility-error-darker",
+    "dark": "hsl(347, 60%, 40%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-error-disabled",
+    "label": "utility-error-disabled",
+    "dark": "hsl(347, 60%, 40%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-success-lighter",
+    "label": "utility-success-lighter",
+    "dark": "hsl(115, 100%, 60%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-success-default",
+    "label": "utility-success-default",
+    "dark": "hsl(115, 60%, 40%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-success-darker",
+    "label": "utility-success-darker",
+    "dark": "hsl(115, 60%, 40%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-success-disabled",
+    "label": "utility-success-disabled",
+    "dark": "hsl(115, 60%, 40%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-warning-lighter",
+    "label": "utility-warning-lighter",
+    "dark": "hsl(39, 100%, 60%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-warning-default",
+    "label": "utility-warning-default",
+    "dark": "hsl(39, 80%, 50%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-warning-darker",
+    "label": "utility-warning-darker",
+    "dark": "hsl(39, 60%, 40%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-warning-disabled",
+    "label": "utility-warning-disabled",
+    "dark": "hsl(39, 80%, 50%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-information-lighter",
+    "label": "utility-information-lighter",
+    "dark": "hsl(206, 100%, 60%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-information-default",
+    "label": "utility-information-default",
+    "dark": "hsl(206, 80%, 50%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-information-darker",
+    "label": "utility-information-darker",
+    "dark": "hsl(206, 60%, 40%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-information-disabled",
+    "label": "utility-information-disabled",
+    "dark": "hsl(206, 80%, 50%)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-modifiers-midlight",
+    "label": "utility-modifiers-midlight",
+    "dark": "#ffffff1a",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-utility-modifiers-mid",
+    "label": "utility-modifiers-mid",
+    "dark": "rgba(255, 255, 255, 0.3)",
+    "light": null,
+    "lineage": []
+   }
+  ],
+  "common": [
+   {
+    "name": "--ld-s-color-common-white",
+    "label": "common-white",
+    "dark": "#ffffff",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-black",
+    "label": "common-black",
+    "dark": "#171717",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-true-black",
+    "label": "common-true-black",
+    "dark": "#000000",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-opacity-white-lightest",
+    "label": "common-opacity-white-lightest",
+    "dark": "rgba(255, 255, 255, 0.1)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-opacity-white-lighter",
+    "label": "common-opacity-white-lighter",
+    "dark": "rgba(255, 255, 255, 0.2)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-opacity-true-black-light",
+    "label": "common-opacity-true-black-light",
+    "dark": "rgba(0, 0, 0, 0.3)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-opacity-true-black-lightest",
+    "label": "common-opacity-true-black-lightest",
+    "dark": "rgba(0, 0, 0, 0.1)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-opacity-true-black-darker",
+    "label": "common-opacity-true-black-darker",
+    "dark": "rgba(0, 0, 0, 0.75)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-opacity-true-black-darkest",
+    "label": "common-opacity-true-black-darkest",
+    "dark": "rgba(0, 0, 0, 0.9)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-opacity-black-lightest",
+    "label": "common-opacity-black-lightest",
+    "dark": "rgba(23, 23, 23, 0.1)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-opacity-black-darker",
+    "label": "common-opacity-black-darker",
+    "dark": "rgba(23, 23, 23, 0.75)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-opacity-black-darkest",
+    "label": "common-opacity-black-darkest",
+    "dark": "rgba(23, 23, 23, 0.9)",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-inherit-theme-default",
+    "label": "common-inherit-theme-default",
+    "dark": "#171717",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-s-color-common-inherit-theme-inverse",
+    "label": "common-inherit-theme-inverse",
+    "dark": "#ffffff",
+    "light": null,
+    "lineage": []
+   }
+  ]
+ },
+ "appAliases": [
+  {
+   "name": "--canvas",
+   "label": "canvas",
+   "dark": "#15171d",
+   "light": null,
+   "lineage": [
+    {
+     "name": "--ld-color-lexus-deepblue-900",
+     "label": "deepblue-900",
+     "tier": "primitive"
+    }
+   ]
+  },
+  {
+   "name": "--canvas-raised",
+   "label": "canvas-raised",
+   "dark": "#1e212b",
+   "light": null,
+   "lineage": [
+    {
+     "name": "--ld-color-lexus-deepblue-600",
+     "label": "deepblue-600",
+     "tier": "primitive"
+    }
+   ]
+  },
+  {
+   "name": "--surface",
+   "label": "surface",
+   "dark": "#1c1f28",
+   "light": null,
+   "lineage": []
+  },
+  {
+   "name": "--surface-raised",
+   "label": "surface-raised",
+   "dark": "#2b2f3e",
+   "light": null,
+   "lineage": [
+    {
+     "name": "--ld-color-lexus-deepblue-300",
+     "label": "deepblue-300",
+     "tier": "primitive"
+    }
+   ]
+  },
+  {
+   "name": "--surface-hover",
+   "label": "surface-hover",
+   "dark": "#303547",
+   "light": null,
+   "lineage": [
+    {
+     "name": "--ld-color-lexus-deepblue-100",
+     "label": "deepblue-100",
+     "tier": "primitive"
+    }
+   ]
+  },
+  {
+   "name": "--canvas-scrim-strong",
+   "label": "canvas-scrim-strong",
+   "dark": "rgba(var(--canvas-scrim-rgb), 0.85)",
+   "light": null,
+   "lineage": []
+  },
+  {
+   "name": "--canvas-scrim",
+   "label": "canvas-scrim",
+   "dark": "rgba(var(--canvas-scrim-rgb), 0.7)",
+   "light": null,
+   "lineage": []
+  },
+  {
+   "name": "--canvas-scrim-soft",
+   "label": "canvas-scrim-soft",
+   "dark": "rgba(var(--canvas-scrim-rgb), 0.45)",
+   "light": null,
+   "lineage": []
+  },
+  {
+   "name": "--fg",
+   "label": "fg",
+   "dark": "#e8e6e0",
+   "light": null,
+   "lineage": [
+    {
+     "name": "--ld-color-lexus-smoke-500",
+     "label": "smoke-500",
+     "tier": "primitive"
+    }
+   ]
+  },
+  {
+   "name": "--fg-strong",
+   "label": "fg-strong",
+   "dark": "#fafaf9",
+   "light": null,
+   "lineage": [
+    {
+     "name": "--ld-color-lexus-smoke-100",
+     "label": "smoke-100",
+     "tier": "primitive"
+    }
+   ]
+  },
+  {
+   "name": "--fg-muted",
+   "label": "fg-muted",
+   "dark": "#9b9ea6",
+   "light": null,
+   "lineage": []
+  },
+  {
+   "name": "--fg-dim",
+   "label": "fg-dim",
+   "dark": "#9499a1",
+   "light": null,
+   "lineage": []
+  },
+  {
+   "name": "--fg-on-accent",
+   "label": "fg-on-accent",
+   "dark": "#232632",
+   "light": null,
+   "lineage": [
+    {
+     "name": "--ld-color-lexus-deepblue-500",
+     "label": "deepblue-500",
+     "tier": "primitive"
+    }
+   ]
+  },
+  {
+   "name": "--accent",
+   "label": "accent",
+   "dark": "#e94345",
+   "light": null,
+   "lineage": [
+    {
+     "name": "--ld-color-lexus-ochre-400",
+     "label": "ochre-400",
+     "tier": "primitive"
+    }
+   ]
+  },
+  {
+   "name": "--accent-bright",
+   "label": "accent-bright",
+   "dark": "#f47a7c",
+   "light": null,
+   "lineage": []
+  },
+  {
+   "name": "--accent-electrified",
+   "label": "accent-electrified",
+   "dark": "#6b9bff",
+   "light": null,
+   "lineage": []
+  },
+  {
+   "name": "--accent-warm",
+   "label": "accent-warm",
+   "dark": "#cc4c19",
+   "light": null,
+   "lineage": [
+    {
+     "name": "--ld-color-lexus-inari-500",
+     "label": "inari-500",
+     "tier": "primitive"
+    }
+   ]
+  },
+  {
+   "name": "--border",
+   "label": "border",
+   "dark": "rgba(255, 255, 255, 0.1)",
+   "light": null,
+   "lineage": []
+  },
+  {
+   "name": "--border-strong",
+   "label": "border-strong",
+   "dark": "rgba(255, 255, 255, 0.18)",
+   "light": null,
+   "lineage": []
+  },
+  {
+   "name": "--border-tier",
+   "label": "border-tier",
+   "dark": "rgba(233, 185, 67, 0.4)",
+   "light": null,
+   "lineage": []
+  }
+ ],
+ "component": {
+  "surface": [
+   {
+    "name": "--ld-c-surface-canvas-darker",
+    "label": "surface-canvas-darker",
+    "dark": "#1e212b",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-canvas-darker",
+      "label": "canvas-darker",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-600",
+      "label": "deepblue-600",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-surface-canvas-default",
+    "label": "surface-canvas-default",
+    "dark": "#232632",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-canvas-default",
+      "label": "canvas-default",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-500",
+      "label": "deepblue-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-surface-canvas-lighter",
+    "label": "surface-canvas-lighter",
+    "dark": "#272a39",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-canvas-lighter",
+      "label": "canvas-lighter",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-400",
+      "label": "deepblue-400",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-surface-elevation-inset-darker",
+    "label": "surface-elevation-inset-darker",
+    "dark": "#15171d",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-inset-darker",
+      "label": "elevation-inset-darker",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-900",
+      "label": "deepblue-900",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-surface-elevation-inset-default",
+    "label": "surface-elevation-inset-default",
+    "dark": "#181a20",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-inset-default",
+      "label": "elevation-inset-default",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-800",
+      "label": "deepblue-800",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-surface-elevation-inset-lighter",
+    "label": "surface-elevation-inset-lighter",
+    "dark": "#1b1d25",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-inset-lighter",
+      "label": "elevation-inset-lighter",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-700",
+      "label": "deepblue-700",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-surface-elevation-raised-darker",
+    "label": "surface-elevation-raised-darker",
+    "dark": "#2b2f3e",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-raised-darker",
+      "label": "elevation-raised-darker",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-300",
+      "label": "deepblue-300",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-surface-elevation-raised-default",
+    "label": "surface-elevation-raised-default",
+    "dark": "#2e3243",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-raised-default",
+      "label": "elevation-raised-default",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-200",
+      "label": "deepblue-200",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-surface-elevation-raised-lighter",
+    "label": "surface-elevation-raised-lighter",
+    "dark": "#303547",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-raised-lighter",
+      "label": "elevation-raised-lighter",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-100",
+      "label": "deepblue-100",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-surface-highlight",
+    "label": "surface-highlight",
+    "dark": "#ffffff1a",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-utility-modifiers-midlight",
+      "label": "utility-modifiers-midlight",
+      "tier": "semantic"
+     }
+    ]
+   }
+  ],
+  "input": [
+   {
+    "name": "--ld-c-input-border-default-color",
+    "label": "input-border-default-color",
+    "dark": "#e8e6e0",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-accent-primary-default",
+      "label": "accent-primary-default",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-smoke-500",
+      "label": "smoke-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-input-border-error-color",
+    "label": "input-border-error-color",
+    "dark": "hsl(347, 60%, 40%)",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-utility-error-default",
+      "label": "utility-error-default",
+      "tier": "semantic"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-input-border-hover-color",
+    "label": "input-border-hover-color",
+    "dark": "#e8e6e0",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-accent-primary-default",
+      "label": "accent-primary-default",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-smoke-500",
+      "label": "smoke-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-input-border-success-color",
+    "label": "input-border-success-color",
+    "dark": "hsl(115, 60%, 40%)",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-utility-success-darker",
+      "label": "utility-success-darker",
+      "tier": "semantic"
+     }
+    ]
+   }
+  ],
+  "popover": [
+   {
+    "name": "--ld-c-popover-box-shadow-color",
+    "label": "popover-box-shadow-color",
+    "dark": "#17171726",
+    "light": null,
+    "lineage": []
+   }
+  ],
+  "autocomplete": [
+   {
+    "name": "--ld-c-autocomplete-popover-bg",
+    "label": "autocomplete-popover-bg",
+    "dark": "#303547",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-raised-lighter",
+      "label": "elevation-raised-lighter",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-100",
+      "label": "deepblue-100",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-autocomplete-popover-hover",
+    "label": "autocomplete-popover-hover",
+    "dark": "#ffffff1a",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-utility-modifiers-midlight",
+      "label": "utility-modifiers-midlight",
+      "tier": "semantic"
+     }
+    ]
+   }
+  ],
+  "form": [
+   {
+    "name": "--ld-c-form-color-disabled",
+    "label": "form-color-disabled",
+    "dark": "#e8e6e0",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-accent-primary-default",
+      "label": "accent-primary-default",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-smoke-500",
+      "label": "smoke-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-form-color-enabled",
+    "label": "form-color-enabled",
+    "dark": "#e8e6e0",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-accent-primary-default",
+      "label": "accent-primary-default",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-smoke-500",
+      "label": "smoke-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-form-color-error",
+    "label": "form-color-error",
+    "dark": "hsl(347, 60%, 40%)",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-utility-error-default",
+      "label": "utility-error-default",
+      "tier": "semantic"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-form-color-focus",
+    "label": "form-color-focus",
+    "dark": "#e8e6e0",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-accent-primary-default",
+      "label": "accent-primary-default",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-smoke-500",
+      "label": "smoke-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-form-color-placeholder-text",
+    "label": "form-color-placeholder-text",
+    "dark": "#e8e6e0",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-accent-primary-default",
+      "label": "accent-primary-default",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-smoke-500",
+      "label": "smoke-500",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-form-color-success",
+    "label": "form-color-success",
+    "dark": "hsl(115, 60%, 40%)",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-utility-success-darker",
+      "label": "utility-success-darker",
+      "tier": "semantic"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-form-form-section-bg",
+    "label": "form-form-section-bg",
+    "dark": "#2b2f3e",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-raised-darker",
+      "label": "elevation-raised-darker",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-300",
+      "label": "deepblue-300",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-form-form-section-box-shadow-focus-color",
+    "label": "form-form-section-box-shadow-focus-color",
+    "dark": "#17171726",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-c-form-section-bg",
+    "label": "form-section-bg",
+    "dark": "#2b2f3e",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-raised-darker",
+      "label": "elevation-raised-darker",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-300",
+      "label": "deepblue-300",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-form-section-box-shadow-focus-color",
+    "label": "form-section-box-shadow-focus-color",
+    "dark": "#17171726",
+    "light": null,
+    "lineage": []
+   },
+   {
+    "name": "--ld-c-form-select-item-default-bg",
+    "label": "form-select-item-default-bg",
+    "dark": "#303547",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-raised-lighter",
+      "label": "elevation-raised-lighter",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-100",
+      "label": "deepblue-100",
+      "tier": "primitive"
+     }
+    ]
+   },
+   {
+    "name": "--ld-c-form-select-item-hover-bg",
+    "label": "form-select-item-hover-bg",
+    "dark": "#2b2f3e",
+    "light": null,
+    "lineage": [
+     {
+      "name": "--ld-s-color-elevation-raised-darker",
+      "label": "elevation-raised-darker",
+      "tier": "semantic"
+     },
+     {
+      "name": "--ld-color-lexus-deepblue-300",
+      "label": "deepblue-300",
+      "tier": "primitive"
+     }
+    ]
+   }
+  ]
+ },
+ "counts": {
+  "primitive": 51,
+  "semanticDS": 58,
+  "app": 20,
+  "component": 29,
+  "lineaged": 60,
+  "ofLineaged": 107
+ }
+}
