@@ -24,6 +24,9 @@ export const AccordionPanel = ({
     children?: React.ReactNode
 }) => {
     const [isOpen, setIsOpen] = useState(false)
+    const headerId = `accordion-header-${itemIndex}-${paramCase(header)}`
+    const panelId = `accordion-panel-${itemIndex}-${paramCase(header)}`
+
     if (!children) {
         return null
     }
@@ -34,50 +37,78 @@ export const AccordionPanel = ({
                 itemIndex === 0 && 'border-t-[1px]'
             )}
         >
-            <div onClick={() => setIsOpen(!isOpen)} className="">
-                <Header isOpen={isOpen} title={header} />
-            </div>
-            <Body open={isOpen}>
+            <Header
+                isOpen={isOpen}
+                title={header}
+                headerId={headerId}
+                panelId={panelId}
+                onToggle={() => setIsOpen(!isOpen)}
+            />
+            <Body open={isOpen} id={panelId} labelledBy={headerId}>
                 <div className="pb-6 px-6">{children}</div>
             </Body>
         </div>
     )
 }
 
-const Header = ({ isOpen, title }: { isOpen: boolean; title: string }) => {
+const Header = ({
+    isOpen,
+    title,
+    headerId,
+    panelId,
+    onToggle,
+}: {
+    isOpen: boolean
+    title: string
+    headerId: string
+    panelId: string
+    onToggle: () => void
+}) => {
     return (
-        <h3
-            className={cx(
-                'group',
-                'p-6 cursor-pointer select-none text-navy font-medium',
-                'flex flex-row'
-            )}
-            data-link-type={`accordion-${paramCase(title)}`}
-        >
-            <span
+        <h3 className="m-0">
+            <button
+                id={headerId}
+                type="button"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
                 className={cx(
-                    'flex-grow',
-                    'group-hover:underline',
-                    isOpen && 'underline'
+                    'group',
+                    'w-full text-left',
+                    'p-6 cursor-pointer select-none text-navy font-medium',
+                    'flex flex-row'
                 )}
+                onClick={onToggle}
+                data-link-type={`accordion-${paramCase(title)}`}
             >
-                {title}
-            </span>
-            <span
-                className={cx(
-                    'accordion-state-icon',
-                    isOpen && 'accordion-state-icon--open'
-                )}
-            ></span>
+                <span
+                    className={cx(
+                        'flex-grow',
+                        'group-hover:underline',
+                        isOpen && 'underline'
+                    )}
+                >
+                    {title}
+                </span>
+                <span
+                    className={cx(
+                        'accordion-state-icon',
+                        isOpen && 'accordion-state-icon--open'
+                    )}
+                ></span>
+            </button>
         </h3>
     )
 }
 
 const Body = ({
     open: isOpen,
+    id,
+    labelledBy,
     children,
 }: {
     open?: boolean
+    id: string
+    labelledBy: string
     children?: React.ReactNode
 }) => {
     const { observe, height: childrenHeight } = useDimensions()
@@ -90,6 +121,10 @@ const Body = ({
 
     return (
         <div
+            id={id}
+            role="region"
+            aria-labelledby={labelledBy}
+            aria-hidden={!isOpen}
             className="overflow-hidden transition-height duration-300"
             style={{ height: sectionHeight }}
         >

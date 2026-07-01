@@ -4,7 +4,7 @@ import { HeaderButton } from './HeaderButton'
 export const ContactButton = ({ href }: { href: string }) => {
     return (
         <a
-            className="block rounded hover:bg-[#F0F9FF] active:focus:shadow-inner-blue"
+            className="block rounded hover:bg-cyan-50 active:focus:shadow-inner-blue"
             href={href}
         >
             <HeaderButton

@@ -95,7 +95,6 @@ export const LargeSearchInput = ({
             onReset={event => {
                 event.preventDefault
                 setSearchString('')
-                console.log(searchEndpoint)
                 submitSearch(router, searchEndpoint, undefined, '', false)
             }}
         >
@@ -177,6 +176,7 @@ export const LargeSearchInput = ({
                                 'p-0'
                             )}
                             type="reset"
+                            aria-label="Clear"
                             title="Clear"
                         >
                             <CloseIcon

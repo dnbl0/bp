@@ -27,8 +27,6 @@ export const Header = () => {
     const [showSearch, setShowSearch] = useState(true);
 
 
-    // console.log('Current route:', router);
-
     const { data: menuItems } = useNavigationMenu('MainMenu')
     //TODO[Jason]: Join microCopy calls into 1 resource set call
     const { data: searchInputPlaceholder } = useMicroCopy(

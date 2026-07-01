@@ -394,6 +394,8 @@ const InfoWindow = ({
                         )}
                     </div>
                     <button
+                        type="button"
+                        aria-label="Close"
                         className={cx(
                             'absolute bg-[#E3F1FF] text-navy',
                             'top-2 right-2 w-[24px] h-[24px]',

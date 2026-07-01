@@ -40,8 +40,8 @@ const Button = ({
                 'border-[1px]',
                 'border-cyan border-l-transparent first:border-l-cyan',
                 'first:rounded-l last:rounded-r',
-                'hover:bg-[#F0F9FF]',
-                active && 'bg-[#F0F9FF]',
+                'hover:bg-cyan-50',
+                active && 'bg-cyan-50',
                 'focus-visible:z-[1] focus-visible:border-l-cyan'
             )}
             onClick={onClick}

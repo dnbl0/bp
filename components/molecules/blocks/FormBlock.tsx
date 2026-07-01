@@ -11,6 +11,7 @@ export const FormBlock = ({ component }: { component: CmsFormBlock }) => {
         <div>
             <iframe
                 src={src}
+                title="Enquiry form"
                 width="100%"
                 height={formHeight || defaultFormHeight}
             ></iframe>

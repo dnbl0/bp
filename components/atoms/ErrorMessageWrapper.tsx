@@ -8,7 +8,7 @@ export const ErrorMessageWrapper = ({
 }) => {
     return (
         <Section>
-            <div className="bg-[#f7f5f2]">
+            <div className="bg-warm-paper-100">
                 <div className="pt-[124px] pb-16">{children}</div>
 
                 <div className="">

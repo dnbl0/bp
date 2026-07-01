@@ -78,7 +78,7 @@
             }
 
             &.button--pink {
-                background-color: #d02670;
+                background-color: theme(colors.fuchsia);
             }
         }
 
@@ -226,7 +226,7 @@
 
             &.button--secondary-pink {
                 color: white;
-                background-color: #d02670;
+                background-color: theme(colors.fuchsia);
 
                 &:hover:not(:disabled) {
                     color: white;
@@ -243,8 +243,8 @@
 
         &.button--secondary-outline {
             &.button--secondary-pink {
-                color: #d02670;
-                border-color: #d02670;
+                color: theme(colors.fuchsia);
+                border-color: theme(colors.fuchsia);
 
                 &:hover:not(:disabled) {
                     color: #9c2d6f;

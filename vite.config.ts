@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
+    globals: true,
     globalSetup: ['./test-setup.ts'],
+    setupFiles: ['./test-component-setup.ts'],
   },
 });

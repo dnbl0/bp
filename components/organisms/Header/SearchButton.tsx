@@ -6,7 +6,7 @@ export const SearchButton = (props: HTMLAttributes<HTMLButtonElement>) => {
     return (
         <button
             {...props}
-            className="block rounded hover:bg-[#F0F9FF] active:focus:shadow-inner-blue"
+            className="block rounded hover:bg-cyan-50 active:focus:shadow-inner-blue"
         >
             <HeaderButton
                 icon={<SearchIcon className="fill-cyan" />}

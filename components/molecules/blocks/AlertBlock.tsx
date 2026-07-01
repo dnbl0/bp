@@ -15,6 +15,7 @@ const AlertBlock = ({ children }: { children?: React.ReactNode }) => {
             <div className="text-center flex-1">{children}</div>
             <div className="flex content-center">
                 <button
+                    type="button"
                     className="cursor-pointer"
                     onClick={() => {
                         setIsClosed(true)

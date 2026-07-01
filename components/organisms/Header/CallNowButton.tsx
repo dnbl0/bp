@@ -5,7 +5,7 @@ export const CallNowButton = ({ phoneNumber }: { phoneNumber: string }) => {
     return (
         <a
             href={`tel:${phoneNumber}`}
-            className="block rounded hover:bg-[#F0F9FF] active:focus:shadow-inner-blue"
+            className="block rounded hover:bg-cyan-50 active:focus:shadow-inner-blue"
         >
             <HeaderButton
                 icon={<CallNowIcon className="fill-cyan" />}

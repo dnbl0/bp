@@ -47,7 +47,7 @@ export const ListPanelContent = ({
                         'p-6',
                         'border-b-cool-paper-200 border-b-[1px]',
                         'flex flex-row gap-4 items-center',
-                        'hover:bg-[#F0F9FF]'
+                        'hover:bg-cyan-50'
                     )}
                 >
                     {home.image && (
